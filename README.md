@@ -52,3 +52,5 @@ Version jouable visee :
 - [Pacing 10 minutes vers 2026](docs/pacing-10-minutes.md)
 - [Script des 10 premieres minutes](docs/script-10-premieres-minutes.md)
 - [Planning hackathon](docs/planning.md)
+
+hello
