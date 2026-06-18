@@ -122,15 +122,47 @@ Action : collecter du bois, organiser la tribu.
 
 Arbitrage : bruler vite ou preserver la foret.
 
-### 3. Charbon
+### 3. Agriculture et excedent
+
+Source : nourriture stockee, champs, grenier.
+
+Action : semer, stocker, stabiliser la population.
+
+Arbitrage : investir maintenant pour obtenir une production future ; le joueur apprend que le premier stockage energetique est la nourriture.
+
+### 4. Force animale
+
+Source : muscles non humains, traction, transport local.
+
+Action : domestiquer, nourrir, utiliser pour labourer ou transporter.
+
+Arbitrage : plus de travail mecanique, mais une puissance vivante qui mange et fatigue.
+
+### 5. Eau et vent
+
+Source : moulins a eau, moulins a vent.
+
+Action : construire pres d'une riviere ou sur une colline, relier au village.
+
+Arbitrage : production passive sans clic, mais dependance au lieu et a la meteo.
+
+### 6. Charbon et vapeur
 
 Source : combustion fossile dense.
 
-Action : construire mines, fours, machines.
+Action : construire mines, fours, chaudieres, machines a vapeur.
 
 Arbitrage : argent et puissance rapides, pollution et soutien social en baisse.
 
-### 4. Petrole / gaz
+### 7. Electricite et reseau
+
+Source : generateurs, lignes, demande electrique.
+
+Action : poser des lignes, electrifier la ville, equilibrer production et demande.
+
+Arbitrage : l'energie devient distribuable et invisible, mais le reseau ajoute pertes, pannes et besoin de pilotage.
+
+### 8. Petrole / gaz
 
 Source : mobilite, reseaux, industrie.
 
@@ -138,7 +170,7 @@ Action : motoriser, transporter, etendre.
 
 Arbitrage : croissance tres forte, dependance et carbone.
 
-### 5. Fission
+### 9. Fission
 
 Source : uranium.
 
@@ -146,7 +178,7 @@ Action : construire reacteurs, former operateurs, gerer confiance.
 
 Arbitrage : puissance massive et bas carbone, mais acceptabilite fragile.
 
-### 6. Renouvelables + stockage
+### 10. Renouvelables + stockage
 
 Source : solaire, vent, batteries, reseau.
 
@@ -156,7 +188,7 @@ Arbitrage : propre mais intermittent ; sans stockage, le marche se retourne.
 
 Ce palier doit correspondre au passage vers 2026. Le joueur arrive dans un monde puissant, connecte, instable, avec beaucoup d'energie disponible mais des contraintes sociales, climatiques et economiques deja accumulees.
 
-### 7. Fusion
+### 11. Fusion
 
 Source : plasma controle.
 
@@ -164,7 +196,7 @@ Action : financer recherche, stabiliser confinement.
 
 Arbitrage : tres cher et lent, mais ouvre la fin de partie.
 
-### 8. Orbital
+### 12. Orbital
 
 Source : solaire spatial, Dyson swarm embryonnaire.
 

@@ -35,7 +35,7 @@ Le premier effet "waouh" doit arriver en moins de 10 secondes.
 Version jouable visee :
 
 - incremental temps reel ;
-- progression age de pierre -> bois -> charbon -> petrole/gaz -> fission -> renouvelables + stockage -> 2026 en 10 minutes ;
+- progression age de pierre -> feu -> bois -> agriculture -> force animale -> eau/vent -> charbon/vapeur -> electricite -> petrole/gaz -> fission -> renouvelables + stockage -> 2026 en 10 minutes ;
 - apres 2026 : fusion, orbital, civilisation de type Kardashev ;
 - trois jauges principales : energie, argent, soutien social ;
 - une contrainte climat/carbone ;

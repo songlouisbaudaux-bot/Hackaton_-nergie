@@ -86,7 +86,7 @@ Usage dans le jeu :
 
 L'IEA decrit 2025 comme une confirmation de l'arrivee de l'age de l'electricite : la demande mondiale d'electricite croit plus vite que la demande totale d'energie. Les vehicules electriques et data centers progressent fortement, meme s'ils restent une part limitee de la croissance totale.
 
-La meme analyse indique que le solaire connait une croissance exceptionnelle en 2025, avec un gain record de production.
+La meme analyse indique que le solaire connait une croissance exceptionnelle en 2025 : environ +600 TWh de production solaire PV, soit la plus grande hausse annuelle observee pour une source d'electricite hors rebonds post-crise.
 
 Usage dans le jeu :
 

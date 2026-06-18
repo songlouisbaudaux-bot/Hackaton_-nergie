@@ -48,6 +48,8 @@ C'est beaucoup plus fort que de commencer avec des centrales modernes, parce que
 - au debut, un clic = une etincelle ;
 - puis le feu devient chaleur ;
 - la chaleur permet la nourriture, la tribu, la securite ;
+- l'agriculture transforme la lumiere en stock ;
+- les animaux, l'eau et le vent ajoutent le premier travail mecanique ;
 - la combustion devient industrie ;
 - l'industrie devient reseau ;
 - le reseau devient calcul ;
@@ -94,4 +96,3 @@ Pas un jeu de culpabilisation. Pas un sermon climatique. Le joueur doit sentir q
 Phrase de direction :
 
 > L'energie nous a sortis de la nuit. Le probleme commence quand on confond la lumiere avec le but.
-

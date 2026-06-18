@@ -116,21 +116,27 @@ Le joueur doit arriver en 2026 en environ 10 minutes.
 Une partie complete peut durer 15 a 20 minutes si le futur est inclus. Pour le hackathon, le rythme prioritaire est :
 
 - 0 a 1 minute : age de pierre, feu, naissance du compteur ;
-- 1 a 3 minutes : bois, tribu, premiers choix sociaux ;
-- 3 a 5 minutes : charbon, industrie, puissance rapide ;
-- 5 a 7 minutes : petrole/gaz, mobilite, marche, carbone ;
-- 7 a 9 minutes : fission, reseau, acceptabilite sociale ;
-- 9 a 10 minutes : renouvelables + stockage, arrivee en 2026 ;
+- 1:00 a 2:05 : bois, tribu, premiers choix sociaux ;
+- 2:05 a 3:10 : agriculture, grenier, force animale ;
+- 3:10 a 4:05 : eau, vent, premiers moteurs naturels ;
+- 4:05 a 5:20 : charbon, vapeur, industrie, puissance rapide ;
+- 5:20 a 6:20 : electricite, lumiere, reseau ;
+- 6:20 a 7:15 : petrole/gaz, mobilite, marche, carbone ;
+- 7:15 a 8:05 : fission, confiance, acceptabilite sociale ;
+- 8:05 a 9:15 : solaire, eolien, meteo, intermittence ;
+- 9:15 a 10:00 : stockage, pilotage, arrivee en 2026 ;
 - apres 10 minutes : fusion, orbital, rival IA et vraie fin.
 
 La demo hackathon peut montrer :
 
 1. ouverture age de pierre ;
-2. acceleration jusqu'a l'industrie ;
-3. apparition du probleme social/climat ;
-4. arrivee en 2026 avec un monde puissant mais instable ;
-5. choix entre vitesse et stabilite ;
-6. tease du futur : fusion/orbital/HELIOS.
+2. feu qui devient groupe ;
+3. agriculture puis moulins pour eviter le saut direct vers l'usine ;
+4. acceleration charbon/electricite/petrole ;
+5. apparition du probleme social/climat ;
+6. arrivee en 2026 avec un monde puissant mais instable ;
+7. choix entre vitesse et stabilite ;
+8. tease du futur : fusion/orbital/HELIOS.
 
 Pas besoin que le jury voie toute la fin. Il faut qu'il sente que le passage a 2026 est seulement le debut du vrai dilemme.
 

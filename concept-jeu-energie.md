@@ -20,7 +20,7 @@ En arrière-plan, un **compteur carbone / climat** que la production remplit ; s
 **La tension de jeu** : ces jauges se contredisent. Le chemin le plus rapide en énergie crame la société et le climat. Le chemin le plus propre est lent et cher. C'est cette contradiction qui rend le jeu intéressant — et qui exprime "ce qui nous détruit ET ce qui nous sauve" sans avoir à le dire : le joueur le vit.
 
 ## L'échelle énergétique (chiffrée VRAI = ce qui rend le jeu crédible)
-Bois (~16 MJ/kg, clin d'œil EGGER) → charbon → pétrole / gaz → fission (uranium ~80 millions MJ/kg) → renouvelables + stockage → fusion → orbital / Dyson swarm. Chaque palier multiplie la production par des ordres de grandeur **réels**. Les nombres sont vrais : c'est ça qui distingue le jeu d'un truc inventé, et c'est un argument fort devant un jury.
+Feu / bois (~16 MJ/kg, clin d'œil EGGER) → agriculture et force animale → eau / vent → charbon et vapeur → électricité → pétrole / gaz → fission (uranium ~80 millions MJ/kg) → renouvelables + stockage → fusion → orbital / Dyson swarm. Chaque palier multiplie la production par des ordres de grandeur **réels**. Les nombres sont vrais : c'est ça qui distingue le jeu d'un truc inventé, et c'est un argument fort devant un jury.
 
 ## Le rôle du LLM (à implémenter plus tard)
 Le moteur du jeu est **scripté et tourne en temps réel** (compteurs, coûts qui montent, jauges gérées par des règles dures) — solide, équilibrable, sans appel API. Par-dessus, un **concurrent incarné par un LLM** grimpe la même échelle en face de toi. Points clés :

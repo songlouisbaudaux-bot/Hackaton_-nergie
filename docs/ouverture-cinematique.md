@@ -84,8 +84,9 @@ Cette apparition progressive donne un effet Paperclips : le monde commence petit
 Le jeu doit s'eclairer avec la progression.
 
 - Age de pierre : noir, ambre, feu, texture organique.
-- Bois/charbon : brun, fumee, interface encore brute.
-- Industrie : acier, cadrans, chiffres plus nombreux.
+- Bois/agriculture : brun, ambre, interface encore organique.
+- Eau/vent : bleus doux, roues, premiere production passive.
+- Charbon/industrie : acier, fumee, cadrans, chiffres plus nombreux.
 - Electricite : blanc, bleu, reseau, lignes fines.
 - Fission : lumiere froide, precision, danger contenu.
 - Renouvelables : ciel clair, vert discret, grille stable.
@@ -143,4 +144,3 @@ Puis :
 Puis :
 
 > Produis. Partage. Survis a ta puissance.
-
