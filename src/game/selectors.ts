@@ -1,0 +1,178 @@
+import { ages, energySources, purchases, technologies } from './data';
+import type {
+  AgeId,
+  Purchase,
+  PurchaseCounts,
+  PurchaseId,
+  SourceProduction,
+  Technology,
+  TechnologyId,
+} from './types';
+
+const COST_GROWTH = 1.18;
+
+export type VisiblePurchase = Purchase & {
+  affordable: boolean;
+  count: number;
+  nextCostJoules: number;
+};
+
+export type VisibleTechnology = Technology & {
+  affordable: boolean;
+  available: boolean;
+  targetCount: number;
+  targetLabel: string;
+  researched: boolean;
+};
+
+export function getPurchaseById(id: PurchaseId) {
+  return purchases.find((purchase) => purchase.id === id);
+}
+
+export function getAgeById(id: AgeId) {
+  return ages.find((age) => age.id === id) ?? ages[0];
+}
+
+export function getAgeIndex(ageId: AgeId) {
+  return ages.findIndex((age) => age.id === ageId);
+}
+
+export function getNextAge(ageId: AgeId) {
+  const nextIndex = getAgeIndex(ageId) + 1;
+  return ages[nextIndex];
+}
+
+export function getScaledCost(baseCostJoules: number, count: number) {
+  return Math.ceil(baseCostJoules * COST_GROWTH ** count);
+}
+
+export function getAgePurchases(
+  ageId: AgeId,
+  purchaseCounts: PurchaseCounts,
+  currentEnergyJoules: number,
+): VisiblePurchase[] {
+  return purchases
+    .filter((purchase) => purchase.ageId === ageId)
+    .map((purchase) => {
+      const count = purchaseCounts[purchase.id] ?? 0;
+      const nextCostJoules = getScaledCost(purchase.costJoules, count);
+
+      return {
+        ...purchase,
+        count,
+        nextCostJoules,
+        affordable: currentEnergyJoules >= nextCostJoules,
+      };
+    });
+}
+
+export function getAgeTechnologies(
+  ageId: AgeId,
+  purchaseCounts: PurchaseCounts,
+  researchedIds: TechnologyId[],
+  currentEnergyJoules: number,
+): VisibleTechnology[] {
+  const researched = new Set(researchedIds);
+
+  return technologies
+    .filter((technology) => technology.ageId === ageId)
+    .map((technology) => {
+      const targetCount = purchaseCounts[technology.targetPurchaseId] ?? 0;
+      const targetLabel = getPurchaseById(technology.targetPurchaseId)?.label ?? 'Objet';
+
+      return {
+        ...technology,
+        targetCount,
+        targetLabel,
+        available: targetCount > 0,
+        researched: researched.has(technology.id),
+        affordable: currentEnergyJoules >= technology.costJoules,
+      };
+    });
+}
+
+export function isAgeComplete(
+  ageId: AgeId,
+  purchaseCounts: PurchaseCounts,
+  researchedIds: TechnologyId[],
+) {
+  const agePurchases = purchases.filter((purchase) => purchase.ageId === ageId);
+  const ageTechnologies = technologies.filter((technology) => technology.ageId === ageId);
+  const researched = new Set(researchedIds);
+  const hasEveryObject = agePurchases.every((purchase) => (purchaseCounts[purchase.id] ?? 0) > 0);
+  const hasEveryTechnology = ageTechnologies.every((technology) => researched.has(technology.id));
+
+  return hasEveryObject && hasEveryTechnology;
+}
+
+export function getAdvanceState(
+  ageId: AgeId,
+  purchaseCounts: PurchaseCounts,
+  researchedIds: TechnologyId[],
+  currentEnergyJoules: number,
+) {
+  const currentAge = getAgeById(ageId);
+  const nextAge = getNextAge(ageId);
+  const complete = isAgeComplete(ageId, purchaseCounts, researchedIds);
+  const cost = currentAge.advanceCostJoules ?? 0;
+
+  return {
+    nextAge,
+    complete,
+    cost,
+    affordable: currentEnergyJoules >= cost,
+    canAdvance: Boolean(nextAge && complete && currentEnergyJoules >= cost),
+  };
+}
+
+export function getProduction(
+  purchaseCounts: PurchaseCounts,
+  researchedIds: TechnologyId[],
+): SourceProduction[] {
+  const researched = new Set(researchedIds);
+  const rows = energySources.map((source) => ({
+    ...source,
+    clickJoules: source.clickContribution,
+    passiveJoules: source.passiveContribution,
+    mixWeight: source.clickContribution + source.passiveContribution,
+    share: 0,
+  }));
+
+  const bumpSource = (sourceId: SourceProduction['id'], clickDelta = 0, passiveDelta = 0) => {
+    const row = rows.find((source) => source.id === sourceId);
+    if (!row) return;
+
+    row.clickJoules = Math.max(0, row.clickJoules + clickDelta);
+    row.passiveJoules = Math.max(0, row.passiveJoules + passiveDelta);
+    row.mixWeight = Math.max(0, row.clickJoules + row.passiveJoules);
+  };
+
+  for (const purchase of purchases) {
+    const count = purchaseCounts[purchase.id] ?? 0;
+    if (count <= 0) continue;
+    bumpSource(purchase.sourceId, purchase.clickGain * count, purchase.passiveGain * count);
+  }
+
+  for (const technology of technologies) {
+    if (!researched.has(technology.id)) continue;
+    bumpSource(technology.sourceId, technology.clickGain, technology.passiveGain);
+  }
+
+  const visibleRows = rows.filter((row) => row.clickJoules > 0 || row.passiveJoules > 0);
+  const totalWeight = visibleRows.reduce((sum, row) => sum + row.mixWeight, 0);
+
+  return visibleRows.map((row) => ({
+    ...row,
+    share: totalWeight > 0 ? row.mixWeight / totalWeight : 0,
+  }));
+}
+
+export function getTotals(sourceProduction: SourceProduction[]) {
+  return sourceProduction.reduce(
+    (totals, source) => ({
+      energyPerClick: totals.energyPerClick + source.clickJoules,
+      energyPerSecond: totals.energyPerSecond + source.passiveJoules,
+    }),
+    { energyPerClick: 0, energyPerSecond: 0 },
+  );
+}
