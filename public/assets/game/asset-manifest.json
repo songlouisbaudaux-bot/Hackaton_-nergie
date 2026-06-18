@@ -218,6 +218,111 @@
       "era": "charbon-vapeur",
       "labelFr": "Fumee / vapeur",
       "usage": "Effet visuel industrie et vapeur."
+    },
+    {
+      "slug": "tile-grass-buildable",
+      "file": "tile-grass-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile prairie constructible",
+      "usage": "Case elementaire verte pour poser batiments et unites."
+    },
+    {
+      "slug": "tile-dirt-buildable",
+      "file": "tile-dirt-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile terre battue constructible",
+      "usage": "Case elementaire de chemin ou zone de construction."
+    },
+    {
+      "slug": "tile-stone-buildable",
+      "file": "tile-stone-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile pierre constructible",
+      "usage": "Case elementaire pavee pour batiments mediavaux ou industriels."
+    },
+    {
+      "slug": "tile-sand-buildable",
+      "file": "tile-sand-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile sable constructible",
+      "usage": "Case elementaire desertique pour poser batiments et unites."
+    },
+    {
+      "slug": "tile-forest-floor-buildable",
+      "file": "tile-forest-floor-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile sol forestier constructible",
+      "usage": "Case elementaire de sous-bois avec centre degage."
+    },
+    {
+      "slug": "tile-snow-buildable",
+      "file": "tile-snow-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile neige constructible",
+      "usage": "Case elementaire froide pour biome neigeux."
+    },
+    {
+      "slug": "tile-energy-platform-buildable",
+      "file": "tile-energy-platform-buildable.png",
+      "era": "terrain-base",
+      "labelFr": "Tuile plateforme energie",
+      "usage": "Case elementaire industrielle pour installations energetiques."
+    },
+    {
+      "slug": "floating-grass-block-natural",
+      "file": "floating-grass-block-natural.png",
+      "era": "terrain-flottant",
+      "labelFr": "Bloc flottant prairie naturel",
+      "usage": "Bloc elementaire flottant avec plateau jouable et dessous rocheux naturel."
+    },
+    {
+      "slug": "tuile-herbe",
+      "file": "Tuile_herbe.png",
+      "era": "terrain-flottant",
+      "labelFr": "Tuile herbe originale",
+      "usage": "Ancienne tuile herbeuse conservee dans le dossier unique d'assets."
+    },
+    {
+      "slug": "panneaux-solaires",
+      "file": "Panneaux_solaires.png",
+      "era": "energie-avancee",
+      "labelFr": "Panneaux solaires",
+      "usage": "Asset energie solaire."
+    },
+    {
+      "slug": "heoliennes",
+      "file": "Héoliennes.png",
+      "era": "energie-avancee",
+      "labelFr": "Heoliennes",
+      "usage": "Asset energie eolienne."
+    },
+    {
+      "slug": "centrale-fission",
+      "file": "Centrale_fission.png",
+      "era": "energie-avancee",
+      "labelFr": "Centrale fission",
+      "usage": "Asset production nucleaire fission."
+    },
+    {
+      "slug": "centrale-fusion",
+      "file": "Centrale_fusion.png",
+      "era": "energie-avancee",
+      "labelFr": "Centrale fusion",
+      "usage": "Asset production nucleaire fusion."
+    },
+    {
+      "slug": "centrale-antimatiere",
+      "file": "Centrale_antimatière.png",
+      "era": "energie-avancee",
+      "labelFr": "Centrale antimatiere",
+      "usage": "Asset production antimatiere."
+    },
+    {
+      "slug": "dyson-sphere",
+      "file": "Dyson_sphere.png",
+      "era": "energie-avancee",
+      "labelFr": "Sphere de Dyson",
+      "usage": "Asset megastructure energie stellaire."
     }
   ]
 }
