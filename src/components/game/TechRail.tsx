@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import {
   Atom,
   Beef,
@@ -52,6 +53,9 @@ export default function TechRail({
     energy,
   );
   const sourceLabels = new Map(energySources.map((source) => [source.id, source.shortLabel]));
+  const techListStyle = {
+    '--technology-count': Math.max(visibleTechnologies.length, 1),
+  } as CSSProperties;
 
   return (
     <section className="panel tech-rail" aria-label="Technologies">
@@ -63,7 +67,7 @@ export default function TechRail({
         <span className="rail-count">{currentAge.label}</span>
       </div>
 
-      <div className="technology-list">
+      <div className="technology-list" style={techListStyle}>
         {visibleTechnologies.map((technology) => {
           const canResearch =
             technology.available && technology.affordable && !technology.researched;
