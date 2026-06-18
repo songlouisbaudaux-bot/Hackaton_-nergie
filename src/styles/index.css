@@ -164,6 +164,11 @@ button {
   --progress-rail-height: 54px;
   --tech-rail-height: clamp(96px, 16dvh, 150px);
   --island-size: clamp(130px, 14vw, 210px);
+  --island-center-x: 50%;
+  --island-center-y: 50%;
+  --island-step-x: clamp(92px, 8.8vw, 132px);
+  --island-step-y: clamp(62px, 7.2dvh, 88px);
+  --island-top-y: clamp(126px, 15dvh, 170px);
   --bottom-zone-height: calc(
     var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
   );
@@ -234,12 +239,14 @@ button {
 
 .energy-island {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: var(--island-center-x);
+  top: var(--island-center-y);
   width: var(--island-size);
   margin: 0;
   opacity: 0.94;
   transform: translate(-50%, -50%);
+  animation: islandFloat var(--island-float-duration, 7s) ease-in-out infinite;
+  animation-delay: var(--island-float-delay, 0s);
   transition:
     opacity 180ms ease,
     transform 180ms ease;
@@ -267,29 +274,50 @@ button {
     drop-shadow(0 0 18px rgba(58, 131, 165, 0.14));
 }
 
+.energy-island[data-slot="central"] {
+  z-index: 4;
+  --island-float-duration: 7.4s;
+  --island-float-delay: -1.1s;
+}
+
 .energy-island[data-slot="biomass"] {
-  left: calc(50% - clamp(170px, 17vw, 190px));
-  top: 61%;
+  left: calc(var(--island-center-x) - var(--island-step-x));
+  top: calc(var(--island-center-y) + var(--island-step-y));
+  z-index: 6;
+  --island-float-duration: 6.8s;
+  --island-float-delay: -2.7s;
 }
 
 .energy-island[data-slot="animal-power"] {
-  left: calc(50% - clamp(120px, 14vw, 150px));
-  top: 33%;
+  left: calc(var(--island-center-x) - var(--island-step-x));
+  top: calc(var(--island-center-y) - var(--island-step-y));
+  z-index: 3;
+  --island-float-duration: 6.1s;
+  --island-float-delay: -0.4s;
 }
 
 .energy-island[data-slot="water-wind"] {
-  left: calc(50% + clamp(120px, 14vw, 150px));
-  top: 33%;
+  left: calc(var(--island-center-x) + var(--island-step-x));
+  top: calc(var(--island-center-y) - var(--island-step-y));
+  z-index: 3;
+  --island-float-duration: 7.1s;
+  --island-float-delay: -3.3s;
 }
 
 .energy-island[data-slot="fossil"] {
-  left: calc(50% + clamp(170px, 17vw, 190px));
-  top: 61%;
+  left: calc(var(--island-center-x) + var(--island-step-x));
+  top: calc(var(--island-center-y) + var(--island-step-y));
+  z-index: 6;
+  --island-float-duration: 6.4s;
+  --island-float-delay: -1.8s;
 }
 
 .energy-island[data-slot="atomic"] {
-  left: 50%;
-  top: calc(50% - clamp(170px, 20vw, 260px));
+  left: var(--island-center-x);
+  top: calc(var(--island-center-y) - var(--island-top-y));
+  z-index: 2;
+  --island-float-duration: 7.8s;
+  --island-float-delay: -4.2s;
 }
 
 .central-hotspot {
@@ -1000,6 +1028,16 @@ button {
   }
 }
 
+@keyframes islandFloat {
+  0%,
+  100% {
+    transform: translate(-50%, calc(-50% - 6px));
+  }
+  50% {
+    transform: translate(-50%, calc(-50% + 7px));
+  }
+}
+
 @media (max-width: 1120px), (max-height: 820px) {
   .game-screen {
     --hud-edge: 12px;
@@ -1008,6 +1046,9 @@ button {
     --tech-rail-height: clamp(118px, 15dvh, 128px);
     --progress-rail-height: 50px;
     --island-size: clamp(96px, 12vw, 142px);
+    --island-step-x: clamp(68px, 8vw, 100px);
+    --island-step-y: clamp(44px, 6dvh, 66px);
+    --island-top-y: clamp(92px, 13dvh, 126px);
     --mix-panel-width: clamp(218px, 25vw, 258px);
     --purchase-panel-width: clamp(286px, 35vw, 334px);
   }
@@ -1061,7 +1102,11 @@ button {
     --tech-rail-height: 118px;
     --progress-rail-height: 72px;
     --mobile-side-panel-height: clamp(156px, 25dvh, 210px);
-    --island-size: 64px;
+    --island-size: 38px;
+    --island-center-y: 40%;
+    --island-step-x: 32px;
+    --island-step-y: 22px;
+    --island-top-y: 48px;
     --mix-panel-width: calc(40vw - 14px);
     --purchase-panel-width: calc(60vw - 14px);
     --bottom-zone-height: calc(
@@ -1079,26 +1124,6 @@ button {
 
   .energy-islands-layer {
     opacity: 0.72;
-  }
-
-  .energy-island[data-slot="biomass"] {
-    left: calc(50% - 124px);
-  }
-
-  .energy-island[data-slot="animal-power"] {
-    left: calc(50% - 86px);
-  }
-
-  .energy-island[data-slot="water-wind"] {
-    left: calc(50% + 86px);
-  }
-
-  .energy-island[data-slot="fossil"] {
-    left: calc(50% + 124px);
-  }
-
-  .energy-island[data-slot="atomic"] {
-    top: calc(50% - 104px);
   }
 
   .energy-header {
@@ -1285,8 +1310,32 @@ button {
   }
 }
 
+@media (max-height: 500px) and (orientation: landscape) {
+  .game-screen {
+    --island-size: 38px;
+    --island-center-y: 39.4%;
+    --island-step-x: 32px;
+    --island-step-y: 19px;
+    --island-top-y: 38px;
+  }
+}
+
 @media (max-width: 760px) and (orientation: portrait) {
+  .game-screen {
+    --island-size: 64px;
+    --island-center-y: 34%;
+    --island-step-x: 52px;
+    --island-step-y: 34px;
+    --island-top-y: 72px;
+  }
+
   .rotate-device-overlay {
     display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .energy-island {
+    animation: none;
   }
 }
