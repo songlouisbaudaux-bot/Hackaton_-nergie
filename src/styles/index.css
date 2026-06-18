@@ -274,7 +274,7 @@ button {
   top: 116px;
   right: 20px;
   width: 400px;
-  max-height: calc(100dvh - 150px);
+  max-height: calc(100dvh - 300px);
   overflow: auto;
   padding: 15px;
 }
@@ -817,7 +817,7 @@ button {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1180px), (max-height: 820px) {
   body {
     overflow: auto;
   }
