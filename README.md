@@ -53,4 +53,4 @@ Version jouable visee :
 - [Script des 10 premieres minutes](docs/script-10-premieres-minutes.md)
 - [Planning hackathon](docs/planning.md)
 
-hello
+
