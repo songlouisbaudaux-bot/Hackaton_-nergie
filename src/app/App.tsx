@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Flame, Zap } from 'lucide-react';
+import { Flame, RotateCcw, Zap } from 'lucide-react';
 import {
   CentralPlayfieldSlot,
   MixPanel,
@@ -178,6 +178,14 @@ function GameScreen() {
 
         <ProgressRail activeAgeId={activeAgeId} />
       </div>
+
+      <aside className="rotate-device-overlay" aria-live="polite">
+        <div className="rotate-device-card panel">
+          <RotateCcw size={34} aria-hidden="true" />
+          <strong>Tournez l'écran</strong>
+          <span>Le jeu se lit mieux en paysage.</span>
+        </div>
+      </aside>
 
       <div className="floating-layer" aria-hidden="true">
         {floatingGains.map((gain) => (

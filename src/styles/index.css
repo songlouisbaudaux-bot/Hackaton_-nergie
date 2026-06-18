@@ -762,6 +762,47 @@ button {
   pointer-events: none;
 }
 
+.rotate-device-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: none;
+  place-items: center;
+  padding: 22px;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(47, 141, 100, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 131, 165, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(233, 246, 241, 0.96), rgba(237, 242, 221, 0.98));
+  background-size: 34px 34px, 34px 34px, auto;
+  pointer-events: auto;
+}
+
+.rotate-device-card {
+  display: grid;
+  width: min(320px, 100%);
+  place-items: center;
+  gap: 9px;
+  padding: 22px;
+  text-align: center;
+}
+
+.rotate-device-card svg {
+  color: var(--amber);
+}
+
+.rotate-device-card strong {
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.rotate-device-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
 .floating-gain {
   position: absolute;
   display: inline-flex;
@@ -1064,5 +1105,11 @@ button {
     display: flex;
     justify-content: flex-start;
     gap: 8px;
+  }
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .rotate-device-overlay {
+    display: grid;
   }
 }

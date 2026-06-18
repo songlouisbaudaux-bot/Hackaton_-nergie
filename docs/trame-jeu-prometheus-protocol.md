@@ -227,3 +227,8 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Les panneaux adaptent leur largeur et leur hauteur a la fenetre.
 - Quand il y a trop d'elements, seul le contenu du panneau scrolle, pas toute la page.
 - Sur petite largeur, le mix et le shop deviennent des docks courts au-dessus des technologies pour laisser le centre respirer.
+
+### 2026-06-18 - Mobile portrait
+
+- En mobile vertical, le jeu affiche une demande de tourner l'ecran en paysage.
+- L'interface jouable reste priorisee pour le format paysage afin d'eviter les panneaux compresses.
