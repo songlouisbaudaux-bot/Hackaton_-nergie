@@ -1,6 +1,6 @@
 # Prometheus Protocol
 
-Jeu incremental web pour le hackathon Energie.
+Hackaton Energie - jeu incremental web.
 
 ## Pitch
 
