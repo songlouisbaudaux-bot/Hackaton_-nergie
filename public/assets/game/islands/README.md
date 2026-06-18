@@ -69,8 +69,18 @@ Use `island-manifest.json` as the integration source of truth.
 - `fossil/island-fossil-04-upgraded-high-pressure-steam.png` - Vapeur haute pression: Remplace built apres Vapeur haute pression.
 - `fossil/island-fossil-05-built-thermal-turbine.png` - Turbine thermique: Afficher apres achat de Turbine thermique.
 - `fossil/island-fossil-05-upgraded-thermal-cycle.png` - Cycle thermique: Remplace built apres Cycle thermique.
+- `fossil/island-fossil-05-built-oil-refinery.png` - Raffinerie de petrole: Variante future optionnelle pour Raffinerie de petrole.
+- `fossil/island-fossil-05-upgraded-oil-cracking.png` - Craquage petrolier: Variante future optionnelle apres Craquage petrolier.
+- `fossil/island-fossil-06-built-gas-turbine.png` - Turbine a gaz: Variante future optionnelle pour Turbine a gaz.
+- `fossil/island-fossil-06-upgraded-combined-cycle.png` - Cycle combine: Variante future optionnelle apres Cycle combine.
 
 ## atomic
 
 - `atomic/island-atomic-05-built-reactor-core.png` - Coeur de reacteur: Afficher apres achat de Coeur de reacteur.
 - `atomic/island-atomic-05-upgraded-controlled-fission.png` - Fission controlee: Remplace built apres Fission controlee.
+- `atomic/island-atomic-06-built-modern-fission.png` - Reacteur moderne: Variante future optionnelle pour Reacteur moderne.
+- `atomic/island-atomic-06-upgraded-passive-safety.png` - Surete passive: Variante future optionnelle apres Surete passive.
+- `atomic/island-atomic-07-built-fusion-plant.png` - Tokamak: Variante future optionnelle pour Tokamak.
+- `atomic/island-atomic-07-upgraded-controlled-fusion.png` - Fusion controlee: Variante future optionnelle apres Fusion controlee.
+- `atomic/island-atomic-08-built-antimatter.png` - Centrale antimatiere: Variante future optionnelle pour Centrale antimatiere.
+- `atomic/island-atomic-08-upgraded-antimatter-containment.png` - Confinement antimatiere: Variante future optionnelle apres Confinement antimatiere.

@@ -226,3 +226,4 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Conservation des zones autour du centre : mix a gauche, shop a droite, technologies et progression en bas.
 - Les panneaux adaptent leur largeur et leur hauteur a la fenetre.
 - Quand il y a trop d'elements, seul le contenu du panneau scrolle, pas toute la page.
+- Sur petite largeur, le mix et le shop deviennent des docks courts au-dessus des technologies pour laisser le centre respirer.

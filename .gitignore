@@ -7,6 +7,7 @@ vite.config.d.ts
 
 # Caches & logs (ne jamais committer)
 .npm-cache/
+__pycache__/
 *.log
 vite.*.log
 

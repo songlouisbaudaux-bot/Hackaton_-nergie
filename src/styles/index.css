@@ -833,7 +833,7 @@ button {
     --hud-edge: 12px;
     --hud-gap: 10px;
     --energy-header-height: 68px;
-    --tech-rail-height: clamp(86px, 15dvh, 122px);
+    --tech-rail-height: clamp(118px, 15dvh, 128px);
     --progress-rail-height: 50px;
     --mix-panel-width: clamp(218px, 25vw, 258px);
     --purchase-panel-width: clamp(286px, 35vw, 334px);
@@ -853,7 +853,26 @@ button {
   }
 
   .technology-card {
-    min-height: 54px;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    min-height: 48px;
+  }
+
+  .technology-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .technology-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .technology-label {
+    font-size: 0.78rem;
+  }
+
+  .technology-effect {
+    display: none;
   }
 
   .progress-rail {
@@ -868,6 +887,7 @@ button {
     --energy-header-height: 66px;
     --tech-rail-height: 118px;
     --progress-rail-height: 72px;
+    --mobile-side-panel-height: clamp(156px, 25dvh, 210px);
     --mix-panel-width: calc(40vw - 14px);
     --purchase-panel-width: calc(60vw - 14px);
     --bottom-zone-height: calc(
@@ -879,7 +899,7 @@ button {
     padding:
       calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap))
       var(--hud-edge)
-      calc(var(--bottom-zone-height) + var(--hud-gap))
+      calc(var(--bottom-zone-height) + var(--mobile-side-panel-height) + var(--hud-gap) * 2)
       var(--hud-edge);
   }
 
@@ -892,7 +912,10 @@ button {
 
   .mix-panel,
   .purchase-panel {
-    max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height));
+    top: auto;
+    bottom: calc(var(--bottom-zone-height) + var(--hud-gap));
+    height: var(--mobile-side-panel-height);
+    max-height: var(--mobile-side-panel-height);
   }
 
   .mix-panel {

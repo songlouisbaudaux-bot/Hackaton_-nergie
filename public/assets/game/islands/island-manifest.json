@@ -476,6 +476,116 @@
       "title": "Fission controlee",
       "description": "Centrale de fission propre avec controle et glow bleu doux.",
       "integration": "Remplace built apres Fission controlee."
+    },
+    {
+      "file": "fossil/island-fossil-05-built-oil-refinery.png",
+      "filename": "island-fossil-05-built-oil-refinery.png",
+      "category": "fossil",
+      "source": "fossil",
+      "state": "built",
+      "age": "futur-prestige",
+      "title": "Raffinerie de petrole",
+      "description": "Raffinerie compacte future avec cuves et conduites.",
+      "integration": "Variante future optionnelle pour Raffinerie de petrole."
+    },
+    {
+      "file": "fossil/island-fossil-05-upgraded-oil-cracking.png",
+      "filename": "island-fossil-05-upgraded-oil-cracking.png",
+      "category": "fossil",
+      "source": "fossil",
+      "state": "upgraded",
+      "age": "futur-prestige",
+      "title": "Craquage petrolier",
+      "description": "Raffinerie amelioree avec tuyauterie plus dense et controle.",
+      "integration": "Variante future optionnelle apres Craquage petrolier."
+    },
+    {
+      "file": "fossil/island-fossil-06-built-gas-turbine.png",
+      "filename": "island-fossil-06-built-gas-turbine.png",
+      "category": "fossil",
+      "source": "fossil",
+      "state": "built",
+      "age": "futur-prestige",
+      "title": "Turbine a gaz",
+      "description": "Turbine a gaz compacte avec conduites et centrale basse.",
+      "integration": "Variante future optionnelle pour Turbine a gaz."
+    },
+    {
+      "file": "fossil/island-fossil-06-upgraded-combined-cycle.png",
+      "filename": "island-fossil-06-upgraded-combined-cycle.png",
+      "category": "fossil",
+      "source": "fossil",
+      "state": "upgraded",
+      "age": "futur-prestige",
+      "title": "Cycle combine",
+      "description": "Cycle combine plus propre avec double turbine et controle.",
+      "integration": "Variante future optionnelle apres Cycle combine."
+    },
+    {
+      "file": "atomic/island-atomic-06-built-modern-fission.png",
+      "filename": "island-atomic-06-built-modern-fission.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "built",
+      "age": "futur-prestige",
+      "title": "Reacteur moderne",
+      "description": "Reacteur fission moderne sur plateforme propre.",
+      "integration": "Variante future optionnelle pour Reacteur moderne."
+    },
+    {
+      "file": "atomic/island-atomic-06-upgraded-passive-safety.png",
+      "filename": "island-atomic-06-upgraded-passive-safety.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "upgraded",
+      "age": "futur-prestige",
+      "title": "Surete passive",
+      "description": "Reacteur moderne avec securite passive et refroidissement visible.",
+      "integration": "Variante future optionnelle apres Surete passive."
+    },
+    {
+      "file": "atomic/island-atomic-07-built-fusion-plant.png",
+      "filename": "island-atomic-07-built-fusion-plant.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "built",
+      "age": "futur-prestige",
+      "title": "Tokamak",
+      "description": "Centrale fusion compacte avec anneau lumineux.",
+      "integration": "Variante future optionnelle pour Tokamak."
+    },
+    {
+      "file": "atomic/island-atomic-07-upgraded-controlled-fusion.png",
+      "filename": "island-atomic-07-upgraded-controlled-fusion.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "upgraded",
+      "age": "futur-prestige",
+      "title": "Fusion controlee",
+      "description": "Fusion controlee avec glow plus stable et reseau.",
+      "integration": "Variante future optionnelle apres Fusion controlee."
+    },
+    {
+      "file": "atomic/island-atomic-08-built-antimatter.png",
+      "filename": "island-atomic-08-built-antimatter.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "built",
+      "age": "futur-prestige",
+      "title": "Centrale antimatiere",
+      "description": "Centrale antimatiere compacte et contenue.",
+      "integration": "Variante future optionnelle pour Centrale antimatiere."
+    },
+    {
+      "file": "atomic/island-atomic-08-upgraded-antimatter-containment.png",
+      "filename": "island-atomic-08-upgraded-antimatter-containment.png",
+      "category": "atomic",
+      "source": "atomic",
+      "state": "upgraded",
+      "age": "futur-prestige",
+      "title": "Confinement antimatiere",
+      "description": "Confinement antimatiere renforce avec energie orbitale stylisee.",
+      "integration": "Variante future optionnelle apres Confinement antimatiere."
     }
   ]
 }
