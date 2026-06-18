@@ -243,3 +243,4 @@ Les couts et productions doivent etre calibres pour ce rythme :
 La premiere demo doit pouvoir forcer ou accelerer certains paliers si le jury n'a que 3 minutes. Mais le rythme naturel reste 10 minutes jusqu'a 2026.
 
 Pour le deroule exact minute par minute, voir [Script des 10 premieres minutes](script-10-premieres-minutes.md).
+Pour une version directement exploitable en production, voir [Deroule production 10 minutes](deroule-production-10-minutes.md).

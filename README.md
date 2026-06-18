@@ -51,7 +51,7 @@ Version jouable visee :
 - [Game design MVP](docs/game-design-mvp.md)
 - [Pacing 10 minutes vers 2026](docs/pacing-10-minutes.md)
 - [Script des 10 premieres minutes](docs/script-10-premieres-minutes.md)
+- [Deroule production 10 minutes](docs/deroule-production-10-minutes.md)
 - [Recherches histoire de l'energie](docs/recherches-histoire-energie.md)
 - [Planning hackathon](docs/planning.md)
-
 
