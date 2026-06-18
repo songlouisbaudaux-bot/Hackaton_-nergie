@@ -8,8 +8,9 @@ vite.config.d.ts
 # Caches & logs (ne jamais committer)
 .npm-cache/
 *.log
-vite.out.log
-vite.err.log
+vite.*.log
+
+# Variables d'environnement
 .env
 .env.*
 !.env.example
