@@ -4,6 +4,8 @@ Ce fichier liste les icones/assets utiles pour la version actuelle de Prometheus
 
 Le centre du jeu reste reserve aux assets futurs. Pour l'instant, les assets servent surtout aux cartes du shop, aux technologies, au mix energetique et a l'intro.
 
+La liste des grandes iles volantes a generer pour le monde central est separee dans `docs/liste-iles-volantes-assets.md`.
+
 ## Regles visuelles
 
 - Style : 3D minimaliste, toy-like, legerement isometrique.
@@ -175,3 +177,8 @@ Ces icones peuvent rester en Lucide React, pas besoin de generer des PNG :
 - Ajout de cette liste d'icones/assets.
 - Separation entre assets deja disponibles et assets a produire.
 - Clarification : les icones UI peuvent rester en Lucide, les objets du jeu doivent idealement etre des PNG 3D minimalistes.
+
+### 2026-06-18 - Iles volantes
+
+- Ajout d'un document dedie : `docs/liste-iles-volantes-assets.md`.
+- Clarification : ce fichier garde les assets de cartes UI, tandis que les iles volantes representent le monde central et les sources du mix energetique.

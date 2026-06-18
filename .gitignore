@@ -4,3 +4,12 @@ dist/
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+# Caches & logs (ne jamais committer)
+.npm-cache/
+*.log
+vite.out.log
+vite.err.log
+.env
+.env.*
+!.env.example

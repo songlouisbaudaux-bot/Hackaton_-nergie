@@ -157,6 +157,17 @@ button {
 
 .game-screen {
   position: relative;
+  --hud-edge: clamp(10px, 1.4vw, 20px);
+  --hud-gap: clamp(8px, 1.1vw, 16px);
+  --energy-header-height: 72px;
+  --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap) + 12px);
+  --progress-rail-height: 54px;
+  --tech-rail-height: clamp(96px, 16dvh, 150px);
+  --bottom-zone-height: calc(
+    var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
+  );
+  --mix-panel-width: clamp(244px, 21vw, 300px);
+  --purchase-panel-width: clamp(318px, 29vw, 400px);
   min-height: 100dvh;
   overflow: hidden;
   background:
@@ -171,7 +182,11 @@ button {
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 92px 420px 176px 330px;
+  padding:
+    calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap))
+    calc(var(--purchase-panel-width) + var(--hud-edge) + var(--hud-gap))
+    calc(var(--bottom-zone-height) + var(--hud-gap))
+    calc(var(--mix-panel-width) + var(--hud-edge) + var(--hud-gap));
 }
 
 .central-playfield-slot {
@@ -213,11 +228,11 @@ button {
 
 .energy-header {
   position: absolute;
-  top: 18px;
+  top: var(--hud-edge);
   left: 50%;
   display: flex;
   width: min(520px, calc(100vw - 36px));
-  min-height: 72px;
+  min-height: var(--energy-header-height);
   align-items: center;
   justify-content: space-between;
   gap: 18px;
@@ -263,20 +278,29 @@ button {
 
 .mix-panel {
   position: absolute;
-  top: 116px;
-  left: 20px;
-  width: 300px;
+  top: var(--side-panel-top);
+  left: var(--hud-edge);
+  width: var(--mix-panel-width);
+  max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height));
+  overflow: auto;
   padding: 15px;
 }
 
 .purchase-panel {
   position: absolute;
-  top: 116px;
-  right: 20px;
-  width: 400px;
-  max-height: calc(100dvh - 300px);
+  top: var(--side-panel-top);
+  right: var(--hud-edge);
+  width: var(--purchase-panel-width);
+  max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height));
   overflow: auto;
   padding: 15px;
+}
+
+.mix-panel,
+.purchase-panel,
+.tech-rail {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 43, 36, 0.22) transparent;
 }
 
 .panel-title {
@@ -505,11 +529,13 @@ button {
 
 .tech-rail {
   position: absolute;
-  right: 20px;
-  bottom: 76px;
-  left: 20px;
+  right: var(--hud-edge);
+  bottom: calc(var(--hud-edge) + var(--progress-rail-height) + var(--hud-gap));
+  left: var(--hud-edge);
   max-width: 1040px;
+  max-height: var(--tech-rail-height);
   margin: 0 auto;
+  overflow: auto;
   padding: 12px;
 }
 
@@ -687,11 +713,11 @@ button {
 
 .progress-rail {
   position: absolute;
-  right: 20px;
-  bottom: 18px;
-  left: 20px;
+  right: var(--hud-edge);
+  bottom: var(--hud-edge);
+  left: var(--hud-edge);
   display: flex;
-  min-height: 48px;
+  min-height: var(--progress-rail-height);
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -802,91 +828,124 @@ button {
   }
 }
 
-@media (max-width: 1120px) {
-  .scene-layer {
-    padding-right: 350px;
-    padding-left: 280px;
-  }
-
-  .mix-panel {
-    width: 260px;
-  }
-
-  .purchase-panel {
-    width: 330px;
-  }
-}
-
-@media (max-width: 1180px), (max-height: 820px) {
-  body {
-    overflow: auto;
-  }
-
+@media (max-width: 1120px), (max-height: 820px) {
   .game-screen {
-    display: grid;
-    min-height: 100dvh;
-    overflow: visible;
-  }
-
-  .scene-layer {
-    position: relative;
-    min-height: 430px;
-    padding: 88px 10px 0;
-  }
-
-  .central-playfield-slot {
-    height: 360px;
-    min-height: 360px;
-  }
-
-  .game-hud {
-    position: relative;
-    display: grid;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .energy-header,
-  .mix-panel,
-  .purchase-panel,
-  .tech-rail,
-  .progress-rail {
-    position: static;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    transform: none;
+    --hud-edge: 12px;
+    --hud-gap: 10px;
+    --energy-header-height: 68px;
+    --tech-rail-height: clamp(86px, 15dvh, 122px);
+    --progress-rail-height: 50px;
+    --mix-panel-width: clamp(218px, 25vw, 258px);
+    --purchase-panel-width: clamp(286px, 35vw, 334px);
   }
 
   .energy-header {
-    order: -5;
-    min-height: 68px;
+    width: min(480px, calc(100vw - 24px));
   }
 
+  .mix-panel,
   .purchase-panel {
-    order: -4;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .mix-panel {
-    order: -3;
-  }
-
-  .tech-rail {
-    order: -2;
     padding: 12px;
   }
 
+  .technology-list {
+    grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+  }
+
+  .technology-card {
+    min-height: 54px;
+  }
+
   .progress-rail {
-    order: -1;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    min-height: 0;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  .game-screen {
+    --hud-edge: 10px;
+    --hud-gap: 8px;
+    --energy-header-height: 66px;
+    --tech-rail-height: 118px;
+    --progress-rail-height: 72px;
+    --mix-panel-width: calc(40vw - 14px);
+    --purchase-panel-width: calc(60vw - 14px);
+    --bottom-zone-height: calc(
+      var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
+    );
+  }
+
+  .scene-layer {
+    padding:
+      calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap))
+      var(--hud-edge)
+      calc(var(--bottom-zone-height) + var(--hud-gap))
+      var(--hud-edge);
+  }
+
+  .energy-header {
+    right: var(--hud-edge);
+    left: var(--hud-edge);
+    width: auto;
+    transform: none;
+  }
+
+  .mix-panel,
+  .purchase-panel {
+    max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height));
+  }
+
+  .mix-panel {
+    padding: 10px;
+  }
+
+  .purchase-panel {
+    padding: 10px;
+  }
+
+  .panel-title h2 {
+    font-size: 0.88rem;
+  }
+
+  .rail-count,
+  .age-description {
+    font-size: 0.68rem;
+  }
+
+  .source-row {
+    display: grid;
+    gap: 6px;
+    padding: 9px 0;
+  }
+
+  .source-marker {
+    width: 100%;
+    height: 5px;
+  }
+
+  .purchase-card {
+    min-height: 66px;
+    padding: 8px;
+  }
+
+  .tech-rail {
+    padding: 10px;
   }
 
   .technology-list {
     grid-template-columns: 1fr;
+  }
+
+  .progress-rail {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .era-pill,
+  .stage-dot {
+    min-height: 30px;
+    padding: 0 8px;
+    font-size: 0.7rem;
   }
 }
 
@@ -903,13 +962,12 @@ button {
   }
 
   .scene-layer {
-    min-height: 390px;
-    padding-top: 82px;
+    padding-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
   }
 
   .central-playfield-slot {
-    height: 320px;
-    min-height: 300px;
+    height: min(290px, 35dvh);
+    min-height: 220px;
   }
 
   .energy-header {

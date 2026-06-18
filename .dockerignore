@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.npm-cache
+.DS_Store
+vite.out.log
+vite.err.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example

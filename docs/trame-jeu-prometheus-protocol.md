@@ -39,6 +39,9 @@ Il n'y a pas de menus ouvrants, pas de drawer et pas de modal pour jouer.
 ## Assets et icones
 
 La liste complete des icones, assets disponibles et assets a produire est documentee dans `docs/liste-icones-assets.md`.
+La liste des iles volantes a generer pour le monde central et les sources d'energie est documentee dans `docs/liste-iles-volantes-assets.md`.
+
+Regle visuelle pour les iles : chaque ile d'energie se debloque avec son age, puis evolue avec les technologies qui correspondent aux objets achetes. Les iles doivent rester des variations d'une meme ile vierge, pas une collection d'assets sans lien visuel.
 
 ## Ages et sources
 
@@ -203,3 +206,23 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Classement des assets deja disponibles dans `public/assets/game/`.
 - Liste des assets ideaux a produire pour chaque objet et technologie.
 - Priorisation des assets manquants pour les prochaines passes de production.
+
+### 2026-06-18 - Liste iles volantes
+
+- Ajout de `docs/liste-iles-volantes-assets.md`.
+- Definition d'une ile centrale et d'une ile par famille d'energie du mix.
+- Ajout des evolutions visuelles par technologie : feu vers biomasse moderne, moulin vers barrage/eolien, charbon vers petrole/gaz, fission vers futur.
+
+### 2026-06-18 - Regle variations d'ile
+
+- Reorganisation de `docs/liste-iles-volantes-assets.md`.
+- Clarification : toutes les iles sont des variations d'une ile vierge commune.
+- Clarification : une ile d'energie apparait seulement quand son age est debloque.
+- Clarification : chaque technologie doit correspondre a l'objet qu'elle ameliore visuellement.
+
+### 2026-06-18 - HUD statique responsive
+
+- Retour a une fenetre de jeu fixe : pas de page qui defile vers le bas.
+- Conservation des zones autour du centre : mix a gauche, shop a droite, technologies et progression en bas.
+- Les panneaux adaptent leur largeur et leur hauteur a la fenetre.
+- Quand il y a trop d'elements, seul le contenu du panneau scrolle, pas toute la page.
