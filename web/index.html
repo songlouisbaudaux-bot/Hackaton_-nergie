@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prometheus Protocol</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="game-shell" id="gameShell">
+      <section class="stage" aria-label="Scene de progression energetique">
+        <canvas id="worldCanvas" width="960" height="560"></canvas>
+        <div class="scale-badge">
+          <span>Echelle</span>
+          <strong id="scaleValue">Campement</strong>
+        </div>
+        <div class="intro-copy" id="introCopy">
+          <p>Avant le feu, la nuit decide pour nous.</p>
+        </div>
+      </section>
+
+      <aside class="hud" aria-label="Tableau de bord">
+        <header class="brand">
+          <div>
+            <p class="eyebrow">Prometheus Protocol</p>
+            <h1 id="eraTitle">La nuit</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" title="Recommencer">R</button>
+        </header>
+
+        <div class="primary-action">
+          <button id="mainAction" type="button">Frotter deux pierres</button>
+          <p id="actionHint">Chaque clic arrache une etincelle au noir.</p>
+        </div>
+
+        <div class="meters">
+          <div class="meter">
+            <span>Energie</span>
+            <strong id="energyValue">0 J</strong>
+          </div>
+          <div class="meter">
+            <span>Production</span>
+            <strong id="productionValue">0 J/s</strong>
+          </div>
+          <div class="meter">
+            <span>Argent</span>
+            <strong id="moneyValue">0 EUR</strong>
+          </div>
+          <div class="meter">
+            <span>Prix marche</span>
+            <strong id="priceValue">0.00 EUR/kWh</strong>
+          </div>
+        </div>
+
+        <div class="bars" aria-label="Jauges de survie">
+          <div class="bar-row">
+            <span>Soutien social</span>
+            <div class="bar"><i id="socialBar"></i></div>
+            <b id="socialValue">18</b>
+          </div>
+          <div class="bar-row">
+            <span>Climat</span>
+            <div class="bar danger"><i id="climateBar"></i></div>
+            <b id="climateValue">0</b>
+          </div>
+          <div class="bar-row">
+            <span>HELIOS</span>
+            <div class="bar helios"><i id="heliosBar"></i></div>
+            <b id="heliosValue">0%</b>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Technologies</h2>
+            <span id="yearValue">-400000</span>
+          </div>
+          <div class="upgrade-list" id="upgradeList"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>HELIOS</h2>
+            <span>rival IA</span>
+          </div>
+          <p class="log" id="heliosLog">J'observe. Pour l'instant, ta production est presque nulle.</p>
+        </section>
+      </aside>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="end-screen" id="endScreen" hidden>
+        <div class="end-card">
+          <p class="eyebrow" id="endEyebrow">Fin</p>
+          <h2 id="endTitle">Civilisation stabilisee</h2>
+          <p id="endText">La partie est terminee. Relance pour repartir depuis la premiere etincelle.</p>
+          <button id="endReset" type="button">Rejouer</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
