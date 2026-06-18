@@ -41,6 +41,7 @@ export default function PurchasePanel({
 }: PurchasePanelProps) {
   const visiblePurchases = getAgePurchases(currentAge.id, purchaseCounts, energy);
   const sourceLabels = new Map(energySources.map((source) => [source.id, source.shortLabel]));
+  const finalAgeComplete = !advanceState.nextAge && advanceState.complete;
 
   return (
     <section className="panel purchase-panel" aria-label="Achats disponibles">
@@ -113,18 +114,24 @@ export default function PurchasePanel({
         </span>
         <span className="advance-copy">
           <span className="advance-label">
-            {advanceState.nextAge ? `Passer : ${advanceState.nextAge.label}` : 'Âge final'}
+            {advanceState.nextAge
+              ? `Passer : ${advanceState.nextAge.label}`
+              : finalAgeComplete
+                ? 'Ère atomique stable'
+                : 'Âge final'}
           </span>
           <span className="advance-description">
             {advanceState.nextAge
               ? advanceState.complete
                 ? advanceState.nextAge.description
                 : 'Compléter objets et technologies.'
-              : 'Toutes les sources restent dans le mix.'}
+              : finalAgeComplete
+                ? 'Mix complet.'
+                : 'Finir objets et technologies.'}
           </span>
         </span>
         <span className="advance-meta">
-          {advanceState.nextAge ? formatJoules(advanceState.cost) : 'stable'}
+          {advanceState.nextAge ? formatJoules(advanceState.cost) : finalAgeComplete ? 'OK' : 'final'}
         </span>
       </button>
     </section>

@@ -35,7 +35,7 @@ La philosophie du jeu reste la même : **les sources s'accumulent, ne se remplac
 ## Échelle narrative
 
 ```
-Préhistoire → Néolithique → Moyen Âge → Industriel → Atomique (2026)
+Préhistoire → Antiquité → Moyen Âge → Industriel → Atomique (2026)
      ↓
 Fusion → Orbital → Neutrons → Antimatière → Trou Noir → Dyson → Vide
      ↓

@@ -61,7 +61,7 @@ Intention :
 
 Le joueur comprend que l'energie commence par un geste humain simple : alimenter le feu, stocker la chaleur, transformer le bois et la nourriture en energie utile.
 
-### 2. Neolithique
+### 2. Antiquite
 
 Nouvelle source : elevage / force animale.
 
@@ -232,3 +232,19 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 
 - En mobile vertical, le jeu affiche une demande de tourner l'ecran en paysage.
 - L'interface jouable reste priorisee pour le format paysage afin d'eviter les panneaux compresses.
+
+### 2026-06-18 - Boucle jusqu'a l'age atomique
+
+- Reequilibrage des couts et productions pour atteindre l'age atomique plus naturellement.
+- Simplification des libelles visibles : source, nom, gain, cout.
+- Ajout d'une couche d'iles visuelles configuree par age, achat et technologie.
+- Les images d'iles peuvent etre remplacees progressivement sans changer l'interface.
+- Sauvegarde locale de la progression et de l'intro pour eviter de repartir de zero a chaque rechargement.
+
+### 2026-06-18 - Lecture du mix et iles
+
+- Ordre d'ages V1 : Prehistoire, Antiquite, Moyen Age, Age industriel, Age atomique.
+- Les iles visibles partagent la meme taille pour garder le centre calme et lisible.
+- Le panneau `Mix energetique` utilise un camembert avec une legende compacte.
+- Un fond transparent `MixEvolutionBackdrop` montre l'evolution du mix ; il se retire en supprimant ce composant de `App.tsx`.
+- Les technologies affichent toujours leur avantage en J/clic ou J/s, sans description longue.

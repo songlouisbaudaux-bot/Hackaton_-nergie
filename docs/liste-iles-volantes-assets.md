@@ -65,7 +65,7 @@ Important : les bases doivent garder la meme silhouette generale pour que le mon
 | Age debloque | Iles visibles apres deverrouillage | Nouvelle ile ajoutee |
 | --- | --- | --- |
 | Prehistoire | Centre + Biomasse | Biomasse |
-| Neolithique | Centre + Biomasse + Elevage | Elevage / force animale |
+| Antiquite | Centre + Biomasse + Elevage | Elevage / force animale |
 | Moyen Age | Centre + Biomasse + Elevage + Eau/Vent | Eau et vent |
 | Age industriel | Centre + Biomasse + Elevage + Eau/Vent + Fossile | Fossile |
 | Age atomique / 2026 | Toutes les iles | Atome |
@@ -85,6 +85,16 @@ Chaque ile peut avoir ces etats :
 | `dense` | Beaucoup d'exemplaires achetes | Quelques details en plus, pas un empilement |
 
 La version `dense` est optionnelle. Elle pourra etre generee plus tard si on veut que les quantites aient un effet visuel sans surcharger.
+
+## Integration actuelle
+
+La couche d'integration est dans `src/game/islands.ts`.
+
+- Les iles visibles sont choisies par age, objet achete et technologie recherchee.
+- Les images draft propres viennent de `public/assets/game/islands/`.
+- Les images en cours de creation peuvent rester dans `public/assets/game/islands-gpt-image-2/`.
+- Une image GPT ne remplace une image draft que si elle est vraiment transparente et sans fond parasite.
+- Si une image manque, le rendu la masque au lieu d'afficher une image cassee.
 
 ## Nomenclature
 
@@ -110,7 +120,7 @@ L'ile centrale evolue avec l'age atteint, pas avec une source d'energie precise.
 | Age | Fichier | Variante | Contenu |
 | --- | --- | --- | --- |
 | Prehistoire | `island-central-01-camp.png` | campement | Feu, tente, quelques arbres, sol naturel |
-| Neolithique | `island-central-02-village.png` | village | Petites maisons, champ discret, chemin de terre |
+| Antiquite | `island-central-02-village.png` | village | Petites maisons, champ discret, chemin de terre |
 | Moyen Age | `island-central-03-medieval-town.png` | bourg | Maisons compactes, route pavee, place centrale |
 | Age industriel | `island-central-04-industrial-town.png` | ville industrielle | Ateliers, rails courts, petites cheminees |
 | Age atomique / 2026 | `island-central-05-modern-grid-city.png` | ville moderne | Batiments propres, reseau electrique, poste de controle |
@@ -126,7 +136,7 @@ Ile debloquee des la Prehistoire.
 | Age | Objet achetable | Technologie | Image objet | Image apres technologie |
 | --- | --- | --- | --- | --- |
 | Prehistoire | Feu de camp | Conservation de la braise | `island-biomass-01-built-campfire.png` | `island-biomass-01-upgraded-ember-keeping.png` |
-| Neolithique | Foyer en pierre | Foyer maconne | `island-biomass-02-built-stone-hearth.png` | `island-biomass-02-upgraded-masonry-hearth.png` |
+| Antiquite | Foyer en pierre | Foyer maconne | `island-biomass-02-built-stone-hearth.png` | `island-biomass-02-upgraded-masonry-hearth.png` |
 | Moyen Age | Four a charbon de bois | Charbonnage | `island-biomass-03-built-charcoal-kiln.png` | `island-biomass-03-upgraded-charcoal-craft.png` |
 | Age industriel | Gazogene a bois | Gaz de bois | `island-biomass-04-built-wood-gasifier.png` | `island-biomass-04-upgraded-wood-gas-process.png` |
 | Age atomique / 2026 | Digesteur biogaz | Methanisation | `island-biomass-05-built-biogas-digester.png` | `island-biomass-05-upgraded-methanization.png` |
@@ -135,11 +145,11 @@ Evolution visuelle : feu simple -> foyer stable -> charbon de bois -> gazogene -
 
 ### Elevage / force animale
 
-Ile debloquee au Neolithique.
+Ile debloquee au Antiquite.
 
 | Age | Objet achetable | Technologie | Image objet | Image apres technologie |
 | --- | --- | --- | --- | --- |
-| Neolithique | Boeufs de traction | Domestication de traction | `island-animal-02-built-oxen-pasture.png` | `island-animal-02-upgraded-animal-domestication.png` |
+| Antiquite | Boeufs de traction | Domestication de traction | `island-animal-02-built-oxen-pasture.png` | `island-animal-02-upgraded-animal-domestication.png` |
 | Moyen Age | Charrue lourde | Collier d'epaule | `island-animal-03-built-heavy-plough.png` | `island-animal-03-upgraded-shoulder-collar.png` |
 | Age industriel | Relais de chevaux | Haras logistiques | `island-animal-04-built-horse-relay.png` | `island-animal-04-upgraded-horse-logistics.png` |
 | Age atomique / 2026 | Logistique alimentaire | Chaine alimentaire | `island-animal-05-built-food-logistics.png` | `island-animal-05-upgraded-food-chain.png` |
@@ -333,3 +343,15 @@ Attention : les fichiers existants avec accents peuvent rester, mais les nouveau
 - Clarification : chaque ile d'energie se debloque avec son age.
 - Clarification : les iles sont des variations de la meme ile vierge.
 - Clarification : les technologies doivent correspondre a un objet achete et faire evoluer son rendu.
+
+### 2026-06-18 - Integration V1
+
+- Ajout de la couche `src/game/islands.ts`.
+- Les iles draft sont rendues dans le monde central sans texte visible.
+- Les assets GPT en cours sont reserves aux remplacements futurs quand ils sont propres.
+
+### 2026-06-18 - Taille et remplacement
+
+- Toutes les iles rendues par l'interface utilisent maintenant la meme taille CSS.
+- Les images GPT avec fond parasite doivent rester dans `public/assets/game/islands-gpt-image-2/raw/failed/`.
+- Le jeu continue d'utiliser les images draft propres tant qu'une image finale transparente n'est pas disponible.

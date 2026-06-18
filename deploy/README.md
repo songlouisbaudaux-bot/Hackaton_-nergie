@@ -29,7 +29,7 @@ ACME_EMAIL=ton-email@example.com
 
 ## Lancer sur le VPS
 
-Depuis le dossier du projet sur le VPS :
+Si le VPS n'a aucun reverse-proxy existant, depuis le dossier du projet sur le VPS :
 
 ```sh
 docker compose up -d --build
@@ -47,12 +47,44 @@ https://193.203.190.2/
 Quand l'acces SSH fonctionne :
 
 ```sh
-ssh deploy@193.203.190.2 'mkdir -p ~/prometheus-protocol'
-rsync -az --delete --exclude node_modules --exclude dist --exclude .git ./ deploy@193.203.190.2:~/prometheus-protocol/
-ssh deploy@193.203.190.2 'cd ~/prometheus-protocol && cp -n .env.example .env && docker compose up -d --build'
+ssh -i ~/.ssh/struct20022_deploy -o ClearAllForwardings=yes deploy@193.203.190.2 'mkdir -p ~/prometheus-protocol'
+rsync -az --delete -e 'ssh -i ~/.ssh/struct20022_deploy -o ClearAllForwardings=yes' --exclude node_modules --exclude dist --exclude .git ./ deploy@193.203.190.2:~/prometheus-protocol/
+ssh -i ~/.ssh/struct20022_deploy -o ClearAllForwardings=yes deploy@193.203.190.2 'cd ~/prometheus-protocol && cp -n .env.example .env && docker compose up -d --build'
 ```
 
 Pense a modifier `~/prometheus-protocol/.env` sur le VPS avec ton vrai `ACME_EMAIL` avant le premier lancement en production.
+
+## Lancer derriere le Caddy existant du VPS
+
+Sur `193.203.190.2`, un conteneur Caddy occupe deja les ports `80` et `443`.
+Dans ce cas, il ne faut pas lancer le Traefik de `compose.yml`.
+On branche seulement le jeu au reseau Docker `edge` :
+
+```sh
+cd ~/prometheus-protocol
+docker compose -f deploy/compose.caddy.yml -p prometheus-game up -d --build
+```
+
+Puis Caddy doit router `193.203.190.2` vers le conteneur `prometheus-game:80`.
+La forme utilisee sur le VPS existant est :
+
+```caddyfile
+{
+	email hugoprigent9@gmail.com
+	default_sni 193.203.190.2
+}
+
+:443, 193.203.190.2 {
+	tls {
+		issuer acme {
+			profile shortlived
+		}
+	}
+	reverse_proxy prometheus-game:80
+}
+```
+
+Le bloc `:443, 193.203.190.2` doit rester avant les domaines existants dans le Caddyfile. Caddy trie ensuite les routes par host dans sa config JSON, donc les domaines deja en prod gardent la priorite et l'IP sert le jeu.
 
 ## Notes HTTPS sans domaine
 

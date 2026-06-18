@@ -92,9 +92,7 @@ export default function TechRail({
               <span className="technology-copy">
                 <span className="source-chip">{sourceLabels.get(technology.sourceId)}</span>
                 <span className="technology-label">{technology.label}</span>
-                <span className="technology-effect">
-                  {technology.targetLabel} x{technology.targetCount} · {technology.impactLabel}
-                </span>
+                <span className="technology-effect">{technology.impactLabel}</span>
               </span>
               <span className="technology-meta">
                 {technology.researched ? (

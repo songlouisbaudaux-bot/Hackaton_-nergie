@@ -52,7 +52,7 @@ Ces fichiers existent deja dans `public/assets/game/` et peuvent etre utilises t
 | --- | --- | --- | --- |
 | Feu de camp | Biomasse | `campfire.png` | deja OK |
 
-### Neolithique
+### Antiquite
 
 | Objet | Source | Asset actuel | Asset ideal |
 | --- | --- | --- | --- |
@@ -96,7 +96,7 @@ Les technologies ne sont pas des nouveaux batiments achetables. Elles font evolu
 | --- | --- | --- | --- |
 | Conservation de la braise | Feu de camp | `fire-glow.png` | braise / feu couvert |
 
-### Neolithique
+### Antiquite
 
 | Technologie | Cible | Asset actuel | Asset ideal |
 | --- | --- | --- | --- |

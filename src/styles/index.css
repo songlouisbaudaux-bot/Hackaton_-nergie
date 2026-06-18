@@ -163,6 +163,7 @@ button {
   --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap) + 12px);
   --progress-rail-height: 54px;
   --tech-rail-height: clamp(96px, 16dvh, 150px);
+  --island-size: clamp(130px, 14vw, 210px);
   --bottom-zone-height: calc(
     var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
   );
@@ -177,9 +178,33 @@ button {
   background-size: 34px 34px, 34px 34px, auto;
 }
 
+.mix-evolution-backdrop {
+  position: absolute;
+  inset: 8% 7% 12%;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 36px;
+  opacity: 0.16;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 0%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 46%, #000 0%, #000 58%, transparent 100%);
+}
+
+.mix-evolution-backdrop svg {
+  width: 100%;
+  height: 100%;
+  filter: blur(0.5px) saturate(0.92);
+  transform: scale(1.08);
+}
+
+.mix-evolution-backdrop path {
+  mix-blend-mode: multiply;
+}
+
 .scene-layer {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: grid;
   place-items: center;
   padding:
@@ -190,11 +215,81 @@ button {
 }
 
 .central-playfield-slot {
+  position: relative;
+  z-index: 2;
   display: grid;
   width: min(680px, 100%);
   height: min(500px, 58dvh);
   min-height: 360px;
   place-items: center;
+}
+
+.energy-islands-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.energy-island {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--island-size);
+  margin: 0;
+  opacity: 0.94;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.energy-island[data-missing="true"] {
+  display: none;
+}
+
+.energy-island img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 34px rgba(31, 43, 36, 0.14));
+  user-select: none;
+}
+
+.energy-island[data-state="empty"] {
+  opacity: 0.42;
+}
+
+.energy-island[data-state="upgraded"] img {
+  filter:
+    drop-shadow(0 20px 34px rgba(31, 43, 36, 0.14))
+    drop-shadow(0 0 18px rgba(58, 131, 165, 0.14));
+}
+
+.energy-island[data-slot="biomass"] {
+  left: calc(50% - clamp(170px, 17vw, 190px));
+  top: 61%;
+}
+
+.energy-island[data-slot="animal-power"] {
+  left: calc(50% - clamp(120px, 14vw, 150px));
+  top: 33%;
+}
+
+.energy-island[data-slot="water-wind"] {
+  left: calc(50% + clamp(120px, 14vw, 150px));
+  top: 33%;
+}
+
+.energy-island[data-slot="fossil"] {
+  left: calc(50% + clamp(170px, 17vw, 190px));
+  top: 61%;
+}
+
+.energy-island[data-slot="atomic"] {
+  left: 50%;
+  top: calc(50% - clamp(170px, 20vw, 260px));
 }
 
 .central-hotspot {
@@ -214,6 +309,7 @@ button {
 .game-hud {
   position: absolute;
   inset: 0;
+  z-index: 5;
   pointer-events: none;
 }
 
@@ -316,85 +412,103 @@ button {
   line-height: 1.1;
 }
 
-.source-list {
-  display: grid;
-  gap: 0;
-}
-
 .purchase-list {
   display: grid;
   gap: 10px;
 }
 
-.source-row {
-  display: flex;
-  gap: 10px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
+.mix-chart {
+  display: grid;
+  gap: 12px;
 }
 
-.source-row:first-child {
-  border-top: 0;
-  padding-top: 0;
+.mix-pie {
+  width: min(178px, 100%);
+  aspect-ratio: 1;
+  justify-self: center;
+  color: var(--ink);
 }
 
-.source-row:last-child {
-  padding-bottom: 0;
+.mix-pie-segment {
+  transition: stroke-dasharray 180ms ease, stroke-dashoffset 180ms ease;
 }
 
-.source-marker {
-  width: 13px;
-  height: 44px;
-  flex: 0 0 auto;
+.mix-pie-value {
+  font-size: 0.28rem;
+  font-weight: 850;
+}
+
+.mix-pie-caption {
+  fill: var(--muted);
+  font-size: 0.13rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.mix-legend {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mix-legend-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.mix-legend-marker {
+  width: 10px;
+  height: 36px;
   border-radius: 999px;
   box-shadow: inset 0 0 0 1px rgba(31, 43, 36, 0.12);
 }
 
-.source-copy {
+.mix-legend-copy {
+  display: grid;
   min-width: 0;
-  flex: 1;
+  gap: 2px;
 }
 
-.source-heading,
-.source-rates {
+.mix-legend-heading,
+.mix-legend-rates {
   display: flex;
+  min-width: 0;
   align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
-.source-heading span {
-  min-width: 0;
-  color: var(--ink);
-  font-size: 0.91rem;
-  font-weight: 760;
-  line-height: 1.15;
-}
-
-.source-heading strong {
-  color: var(--green);
-  font-size: 0.86rem;
-}
-
-.source-rates {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 650;
-}
-
-.source-bar {
-  height: 6px;
-  margin-top: 9px;
+.mix-legend-label {
   overflow: hidden;
-  border-radius: 999px;
-  background: rgba(31, 43, 36, 0.1);
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 780;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.source-bar span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
+.mix-legend-share {
+  color: var(--green);
+  font-size: 0.8rem;
+}
+
+.mix-legend-rates {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.1;
+}
+
+.mix-legend-rates span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .purchase-panel-header {
@@ -559,11 +673,11 @@ button {
 
 .technology-card {
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) auto;
-  gap: 9px;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 4px 9px;
   align-items: center;
   width: 100%;
-  min-height: 58px;
+  min-height: 66px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255, 255, 250, 0.52);
@@ -597,6 +711,7 @@ button {
 
 .technology-icon {
   display: grid;
+  grid-row: 1 / span 2;
   width: 36px;
   height: 36px;
   place-items: center;
@@ -615,31 +730,47 @@ button {
 .technology-copy {
   display: grid;
   min-width: 0;
-  gap: 3px;
+  align-self: end;
+  gap: 2px;
 }
 
 .technology-label {
-  overflow-wrap: anywhere;
+  display: -webkit-box;
+  overflow: hidden;
+  overflow-wrap: normal;
+  word-break: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 0.82rem;
   font-weight: 800;
   line-height: 1.08;
 }
 
 .technology-effect {
+  overflow: hidden;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.12;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .technology-meta {
-  display: grid;
-  min-width: 58px;
-  justify-items: end;
-  gap: 4px;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 760;
+}
+
+.technology-meta > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .advance-age-card {
@@ -876,6 +1007,7 @@ button {
     --energy-header-height: 68px;
     --tech-rail-height: clamp(118px, 15dvh, 128px);
     --progress-rail-height: 50px;
+    --island-size: clamp(96px, 12vw, 142px);
     --mix-panel-width: clamp(218px, 25vw, 258px);
     --purchase-panel-width: clamp(286px, 35vw, 334px);
   }
@@ -894,8 +1026,8 @@ button {
   }
 
   .technology-card {
-    grid-template-columns: 32px minmax(0, 1fr) auto;
-    min-height: 48px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    min-height: 54px;
   }
 
   .technology-icon {
@@ -913,7 +1045,7 @@ button {
   }
 
   .technology-effect {
-    display: none;
+    font-size: 0.68rem;
   }
 
   .progress-rail {
@@ -929,6 +1061,7 @@ button {
     --tech-rail-height: 118px;
     --progress-rail-height: 72px;
     --mobile-side-panel-height: clamp(156px, 25dvh, 210px);
+    --island-size: 64px;
     --mix-panel-width: calc(40vw - 14px);
     --purchase-panel-width: calc(60vw - 14px);
     --bottom-zone-height: calc(
@@ -942,6 +1075,30 @@ button {
       var(--hud-edge)
       calc(var(--bottom-zone-height) + var(--mobile-side-panel-height) + var(--hud-gap) * 2)
       var(--hud-edge);
+  }
+
+  .energy-islands-layer {
+    opacity: 0.72;
+  }
+
+  .energy-island[data-slot="biomass"] {
+    left: calc(50% - 124px);
+  }
+
+  .energy-island[data-slot="animal-power"] {
+    left: calc(50% - 86px);
+  }
+
+  .energy-island[data-slot="water-wind"] {
+    left: calc(50% + 86px);
+  }
+
+  .energy-island[data-slot="fossil"] {
+    left: calc(50% + 124px);
+  }
+
+  .energy-island[data-slot="atomic"] {
+    top: calc(50% - 104px);
   }
 
   .energy-header {
@@ -976,15 +1133,35 @@ button {
     font-size: 0.68rem;
   }
 
-  .source-row {
-    display: grid;
-    gap: 6px;
-    padding: 9px 0;
+  .mix-chart {
+    gap: 8px;
   }
 
-  .source-marker {
-    width: 100%;
-    height: 5px;
+  .mix-pie {
+    width: min(112px, 100%);
+  }
+
+  .mix-legend {
+    gap: 6px;
+  }
+
+  .mix-legend-item {
+    grid-template-columns: 8px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .mix-legend-marker {
+    width: 8px;
+    height: 28px;
+  }
+
+  .mix-legend-label {
+    font-size: 0.72rem;
+  }
+
+  .mix-legend-share,
+  .mix-legend-rates {
+    font-size: 0.64rem;
   }
 
   .purchase-card {
