@@ -378,6 +378,14 @@ button {
   line-height: 1;
 }
 
+.energy-actions {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
 .rate-cluster {
   display: grid;
   gap: 8px;
@@ -396,6 +404,39 @@ button {
 
 .rate-cluster span[data-active="true"] {
   color: var(--amber);
+}
+
+.restart-run-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 10px;
+  color: var(--muted);
+  background: rgba(255, 255, 250, 0.42);
+  font-size: 0.78rem;
+  font-weight: 780;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.restart-run-button:hover,
+.restart-run-button:focus-visible {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.restart-run-button[data-armed="true"] {
+  border-color: rgba(191, 92, 69, 0.34);
+  color: #9d4938;
+  background: rgba(255, 240, 234, 0.9);
 }
 
 .mix-panel {
@@ -1053,6 +1094,16 @@ button {
     width: min(480px, calc(100vw - 24px));
   }
 
+  .energy-actions {
+    gap: 8px;
+  }
+
+  .restart-run-button {
+    min-height: 32px;
+    padding: 0 8px;
+    font-size: 0.72rem;
+  }
+
   .mix-panel,
   .purchase-panel {
     padding: 12px;
@@ -1285,6 +1336,14 @@ button {
     font-size: 0.78rem;
   }
 
+  .energy-actions {
+    gap: 6px;
+  }
+
+  .restart-run-button[data-armed="false"] span {
+    display: none;
+  }
+
   .source-heading,
   .source-rates {
     display: grid;
@@ -1355,6 +1414,9 @@ button {
 
 @media (max-height: 500px) and (orientation: landscape) {
   .game-screen {
+    --tech-rail-height: 92px;
+    --progress-rail-height: 44px;
+    --mobile-side-panel-height: clamp(104px, 24dvh, 128px);
     --island-size: 38px;
     --island-center-y: 39.4%;
     --island-step-x: 32px;

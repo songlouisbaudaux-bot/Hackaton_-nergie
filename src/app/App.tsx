@@ -151,6 +151,7 @@ function GameScreen() {
     initialProgress.researchedTechnologies,
   );
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
+  const [restartArmed, setRestartArmed] = useState(false);
   const gainIdRef = useRef(0);
 
   const production = useMemo(
@@ -182,6 +183,13 @@ function GameScreen() {
 
     return () => window.clearInterval(interval);
   }, [totals.energyPerSecond]);
+
+  useEffect(() => {
+    if (!restartArmed) return undefined;
+
+    const timeout = window.setTimeout(() => setRestartArmed(false), 2800);
+    return () => window.clearTimeout(timeout);
+  }, [restartArmed]);
 
   const addFloatingGain = useCallback((point: { x: number; y: number }, value: number) => {
     const id = gainIdRef.current + 1;
@@ -256,6 +264,28 @@ function GameScreen() {
     [addFloatingGain, advanceState],
   );
 
+  const handleRestartGame = useCallback(() => {
+    if (!restartArmed) {
+      setRestartArmed(true);
+      return;
+    }
+
+    const resetProgress: StoredGameProgress = {
+      energy: defaultGameProgress.energy,
+      activeAgeId: defaultGameProgress.activeAgeId,
+      purchaseCounts: {},
+      researchedTechnologies: [],
+    };
+
+    writeGameProgress(resetProgress);
+    setEnergy(resetProgress.energy);
+    setActiveAgeId(resetProgress.activeAgeId);
+    setPurchaseCounts(resetProgress.purchaseCounts);
+    setResearchedTechnologies(resetProgress.researchedTechnologies);
+    setFloatingGains([]);
+    setRestartArmed(false);
+  }, [restartArmed]);
+
   return (
     <main className="game-screen">
       <MixEvolutionBackdrop activeAgeId={activeAgeId} production={production} />
@@ -277,15 +307,29 @@ function GameScreen() {
               {formatJoules(energy)}
             </strong>
           </div>
-          <div className="rate-cluster">
-            <span>
-              <Zap size={15} aria-hidden="true" />
-              {totals.energyPerClick.toFixed(0)} J/clic
-            </span>
-            <span data-active={totals.energyPerSecond > 0}>
-              <Flame size={15} aria-hidden="true" />
-              {formatRate(totals.energyPerSecond)}
-            </span>
+          <div className="energy-actions">
+            <button
+              className="restart-run-button"
+              data-armed={restartArmed}
+              type="button"
+              aria-label={restartArmed ? 'Confirmer le redemarrage de la partie' : 'Recommencer la partie'}
+              aria-pressed={restartArmed}
+              onClick={handleRestartGame}
+            >
+              <RotateCcw size={15} aria-hidden="true" />
+              <span>{restartArmed ? 'Confirmer' : 'Recommencer'}</span>
+            </button>
+
+            <div className="rate-cluster">
+              <span>
+                <Zap size={15} aria-hidden="true" />
+                {totals.energyPerClick.toFixed(0)} J/clic
+              </span>
+              <span data-active={totals.energyPerSecond > 0}>
+                <Flame size={15} aria-hidden="true" />
+                {formatRate(totals.energyPerSecond)}
+              </span>
+            </div>
           </div>
         </header>
 

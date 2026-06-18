@@ -233,6 +233,12 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Le graphe remplit aussi l'ecran quand un seul age est debloque.
 - L'intensite reste reglable via `--mix-backdrop-opacity`.
 
+### 2026-06-19 - Recommencer la partie
+
+- Ajout d'un bouton global `Recommencer`.
+- Le bouton demande un second clic `Confirmer` avant de remettre la progression a zero.
+- La remise a zero conserve l'intro deja vue et redemarre seulement la partie.
+
 ### 2026-06-18 - HUD statique responsive
 
 - Retour a une fenetre de jeu fixe : pas de page qui defile vers le bas.
