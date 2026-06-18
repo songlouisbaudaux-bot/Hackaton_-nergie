@@ -40,7 +40,7 @@ Moment fort :
 
 > Avant le feu, la nuit decide pour nous.
 
-### 1:00 - 3:00 : Bois et tribu
+### 1:00 - 2:05 : Bois et tribu
 
 Etat :
 
@@ -57,7 +57,45 @@ Moment fort :
 
 > Une flamme chauffe plus qu'un corps. Elle dessine un groupe.
 
-### 3:00 - 5:00 : Charbon et industrie
+### 2:05 - 3:10 : Agriculture et force animale
+
+Etat :
+
+- nourriture ;
+- population ;
+- grenier ;
+- animaux de traction.
+
+But :
+
+- ne pas sauter du feu a l'usine ;
+- montrer que le premier stockage energetique est la nourriture ;
+- introduire une puissance non humaine avant les machines.
+
+Moment fort :
+
+> Un champ, c'est de la lumiere mise en reserve.
+
+### 3:10 - 4:05 : Eau, vent et travail mecanique
+
+Etat :
+
+- moulin a eau ;
+- moulin a vent ;
+- travail mecanique ;
+- production passive sans clic.
+
+But :
+
+- montrer les premiers moteurs naturels ;
+- faire sentir que la civilisation apprend a accrocher des roues aux flux du monde ;
+- preparer la rupture du charbon.
+
+Moment fort :
+
+> Le monde tourne deja. Il fallait apprendre a accrocher une roue a son mouvement.
+
+### 4:05 - 5:20 : Charbon et industrie
 
 Etat :
 
@@ -75,7 +113,26 @@ Moment fort :
 
 > La machine ne dort pas. La ville non plus.
 
-### 5:00 - 7:00 : Petrole, gaz et mobilite
+### 5:20 - 6:20 : Electricite et reseau
+
+Etat :
+
+- generateur ;
+- lignes ;
+- demande ;
+- pannes et pertes.
+
+But :
+
+- faire basculer l'energie dans l'invisible ;
+- creer un moment visuel fort avec la ville qui s'allume ;
+- introduire l'equilibrage offre/demande.
+
+Moment fort :
+
+> L'energie devient invisible. C'est la qu'elle entre partout.
+
+### 6:20 - 7:15 : Petrole, gaz et mobilite
 
 Etat :
 
@@ -93,7 +150,7 @@ Moment fort :
 
 > L'energie cesse d'etre locale. Le monde devient un reseau.
 
-### 7:00 - 9:00 : Fission et reseau moderne
+### 7:15 - 8:05 : Fission et confiance
 
 Etat :
 
@@ -111,11 +168,29 @@ Moment fort :
 
 > Un gramme peut alimenter une ville. Une peur peut l'arreter.
 
-### 9:00 - 10:00 : 2026
+### 8:05 - 9:15 : Renouvelables modernes
 
 Etat :
 
 - solaire et vent ;
+- meteo ;
+- intermittence ;
+- surplus ;
+- prix spot.
+
+But :
+
+- montrer que bas-carbone ne veut pas dire simple ;
+- introduire le timing, pas seulement la production.
+
+Moment fort :
+
+> Le probleme n'est plus seulement de produire. C'est de produire au bon moment.
+
+### 9:15 - 10:00 : 2026
+
+Etat :
+
 - stockage ;
 - prix de marche instable ;
 - climat deja abime ;
@@ -168,4 +243,3 @@ Les couts et productions doivent etre calibres pour ce rythme :
 La premiere demo doit pouvoir forcer ou accelerer certains paliers si le jury n'a que 3 minutes. Mais le rythme naturel reste 10 minutes jusqu'a 2026.
 
 Pour le deroule exact minute par minute, voir [Script des 10 premieres minutes](script-10-premieres-minutes.md).
-

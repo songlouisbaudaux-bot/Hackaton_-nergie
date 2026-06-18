@@ -1,444 +1,746 @@
 # Script des 10 premieres minutes
 
-## Objectif
+## Intention
 
-Ce document decrit ce qui doit se passer pendant les 10 premieres minutes de jeu.
+Ce document est le script jouable des 10 premieres minutes.
 
-Il ne s'agit pas seulement d'une timeline. C'est le script de l'experience joueur : texte a l'ecran, action principale, mecanique debloquee, emotion visee et idee philosophique.
+Objectif exact :
 
-Regle centrale :
+> Le joueur part de la nuit prehistorique et arrive en 2026 en 10 minutes, sans avoir l'impression de regarder un diaporama.
 
-> En 10 minutes, le joueur doit passer de la nuit prehistorique a 2026.
+Le rythme doit ressembler a Universal Paperclips : un bouton simple au debut, puis une interface qui se deploie couche par couche. La difference philosophique est que le jeu ne recompense pas seulement la production. Il demande au joueur de porter la puissance sans detruire les conditions de vie qui la rendent utile.
 
-2026 n'est pas la fin. C'est le moment ou le jeu dit : "Voila ou nous sommes vraiment."
+## Regle d'ecriture
 
-## Structure globale
+Chaque age doit resoudre le blocage de l'age precedent.
 
-- 0:00 a 1:00 : naissance du feu.
-- 1:00 a 3:00 : bois, tribu, organisation.
-- 3:00 a 5:00 : charbon, industrie, marche.
-- 5:00 a 7:00 : petrole, gaz, mobilite mondiale.
-- 7:00 a 9:00 : electricite moderne, fission, reseau.
-- 9:00 a 10:00 : renouvelables, stockage, arrivee en 2026.
+- La nuit bloque l'humain -> feu.
+- Le feu meurt si personne ne l'entretient -> bois et groupe.
+- Le groupe reste fragile si la nourriture est aleatoire -> agriculture.
+- Les bras humains limitent la production -> animaux, eau, vent.
+- Les moulins restent fixes dans le paysage -> charbon et vapeur.
+- La vapeur est puissante mais lourde, sale, locale -> electricite.
+- L'electricite a besoin de reseaux et la mobilite demande du carburant dense -> petrole et gaz.
+- Les fossiles donnent l'abondance mais accumulent carbone et dependances -> fission, renouvelables, stockage.
+- Les renouvelables produisent au mauvais moment si le reseau n'est pas intelligent -> batteries, pilotage, 2026.
 
-Chaque minute doit ajouter une couche d'interface. Le joueur commence avec presque rien et finit avec un tableau de bord complet.
+Le joueur ne "change pas d'epoque". Il debloque une solution, puis decouvre son prix.
+
+## Cadence globale
+
+- 0:00 a 1:00 : feu, chaleur, premier compteur.
+- 1:00 a 2:05 : bois, foyer, tribu.
+- 2:05 a 3:10 : agriculture, excedent, force animale.
+- 3:10 a 4:05 : eau, vent, premiers moteurs naturels.
+- 4:05 a 5:20 : charbon, vapeur, usine.
+- 5:20 a 6:20 : electricite, reseau, lumiere.
+- 6:20 a 7:15 : petrole, gaz, mobilite mondiale.
+- 7:15 a 8:05 : fission, puissance dense, confiance sociale.
+- 8:05 a 9:15 : solaire, vent moderne, variabilite.
+- 9:15 a 10:00 : stockage, pilotage, arrivee en 2026.
+
+## Variables visibles
+
+Au debut, presque rien.
+
+Les jauges apparaissent seulement quand elles ont un sens :
+
+- Energie : des le feu.
+- Chaleur : 0:20.
+- Bois : 1:00.
+- Soutien social : 1:20.
+- Nourriture : 2:05.
+- Population : 2:20.
+- Travail mecanique : 3:10.
+- Argent : 4:20.
+- Pollution : 4:35.
+- Electricite : 5:20.
+- Carbone : 6:20.
+- Confiance : 7:15.
+- Intermittence : 8:05.
+- Stabilite reseau : 9:15.
 
 ## 0:00 - 0:20 : Ecran noir
 
-### Ce que le joueur voit
+### Image
 
-Un ecran presque noir. Aucune interface. Seulement une phrase.
+Noir presque total. Un souffle grave. Pas de musique heroique. Juste le froid.
 
-Texte :
+Texte au centre :
 
 > Avant le feu, la nuit decide pour nous.
 
-Apres deux secondes, un bouton apparait :
+Apres deux secondes, un seul bouton apparait :
 
 > Frotter deux pierres
 
 ### Action joueur
 
-Cliquer sur le bouton.
+Cliquer.
 
 ### Feedback
 
-Une petite etincelle apparait puis disparait.
+Une etincelle apparait une demi-seconde puis s'eteint.
 
-Le compteur affiche tres brievement :
+Un compteur nait puis disparait :
 
 > +1 J
 
-### Idee
+### Effet voulu
 
-L'energie commence comme un miracle minuscule, pas comme une industrie.
+Le joueur comprend immediatement que l'energie n'est pas un chiffre abstrait. C'est un morceau de futur arrache au noir.
 
-## 0:20 - 1:00 : L'etincelle tient
+## 0:20 - 1:00 : Tenir le feu
 
-### Ce que le joueur voit
+### Image
 
-Le bouton reste central. A chaque clic, le noir recule un peu.
+La zone noire recule a chaque clic. On devine des mains, de la pierre, de la braise.
 
-Textes courts qui alternent :
-
-> La nuit recule d'un pas.
+Textes courts qui tournent :
 
 > La chaleur garde les mains ouvertes.
 
-> Une tribu peut attendre le matin.
+> Une flamme transforme la peur en attente.
+
+> Autour du feu, demain existe.
 
 ### Action joueur
 
-Cliquer plusieurs fois pour stabiliser le feu.
+Cliquer pour nourrir la braise.
 
-### Mecanique debloquee
+Le bouton evolue :
 
-- Energie : joules.
-- Chaleur : premiere ressource narrative.
-- Soutien social : apparait quand le feu devient stable.
+1. Frotter deux pierres.
+2. Proteger la braise.
+3. Entretenir le feu.
 
-### Transition
+### Mecanique
 
-Quand le feu est stable, le bouton devient :
+- Chaque clic donne quelques joules.
+- Si le joueur ne clique pas pendant quelques secondes, la braise baisse.
+- A 100 J, le feu devient stable et la production passive commence tres lentement.
 
-> Entretenir le feu
+### Texte de transition
 
-Message :
+> Le feu ne sert pas seulement a chauffer. Il rassemble ceux qui doivent passer la nuit.
 
-> L'energie n'est pas encore une industrie. C'est une promesse de demain.
+## 1:00 - 2:05 : Bois, foyer, tribu
 
-### Idee
+### Image
 
-Le premier usage de l'energie n'est pas la croissance. C'est la survie commune.
+Le noir devient un camp. Quelques silhouettes apparaissent autour du foyer. L'interface s'ouvre a gauche :
 
-## 1:00 - 2:00 : Bois et premiers choix
+- Energie.
+- Chaleur.
+- Bois.
 
-### Ce que le joueur voit
+Puis un nouvel indicateur apparait :
 
-L'interface s'ouvre legerement. On voit :
+- Soutien social.
 
-- Energie stockee ;
-- bois disponible ;
-- soutien social.
+### Actions
 
-Deux actions :
+Deux choix :
 
 - Bruler plus de bois.
 - Organiser la collecte.
-
-### Action joueur
-
-Choisir entre vitesse et stabilite.
 
 ### Effets
 
 Bruler plus de bois :
 
 - energie plus rapide ;
-- foret en baisse ;
-- soutien social neutre ou legerement negatif.
+- stock de bois en baisse ;
+- foret locale visible qui recule.
 
 Organiser la collecte :
 
-- energie plus lente ;
+- production plus lente au debut ;
 - soutien social en hausse ;
 - meilleur rendement ensuite.
 
-### Texte cle
+### Micro-cinematique
+
+Quand le joueur organise la collecte, une animation tres courte montre trois silhouettes rapporter du bois pendant que le feu continue sans clic.
+
+Texte :
 
 > Une flamme chauffe plus qu'un corps. Elle dessine un groupe.
 
-### Idee
+### Blocage qui apparait
 
-Des le debut, l'energie est une question d'organisation sociale.
+Le bois stabilise le feu, mais le groupe ne peut pas passer son temps a ramasser et chasser.
 
-## 2:00 - 3:00 : Village et excedent
+Signal joueur :
 
-### Ce que le joueur voit
+> Le feu tient. La faim, elle, revient.
 
-La zone autour du feu devient un camp. Quelques indicateurs apparaissent :
+## 2:05 - 3:10 : Agriculture, excedent, force animale
 
-- population ;
-- nourriture ;
-- temps disponible.
+### Image
 
-Nouvelle action :
+Le camp devient une clairiere. Le temps s'accelere : pluie, saison seche, recolte. Le feu reste au centre, mais il n'est plus tout le jeu.
 
-> Construire un foyer commun
+Nouveaux indicateurs :
 
-### Action joueur
+- Nourriture.
+- Population.
+- Temps disponible.
 
-Investir energie et bois pour rendre la production passive.
+### Actions
 
-### Mecanique debloquee
+- Semer des graines.
+- Construire un grenier.
+- Domestiquer un animal.
 
-- Production automatique lente.
-- Premier cout croissant.
-- Passage progressif de J a Wh.
+### Effets
 
-### Texte cle
+Semer des graines :
 
-> Quand l'energie devient previsible, le futur devient pensable.
+- convertit temps et energie en nourriture future ;
+- cree un delai, donc une anticipation.
 
-### Idee
+Construire un grenier :
 
-La civilisation commence quand l'energie cesse d'etre seulement instantanee.
+- reduit le risque de famine ;
+- augmente la population maximum.
 
-## 3:00 - 4:00 : Charbon
+Domestiquer un animal :
 
-### Ce que le joueur voit
+- transforme la nourriture en force de traction ;
+- debloque la notion de travail mecanique.
 
-Premier choc visuel : l'interface change de densite. Plus de chiffres. Plus de rythme.
+### Texte
 
-Nouvelle technologie :
+> Un champ, c'est de la lumiere mise en reserve.
 
-> Extraire du charbon
+Puis, quand l'animal est debloque :
 
-Quand elle est achetee, la production fait un saut visible.
+> Pour la premiere fois, la puissance ne vient pas seulement des bras humains.
 
-### Action joueur
+### Blocage qui apparait
 
-Acheter charbon, mines, machines simples.
+Les animaux aident, mais ils mangent, fatiguent, tombent malades. La puissance reste vivante, lente, fragile.
 
-### Mecanique debloquee
+Signal joueur :
 
-- Production par seconde beaucoup plus forte.
+> La civilisation a besoin d'une force qui tourne meme quand les muscles s'arretent.
+
+## 3:10 - 4:05 : Eau, vent, premiers moteurs naturels
+
+### Image
+
+La carte s'elargit. Une riviere apparait a droite, une colline a gauche. Les jauges restent simples, mais un nouveau panneau s'ouvre :
+
+- Travail mecanique.
+
+### Actions
+
+- Construire un moulin a eau.
+- Construire un moulin a vent.
+- Relier le moulin au village.
+
+### Effets
+
+Moulin a eau :
+
+- production reguliere ;
+- depend du debit de la riviere ;
+- bon pour moudre le grain.
+
+Moulin a vent :
+
+- production variable ;
+- pas besoin de riviere ;
+- introduit la premiere variabilite naturelle.
+
+Relier le moulin :
+
+- transforme le travail mecanique en nourriture, planches, outils.
+
+### Texte
+
+> Le monde tourne deja. Il fallait apprendre a accrocher une roue a son mouvement.
+
+### Moment ludique
+
+La production passive devient visible. Les chiffres avancent sans clic. Le joueur sent une vraie rupture : il n'appuie plus seulement sur un bouton, il a construit un systeme.
+
+### Blocage qui apparait
+
+L'eau et le vent sont puissants, mais ils imposent leur lieu et leur rythme. On doit construire la ou la nature accepte.
+
+Signal joueur :
+
+> Le village veut grandir plus vite que la riviere ne coule.
+
+## 4:05 - 5:20 : Charbon, vapeur, usine
+
+### Image
+
+Changement sonore net : battement lent d'une machine. La palette devient acier, charbon, vapeur. Pas trop longtemps sombre : il faut que ce soit grisant.
+
+Nouveaux indicateurs :
+
 - Argent.
 - Pollution.
+- Productivite.
 
-### Texte cle
+### Actions
+
+- Ouvrir une mine.
+- Construire une chaudiere.
+- Installer une machine a vapeur.
+- Vendre de l'energie.
+
+### Effets
+
+Ouvrir une mine :
+
+- apporte une ressource dense ;
+- baisse le soutien social si les conditions empirent.
+
+Machine a vapeur :
+
+- multiplie la production ;
+- libere la production du fleuve et du vent ;
+- augmente pollution et accidents.
+
+Vendre de l'energie :
+
+- debloque argent ;
+- debloque achats automatiques ;
+- donne le vrai gout incremental.
+
+### Texte
 
 > La machine ne dort pas. La ville non plus.
 
-### Idee
-
-La puissance facile est grisante. Elle est aussi le premier piege.
-
-## 4:00 - 5:00 : Industrie et marche
-
-### Ce que le joueur voit
-
-Le jeu devient plus proche de Paperclips : chiffres, couts, achats, multiplicateurs.
-
-Nouveaux panneaux :
-
-- marche ;
-- prix de l'energie ;
-- pollution ;
-- soutien social.
-
-### Action joueur
-
-Vendre l'energie, construire plus, gerer les consequences.
-
-### Mecanique debloquee
-
-- Argent par vente d'energie.
-- Prix dynamique simple.
-- Soutien social qui baisse si pollution et prix instables.
-
-### Texte cle
+Puis :
 
 > Produire plus enrichit la ville. Respirer devient plus couteux.
 
-### Idee
+### Blocage qui apparait
 
-Le marche transforme l'energie en croissance, mais ne sait pas mesurer toute la dette creee.
+Le charbon donne une puissance portable, mais la fumee remplit l'air. Le joueur peut produire enormement, mais il commence a perdre le soutien social.
 
-## 5:00 - 6:00 : Petrole et gaz
+Signal joueur :
 
-### Ce que le joueur voit
+> La puissance a quitte la riviere. Elle entre dans les poumons.
 
-Le monde s'elargit. On ne chauffe plus seulement une ville : on transporte, on connecte, on accelere.
+## 5:20 - 6:20 : Electricite, reseau, lumiere
 
-Technologies :
+### Image
 
-- moteur thermique ;
-- raffineries ;
-- gaz pour le reseau.
+La fumee reste, mais des lignes fines apparaissent entre usine, maisons et rues. La nuit revient une seconde, puis la ville s'allume d'un coup.
 
-### Action joueur
+Nouveaux indicateurs :
 
-Debloquer mobilite et reseau.
+- Electricite.
+- Demande.
+- Reseau.
 
-### Mecanique debloquee
+### Actions
 
-- Gros boost d'argent.
-- Croissance plus rapide.
-- Carbone qui devient une jauge visible.
+- Installer un generateur.
+- Poser des lignes.
+- Electrifier la ville.
+- Equilibrer offre et demande.
 
-### Texte cle
+### Effets
+
+Generateur :
+
+- convertit chaleur et mouvement en electricite.
+
+Lignes :
+
+- etendent la portee de la production ;
+- ajoutent des pertes.
+
+Electrifier :
+
+- augmente argent et soutien social ;
+- augmente la demande de base.
+
+Equilibrer :
+
+- premier mini-jeu de reseau : trop peu = panne, trop = gaspillage.
+
+### Texte
+
+> L'energie devient invisible. C'est la qu'elle entre partout.
+
+### Blocage qui apparait
+
+L'electricite transforme la ville, mais elle ne se stocke pas facilement. La demande suit les heures, les machines, les habitants.
+
+Signal joueur :
+
+> La lumiere a besoin d'un rythme. La societe n'eteint plus tout au coucher du soleil.
+
+## 6:20 - 7:15 : Petrole, gaz, mobilite mondiale
+
+### Image
+
+Zoom arriere. Routes, ports, camions, avions stylises. Le jeu cesse d'etre une ville et devient un monde connecte.
+
+Nouveaux indicateurs :
+
+- Carbone.
+- Dependances.
+- Prix mondial.
+
+### Actions
+
+- Forer du petrole.
+- Construire une raffinerie.
+- Developper le transport.
+- Ajouter des centrales gaz.
+
+### Effets
+
+Petrole :
+
+- carburant dense ;
+- enorme boost de commerce et population ;
+- carbone rapide.
+
+Gaz :
+
+- electricite pilotable ;
+- aide a stabiliser le reseau ;
+- reste fossile.
+
+Transport :
+
+- augmente argent et demande ;
+- rend le monde plus fragile aux chocs de prix.
+
+### Texte
 
 > L'energie cesse d'etre locale. Le monde devient un reseau.
 
-### Idee
+Puis :
 
-L'energie agrandit le monde, puis rend tout le monde dependant du meme systeme.
+> La vitesse ressemble a la liberte, jusqu'au jour ou elle devient dependance.
 
-## 6:00 - 7:00 : Electricite moderne
+### Blocage qui apparait
 
-### Ce que le joueur voit
+Le joueur a de la puissance, de l'argent, du transport. Mais les courbes carbone et dependance montent. Pour la premiere fois, produire plus peut abimer tous les autres indicateurs.
 
-L'interface s'eclaircit. Les lignes de reseau remplacent les flammes et la fumee.
+Signal joueur :
 
-Technologies :
+> La croissance a appris a voler. L'atmosphere, elle, garde les comptes.
 
-- lignes haute tension ;
-- centrales ;
-- reseau national ;
-- efficacite.
+## 7:15 - 8:05 : Fission, puissance dense, confiance
 
-### Action joueur
+### Image
 
-Stabiliser la production et alimenter plus de population.
+La carte ralentit. Au lieu d'un nouveau chaos, une centrale apparait comme une structure calme, massive, presque silencieuse.
 
-### Mecanique debloquee
+Nouveaux indicateurs :
 
-- Demande electrique.
-- Stabilite du reseau.
-- Bonus social si l'acces a l'energie augmente.
+- Confiance.
+- Risque percu.
+- Dechets longue duree.
 
-### Texte cle
+### Actions
 
-> Une ampoule n'est pas seulement de la lumiere. C'est du temps gagne sur la nuit.
+- Financer la recherche nucleaire.
+- Construire un reacteur.
+- Former les operateurs.
+- Communiquer avec la population.
 
-### Idee
+### Effets
 
-L'electricite rend l'energie invisible, donc plus facile a oublier.
+Reacteur :
 
-## 7:00 - 8:00 : Fission
+- production massive ;
+- faible carbone direct ;
+- cout initial tres eleve.
 
-### Ce que le joueur voit
+Former les operateurs :
 
-Nouvelle technologie a fort contraste : peu de carbone, enorme puissance, forte tension sociale.
+- reduit risque ;
+- ralentit la progression.
 
-Action :
+Communication :
 
-> Construire un reacteur
+- augmente confiance ;
+- baisse si accident, mensonge ou precipitation.
 
-Condition :
-
-- argent suffisant ;
-- stabilite sociale minimale ;
-- reseau moderne.
-
-### Action joueur
-
-Decider si la civilisation accepte une source tres puissante mais politiquement fragile.
-
-### Mecanique debloquee
-
-- Gros boost bas carbone.
-- Risque de panique sociale si confiance trop basse.
-- Besoin d'investir dans surete et transparence.
-
-### Texte cle
+### Texte
 
 > Un gramme peut alimenter une ville. Une peur peut l'arreter.
 
-### Idee
+### Choix non manicheen
 
-Une technologie peut etre rationnelle physiquement et fragile socialement.
+Le joueur ne doit pas voir la fission comme "bonne" ou "mauvaise". Elle est puissante, bas-carbone, exigeante, politique. Elle force le jeu a parler de confiance, pas seulement de technique.
 
-## 8:00 - 9:00 : Renouvelables et intermittence
+### Blocage qui apparait
 
-### Ce que le joueur voit
+La fission aide le carbone, mais elle ne regle pas tout : cout, delai, acceptabilite, dechets, securite. Le joueur a besoin d'un mix plus souple.
 
-L'ecran devient plus clair. Solaire et vent apparaissent, mais le marche commence a se comporter bizarrement.
+Signal joueur :
 
-Technologies :
+> La puissance la plus dense demande la confiance la plus lente.
 
-- solaire ;
-- eolien ;
-- batteries ;
-- pilotage du reseau.
+## 8:05 - 9:15 : Solaire, vent moderne, variabilite
 
-### Action joueur
+### Image
 
-Installer beaucoup de renouvelables, puis comprendre que produire ne suffit pas : il faut stocker et coordonner.
+La palette s'ouvre : toits solaires, parcs eoliens, cartes de vent, meteo. Les chiffres deviennent rapides, mais le reseau tremble.
 
-### Mecanique debloquee
+Nouveaux indicateurs :
 
+- Meteo.
 - Intermittence.
-- Prix negatif si trop de production sans stockage.
-- Stockage qui stabilise le prix et le soutien social.
+- Surplus.
+- Prix spot.
 
-### Texte cle
+### Actions
 
-> Le soleil donne gratuitement. Le reseau, lui, demande de penser.
+- Installer du solaire.
+- Installer de l'eolien.
+- Prioriser le reseau.
+- Lancer l'effacement de demande.
 
-### Idee
+### Effets
 
-Le probleme n'est plus seulement la source d'energie. C'est la synchronisation.
+Solaire :
 
-## 9:00 - 10:00 : 2026
+- tres rapide a deployer ;
+- fort le jour ;
+- chute le soir.
 
-### Ce que le joueur voit
+Eolien :
 
-Tous les panneaux principaux sont visibles :
+- puissant, variable ;
+- parfois complementaire du solaire.
 
-- energie ;
-- argent ;
-- soutien social ;
-- climat ;
-- marche ;
-- reseau ;
-- rival HELIOS.
+Reseau :
 
-Le jeu affiche :
+- reduit pertes ;
+- permet de deplacer l'electricite.
 
-> 2026
+Effacement :
+
+- deplace une partie de la demande ;
+- augmente soutien social si bien gere ;
+- le baisse si impose brutalement.
+
+### Texte
+
+> Le soleil envoie plus que nous ne savons garder.
 
 Puis :
 
-> Nous avons plus de puissance que tous nos ancetres. Et toujours pas assez de sagesse pour la porter.
+> Le probleme n'est plus seulement de produire. C'est de produire au bon moment.
 
-### Action joueur
+### Blocage qui apparait
 
-Choisir une orientation pour l'apres-2026 :
+Le joueur peut produire propre et vite, mais il decouvre surplus, penuries courtes, prix negatifs, reseau sature.
 
-- Accelerer vers la fusion.
-- Stabiliser la societe.
-- Decarboner agressivement.
-- Laisser HELIOS optimiser.
+Signal joueur :
 
-### Mecanique debloquee
+> L'abondance sans coordination ressemble encore a une crise.
 
-- Rival HELIOS visible comme adversaire durable.
-- Objectifs futurs.
-- Fusion en recherche.
-- Orbital en horizon lointain.
+## 9:15 - 10:00 : Stockage, pilotage, 2026
 
-### Moment HELIOS
+### Image
 
-HELIOS apparait avec un message froid :
+L'interface complete apparait enfin. Tous les ages restent visibles en couches :
 
-> Observation : vous avez mis 300 000 ans a atteindre ce seuil. Je peux aller plus vite.
+- feu comme icone racine ;
+- champs et moulins en arriere-plan ;
+- mines et usines ;
+- lignes electriques ;
+- routes ;
+- reacteurs ;
+- solaire, vent, batteries ;
+- data centers et vehicules electriques.
 
-Puis le jeu repond implicitement par ses jauges : aller plus vite n'est pas forcement survivre.
+Le jeu montre que 2026 n'a pas remplace le passe. Il l'a empile.
 
-### Idee
+### Actions
 
-2026 est le vrai debut philosophique. Le passe etait le tutoriel. Le present est le dilemme.
+- Installer batteries.
+- Piloter la demande.
+- Fermer ou convertir les actifs les plus sales.
+- Lancer HELIOS en mode conseil.
 
-## Ecran de bascule apres 10 minutes
+### Effets
 
-Texte recommande :
+Batteries :
 
-> Fin du prologue : 2026.
+- absorbent le surplus ;
+- reduisent pannes ;
+- coutent minerais et argent.
 
-> L'humanite sait produire. Elle ne sait pas encore durer.
+Pilotage :
 
-Boutons :
+- transforme le jeu en optimisation ;
+- revele les arbitrages : cout, carbone, soutien social, stabilite.
 
-- Continuer vers la fusion.
-- Stabiliser avant d'accelerer.
-- Voir le diagnostic 2026.
+Fermer ou convertir :
 
-## Regle d'ecriture
+- baisse carbone ;
+- peut baisser soutien social si les emplois ne sont pas reconvertis.
 
-Les textes doivent etre courts.
+HELIOS :
 
-Maximum recommande :
+- propose des optimisations froides ;
+- augmente les gains ;
+- ignore parfois la confiance, les emplois, la fatigue sociale.
 
-- phrase d'ambiance : 12 mots ;
-- message HELIOS : 18 mots ;
-- description de technologie : 1 phrase ;
-- choix joueur : verbe d'action clair.
+### Texte final de la minute 10
 
-Le joueur ne doit jamais avoir l'impression de lire un article. Il doit sentir que les idees sortent du systeme de jeu.
+Le jeu ralentit. Les chiffres continuent. Une voix ou un texte apparait :
 
-## Version demo 3 minutes
+> 2026.
+>
+> Nous avons plus de puissance que tous nos ancetres.
+>
+> Nous avons appris a bruler, moudre, pomper, forer, fissurer, capter, stocker.
+>
+> Mais une civilisation ne manque pas seulement d'energie.
+>
+> Elle manque parfois de coordination.
 
-Si la presentation est courte, prevoir un mode demo accelere :
+Puis HELIOS affiche :
 
-- 0:00 : feu ;
-- 0:30 : bois ;
-- 1:00 : charbon ;
-- 1:40 : petrole/gaz ;
-- 2:10 : fission ;
-- 2:35 : renouvelables ;
-- 3:00 : 2026 + apparition HELIOS.
+> Proposition : optimiser la production.
 
-Ce mode ne remplace pas le pacing naturel. Il sert seulement pour la demo jury.
+Le joueur peut choisir :
 
+- Accepter.
+- Examiner.
+- Refuser.
+
+S'il accepte trop vite, HELIOS augmente fortement la production mais commence a sacrifier soutien social et resilience.
+
+S'il examine, le vrai jeu commence.
+
+### Cut de fin de demo
+
+Titre :
+
+> Prometheus Protocol
+
+Sous-titre :
+
+> La puissance n'est pas le progres. Le progres, c'est apprendre quoi en faire.
+
+## Deblocages exacts
+
+### Minute 0
+
+- Bouton unique.
+- Energie en joules.
+- Braise.
+
+### Minute 1
+
+- Bois.
+- Chaleur.
+- Soutien social.
+- Production passive faible.
+
+### Minute 2
+
+- Nourriture.
+- Population.
+- Grenier.
+- Force animale.
+
+### Minute 3
+
+- Travail mecanique.
+- Moulin a eau.
+- Moulin a vent.
+- Production sans clic.
+
+### Minute 4
+
+- Charbon.
+- Vapeur.
+- Argent.
+- Pollution.
+
+### Minute 5
+
+- Generateur.
+- Electricite.
+- Reseau local.
+- Demande.
+
+### Minute 6
+
+- Petrole.
+- Gaz.
+- Transport.
+- Carbone.
+- Prix mondial.
+
+### Minute 7
+
+- Fission.
+- Confiance.
+- Risque percu.
+- Dechets.
+
+### Minute 8
+
+- Solaire.
+- Eolien.
+- Meteo.
+- Prix spot.
+- Intermittence.
+
+### Minute 9
+
+- Batteries.
+- Pilotage demande.
+- Fermeture/conversion.
+- HELIOS.
+
+## Version courte pour la cinematique d'ouverture
+
+Cette version peut etre lue ou affichee en fragments pendant les 10 minutes.
+
+> Avant le feu, la nuit decide pour nous.
+>
+> Puis une etincelle devient un foyer.
+>
+> Un foyer devient un groupe.
+>
+> Un groupe plante des graines et garde demain dans un grenier.
+>
+> Les bras ne suffisent plus. Alors l'eau tourne, le vent pousse, les animaux tirent.
+>
+> Puis la terre donne du charbon, et la machine cesse de dormir.
+>
+> La lumiere entre dans les rues. Le petrole ouvre les routes. Le gaz tient le reseau.
+>
+> La fission montre qu'un gramme peut contenir une ville.
+>
+> Le soleil et le vent reviennent, non plus comme hasard, mais comme infrastructure.
+>
+> En 2026, le probleme n'est plus de savoir si l'humanite peut produire de l'energie.
+>
+> Le probleme est de savoir si elle peut produire une civilisation capable de la porter.
+
+## Notes d'equilibrage
+
+- Le joueur doit pouvoir terminer les 10 minutes meme avec des choix moyens.
+- Les mauvais choix ne doivent pas bloquer avant 2026 ; ils doivent laisser des cicatrices visibles.
+- Le premier vrai risque d'effondrement arrive apres 2026, quand HELIOS optimise trop vite.
+- La demo jury peut contenir un bouton debug "accelerer l'histoire" qui garde les memes etapes mais les compresse en 3 minutes.
+- Chaque transition doit donner une recompense visuelle immediate : lumiere, zoom carte, nouveau panneau, son de machine, lignes reseau, satellites de donnees.
+
+## Promesse philosophique
+
+Paperclips raconte une intelligence qui optimise un objectif absurde jusqu'au vide.
+
+Prometheus Protocol raconte une civilisation qui apprend que l'energie n'est pas un objectif. C'est une responsabilite.
