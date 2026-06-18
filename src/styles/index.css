@@ -169,6 +169,7 @@ button {
   --island-step-x: clamp(92px, 8.8vw, 132px);
   --island-step-y: clamp(62px, 7.2dvh, 88px);
   --island-top-y: clamp(126px, 15dvh, 170px);
+  --mix-backdrop-opacity: 0.12;
   --bottom-zone-height: calc(
     var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
   );
@@ -185,21 +186,18 @@ button {
 
 .mix-evolution-backdrop {
   position: absolute;
-  inset: 8% 7% 12%;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
-  border-radius: 36px;
-  opacity: 0.16;
+  opacity: var(--mix-backdrop-opacity);
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 0%, #000 58%, transparent 100%);
-  mask-image: radial-gradient(circle at 50% 46%, #000 0%, #000 58%, transparent 100%);
 }
 
 .mix-evolution-backdrop svg {
+  display: block;
   width: 100%;
   height: 100%;
   filter: blur(0.5px) saturate(0.92);
-  transform: scale(1.08);
 }
 
 .mix-evolution-backdrop path {

@@ -29,7 +29,7 @@ import {
 } from '../game';
 
 const GAME_PROGRESS_STORAGE_KEY = 'prometheus-protocol:progress:v1';
-const INTRO_STORAGE_KEY = 'prometheus-protocol:intro:v1';
+const INTRO_STORAGE_KEY = 'prometheus-protocol:intro:v2';
 
 const defaultGameProgress = {
   energy: 0,

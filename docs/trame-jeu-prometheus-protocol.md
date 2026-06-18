@@ -220,6 +220,19 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Clarification : une ile d'energie apparait seulement quand son age est debloque.
 - Clarification : chaque technologie doit correspondre a l'objet qu'elle ameliore visuellement.
 
+### 2026-06-19 - Video d'introduction
+
+- Ajout de la video reelle dans `public/assets/intro/prometheus-intro.mp4`.
+- L'intro se lit au lancement, puis envoie directement au jeu.
+- Passage du marqueur local d'intro en `v2` pour rejouer la nouvelle video une fois.
+- Les nouvelles images d'iles generees restent reservees a la passe finale d'integration visuelle.
+
+### 2026-06-19 - Fond mix energetique
+
+- Le graphe d'evolution du mix energetique est maintenant un calque pleine page.
+- Le graphe remplit aussi l'ecran quand un seul age est debloque.
+- L'intensite reste reglable via `--mix-backdrop-opacity`.
+
 ### 2026-06-18 - HUD statique responsive
 
 - Retour a une fenetre de jeu fixe : pas de page qui defile vers le bas.

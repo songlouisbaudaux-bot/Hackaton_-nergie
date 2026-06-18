@@ -13,7 +13,7 @@ type GraphPoint = {
 
 const graphWidth = 100;
 const graphHeight = 100;
-const graphPadding = 8;
+const graphPadding = 0;
 
 function buildBandPath(points: GraphPoint[]) {
   const top = points.map((point) => `${point.x.toFixed(2)},${point.y1.toFixed(2)}`).join(' ');
@@ -47,12 +47,13 @@ export default function MixEvolutionBackdrop({
     return weights.map((weight) => weight / total);
   });
 
-  const step = visibleAges.length > 1 ? graphWidth / (visibleAges.length - 1) : 0;
+  const renderedSnapshots = snapshots.length === 1 ? [snapshots[0], snapshots[0]] : snapshots;
+  const step = renderedSnapshots.length > 1 ? graphWidth / (renderedSnapshots.length - 1) : graphWidth;
   const bands = energySources.map((source, sourceIndex) => {
-    const points = snapshots.map((snapshot, ageIndex) => {
+    const points = renderedSnapshots.map((snapshot, ageIndex) => {
       const below = snapshot.slice(0, sourceIndex).reduce((sum, share) => sum + share, 0);
       const share = snapshot[sourceIndex] ?? 0;
-      const x = visibleAges.length > 1 ? ageIndex * step : graphWidth / 2;
+      const x = ageIndex * step;
       const y0 = graphHeight - graphPadding - below * (graphHeight - graphPadding * 2);
       const y1 = graphHeight - graphPadding - (below + share) * (graphHeight - graphPadding * 2);
 
