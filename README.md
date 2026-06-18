@@ -50,4 +50,5 @@ Version jouable visee :
 - [Ouverture et cinematique](docs/ouverture-cinematique.md)
 - [Game design MVP](docs/game-design-mvp.md)
 - [Pacing 10 minutes vers 2026](docs/pacing-10-minutes.md)
+- [Script des 10 premieres minutes](docs/script-10-premieres-minutes.md)
 - [Planning hackathon](docs/planning.md)
