@@ -47,12 +47,12 @@ https://193.203.190.2/
 Quand l'acces SSH fonctionne :
 
 ```sh
-ssh 193.203.190.2 'mkdir -p /opt/prometheus-protocol'
-rsync -az --delete --exclude node_modules --exclude dist --exclude .git ./ 193.203.190.2:/opt/prometheus-protocol/
-ssh 193.203.190.2 'cd /opt/prometheus-protocol && cp -n .env.example .env && docker compose up -d --build'
+ssh deploy@193.203.190.2 'mkdir -p ~/prometheus-protocol'
+rsync -az --delete --exclude node_modules --exclude dist --exclude .git ./ deploy@193.203.190.2:~/prometheus-protocol/
+ssh deploy@193.203.190.2 'cd ~/prometheus-protocol && cp -n .env.example .env && docker compose up -d --build'
 ```
 
-Pense a modifier `/opt/prometheus-protocol/.env` sur le VPS avec ton vrai `ACME_EMAIL` avant le premier lancement en production.
+Pense a modifier `~/prometheus-protocol/.env` sur le VPS avec ton vrai `ACME_EMAIL` avant le premier lancement en production.
 
 ## Notes HTTPS sans domaine
 

@@ -545,6 +545,80 @@ DEFS += [
 ]
 
 
+DEFS += [
+    base_def(
+        "island-fossil-05-built-oil-refinery.png", "fossil", "fossil", "built", "futur-prestige", "Raffinerie de petrole",
+        "Raffinerie compacte future avec cuves et conduites.",
+        integration="Variante future optionnelle pour Raffinerie de petrole.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (69, 69, 67, 76)}, {"type": "cable", "points": [(410, 595), (560, 540), (710, 540), (860, 500)], "color": (95, 91, 82, 160)}, {"type": "tank", "cx": 475, "by": 590, "color": (92, 94, 93, 230), "dome": (132, 137, 136, 235)}],
+        assets=[{"file": "small-factory.png", "cx": 675, "by": 590, "width": 230}, {"file": "boiler.png", "cx": 830, "by": 580, "width": 165}, {"file": "steam-puff.png", "cx": 740, "by": 410, "width": 90, "opacity": 0.5, "shadow": False}],
+    ),
+    base_def(
+        "island-fossil-05-upgraded-oil-cracking.png", "fossil", "fossil", "upgraded", "futur-prestige", "Craquage petrolier",
+        "Raffinerie amelioree avec tuyauterie plus dense et controle.",
+        integration="Variante future optionnelle apres Craquage petrolier.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (67, 74, 78, 72)}, {"type": "tank", "cx": 455, "by": 595, "color": (86, 91, 96, 230), "dome": (142, 148, 150, 235)}, {"type": "tank", "cx": 805, "by": 570, "color": (82, 92, 99, 230), "dome": (137, 150, 156, 235)}, {"type": "control", "cx": 900, "by": 555, "accent": (202, 174, 103, 180)}, {"type": "cable", "points": [(455, 575), (610, 530), (805, 550), (900, 555)], "color": (104, 99, 87, 170)}],
+        assets=[{"file": "small-factory.png", "cx": 630, "by": 595, "width": 220}, {"file": "boiler.png", "cx": 735, "by": 590, "width": 155}, {"file": "steam-puff.png", "cx": 725, "by": 405, "width": 80, "opacity": 0.38, "shadow": False}],
+    ),
+    base_def(
+        "island-fossil-06-built-gas-turbine.png", "fossil", "fossil", "built", "futur-prestige", "Turbine a gaz",
+        "Turbine a gaz compacte avec conduites et centrale basse.",
+        integration="Variante future optionnelle pour Turbine a gaz.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (69, 84, 92, 68)}, {"type": "cable", "points": [(405, 595), (560, 535), (735, 535), (900, 480)], "color": (83, 120, 142, 155)}],
+        assets=[{"file": "steam-engine.png", "cx": 600, "by": 615, "width": 245}, {"file": "small-factory.png", "cx": 790, "by": 585, "width": 170}, {"file": "boiler.png", "cx": 440, "by": 585, "width": 150}],
+    ),
+    base_def(
+        "island-fossil-06-upgraded-combined-cycle.png", "fossil", "fossil", "upgraded", "futur-prestige", "Cycle combine",
+        "Cycle combine plus propre avec double turbine et controle.",
+        integration="Variante future optionnelle apres Cycle combine.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (73, 94, 101, 70)}, {"type": "control", "cx": 820, "by": 565, "accent": (94, 181, 215, 190)}, {"type": "cable", "points": [(385, 595), (560, 535), (735, 535), (820, 560), (940, 490)], "color": (73, 130, 157, 170)}],
+        assets=[{"file": "steam-engine.png", "cx": 545, "by": 615, "width": 210}, {"file": "steam-engine.png", "cx": 705, "by": 602, "width": 185}, {"file": "small-factory.png", "cx": 880, "by": 585, "width": 150}, {"file": "Panneaux_solaires.png", "cx": 415, "by": 590, "width": 135}],
+    ),
+    base_def(
+        "island-atomic-06-built-modern-fission.png", "atomic", "atomic", "built", "futur-prestige", "Reacteur moderne",
+        "Reacteur fission moderne sur plateforme propre.",
+        integration="Variante future optionnelle pour Reacteur moderne.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (93, 139, 176, 58)}, {"type": "control", "cx": 820, "by": 565, "accent": (100, 185, 236, 190)}, {"type": "cable", "points": [(395, 595), (570, 535), (740, 535), (920, 475)], "color": (68, 126, 170, 170)}],
+        assets=[{"file": "Centrale_fission.png", "cx": 610, "by": 612, "width": 330}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 460, "opacity": 0.43, "shadow": False}],
+    ),
+    base_def(
+        "island-atomic-06-upgraded-passive-safety.png", "atomic", "atomic", "upgraded", "futur-prestige", "Surete passive",
+        "Reacteur moderne avec securite passive et refroidissement visible.",
+        integration="Variante future optionnelle apres Surete passive.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (88, 148, 185, 62)}, {"type": "control", "cx": 840, "by": 565, "accent": (114, 208, 245, 200)}, {"type": "cable", "points": [(370, 595), (545, 535), (730, 535), (840, 560), (940, 485)], "color": (65, 137, 184, 175)}],
+        assets=[{"file": "Centrale_fission.png", "cx": 605, "by": 615, "width": 345}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 480, "opacity": 0.45, "shadow": False}, {"file": "river-tile.png", "cx": 420, "by": 600, "width": 170}],
+    ),
+    base_def(
+        "island-atomic-07-built-fusion-plant.png", "atomic", "atomic", "built", "futur-prestige", "Tokamak",
+        "Centrale fusion compacte avec anneau lumineux.",
+        integration="Variante future optionnelle pour Tokamak.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (90, 106, 171, 62)}, {"type": "control", "cx": 835, "by": 565, "accent": (147, 127, 246, 190)}, {"type": "cable", "points": [(390, 595), (565, 535), (735, 535), (835, 560)], "color": (96, 97, 190, 175)}],
+        assets=[{"file": "Centrale_fusion.png", "cx": 615, "by": 610, "width": 330}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 470, "opacity": 0.42, "shadow": False}],
+    ),
+    base_def(
+        "island-atomic-07-upgraded-controlled-fusion.png", "atomic", "atomic", "upgraded", "futur-prestige", "Fusion controlee",
+        "Fusion controlee avec glow plus stable et reseau.",
+        integration="Variante future optionnelle apres Fusion controlee.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (91, 108, 182, 68)}, {"type": "control", "cx": 845, "by": 565, "accent": (164, 140, 255, 200)}, {"type": "cable", "points": [(355, 595), (540, 535), (730, 535), (845, 560), (950, 490)], "color": (102, 98, 205, 180)}],
+        assets=[{"file": "Centrale_fusion.png", "cx": 610, "by": 610, "width": 360}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 500, "opacity": 0.43, "shadow": False}, {"file": "joule-particle.png", "cx": 615, "by": 425, "width": 110, "opacity": 0.75, "shadow": False}],
+    ),
+    base_def(
+        "island-atomic-08-built-antimatter.png", "atomic", "atomic", "built", "futur-prestige", "Centrale antimatiere",
+        "Centrale antimatiere compacte et contenue.",
+        integration="Variante future optionnelle pour Centrale antimatiere.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (107, 87, 160, 68)}, {"type": "control", "cx": 840, "by": 565, "accent": (194, 145, 248, 200)}, {"type": "cable", "points": [(390, 595), (570, 535), (740, 535), (840, 560)], "color": (130, 93, 190, 180)}],
+        assets=[{"file": "Centrale_antimatière.png", "cx": 615, "by": 610, "width": 340}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 480, "opacity": 0.42, "shadow": False}],
+    ),
+    base_def(
+        "island-atomic-08-upgraded-antimatter-containment.png", "atomic", "atomic", "upgraded", "futur-prestige", "Confinement antimatiere",
+        "Confinement antimatiere renforce avec energie orbitale stylisee.",
+        integration="Variante future optionnelle apres Confinement antimatiere.",
+        draw=[{"type": "patch", "cx": 625, "cy": 470, "rx": 340, "ry": 175, "color": (115, 82, 172, 72)}, {"type": "control", "cx": 855, "by": 565, "accent": (211, 146, 255, 210)}, {"type": "cable", "points": [(350, 595), (545, 535), (735, 535), (855, 560), (950, 490)], "color": (144, 89, 207, 185)}],
+        assets=[{"file": "Centrale_antimatière.png", "cx": 600, "by": 610, "width": 355}, {"file": "Dyson_sphere.png", "cx": 760, "by": 485, "width": 115, "opacity": 0.86, "shadow": False}, {"file": "tile-energy-platform-buildable.png", "cx": 600, "by": 635, "width": 505, "opacity": 0.42, "shadow": False}, {"file": "joule-particle.png", "cx": 605, "by": 420, "width": 105, "opacity": 0.72, "shadow": False}],
+    ),
+]
+
+
 def write_manifest() -> None:
     manifest = {
         "project": "Prometheus Protocol",
