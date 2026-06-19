@@ -133,14 +133,16 @@ export default function EnergyIslandsLayer({
             key={island.id}
             style={getIslandStyle(island.slot)}
           >
-            <img
-              src={assetPath(island.file)}
-              alt=""
-              draggable={false}
-              onError={(event) => {
-                event.currentTarget.closest('.energy-island')?.setAttribute('data-missing', 'true');
-              }}
-            />
+            <div className="energy-island-float">
+              <img
+                src={assetPath(island.file)}
+                alt=""
+                draggable={false}
+                onError={(event) => {
+                  event.currentTarget.closest('.energy-island')?.setAttribute('data-missing', 'true');
+                }}
+              />
+            </div>
           </figure>
         ))}
       </div>

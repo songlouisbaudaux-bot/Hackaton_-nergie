@@ -259,14 +259,24 @@ button {
   left: var(--island-world-x, var(--island-center-x));
   top: var(--island-world-y, var(--island-center-y));
   width: var(--island-size);
+  aspect-ratio: 1;
   margin: 0;
+  display: grid;
+  place-items: center;
   opacity: 0.94;
   transform: translate(-50%, -50%) scale(var(--island-scale, 1));
+  transition:
+    opacity 180ms ease;
+}
+
+.energy-island-float {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
   animation: islandFloat var(--island-float-duration, 7s) ease-in-out infinite;
   animation-delay: var(--island-float-delay, 0s);
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
+  will-change: transform;
 }
 
 .energy-island[data-missing="true"] {
@@ -276,7 +286,8 @@ button {
 .energy-island img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   filter: drop-shadow(0 20px 34px rgba(31, 43, 36, 0.14));
   user-select: none;
 }
@@ -1244,20 +1255,20 @@ button {
 @keyframes islandFloat {
   0%,
   100% {
-    transform: translate(-50%, calc(-50% - 6px)) scale(var(--island-scale, 1));
+    transform: translate3d(0, -6px, 0);
   }
   50% {
-    transform: translate(-50%, calc(-50% + 7px)) scale(var(--island-scale, 1));
+    transform: translate3d(0, 7px, 0);
   }
 }
 
 @keyframes islandFloatMobile {
   0%,
   100% {
-    transform: translate(-50%, calc(-50% - 2px)) scale(var(--island-scale, 1));
+    transform: translate3d(0, -2px, 0);
   }
   50% {
-    transform: translate(-50%, calc(-50% + 2px)) scale(var(--island-scale, 1));
+    transform: translate3d(0, 2px, 0);
   }
 }
 
@@ -1696,7 +1707,7 @@ button {
     opacity: 0.98;
   }
 
-  .energy-island {
+  .energy-island-float {
     animation-name: islandFloatMobile;
     animation-duration: 8.4s;
   }
@@ -1968,7 +1979,7 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .energy-island {
+  .energy-island-float {
     animation: none;
   }
 }
