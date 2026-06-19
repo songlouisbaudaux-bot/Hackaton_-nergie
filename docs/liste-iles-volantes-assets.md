@@ -91,7 +91,8 @@ La version `dense` est optionnelle. Elle pourra etre generee plus tard si on veu
 La couche d'integration est dans `src/game/islands.ts`.
 
 - Les iles visibles sont choisies par age, objet achete et technologie recherchee.
-- Les images draft propres viennent de `public/assets/game/islands/`.
+- Les images utilisees en jeu viennent du pack final `public/assets/game/images-finales-gpt-image/`.
+- Le pack final est range par famille : `central`, `base`, `biomass`, `animal`, `water-wind`, `fossil`, `atomic`.
 - Les images en cours de creation peuvent rester dans `public/assets/game/islands-gpt-image-2/`.
 - Une image GPT ne remplace une image draft que si elle est vraiment transparente et sans fond parasite.
 - Si une image manque, le rendu la masque au lieu d'afficher une image cassee.

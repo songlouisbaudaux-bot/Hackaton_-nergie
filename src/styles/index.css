@@ -175,6 +175,8 @@ button {
   );
   --mix-panel-width: clamp(244px, 21vw, 300px);
   --purchase-panel-width: clamp(318px, 29vw, 400px);
+  --restart-button-size: 38px;
+  --restart-button-space: calc(16px + var(--restart-button-size) + 102px);
   min-height: 100dvh;
   overflow: hidden;
   background:
@@ -359,6 +361,7 @@ button {
   justify-content: space-between;
   gap: 18px;
   padding: 13px 16px;
+  padding-right: var(--restart-button-space);
   transform: translateX(-50%);
 }
 
@@ -437,6 +440,40 @@ button {
   border-color: rgba(191, 92, 69, 0.34);
   color: #9d4938;
   background: rgba(255, 240, 234, 0.9);
+}
+
+.restart-run-button--floating {
+  position: absolute;
+  top: var(--hud-edge);
+  right: var(--hud-edge);
+  z-index: 6;
+  width: auto;
+  min-height: var(--restart-button-size);
+  height: auto;
+  padding: 0 10px;
+  border-radius: 999px;
+  border-color: rgba(255, 255, 250, 0.28);
+  color: var(--ink);
+  background: rgba(255, 255, 250, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.restart-run-button--floating:hover,
+.restart-run-button--floating:focus-visible {
+  border-color: rgba(31, 43, 36, 0.28);
+  background: rgba(255, 255, 250, 0.45);
+  color: var(--ink);
+}
+
+.restart-run-button--floating[data-armed='true'] {
+  color: #9d4938;
+  border-color: rgba(191, 92, 69, 0.4);
+  background: rgba(255, 240, 234, 0.78);
+}
+
+.restart-run-button-label {
+  display: inline;
+  white-space: nowrap;
 }
 
 .mix-panel {
@@ -1088,6 +1125,8 @@ button {
     --island-top-y: clamp(92px, 13dvh, 126px);
     --mix-panel-width: clamp(218px, 25vw, 258px);
     --purchase-panel-width: clamp(286px, 35vw, 334px);
+    --restart-button-size: 34px;
+    --restart-button-space: calc(12px + var(--restart-button-size) + 96px);
   }
 
   .energy-header {
@@ -1164,6 +1203,7 @@ button {
     --bottom-zone-height: calc(
       var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
     );
+    --restart-button-space: calc(12px + var(--restart-button-size) + 12px);
   }
 
   .scene-layer {
@@ -1325,6 +1365,7 @@ button {
     align-items: flex-start;
     gap: 10px;
     padding: 12px;
+    padding-right: calc(12px + var(--restart-button-size) + 8px);
   }
 
   .energy-value {
@@ -1340,7 +1381,12 @@ button {
     gap: 6px;
   }
 
-  .restart-run-button[data-armed="false"] span {
+  .restart-run-button--floating {
+    width: var(--restart-button-size);
+    padding: 0;
+  }
+
+  .restart-run-button--floating .restart-run-button-label {
     display: none;
   }
 

@@ -22,20 +22,22 @@ type SourceIslandStage = {
   upgradedFile: string;
 };
 
+const finalIslandFile = (fileName: string) => `images-finales-gpt-image/${fileName}`;
+
 const centralFiles: Record<AgeId, string> = {
-  biomass: 'islands/central/island-central-01-camp.png',
-  'animal-power': 'islands/central/island-central-02-village.png',
-  'water-wind': 'islands/central/island-central-03-medieval-town.png',
-  fossil: 'islands/central/island-central-04-industrial-town.png',
-  atomic: 'islands/central/island-central-05-modern-grid-city.png',
+  biomass: finalIslandFile('central/island-central-01-camp.png'),
+  'animal-power': finalIslandFile('central/island-central-02-village.png'),
+  'water-wind': finalIslandFile('central/island-central-03-medieval-town.png'),
+  fossil: finalIslandFile('central/island-central-04-industrial-town.png'),
+  atomic: finalIslandFile('central/island-central-05-modern-grid-city.png'),
 };
 
 const sourceBaseFiles: Record<SourceId, string> = {
-  biomass: 'islands/base/island-base-forest.png',
-  'animal-power': 'islands/base/island-base-pasture.png',
-  'water-wind': 'islands/base/island-base-river-hill.png',
-  fossil: 'islands/base/island-base-rock.png',
-  atomic: 'islands/base/island-base-tech-platform.png',
+  biomass: finalIslandFile('base/island-base-forest.png'),
+  'animal-power': finalIslandFile('base/island-base-pasture.png'),
+  'water-wind': finalIslandFile('base/island-base-river-hill.png'),
+  fossil: finalIslandFile('base/island-base-rock.png'),
+  atomic: finalIslandFile('base/island-base-tech-platform.png'),
 };
 
 const sourceStages: Record<SourceId, SourceIslandStage[]> = {
@@ -43,100 +45,100 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'campfire',
       technologyId: 'ember-keeping',
-      builtFile: 'islands/biomass/island-biomass-01-built-campfire.png',
-      upgradedFile: 'islands/biomass/island-biomass-01-upgraded-ember-keeping.png',
+      builtFile: finalIslandFile('biomass/island-biomass-01-built-campfire.png'),
+      upgradedFile: finalIslandFile('biomass/island-biomass-01-upgraded-ember-keeping.png'),
     },
     {
       purchaseId: 'stone-hearth',
       technologyId: 'masonry-hearth',
-      builtFile: 'islands/biomass/island-biomass-02-built-stone-hearth.png',
-      upgradedFile: 'islands/biomass/island-biomass-02-upgraded-masonry-hearth.png',
+      builtFile: finalIslandFile('biomass/island-biomass-02-built-stone-hearth.png'),
+      upgradedFile: finalIslandFile('biomass/island-biomass-02-upgraded-masonry-hearth.png'),
     },
     {
       purchaseId: 'charcoal-kiln',
       technologyId: 'charcoal-craft',
-      builtFile: 'islands/biomass/island-biomass-03-built-charcoal-kiln.png',
-      upgradedFile: 'islands/biomass/island-biomass-03-upgraded-charcoal-craft.png',
+      builtFile: finalIslandFile('biomass/island-biomass-03-built-charcoal-kiln.png'),
+      upgradedFile: finalIslandFile('biomass/island-biomass-03-upgraded-charcoal-craft.png'),
     },
     {
       purchaseId: 'wood-gasifier',
       technologyId: 'wood-gas-process',
-      builtFile: 'islands/biomass/island-biomass-04-built-wood-gasifier.png',
-      upgradedFile: 'islands/biomass/island-biomass-04-upgraded-wood-gas-process.png',
+      builtFile: finalIslandFile('biomass/island-biomass-04-built-wood-gasifier.png'),
+      upgradedFile: finalIslandFile('biomass/island-biomass-04-upgraded-wood-gas-process.png'),
     },
     {
       purchaseId: 'biogas-digester',
       technologyId: 'biogas-process',
-      builtFile: 'islands/biomass/island-biomass-05-built-biogas-digester.png',
-      upgradedFile: 'islands/biomass/island-biomass-05-upgraded-methanization.png',
+      builtFile: finalIslandFile('biomass/island-biomass-05-built-biogas-digester.png'),
+      upgradedFile: finalIslandFile('biomass/island-biomass-05-upgraded-methanization.png'),
     },
   ],
   'animal-power': [
     {
       purchaseId: 'oxen',
       technologyId: 'animal-domestication',
-      builtFile: 'islands/animal/island-animal-02-built-oxen-pasture.png',
-      upgradedFile: 'islands/animal/island-animal-02-upgraded-animal-domestication.png',
+      builtFile: finalIslandFile('animal/island-animal-02-built-oxen-pasture.png'),
+      upgradedFile: finalIslandFile('animal/island-animal-02-upgraded-animal-domestication.png'),
     },
     {
       purchaseId: 'heavy-plough',
       technologyId: 'shoulder-collar',
-      builtFile: 'islands/animal/island-animal-03-built-heavy-plough.png',
-      upgradedFile: 'islands/animal/island-animal-03-upgraded-shoulder-collar.png',
+      builtFile: finalIslandFile('animal/island-animal-03-built-heavy-plough.png'),
+      upgradedFile: finalIslandFile('animal/island-animal-03-upgraded-shoulder-collar.png'),
     },
     {
       purchaseId: 'relay-stables',
       technologyId: 'horse-logistics',
-      builtFile: 'islands/animal/island-animal-04-built-horse-relay.png',
-      upgradedFile: 'islands/animal/island-animal-04-upgraded-horse-logistics.png',
+      builtFile: finalIslandFile('animal/island-animal-04-built-horse-relay.png'),
+      upgradedFile: finalIslandFile('animal/island-animal-04-upgraded-horse-logistics.png'),
     },
     {
       purchaseId: 'feed-logistics',
       technologyId: 'feed-chain',
-      builtFile: 'islands/animal/island-animal-05-built-food-logistics.png',
-      upgradedFile: 'islands/animal/island-animal-05-upgraded-food-chain.png',
+      builtFile: finalIslandFile('animal/island-animal-05-built-food-logistics.png'),
+      upgradedFile: finalIslandFile('animal/island-animal-05-upgraded-food-chain.png'),
     },
   ],
   'water-wind': [
     {
       purchaseId: 'watermill',
       technologyId: 'wind-gears',
-      builtFile: 'islands/water-wind/island-water-wind-03-built-watermill.png',
-      upgradedFile: 'islands/water-wind/island-water-wind-03-upgraded-windmill.png',
+      builtFile: finalIslandFile('water-wind/island-water-wind-03-built-watermill.png'),
+      upgradedFile: finalIslandFile('water-wind/island-water-wind-03-upgraded-windmill.png'),
     },
     {
       purchaseId: 'wind-pump',
       technologyId: 'mechanical-pumps',
-      builtFile: 'islands/water-wind/island-water-wind-04-built-wind-pump.png',
-      upgradedFile: 'islands/water-wind/island-water-wind-04-upgraded-mechanical-pumps.png',
+      builtFile: finalIslandFile('water-wind/island-water-wind-04-built-wind-pump.png'),
+      upgradedFile: finalIslandFile('water-wind/island-water-wind-04-upgraded-mechanical-pumps.png'),
     },
     {
       purchaseId: 'hydro-wind-grid',
       technologyId: 'modern-wind-turbines',
-      builtFile: 'islands/water-wind/island-water-wind-05-built-hydro-wind-grid.png',
-      upgradedFile: 'islands/water-wind/island-water-wind-05-upgraded-modern-wind-turbines.png',
+      builtFile: finalIslandFile('water-wind/island-water-wind-05-built-hydro-wind-grid.png'),
+      upgradedFile: finalIslandFile('water-wind/island-water-wind-05-upgraded-modern-wind-turbines.png'),
     },
   ],
   fossil: [
     {
       purchaseId: 'steam-engine',
       technologyId: 'high-pressure-steam',
-      builtFile: 'islands/fossil/island-fossil-04-built-steam-engine.png',
-      upgradedFile: 'islands/fossil/island-fossil-04-upgraded-high-pressure-steam.png',
+      builtFile: finalIslandFile('fossil/island-fossil-04-built-steam-engine.png'),
+      upgradedFile: finalIslandFile('fossil/island-fossil-04-upgraded-high-pressure-steam.png'),
     },
     {
       purchaseId: 'thermal-turbine',
       technologyId: 'thermal-cycle',
-      builtFile: 'islands/fossil/island-fossil-05-built-thermal-turbine.png',
-      upgradedFile: 'islands/fossil/island-fossil-05-upgraded-thermal-cycle.png',
+      builtFile: finalIslandFile('fossil/island-fossil-05-built-thermal-turbine.png'),
+      upgradedFile: finalIslandFile('fossil/island-fossil-05-upgraded-thermal-cycle.png'),
     },
   ],
   atomic: [
     {
       purchaseId: 'reactor-core',
       technologyId: 'controlled-fission',
-      builtFile: 'islands/atomic/island-atomic-05-built-reactor-core.png',
-      upgradedFile: 'islands/atomic/island-atomic-05-upgraded-controlled-fission.png',
+      builtFile: finalIslandFile('atomic/island-atomic-05-built-reactor-core.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-05-upgraded-controlled-fission.png'),
     },
   ],
 };

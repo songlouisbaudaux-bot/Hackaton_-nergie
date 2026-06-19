@@ -265,6 +265,7 @@ export const purchases: Purchase[] = [
     costJoules: 9800,
     clickGain: 0,
     passiveGain: 420,
+    assetFile: 'images-finales-gpt-image/atomic/island-atomic-05-built-reactor-core.png',
     impactLabel: '+420 J/s',
   },
 ];
@@ -447,6 +448,7 @@ export const technologies: Technology[] = [
     costJoules: 11500,
     clickGain: 0,
     passiveGain: 520,
+    assetFile: 'images-finales-gpt-image/atomic/island-atomic-05-upgraded-controlled-fission.png',
     impactLabel: '+520 J/s',
   },
 ];

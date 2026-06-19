@@ -84,7 +84,7 @@ Ces fichiers existent deja dans `public/assets/game/` et peuvent etre utilises t
 | Logistique alimentaire | Elevage | `granary.png` | entrepot alimentaire / convoyeur |
 | Reseau hydro-eolien | Eau et vent | `windmill.png` | pylone + eau/vent connectes |
 | Turbine thermique | Fossile | `small-factory.png` | turbine thermique / centrale thermique |
-| Coeur de reacteur | Atome | icone Lucide `Atom` | reacteur atomique minimaliste |
+| Coeur de reacteur | Atome | `images-finales-gpt-image/atomic/island-atomic-05-built-reactor-core.png` | deja OK |
 
 ## Technologies par age
 
@@ -128,7 +128,7 @@ Les technologies ne sont pas des nouveaux batiments achetables. Elles font evolu
 | Chaine alimentaire | Logistique alimentaire | `granary.png` | chaine logistique alimentaire |
 | Eoliennes modernes | Reseau hydro-eolien | `windmill.png` | eolienne moderne |
 | Cycle thermique | Turbine thermique | `small-factory.png` | turbine / alternateur |
-| Fission controlee | Coeur de reacteur | icone Lucide `Atom` | coeur de reacteur |
+| Fission controlee | Coeur de reacteur | `images-finales-gpt-image/atomic/island-atomic-05-upgraded-controlled-fission.png` | deja OK |
 
 ## UI - icones de l'interface
 
@@ -152,7 +152,6 @@ Ces icones peuvent rester en Lucide React, pas besoin de generer des PNG :
 
 ### Priorite 1
 
-- Reacteur atomique minimaliste.
 - Gazogene a bois.
 - Four a charbon de bois.
 - Cuve de biogaz.
@@ -182,3 +181,8 @@ Ces icones peuvent rester en Lucide React, pas besoin de generer des PNG :
 
 - Ajout d'un document dedie : `docs/liste-iles-volantes-assets.md`.
 - Clarification : ce fichier garde les assets de cartes UI, tandis que les iles volantes representent le monde central et les sources du mix energetique.
+
+### 2026-06-19 - Pack final V1
+
+- Le Coeur de reacteur et Fission controlee utilisent maintenant les images finales du pack `images-finales-gpt-image`.
+- Les iles finalisees restent referencees dans `docs/liste-iles-volantes-assets.md`.

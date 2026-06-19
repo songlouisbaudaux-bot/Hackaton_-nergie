@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Play, SkipForward } from 'lucide-react';
 import { assetPath } from '../../game';
 
-const INTRO_VIDEO_SRC = '/assets/intro/prometheus-intro.mp4';
+const INTRO_VIDEO_SRC = '/assets/intro/prometheus-intro.mp4?v=2026-06-19';
 
 type IntroScreenProps = {
   onDone: () => void;

@@ -258,6 +258,13 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Simplification des libelles visibles : source, nom, gain, cout.
 - Ajout d'une couche d'iles visuelles configuree par age, achat et technologie.
 - Les images d'iles peuvent etre remplacees progressivement sans changer l'interface.
+
+### 2026-06-19 - Images finales V1
+
+- Integration du pack `public/assets/game/images-finales-gpt-image/` comme source officielle des iles rendues dans le jeu.
+- Les iles centrales, les bases par source, les batiments achetes et leurs variantes de technologie pointent maintenant vers ce pack final.
+- Ajout de l'image finale du Coeur de reacteur dans les cartes d'achat et de technologie.
+- Les images futures du pack, comme petrole, gaz, fusion et antimatiere, restent documentees mais non affichees tant que ces objets ne sont pas dans la boucle V1.
 - Sauvegarde locale de la progression et de l'intro pour eviter de repartir de zero a chaque rechargement.
 
 ### 2026-06-18 - Lecture du mix et iles

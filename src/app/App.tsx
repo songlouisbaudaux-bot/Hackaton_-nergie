@@ -300,6 +300,18 @@ function GameScreen() {
       </div>
 
       <div className="game-hud">
+        <button
+          className="restart-run-button restart-run-button--floating"
+          data-armed={restartArmed}
+          type="button"
+          aria-label={restartArmed ? 'Confirmer le redemarrage de la partie' : 'Recommencer la partie'}
+          aria-pressed={restartArmed}
+          onClick={handleRestartGame}
+        >
+          <RotateCcw size={16} aria-hidden="true" />
+          <span className="restart-run-button-label">{restartArmed ? 'Confirmer' : 'Recommencer'}</span>
+        </button>
+
         <header className="energy-header panel" aria-label="Énergie">
           <div>
             <span className="metric-kicker">Énergie</span>
@@ -308,18 +320,6 @@ function GameScreen() {
             </strong>
           </div>
           <div className="energy-actions">
-            <button
-              className="restart-run-button"
-              data-armed={restartArmed}
-              type="button"
-              aria-label={restartArmed ? 'Confirmer le redemarrage de la partie' : 'Recommencer la partie'}
-              aria-pressed={restartArmed}
-              onClick={handleRestartGame}
-            >
-              <RotateCcw size={15} aria-hidden="true" />
-              <span>{restartArmed ? 'Confirmer' : 'Recommencer'}</span>
-            </button>
-
             <div className="rate-cluster">
               <span>
                 <Zap size={15} aria-hidden="true" />
