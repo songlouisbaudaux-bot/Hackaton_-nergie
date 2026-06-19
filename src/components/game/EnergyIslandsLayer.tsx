@@ -38,26 +38,26 @@ const sourceOrder: SourceId[] = [
 ];
 
 const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number; z: number }> = {
-  dyson: { x: 24, y: 27, scale: 0.72, z: 2 },
-  atomic: { x: 50, y: 25, scale: 0.82, z: 3 },
-  vacuum: { x: 76, y: 27, scale: 0.72, z: 2 },
-  'animal-power': { x: 39, y: 39, z: 4 },
-  'water-wind': { x: 61, y: 39, z: 4 },
-  'orbital-solar': { x: 29, y: 50, scale: 0.78, z: 5 },
-  'neutron-wells': { x: 71, y: 50, scale: 0.78, z: 5 },
-  biomass: { x: 39, y: 61, z: 6 },
-  fossil: { x: 61, y: 61, z: 6 },
-  fusion: { x: 50, y: 73, scale: 0.88, z: 7 },
-  antimatter: { x: 29, y: 73, scale: 0.76, z: 7 },
-  'black-hole': { x: 71, y: 73, scale: 0.76, z: 7 },
+  dyson: { x: 12, y: 18, scale: 0.52, z: 2 },
+  atomic: { x: 50, y: 16, scale: 0.64, z: 3 },
+  vacuum: { x: 88, y: 18, scale: 0.52, z: 2 },
+  'animal-power': { x: 36, y: 30, scale: 0.68, z: 4 },
+  'water-wind': { x: 64, y: 30, scale: 0.68, z: 4 },
+  'orbital-solar': { x: 12, y: 50, scale: 0.58, z: 5 },
+  'neutron-wells': { x: 88, y: 50, scale: 0.58, z: 5 },
+  biomass: { x: 36, y: 70, scale: 0.68, z: 6 },
+  fossil: { x: 64, y: 70, scale: 0.68, z: 6 },
+  fusion: { x: 50, y: 84, scale: 0.64, z: 7 },
+  antimatter: { x: 12, y: 82, scale: 0.52, z: 7 },
+  'black-hole': { x: 88, y: 82, scale: 0.52, z: 7 },
 };
 
 function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
   if (slot === 'central') {
     return {
       '--island-left': '50%',
-      '--island-top': '48%',
-      '--island-scale': 1.06,
+      '--island-top': '50%',
+      '--island-scale': 0.82,
       '--island-float-duration': '7.4s',
       '--island-float-delay': '-1.1s',
       zIndex: 8,
