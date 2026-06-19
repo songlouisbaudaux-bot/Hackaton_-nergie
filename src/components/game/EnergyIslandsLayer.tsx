@@ -18,21 +18,38 @@ type IslandLayerStyle = CSSProperties & {
   '--island-left'?: string;
   '--island-top'?: string;
   '--island-scale'?: number;
+  '--island-float-duration'?: string;
+  '--island-float-delay'?: string;
 };
 
-const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number }> = {
-  biomass: { x: 39, y: 60 },
-  'animal-power': { x: 39, y: 38 },
-  'water-wind': { x: 61, y: 38 },
-  fossil: { x: 61, y: 60 },
-  atomic: { x: 50, y: 25 },
-  fusion: { x: 50, y: 72, scale: 0.88 },
-  'orbital-solar': { x: 29, y: 49, scale: 0.78 },
-  'neutron-wells': { x: 71, y: 49, scale: 0.78 },
-  antimatter: { x: 29, y: 72, scale: 0.76 },
-  'black-hole': { x: 71, y: 72, scale: 0.76 },
-  dyson: { x: 22, y: 28, scale: 0.72 },
-  vacuum: { x: 78, y: 28, scale: 0.72 },
+const sourceOrder: SourceId[] = [
+  'dyson',
+  'atomic',
+  'vacuum',
+  'animal-power',
+  'water-wind',
+  'orbital-solar',
+  'neutron-wells',
+  'biomass',
+  'fossil',
+  'fusion',
+  'antimatter',
+  'black-hole',
+];
+
+const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number; z: number }> = {
+  dyson: { x: 24, y: 27, scale: 0.72, z: 2 },
+  atomic: { x: 50, y: 25, scale: 0.82, z: 3 },
+  vacuum: { x: 76, y: 27, scale: 0.72, z: 2 },
+  'animal-power': { x: 39, y: 39, z: 4 },
+  'water-wind': { x: 61, y: 39, z: 4 },
+  'orbital-solar': { x: 29, y: 50, scale: 0.78, z: 5 },
+  'neutron-wells': { x: 71, y: 50, scale: 0.78, z: 5 },
+  biomass: { x: 39, y: 61, z: 6 },
+  fossil: { x: 61, y: 61, z: 6 },
+  fusion: { x: 50, y: 73, scale: 0.88, z: 7 },
+  antimatter: { x: 29, y: 73, scale: 0.76, z: 7 },
+  'black-hole': { x: 71, y: 73, scale: 0.76, z: 7 },
 };
 
 function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
@@ -41,15 +58,22 @@ function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
       '--island-left': '50%',
       '--island-top': '48%',
       '--island-scale': 1.06,
-      zIndex: 5,
+      '--island-float-duration': '7.4s',
+      '--island-float-delay': '-1.1s',
+      zIndex: 8,
     };
   }
 
   const layout = sourceLayout[slot];
+  const orderIndex = sourceOrder.indexOf(slot);
+
   return {
     '--island-left': `${layout.x}%`,
     '--island-top': `${layout.y}%`,
     '--island-scale': layout.scale ?? 1,
+    '--island-float-duration': `${6.2 + (orderIndex % 5) * 0.34}s`,
+    '--island-float-delay': `${-0.35 - orderIndex * 0.47}s`,
+    zIndex: layout.z,
   };
 }
 
