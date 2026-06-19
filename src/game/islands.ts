@@ -23,20 +23,27 @@ type SourceIslandStage = {
 };
 
 const finalIslandFile = finalImagePath;
+const modernCentralFile = finalIslandFile('central/island-central-05-modern-grid-city.png');
+const orbitalSolarFile = finalIslandFile('orbital-solar/island-orbital-solar-07-built-collector.png');
+const dysonFile = finalIslandFile('dyson/island-dyson-11-built-stellar-swarm.png');
+const fusionPlantFile = finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png');
+const controlledFusionFile = finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png');
+const antimatterPlantFile = finalIslandFile('atomic/island-atomic-08-built-antimatter.png');
+const antimatterContainmentFile = finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png');
 
 const centralFiles: Record<AgeId, string> = {
   biomass: finalIslandFile('central/island-central-01-camp.png'),
   'animal-power': finalIslandFile('central/island-central-02-village.png'),
   'water-wind': finalIslandFile('central/island-central-03-medieval-town.png'),
   fossil: finalIslandFile('central/island-central-04-industrial-town.png'),
-  atomic: finalIslandFile('central/island-central-05-modern-grid-city.png'),
-  fusion: finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png'),
-  'orbital-solar': 'Panneaux_solaires.png',
-  'neutron-wells': finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
-  antimatter: finalIslandFile('atomic/island-atomic-08-built-antimatter.png'),
-  'black-hole': finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
-  dyson: 'Dyson_sphere.png',
-  vacuum: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
+  atomic: modernCentralFile,
+  fusion: modernCentralFile,
+  'orbital-solar': modernCentralFile,
+  'neutron-wells': modernCentralFile,
+  antimatter: modernCentralFile,
+  'black-hole': modernCentralFile,
+  dyson: modernCentralFile,
+  vacuum: modernCentralFile,
 };
 
 const sourceBaseFiles: Record<SourceId, string> = {
@@ -159,28 +166,28 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'fusion-tokamak',
       technologyId: 'plasma-confinement',
-      builtFile: finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+      builtFile: fusionPlantFile,
+      upgradedFile: controlledFusionFile,
     },
     {
       purchaseId: 'laser-fusion',
       technologyId: 'laser-compression',
-      builtFile: 'Centrale_fusion.png',
-      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+      builtFile: fusionPlantFile,
+      upgradedFile: controlledFusionFile,
     },
   ],
   'orbital-solar': [
     {
       purchaseId: 'orbital-collector',
       technologyId: 'coherent-transmission',
-      builtFile: 'Panneaux_solaires.png',
-      upgradedFile: 'Panneaux_solaires.png',
+      builtFile: orbitalSolarFile,
+      upgradedFile: orbitalSolarFile,
     },
     {
       purchaseId: 'sps-alpha',
       technologyId: 'orbital-phase-lock',
-      builtFile: 'Panneaux_solaires.png',
-      upgradedFile: 'Panneaux_solaires.png',
+      builtFile: orbitalSolarFile,
+      upgradedFile: orbitalSolarFile,
     },
   ],
   'neutron-wells': [
@@ -201,14 +208,14 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'antimatter-accelerator',
       technologyId: 'magnetic-bottles',
-      builtFile: finalIslandFile('atomic/island-atomic-08-built-antimatter.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      builtFile: antimatterPlantFile,
+      upgradedFile: antimatterContainmentFile,
     },
     {
       purchaseId: 'annihilation-reactor',
       technologyId: 'controlled-annihilation',
-      builtFile: 'Centrale_antimatière.png',
-      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      builtFile: antimatterPlantFile,
+      upgradedFile: antimatterContainmentFile,
     },
   ],
   'black-hole': [
@@ -229,14 +236,14 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'dyson-segment',
       technologyId: 'dyson-swarm',
-      builtFile: 'Dyson_sphere.png',
-      upgradedFile: 'Dyson_sphere.png',
+      builtFile: dysonFile,
+      upgradedFile: dysonFile,
     },
     {
       purchaseId: 'energy-distribution',
       technologyId: 'stellar-governance',
-      builtFile: 'Dyson_sphere.png',
-      upgradedFile: 'Dyson_sphere.png',
+      builtFile: dysonFile,
+      upgradedFile: dysonFile,
     },
   ],
   vacuum: [

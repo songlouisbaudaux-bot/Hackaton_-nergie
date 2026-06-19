@@ -7,6 +7,13 @@ const FINAL_IMAGE_VERSION = '20260619-cosmic-v4';
 export const finalImagePath = (fileName: string) =>
   `images-finales-gpt-image/${fileName}?v=${FINAL_IMAGE_VERSION}`;
 
+const ORBITAL_SOLAR_ASSET = finalImagePath('orbital-solar/island-orbital-solar-07-built-collector.png');
+const FUSION_ASSET = finalImagePath('atomic/island-atomic-07-built-fusion-plant.png');
+const FUSION_UPGRADED_ASSET = finalImagePath('atomic/island-atomic-07-upgraded-controlled-fusion.png');
+const ANTIMATTER_ASSET = finalImagePath('atomic/island-atomic-08-built-antimatter.png');
+const ANTIMATTER_UPGRADED_ASSET = finalImagePath('atomic/island-atomic-08-upgraded-antimatter-containment.png');
+const DYSON_ASSET = finalImagePath('dyson/island-dyson-11-built-stellar-swarm.png');
+
 export const energySources: EnergySource[] = [
   {
     id: 'biomass',
@@ -418,7 +425,7 @@ export const purchases: Purchase[] = [
     costJoules: 420000,
     clickGain: 120,
     passiveGain: 11000,
-    assetFile: 'Centrale_fusion.png',
+    assetFile: FUSION_ASSET,
     impactLabel: '+120 J/clic · +11 000 J/s',
   },
   {
@@ -430,7 +437,7 @@ export const purchases: Purchase[] = [
     costJoules: 1200000,
     clickGain: 0,
     passiveGain: 32000,
-    assetFile: 'Panneaux_solaires.png',
+    assetFile: ORBITAL_SOLAR_ASSET,
     impactLabel: '+32 000 J/s',
   },
   {
@@ -442,7 +449,7 @@ export const purchases: Purchase[] = [
     costJoules: 2100000,
     clickGain: 0,
     passiveGain: 42000,
-    assetFile: 'Panneaux_solaires.png',
+    assetFile: ORBITAL_SOLAR_ASSET,
     impactLabel: '+42 000 J/s',
   },
   {
@@ -454,7 +461,7 @@ export const purchases: Purchase[] = [
     costJoules: 3600000,
     clickGain: 0,
     passiveGain: 88000,
-    assetFile: 'Panneaux_solaires.png',
+    assetFile: ORBITAL_SOLAR_ASSET,
     impactLabel: '+88 000 J/s',
   },
   {
@@ -526,7 +533,7 @@ export const purchases: Purchase[] = [
     costJoules: 430000000,
     clickGain: 6000,
     passiveGain: 3300000,
-    assetFile: 'Centrale_antimatière.png',
+    assetFile: ANTIMATTER_ASSET,
     impactLabel: '+6 000 J/clic · +3,3 M J/s',
   },
   {
@@ -574,7 +581,7 @@ export const purchases: Purchase[] = [
     costJoules: 18000000000,
     clickGain: 0,
     passiveGain: 42000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: DYSON_ASSET,
     impactLabel: '+42 M J/s',
   },
   {
@@ -586,7 +593,7 @@ export const purchases: Purchase[] = [
     costJoules: 32000000000,
     clickGain: 0,
     passiveGain: 68000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: DYSON_ASSET,
     impactLabel: '+68 M J/s',
   },
   {
@@ -598,7 +605,7 @@ export const purchases: Purchase[] = [
     costJoules: 52000000000,
     clickGain: 0,
     passiveGain: 140000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: DYSON_ASSET,
     impactLabel: '+140 M J/s',
   },
   {
@@ -841,7 +848,7 @@ export const technologies: Technology[] = [
     costJoules: 780000,
     clickGain: 80,
     passiveGain: 11000,
-    assetFile: 'Centrale_fusion.png',
+    assetFile: FUSION_UPGRADED_ASSET,
     impactLabel: '+80 J/clic · +11 000 J/s',
   },
   {
@@ -853,7 +860,7 @@ export const technologies: Technology[] = [
     costJoules: 4800000,
     clickGain: 0,
     passiveGain: 55000,
-    assetFile: 'Panneaux_solaires.png',
+    assetFile: ORBITAL_SOLAR_ASSET,
     impactLabel: '+55 000 J/s',
   },
   {
@@ -865,7 +872,7 @@ export const technologies: Technology[] = [
     costJoules: 7500000,
     clickGain: 0,
     passiveGain: 85000,
-    assetFile: 'Panneaux_solaires.png',
+    assetFile: ORBITAL_SOLAR_ASSET,
     impactLabel: '+85 000 J/s',
   },
   {
@@ -913,7 +920,7 @@ export const technologies: Technology[] = [
     costJoules: 960000000,
     clickGain: 8000,
     passiveGain: 3600000,
-    assetFile: 'Centrale_antimatière.png',
+    assetFile: ANTIMATTER_UPGRADED_ASSET,
     impactLabel: '+8 000 J/clic · +3,6 M J/s',
   },
   {
@@ -949,7 +956,7 @@ export const technologies: Technology[] = [
     costJoules: 120000000000,
     clickGain: 0,
     passiveGain: 180000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: DYSON_ASSET,
     impactLabel: '+180 M J/s',
   },
   {
@@ -961,7 +968,7 @@ export const technologies: Technology[] = [
     costJoules: 180000000000,
     clickGain: 0,
     passiveGain: 320000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: DYSON_ASSET,
     impactLabel: '+320 M J/s',
   },
   {

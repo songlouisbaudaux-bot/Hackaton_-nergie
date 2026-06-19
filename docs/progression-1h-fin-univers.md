@@ -55,11 +55,11 @@ Le bouton `Recommencer l'univers` reset la partie comme le bouton `Recommencer`.
 Les nouvelles eres utilisent pour l'instant les assets disponibles :
 
 - fusion : images atomiques/fusion deja generees ;
-- solaire orbital : `Panneaux_solaires.png` ;
+- solaire orbital : `images-finales-gpt-image/orbital-solar/island-orbital-solar-07-built-collector.png` ;
 - antimatiere : images atomiques/antimatiere deja generees ;
-- Dyson : `Dyson_sphere.png` et rendu CSS de fin cosmique ;
+- Dyson : `images-finales-gpt-image/dyson/island-dyson-11-built-stellar-swarm.png` et rendu CSS de fin cosmique ;
 - puits de neutrons : `cosmic/island-cosmic-08-neutron-wells.png` ;
 - trou noir : `cosmic/island-cosmic-10-black-hole-siphon.png` ;
 - vide : `cosmic/island-cosmic-12-vacuum-universe-seed.png`.
 
-Les assets specifiques de fin sont maintenant integres dans `public/assets/game/images-finales-gpt-image/cosmic`.
+Les assets specifiques de fin sont maintenant integres dans `public/assets/game/images-finales-gpt-image`.

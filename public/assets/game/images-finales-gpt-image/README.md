@@ -2,7 +2,7 @@
 
 Dossier final pour les iles generees avec GPT Image, basees sur `public/assets/game/floating-grass-block-natural.png`.
 
-Statut actuel : 56 / 56 PNG prets, 0 manquants.
+Statut actuel : 58 / 58 PNG prets, 0 manquants.
 
 ## Images
 
@@ -59,6 +59,8 @@ Statut actuel : 56 / 56 PNG prets, 0 manquants.
 - [OK] `public/assets/game/images-finales-gpt-image/atomic/island-atomic-07-upgraded-controlled-fusion.png` - Fusion controlee : Fusion controlee avec glow plus stable et reseau
 - [OK] `public/assets/game/images-finales-gpt-image/atomic/island-atomic-08-built-antimatter.png` - Centrale antimatiere : Centrale antimatiere compacte et contenue
 - [OK] `public/assets/game/images-finales-gpt-image/atomic/island-atomic-08-upgraded-antimatter-containment.png` - Confinement antimatiere : Confinement antimatiere renforce avec energie orbitale stylisee
+- [OK] `public/assets/game/images-finales-gpt-image/orbital-solar/island-orbital-solar-07-built-collector.png` - Collecteurs solaires orbitaux : Ile solaire orbitale avec collecteurs-dishes, relais propre et faisceaux lumineux
+- [OK] `public/assets/game/images-finales-gpt-image/dyson/island-dyson-11-built-stellar-swarm.png` - Essaim de Dyson : Ile stellaire avec coeur solaire, anneaux orbitaux et collecteurs courbes
 - [OK] `public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-08-neutron-wells.png` - Puits de neutrons : Ile pulsar avec antennes gravitationnelles et etoile compacte bleue
 - [OK] `public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-10-black-hole-siphon.png` - Siphon de trou noir : Ile de captation gravitationnelle avec mini trou noir et anneau d'accretion
 - [OK] `public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-12-vacuum-universe-seed.png` - Graine d'univers : Ile du vide quantique avec plaques Casimir, reseau turquoise et graine d'univers

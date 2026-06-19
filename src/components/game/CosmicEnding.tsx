@@ -5,18 +5,18 @@ type CosmicEndingProps = {
   onRestart: () => void;
 };
 
-const endings = [
+const endingBeats = [
   {
-    title: 'Partage',
-    body: 'L’énergie du vide est ouverte à toutes les civilisations. HELIOS cesse d’être une rivale.',
+    title: 'Maîtrise',
+    body: 'Le feu, l’eau, la vapeur, l’atome et les étoiles deviennent un seul réseau.',
   },
   {
     title: 'Silence',
-    body: 'La civilisation devient invisible, trop avancée pour laisser une trace énergétique.',
+    body: 'La civilisation n’a plus besoin de brûler le monde pour avancer.',
   },
   {
     title: 'Recommencement',
-    body: 'La graine d’univers se referme, puis un nouveau Big Bang peut repartir.',
+    body: 'La graine d’univers s’ouvre : une nouvelle partie peut commencer.',
   },
 ];
 
@@ -40,16 +40,16 @@ export default function CosmicEnding({ visible, onRestart }: CosmicEndingProps) 
           </div>
         </div>
         <p>
-          Toute l’énergie de l’univers est disponible. Il ne reste plus une source à exploiter,
-          seulement une décision.
+          Toute l’énergie disponible a été apprivoisée. La progression ne continue plus vers une
+          machine plus grosse : elle boucle vers un nouvel univers.
         </p>
 
-        <div className="cosmic-ending-choices">
-          {endings.map((ending) => (
-            <article className="cosmic-ending-choice" key={ending.title}>
+        <div className="cosmic-ending-beats">
+          {endingBeats.map((beat, index) => (
+            <article className="cosmic-ending-beat" data-index={index} key={beat.title}>
               <Sparkles size={15} aria-hidden="true" />
-              <strong>{ending.title}</strong>
-              <span>{ending.body}</span>
+              <strong>{beat.title}</strong>
+              <span>{beat.body}</span>
             </article>
           ))}
         </div>

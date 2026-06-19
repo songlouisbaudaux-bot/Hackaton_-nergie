@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Flame, FlaskConical, RotateCcw, Zap } from 'lucide-react';
 import {
+  AgeTransitionOverlay,
   CentralPlayfieldSlot,
   CosmicEnding,
   EnergyIslandsLayer,
@@ -50,6 +51,12 @@ type FloatingGain = {
   x: number;
   y: number;
   value: number;
+};
+
+type AgeTransition = {
+  id: number;
+  label: string;
+  description: string;
 };
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -152,7 +159,10 @@ function GameScreen() {
     initialProgress.researchedTechnologies,
   );
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
+  const [ageTransition, setAgeTransition] = useState<AgeTransition | null>(null);
   const gainIdRef = useRef(0);
+  const transitionIdRef = useRef(0);
+  const transitionTimerRef = useRef<number | null>(null);
 
   const production = useMemo(
     () => getProduction(purchaseCounts, researchedTechnologies),
@@ -174,6 +184,15 @@ function GameScreen() {
       researchedTechnologies,
     });
   }, [activeAgeId, energy, purchaseCounts, researchedTechnologies]);
+
+  useEffect(
+    () => () => {
+      if (transitionTimerRef.current) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (totals.energyPerSecond <= 0) return undefined;
@@ -248,11 +267,26 @@ function GameScreen() {
     (point: { x: number; y: number }) => {
       if (!advanceState.canAdvance || !advanceState.nextAge) return;
 
+      const nextAge = advanceState.nextAge;
+
       setEnergy((current) => {
         if (current < advanceState.cost) return current;
         return current - advanceState.cost;
       });
-      setActiveAgeId(advanceState.nextAge.id);
+      setActiveAgeId(nextAge.id);
+      transitionIdRef.current += 1;
+      setAgeTransition({
+        id: transitionIdRef.current,
+        label: nextAge.label,
+        description: nextAge.description,
+      });
+      if (transitionTimerRef.current) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+      transitionTimerRef.current = window.setTimeout(() => {
+        setAgeTransition(null);
+        transitionTimerRef.current = null;
+      }, 2200);
       addFloatingGain(point, -advanceState.cost);
     },
     [addFloatingGain, advanceState],
@@ -272,6 +306,11 @@ function GameScreen() {
     setPurchaseCounts(resetProgress.purchaseCounts);
     setResearchedTechnologies(resetProgress.researchedTechnologies);
     gainIdRef.current = 0;
+    if (transitionTimerRef.current) {
+      window.clearTimeout(transitionTimerRef.current);
+      transitionTimerRef.current = null;
+    }
+    setAgeTransition(null);
     setFloatingGains([]);
   }, []);
 
@@ -296,6 +335,11 @@ function GameScreen() {
     setPurchaseCounts(sandboxProgress.purchaseCounts);
     setResearchedTechnologies(sandboxProgress.researchedTechnologies);
     gainIdRef.current = 0;
+    if (transitionTimerRef.current) {
+      window.clearTimeout(transitionTimerRef.current);
+      transitionTimerRef.current = null;
+    }
+    setAgeTransition(null);
     setFloatingGains([]);
   }, []);
 
@@ -376,6 +420,7 @@ function GameScreen() {
         <ProgressRail activeAgeId={activeAgeId} />
       </div>
 
+      <AgeTransitionOverlay age={ageTransition} />
       <CosmicEnding visible={hasReachedCosmicEnding} onRestart={handleRestartGame} />
 
       <aside className="rotate-device-overlay" aria-live="polite">

@@ -2,8 +2,8 @@
   "name": "images-finales-gpt-image",
   "purpose": "Dossier cible pour les iles finales generees par GPT Image a partir de l ile source.",
   "important": "Ce dossier ne recycle pas les anciens assets et ne contient pas de liens vers public/assets/game/islands.",
-  "expected_count": 56,
-  "ready_count": 56,
+  "expected_count": 58,
+  "ready_count": 58,
   "missing_count": 0,
   "items": [
     {
@@ -640,6 +640,30 @@
       "description": "Confinement antimatiere renforce avec energie orbitale stylisee",
       "expected_path": "public/assets/game/images-finales-gpt-image/atomic/island-atomic-08-upgraded-antimatter-containment.png",
       "prompt": "Modify the provided floating grass island base into one cohesive final game asset. Preserve the same island silhouette, rocky underside, isometric camera angle, scale, and transparent framing. This must be a newly generated integrated image, not a collage, not sprite overlays, not separate pasted objects. Buildings and terrain details must be naturally embedded into the grass surface with matching lighting, contact shadows, scale, and perspective. Style: soft 3D toy-like, rounded shapes, clean minimalist strategy game asset. Transparent background. No text, no UI, no logo, no watermark, no labels, no duplicate island. Create island-atomic-08-upgraded-antimatter-containment.png. Category: atomic. Age: futur-prestige. State: upgraded. Visual content: Confinement antimatiere renforce avec energie orbitale stylisee.",
+      "status": "ready",
+      "reason_if_missing": ""
+    },
+    {
+      "id": "island-orbital-solar-07-built-collector",
+      "title": "Collecteurs solaires orbitaux",
+      "category": "orbital-solar",
+      "era": "solaire-orbital",
+      "state": "built",
+      "description": "Ile solaire orbitale avec trois collecteurs-dishes, relais propre et faisceaux lumineux integres.",
+      "expected_path": "public/assets/game/images-finales-gpt-image/orbital-solar/island-orbital-solar-07-built-collector.png",
+      "prompt": "Create one cohesive 3D toy-like floating island for the energy source Solaire orbital. Small grassy floating island with rocky underside, embedded orbital solar receiver infrastructure, three elegant golden-white orbital collector dishes, a small clean relay station, glowing sunlight beam accents, tiny cables and control boxes integrated into the terrain. Soft 3D minimalist toy-like isometric game asset, no text, no UI, no logo, no watermark, no flat rectangular solar farm.",
+      "status": "ready",
+      "reason_if_missing": ""
+    },
+    {
+      "id": "island-dyson-11-built-stellar-swarm",
+      "title": "Essaim de Dyson",
+      "category": "dyson",
+      "era": "dyson",
+      "state": "built",
+      "description": "Ile de sphere de Dyson avec coeur stellaire, anneaux orbitaux et segments collecteurs.",
+      "expected_path": "public/assets/game/images-finales-gpt-image/dyson/island-dyson-11-built-stellar-swarm.png",
+      "prompt": "Create one cohesive 3D toy-like floating island for the energy source Sphere de Dyson. Small grassy floating island with rocky underside, compact stellar engineering platform, small glowing sun-like core held above the island by elegant golden orbital rings, partial Dyson swarm panels as curved arc segments around the core, tiny clean control buildings and energy conduits embedded into the terrain. Soft 3D minimalist toy-like isometric strategy game asset, no text, no UI, no logo, no watermark, no flat rectangular solar farm, no standalone sphere without island.",
       "status": "ready",
       "reason_if_missing": ""
     },

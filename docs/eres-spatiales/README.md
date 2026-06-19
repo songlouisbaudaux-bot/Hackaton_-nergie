@@ -22,15 +22,15 @@ La philosophie du jeu reste la même : **les sources s'accumulent, ne se remplac
 
 [mecaniques-spatiales-transversales.md](mecaniques-spatiales-transversales.md) — Latence stellaire, Kardashev Rush, colonies, HELIOS, New Game+.
 
-## Assets déjà présents
+## Assets finaux utilises
 
 | Fichier | Ère correspondante |
 |---------|-------------------|
-| `Centrale_fusion.png` | Ère 6 |
-| `Panneaux_solaires.png` | Ère 7 |
-| `Centrale_antimatière.png` | Ère 9 |
-| `Dyson_sphere.png` | Ère 11 |
-| `Centrale_fission.png` | Ère 5 (atomique, déjà implémentée) |
+| `images-finales-gpt-image/atomic/island-atomic-07-built-fusion-plant.png` | Ère 6 |
+| `images-finales-gpt-image/orbital-solar/island-orbital-solar-07-built-collector.png` | Ère 7 |
+| `images-finales-gpt-image/atomic/island-atomic-08-built-antimatter.png` | Ère 9 |
+| `images-finales-gpt-image/dyson/island-dyson-11-built-stellar-swarm.png` | Ère 11 |
+| `images-finales-gpt-image/atomic/island-atomic-05-built-reactor-core.png` | Ère 5 |
 
 ## Échelle narrative
 
