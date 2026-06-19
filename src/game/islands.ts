@@ -32,11 +32,11 @@ const centralFiles: Record<AgeId, string> = {
   atomic: finalIslandFile('central/island-central-05-modern-grid-city.png'),
   fusion: finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png'),
   'orbital-solar': 'Panneaux_solaires.png',
-  'neutron-wells': finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+  'neutron-wells': finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
   antimatter: finalIslandFile('atomic/island-atomic-08-built-antimatter.png'),
-  'black-hole': finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+  'black-hole': finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
   dyson: 'Dyson_sphere.png',
-  vacuum: 'Dyson_sphere.png',
+  vacuum: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
 };
 
 const sourceBaseFiles: Record<SourceId, string> = {
@@ -187,14 +187,14 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'pulsar-probe',
       technologyId: 'pulsar-mapping',
-      builtFile: finalIslandFile('base/island-base-tech-platform.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-06-upgraded-passive-safety.png'),
+      builtFile: finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
     },
     {
       purchaseId: 'neutron-mill',
       technologyId: 'neutron-orbits',
-      builtFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+      builtFile: finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-08-neutron-wells.png'),
     },
   ],
   antimatter: [
@@ -215,14 +215,14 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'ergosphere-probe',
       technologyId: 'kerr-measure',
-      builtFile: finalIslandFile('base/island-base-rock.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      builtFile: finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
     },
     {
       purchaseId: 'penrose-extractor',
       technologyId: 'penrose-stability',
-      builtFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      builtFile: finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-10-black-hole-siphon.png'),
     },
   ],
   dyson: [
@@ -243,14 +243,14 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
     {
       purchaseId: 'casimir-fluctuator',
       technologyId: 'casimir-geometry',
-      builtFile: finalIslandFile('base/island-base-tech-platform.png'),
-      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      builtFile: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     },
     {
       purchaseId: 'universe-seed',
       technologyId: 'cosmic-reboot',
-      builtFile: 'Dyson_sphere.png',
-      upgradedFile: 'Dyson_sphere.png',
+      builtFile: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
+      upgradedFile: finalIslandFile('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     },
   ],
 };

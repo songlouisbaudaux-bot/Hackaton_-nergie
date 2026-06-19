@@ -47,10 +47,9 @@ Les nouvelles eres utilisent pour l'instant les assets disponibles :
 - fusion : images atomiques/fusion deja generees ;
 - solaire orbital : `Panneaux_solaires.png` ;
 - antimatiere : images atomiques/antimatiere deja generees ;
-- Dyson et vide : `Dyson_sphere.png` et rendu CSS de fin cosmique.
+- Dyson : `Dyson_sphere.png` et rendu CSS de fin cosmique ;
+- puits de neutrons : `cosmic/island-cosmic-08-neutron-wells.png` ;
+- trou noir : `cosmic/island-cosmic-10-black-hole-siphon.png` ;
+- vide : `cosmic/island-cosmic-12-vacuum-universe-seed.png`.
 
-Les assets specifiques manquants a produire plus tard sont :
-
-- puits de neutrons / pulsar ;
-- siphon de trou noir ;
-- fluctuation du vide / graine d'univers.
+Les assets specifiques de fin sont maintenant integres dans `public/assets/game/images-finales-gpt-image/cosmic`.

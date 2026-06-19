@@ -2,7 +2,7 @@ import type { Age, EnergySource, Purchase, Technology } from './types';
 
 export const assetPath = (fileName: string) => `/assets/game/${fileName}`;
 
-const FINAL_IMAGE_VERSION = '20260619-generated-v3';
+const FINAL_IMAGE_VERSION = '20260619-cosmic-v4';
 
 export const finalImagePath = (fileName: string) =>
   `images-finales-gpt-image/${fileName}?v=${FINAL_IMAGE_VERSION}`;
@@ -466,7 +466,7 @@ export const purchases: Purchase[] = [
     costJoules: 18000000,
     clickGain: 0,
     passiveGain: 180000,
-    assetFile: finalImagePath('base/island-base-tech-platform.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-08-neutron-wells.png'),
     impactLabel: '+180 000 J/s',
   },
   {
@@ -478,7 +478,7 @@ export const purchases: Purchase[] = [
     costJoules: 32000000,
     clickGain: 0,
     passiveGain: 320000,
-    assetFile: finalImagePath('atomic/island-atomic-06-upgraded-passive-safety.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-08-neutron-wells.png'),
     impactLabel: '+320 000 J/s',
   },
   {
@@ -490,7 +490,7 @@ export const purchases: Purchase[] = [
     costJoules: 52000000,
     clickGain: 0,
     passiveGain: 580000,
-    assetFile: finalImagePath('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-08-neutron-wells.png'),
     impactLabel: '+580 000 J/s',
   },
   {
@@ -538,7 +538,7 @@ export const purchases: Purchase[] = [
     costJoules: 1200000000,
     clickGain: 0,
     passiveGain: 6200000,
-    assetFile: finalImagePath('base/island-base-rock.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-10-black-hole-siphon.png'),
     impactLabel: '+6,2 M J/s',
   },
   {
@@ -550,7 +550,7 @@ export const purchases: Purchase[] = [
     costJoules: 2200000000,
     clickGain: 0,
     passiveGain: 9800000,
-    assetFile: finalImagePath('base/island-base-tech-platform.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-10-black-hole-siphon.png'),
     impactLabel: '+9,8 M J/s',
   },
   {
@@ -562,7 +562,7 @@ export const purchases: Purchase[] = [
     costJoules: 3600000000,
     clickGain: 25000,
     passiveGain: 18000000,
-    assetFile: finalImagePath('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-10-black-hole-siphon.png'),
     impactLabel: '+25 000 J/clic · +18 M J/s',
   },
   {
@@ -610,7 +610,7 @@ export const purchases: Purchase[] = [
     costJoules: 160000000000,
     clickGain: 0,
     passiveGain: 320000000,
-    assetFile: finalImagePath('base/island-base-tech-platform.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+320 M J/s',
   },
   {
@@ -622,7 +622,7 @@ export const purchases: Purchase[] = [
     costJoules: 260000000000,
     clickGain: 0,
     passiveGain: 620000000,
-    assetFile: finalImagePath('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+620 M J/s',
   },
   {
@@ -634,7 +634,7 @@ export const purchases: Purchase[] = [
     costJoules: 420000000000,
     clickGain: 0,
     passiveGain: 1200000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+1,2 Md J/s',
   },
 ];
@@ -877,7 +877,7 @@ export const technologies: Technology[] = [
     costJoules: 78000000,
     clickGain: 0,
     passiveGain: 480000,
-    assetFile: finalImagePath('atomic/island-atomic-06-upgraded-passive-safety.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-08-neutron-wells.png'),
     impactLabel: '+480 000 J/s',
   },
   {
@@ -889,7 +889,7 @@ export const technologies: Technology[] = [
     costJoules: 120000000,
     clickGain: 0,
     passiveGain: 780000,
-    assetFile: finalImagePath('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-08-neutron-wells.png'),
     impactLabel: '+780 000 J/s',
   },
   {
@@ -925,7 +925,7 @@ export const technologies: Technology[] = [
     costJoules: 5200000000,
     clickGain: 0,
     passiveGain: 14000000,
-    assetFile: finalImagePath('base/island-base-rock.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-10-black-hole-siphon.png'),
     impactLabel: '+14 M J/s',
   },
   {
@@ -937,7 +937,7 @@ export const technologies: Technology[] = [
     costJoules: 8200000000,
     clickGain: 18000,
     passiveGain: 26000000,
-    assetFile: finalImagePath('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-10-black-hole-siphon.png'),
     impactLabel: '+18 000 J/clic · +26 M J/s',
   },
   {
@@ -973,7 +973,7 @@ export const technologies: Technology[] = [
     costJoules: 520000000000,
     clickGain: 0,
     passiveGain: 900000000,
-    assetFile: finalImagePath('base/island-base-tech-platform.png'),
+    assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+900 M J/s',
   },
   {
@@ -985,7 +985,7 @@ export const technologies: Technology[] = [
     costJoules: 900000000000,
     clickGain: 0,
     passiveGain: 1800000000,
-    assetFile: 'Dyson_sphere.png',
+    assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+1,8 Md J/s',
   },
 ];

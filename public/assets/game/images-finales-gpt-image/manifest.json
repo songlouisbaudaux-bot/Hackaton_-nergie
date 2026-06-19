@@ -1,9 +1,9 @@
 {
   "name": "images-finales-gpt-image",
-  "purpose": "Dossier cible pour les 53 nouvelles iles generees par GPT Image a partir de l ile source.",
+  "purpose": "Dossier cible pour les iles finales generees par GPT Image a partir de l ile source.",
   "important": "Ce dossier ne recycle pas les anciens assets et ne contient pas de liens vers public/assets/game/islands.",
-  "expected_count": 53,
-  "ready_count": 53,
+  "expected_count": 56,
+  "ready_count": 56,
   "missing_count": 0,
   "items": [
     {
@@ -640,6 +640,42 @@
       "description": "Confinement antimatiere renforce avec energie orbitale stylisee",
       "expected_path": "public/assets/game/images-finales-gpt-image/atomic/island-atomic-08-upgraded-antimatter-containment.png",
       "prompt": "Modify the provided floating grass island base into one cohesive final game asset. Preserve the same island silhouette, rocky underside, isometric camera angle, scale, and transparent framing. This must be a newly generated integrated image, not a collage, not sprite overlays, not separate pasted objects. Buildings and terrain details must be naturally embedded into the grass surface with matching lighting, contact shadows, scale, and perspective. Style: soft 3D toy-like, rounded shapes, clean minimalist strategy game asset. Transparent background. No text, no UI, no logo, no watermark, no labels, no duplicate island. Create island-atomic-08-upgraded-antimatter-containment.png. Category: atomic. Age: futur-prestige. State: upgraded. Visual content: Confinement antimatiere renforce avec energie orbitale stylisee.",
+      "status": "ready",
+      "reason_if_missing": ""
+    },
+    {
+      "id": "island-cosmic-08-neutron-wells",
+      "title": "Puits de neutrons",
+      "category": "cosmic",
+      "era": "puits-de-neutrons",
+      "state": "source",
+      "description": "Ile pulsar avec antennes gravitationnelles et etoile compacte bleue",
+      "expected_path": "public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-08-neutron-wells.png",
+      "prompt": "Single cohesive floating island, observatory platform, blue-white gravitational antenna dishes, probe rail, tiny blue neutron star/pulsar beacon with two beams, flat chroma-key background, soft 3D toy-like isometric game asset, no text.",
+      "status": "ready",
+      "reason_if_missing": ""
+    },
+    {
+      "id": "island-cosmic-10-black-hole-siphon",
+      "title": "Siphon de trou noir",
+      "category": "cosmic",
+      "era": "trou-noir",
+      "state": "source",
+      "description": "Ile de captation gravitationnelle avec mini trou noir et anneau d'accretion",
+      "expected_path": "public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-10-black-hole-siphon.png",
+      "prompt": "Single cohesive floating island, dark containment platform, gravitation anchor pylons, probe arm, miniature black hole above island, orange-blue accretion ring, energy conduits, flat chroma-key background, soft 3D toy-like isometric game asset, no text.",
+      "status": "ready",
+      "reason_if_missing": ""
+    },
+    {
+      "id": "island-cosmic-12-vacuum-universe-seed",
+      "title": "Graine d'univers",
+      "category": "cosmic",
+      "era": "vide",
+      "state": "source",
+      "description": "Ile du vide quantique avec plaques Casimir, reseau turquoise et graine d'univers",
+      "expected_path": "public/assets/game/images-finales-gpt-image/cosmic/island-cosmic-12-vacuum-universe-seed.png",
+      "prompt": "Single cohesive floating island, vacuum-energy lattice, turquoise Casimir plates, quantum field grid arcs, tiny glowing universe-seed sphere, stabilizer rings, flat chroma-key background, soft 3D toy-like isometric game asset, no text.",
       "status": "ready",
       "reason_if_missing": ""
     }
