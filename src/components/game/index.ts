@@ -1,4 +1,5 @@
 export { default as CentralPlayfieldSlot } from './CentralPlayfieldSlot';
+export { default as CosmicEnding } from './CosmicEnding';
 export { default as EnergyIslandsLayer } from './EnergyIslandsLayer';
 export { default as MixPanel } from './MixPanel';
 export { default as MixEvolutionBackdrop } from './MixEvolutionBackdrop';

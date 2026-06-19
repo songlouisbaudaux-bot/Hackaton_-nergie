@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Flame, RotateCcw, Zap } from 'lucide-react';
 import {
   CentralPlayfieldSlot,
+  CosmicEnding,
   EnergyIslandsLayer,
   MixEvolutionBackdrop,
   MixPanel,
@@ -163,6 +164,7 @@ function GameScreen() {
     () => getAdvanceState(activeAgeId, purchaseCounts, researchedTechnologies, energy),
     [activeAgeId, energy, purchaseCounts, researchedTechnologies],
   );
+  const hasReachedCosmicEnding = !advanceState.nextAge && advanceState.complete;
 
   useEffect(() => {
     writeGameProgress({
@@ -339,6 +341,8 @@ function GameScreen() {
 
         <ProgressRail activeAgeId={activeAgeId} />
       </div>
+
+      <CosmicEnding visible={hasReachedCosmicEnding} onRestart={handleRestartGame} />
 
       <aside className="rotate-device-overlay" aria-live="polite">
         <div className="rotate-device-card panel">

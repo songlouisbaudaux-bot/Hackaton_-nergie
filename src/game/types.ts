@@ -1,4 +1,16 @@
-export type SourceId = 'biomass' | 'animal-power' | 'water-wind' | 'fossil' | 'atomic';
+export type SourceId =
+  | 'biomass'
+  | 'animal-power'
+  | 'water-wind'
+  | 'fossil'
+  | 'atomic'
+  | 'fusion'
+  | 'orbital-solar'
+  | 'neutron-wells'
+  | 'antimatter'
+  | 'black-hole'
+  | 'dyson'
+  | 'vacuum';
 export type AgeId = SourceId;
 
 export type PurchaseId =
@@ -16,7 +28,28 @@ export type PurchaseId =
   | 'feed-logistics'
   | 'hydro-wind-grid'
   | 'thermal-turbine'
-  | 'reactor-core';
+  | 'reactor-core'
+  | 'fusion-tokamak'
+  | 'stellarator'
+  | 'laser-fusion'
+  | 'orbital-collector'
+  | 'laser-relay'
+  | 'sps-alpha'
+  | 'pulsar-probe'
+  | 'gravity-antenna'
+  | 'neutron-mill'
+  | 'antimatter-accelerator'
+  | 'magnetic-trap'
+  | 'annihilation-reactor'
+  | 'ergosphere-probe'
+  | 'gravity-anchor'
+  | 'penrose-extractor'
+  | 'dyson-segment'
+  | 'space-foundry'
+  | 'energy-distribution'
+  | 'casimir-fluctuator'
+  | 'vacuum-lattice'
+  | 'universe-seed';
 
 export type TechnologyId =
   | 'ember-keeping'
@@ -33,7 +66,21 @@ export type TechnologyId =
   | 'feed-chain'
   | 'modern-wind-turbines'
   | 'thermal-cycle'
-  | 'controlled-fission';
+  | 'controlled-fission'
+  | 'plasma-confinement'
+  | 'laser-compression'
+  | 'coherent-transmission'
+  | 'orbital-phase-lock'
+  | 'pulsar-mapping'
+  | 'neutron-orbits'
+  | 'magnetic-bottles'
+  | 'controlled-annihilation'
+  | 'kerr-measure'
+  | 'penrose-stability'
+  | 'dyson-swarm'
+  | 'stellar-governance'
+  | 'casimir-geometry'
+  | 'cosmic-reboot';
 
 export type EnergySource = {
   id: SourceId;

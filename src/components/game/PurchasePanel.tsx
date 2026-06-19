@@ -117,8 +117,8 @@ export default function PurchasePanel({
             {advanceState.nextAge
               ? `Passer : ${advanceState.nextAge.label}`
               : finalAgeComplete
-                ? 'Ère atomique stable'
-                : 'Âge final'}
+                ? 'Fin de l’univers'
+                : 'Stabiliser le vide'}
           </span>
           <span className="advance-description">
             {advanceState.nextAge
@@ -126,8 +126,8 @@ export default function PurchasePanel({
                 ? advanceState.nextAge.description
                 : 'Compléter objets et technologies.'
               : finalAgeComplete
-                ? 'Mix complet.'
-                : 'Finir objets et technologies.'}
+                ? 'Choisir ce que devient toute cette énergie.'
+                : 'Compléter objets et technologies.'}
           </span>
         </span>
         <span className="advance-meta">

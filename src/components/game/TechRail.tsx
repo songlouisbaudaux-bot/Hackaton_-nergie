@@ -2,11 +2,18 @@ import type { CSSProperties } from 'react';
 import {
   Atom,
   Beef,
+  CircleDot,
+  Disc3,
+  Eclipse,
   Check,
   Factory,
+  Infinity,
   Leaf,
   Lock,
   Microscope,
+  RadioTower,
+  Satellite,
+  Sun,
   Wind,
   Zap,
   type LucideIcon,
@@ -37,6 +44,13 @@ const sourceIcons: Record<SourceId, LucideIcon> = {
   'water-wind': Wind,
   fossil: Factory,
   atomic: Atom,
+  fusion: CircleDot,
+  'orbital-solar': Satellite,
+  'neutron-wells': RadioTower,
+  antimatter: Disc3,
+  'black-hole': Eclipse,
+  dyson: Sun,
+  vacuum: Infinity,
 };
 
 export default function TechRail({

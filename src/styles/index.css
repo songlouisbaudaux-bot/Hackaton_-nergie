@@ -239,12 +239,12 @@ button {
 
 .energy-island {
   position: absolute;
-  left: var(--island-center-x);
-  top: var(--island-center-y);
+  left: var(--island-left, var(--island-center-x));
+  top: var(--island-top, var(--island-center-y));
   width: var(--island-size);
   margin: 0;
   opacity: 0.94;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--island-scale, 1));
   animation: islandFloat var(--island-float-duration, 7s) ease-in-out infinite;
   animation-delay: var(--island-float-delay, 0s);
   transition:
@@ -984,6 +984,147 @@ button {
   pointer-events: none;
 }
 
+.cosmic-ending {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 32px);
+  color: #eef9ff;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(88, 199, 179, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 50%, rgba(161, 82, 209, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(10, 14, 22, 0.76), rgba(7, 8, 13, 0.92));
+  pointer-events: auto;
+}
+
+.cosmic-ending-visual {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cosmic-ring,
+.cosmic-core {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.cosmic-ring {
+  border: 1px solid rgba(238, 249, 255, 0.2);
+  box-shadow:
+    0 0 80px rgba(88, 199, 179, 0.18),
+    inset 0 0 60px rgba(161, 82, 209, 0.14);
+  animation: cosmicSpin 22s linear infinite;
+}
+
+.cosmic-ring--outer {
+  width: min(86vmin, 760px);
+  aspect-ratio: 1;
+}
+
+.cosmic-ring--middle {
+  width: min(56vmin, 500px);
+  aspect-ratio: 1;
+  animation-direction: reverse;
+  animation-duration: 14s;
+}
+
+.cosmic-core {
+  width: min(24vmin, 210px);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 5%, rgba(88, 199, 179, 0.65) 10%, transparent 42%),
+    radial-gradient(circle, rgba(161, 82, 209, 0.55), rgba(7, 8, 13, 0.96) 68%);
+  box-shadow:
+    0 0 80px rgba(88, 199, 179, 0.38),
+    0 0 160px rgba(161, 82, 209, 0.28);
+  animation: cosmicPulse 3.8s ease-in-out infinite;
+}
+
+.cosmic-ending-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(720px, 100%);
+  gap: 16px;
+  border-color: rgba(238, 249, 255, 0.18);
+  background: rgba(13, 18, 27, 0.78);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.38);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.cosmic-ending-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cosmic-ending-title h2,
+.cosmic-ending-panel p {
+  margin: 0;
+}
+
+.cosmic-ending-title h2 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 1;
+}
+
+.cosmic-ending-panel p {
+  max-width: 54ch;
+  color: rgba(238, 249, 255, 0.78);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.cosmic-ending-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cosmic-ending-choice {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 1px solid rgba(238, 249, 255, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 12px;
+}
+
+.cosmic-ending-choice strong {
+  font-size: 0.86rem;
+}
+
+.cosmic-ending-choice span {
+  color: rgba(238, 249, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.cosmic-restart-button {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  border: 1px solid rgba(88, 199, 179, 0.38);
+  border-radius: var(--radius);
+  padding: 0 14px;
+  color: #062820;
+  background: rgba(88, 199, 179, 0.92);
+  font-weight: 820;
+  cursor: pointer;
+}
+
 .rotate-device-overlay {
   position: fixed;
   inset: 0;
@@ -1094,20 +1235,39 @@ button {
 @keyframes islandFloat {
   0%,
   100% {
-    transform: translate(-50%, calc(-50% - 6px));
+    transform: translate(-50%, calc(-50% - 6px)) scale(var(--island-scale, 1));
   }
   50% {
-    transform: translate(-50%, calc(-50% + 7px));
+    transform: translate(-50%, calc(-50% + 7px)) scale(var(--island-scale, 1));
   }
 }
 
 @keyframes islandFloatMobile {
   0%,
   100% {
-    transform: translate(-50%, calc(-50% - 2px));
+    transform: translate(-50%, calc(-50% - 2px)) scale(var(--island-scale, 1));
   }
   50% {
-    transform: translate(-50%, calc(-50% + 2px));
+    transform: translate(-50%, calc(-50% + 2px)) scale(var(--island-scale, 1));
+  }
+}
+
+@keyframes cosmicSpin {
+  from {
+    transform: rotate(0deg) scaleX(1.22);
+  }
+  to {
+    transform: rotate(360deg) scaleX(1.22);
+  }
+}
+
+@keyframes cosmicPulse {
+  0%,
+  100% {
+    transform: scale(0.94);
+  }
+  50% {
+    transform: scale(1.06);
   }
 }
 
@@ -1329,6 +1489,15 @@ button {
   .progress-rail {
     flex-wrap: wrap;
     align-content: center;
+  }
+
+  .cosmic-ending-choices {
+    grid-template-columns: 1fr;
+  }
+
+  .cosmic-ending-panel {
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
   }
 
   .era-pill,

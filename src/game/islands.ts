@@ -30,6 +30,13 @@ const centralFiles: Record<AgeId, string> = {
   'water-wind': finalIslandFile('central/island-central-03-medieval-town.png'),
   fossil: finalIslandFile('central/island-central-04-industrial-town.png'),
   atomic: finalIslandFile('central/island-central-05-modern-grid-city.png'),
+  fusion: finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png'),
+  'orbital-solar': 'Panneaux_solaires.png',
+  'neutron-wells': finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+  antimatter: finalIslandFile('atomic/island-atomic-08-built-antimatter.png'),
+  'black-hole': finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+  dyson: 'Dyson_sphere.png',
+  vacuum: 'Dyson_sphere.png',
 };
 
 const sourceBaseFiles: Record<SourceId, string> = {
@@ -38,6 +45,13 @@ const sourceBaseFiles: Record<SourceId, string> = {
   'water-wind': finalIslandFile('base/island-base-river-hill.png'),
   fossil: finalIslandFile('base/island-base-rock.png'),
   atomic: finalIslandFile('base/island-base-tech-platform.png'),
+  fusion: finalIslandFile('base/island-base-tech-platform.png'),
+  'orbital-solar': finalIslandFile('base/island-base-tech-platform.png'),
+  'neutron-wells': finalIslandFile('base/island-base-tech-platform.png'),
+  antimatter: finalIslandFile('base/island-base-tech-platform.png'),
+  'black-hole': finalIslandFile('base/island-base-rock.png'),
+  dyson: finalIslandFile('base/island-base-tech-platform.png'),
+  vacuum: finalIslandFile('base/island-base-tech-platform.png'),
 };
 
 const sourceStages: Record<SourceId, SourceIslandStage[]> = {
@@ -139,6 +153,104 @@ const sourceStages: Record<SourceId, SourceIslandStage[]> = {
       technologyId: 'controlled-fission',
       builtFile: finalIslandFile('atomic/island-atomic-05-built-reactor-core.png'),
       upgradedFile: finalIslandFile('atomic/island-atomic-05-upgraded-controlled-fission.png'),
+    },
+  ],
+  fusion: [
+    {
+      purchaseId: 'fusion-tokamak',
+      technologyId: 'plasma-confinement',
+      builtFile: finalIslandFile('atomic/island-atomic-07-built-fusion-plant.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+    },
+    {
+      purchaseId: 'laser-fusion',
+      technologyId: 'laser-compression',
+      builtFile: 'Centrale_fusion.png',
+      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+    },
+  ],
+  'orbital-solar': [
+    {
+      purchaseId: 'orbital-collector',
+      technologyId: 'coherent-transmission',
+      builtFile: 'Panneaux_solaires.png',
+      upgradedFile: 'Panneaux_solaires.png',
+    },
+    {
+      purchaseId: 'sps-alpha',
+      technologyId: 'orbital-phase-lock',
+      builtFile: 'Panneaux_solaires.png',
+      upgradedFile: 'Panneaux_solaires.png',
+    },
+  ],
+  'neutron-wells': [
+    {
+      purchaseId: 'pulsar-probe',
+      technologyId: 'pulsar-mapping',
+      builtFile: finalIslandFile('base/island-base-tech-platform.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-06-upgraded-passive-safety.png'),
+    },
+    {
+      purchaseId: 'neutron-mill',
+      technologyId: 'neutron-orbits',
+      builtFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-07-upgraded-controlled-fusion.png'),
+    },
+  ],
+  antimatter: [
+    {
+      purchaseId: 'antimatter-accelerator',
+      technologyId: 'magnetic-bottles',
+      builtFile: finalIslandFile('atomic/island-atomic-08-built-antimatter.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    },
+    {
+      purchaseId: 'annihilation-reactor',
+      technologyId: 'controlled-annihilation',
+      builtFile: 'Centrale_antimatière.png',
+      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    },
+  ],
+  'black-hole': [
+    {
+      purchaseId: 'ergosphere-probe',
+      technologyId: 'kerr-measure',
+      builtFile: finalIslandFile('base/island-base-rock.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    },
+    {
+      purchaseId: 'penrose-extractor',
+      technologyId: 'penrose-stability',
+      builtFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    },
+  ],
+  dyson: [
+    {
+      purchaseId: 'dyson-segment',
+      technologyId: 'dyson-swarm',
+      builtFile: 'Dyson_sphere.png',
+      upgradedFile: 'Dyson_sphere.png',
+    },
+    {
+      purchaseId: 'energy-distribution',
+      technologyId: 'stellar-governance',
+      builtFile: 'Dyson_sphere.png',
+      upgradedFile: 'Dyson_sphere.png',
+    },
+  ],
+  vacuum: [
+    {
+      purchaseId: 'casimir-fluctuator',
+      technologyId: 'casimir-geometry',
+      builtFile: finalIslandFile('base/island-base-tech-platform.png'),
+      upgradedFile: finalIslandFile('atomic/island-atomic-08-upgraded-antimatter-containment.png'),
+    },
+    {
+      purchaseId: 'universe-seed',
+      technologyId: 'cosmic-reboot',
+      builtFile: 'Dyson_sphere.png',
+      upgradedFile: 'Dyson_sphere.png',
     },
   ],
 };
