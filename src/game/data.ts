@@ -2,7 +2,7 @@ import type { Age, EnergySource, Purchase, Technology } from './types';
 
 export const assetPath = (fileName: string) => `/assets/game/${fileName}`;
 
-const FINAL_IMAGE_VERSION = '20260619-central-fix';
+const FINAL_IMAGE_VERSION = '20260619-generated-v3';
 
 export const finalImagePath = (fileName: string) =>
   `images-finales-gpt-image/${fileName}?v=${FINAL_IMAGE_VERSION}`;

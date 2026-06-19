@@ -1461,21 +1461,21 @@ button {
   .game-screen {
     --hud-edge: 6px;
     --hud-gap: 6px;
-    --energy-header-height: 40px;
+    --energy-header-height: 38px;
     --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
-    --tech-rail-height: 56px;
-    --progress-rail-height: 28px;
-    --mix-panel-width: clamp(116px, 15vw, 132px);
-    --purchase-panel-width: clamp(168px, 22vw, 204px);
+    --tech-rail-height: 50px;
+    --progress-rail-height: 26px;
+    --mix-panel-width: clamp(96px, 12vw, 112px);
+    --purchase-panel-width: clamp(142px, 18vw, 168px);
     --bottom-zone-height: calc(
       var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
     );
-    --island-size: clamp(70px, 9.5vw, 94px);
-    --island-center-x: 48%;
-    --island-center-y: 48%;
-    --island-step-x: clamp(46px, 6.6vw, 66px);
-    --island-step-y: clamp(28px, 7.6dvh, 38px);
-    --island-top-y: clamp(40px, 12dvh, 56px);
+    --island-size: clamp(82px, 10.5vw, 104px);
+    --island-center-x: 50%;
+    --island-center-y: 46%;
+    --island-step-x: clamp(56px, 7.6vw, 76px);
+    --island-step-y: clamp(34px, 9dvh, 46px);
+    --island-top-y: clamp(52px, 14dvh, 68px);
     --restart-button-size: 30px;
     --restart-button-space: 12px;
   }
@@ -1500,7 +1500,7 @@ button {
   }
 
   .energy-islands-layer {
-    opacity: 0.92;
+    opacity: 0.98;
   }
 
   .energy-island {
@@ -1553,7 +1553,7 @@ button {
   .energy-header {
     right: auto;
     left: 50%;
-    width: min(310px, calc(100vw - 84px));
+    width: min(292px, calc(100vw - 84px));
     min-height: var(--energy-header-height);
     align-items: center;
     gap: 8px;
@@ -1594,7 +1594,7 @@ button {
     top: var(--side-panel-top);
     bottom: auto;
     height: auto;
-    max-height: min(124px, calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height) - var(--hud-gap)));
+    max-height: min(108px, calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height) - var(--hud-gap)));
     padding: 6px;
   }
 
@@ -1630,7 +1630,7 @@ button {
   }
 
   .mix-pie {
-    width: min(60px, 100%);
+    width: min(50px, 100%);
   }
 
   .mix-legend {
@@ -1665,8 +1665,8 @@ button {
   }
 
   .purchase-card {
-    grid-template-columns: 26px minmax(0, 1fr) auto;
-    min-height: 34px;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    min-height: 30px;
     gap: 5px;
     padding: 4px;
   }
@@ -1676,13 +1676,13 @@ button {
   }
 
   .purchase-asset {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .purchase-asset img {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .purchase-copy {
@@ -1704,16 +1704,16 @@ button {
   }
 
   .advance-age-card {
-    grid-template-columns: 26px minmax(0, 1fr) auto;
-    min-height: 34px;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    min-height: 30px;
     gap: 5px;
     margin-top: 5px;
     padding: 4px;
   }
 
   .advance-icon {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .advance-label {

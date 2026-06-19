@@ -269,6 +269,7 @@ function GameScreen() {
     setActiveAgeId(resetProgress.activeAgeId);
     setPurchaseCounts(resetProgress.purchaseCounts);
     setResearchedTechnologies(resetProgress.researchedTechnologies);
+    gainIdRef.current = 0;
     setFloatingGains([]);
   }, []);
 
