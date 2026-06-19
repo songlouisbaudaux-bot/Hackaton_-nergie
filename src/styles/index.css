@@ -423,6 +423,7 @@ button {
   font-size: 0.78rem;
   font-weight: 780;
   cursor: pointer;
+  pointer-events: auto;
   transition:
     border-color 160ms ease,
     color 160ms ease,
@@ -434,12 +435,6 @@ button {
 .restart-run-button:focus-visible {
   color: var(--ink);
   transform: translateY(-1px);
-}
-
-.restart-run-button[data-armed="true"] {
-  border-color: rgba(191, 92, 69, 0.34);
-  color: #9d4938;
-  background: rgba(255, 240, 234, 0.9);
 }
 
 .restart-run-button--floating {
@@ -463,12 +458,6 @@ button {
   border-color: rgba(31, 43, 36, 0.28);
   background: rgba(255, 255, 250, 0.45);
   color: var(--ink);
-}
-
-.restart-run-button--floating[data-armed='true'] {
-  color: #9d4938;
-  border-color: rgba(191, 92, 69, 0.4);
-  background: rgba(255, 240, 234, 0.78);
 }
 
 .restart-run-button-label {

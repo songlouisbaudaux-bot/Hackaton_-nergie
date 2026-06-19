@@ -2,6 +2,11 @@ import type { Age, EnergySource, Purchase, Technology } from './types';
 
 export const assetPath = (fileName: string) => `/assets/game/${fileName}`;
 
+const FINAL_IMAGE_VERSION = '20260619-central-fix';
+
+export const finalImagePath = (fileName: string) =>
+  `images-finales-gpt-image/${fileName}?v=${FINAL_IMAGE_VERSION}`;
+
 export const energySources: EnergySource[] = [
   {
     id: 'biomass',
@@ -97,7 +102,7 @@ export const purchases: Purchase[] = [
     costJoules: 12,
     clickGain: 3,
     passiveGain: 0.4,
-    assetFile: 'campfire.png',
+    assetFile: finalImagePath('biomass/island-biomass-01-built-campfire.png'),
     impactLabel: '+3 J/clic · +0.4 J/s',
   },
   {
@@ -109,7 +114,7 @@ export const purchases: Purchase[] = [
     costJoules: 65,
     clickGain: 2,
     passiveGain: 1.2,
-    assetFile: 'stone-hearth.png',
+    assetFile: finalImagePath('biomass/island-biomass-02-built-stone-hearth.png'),
     impactLabel: '+2 J/clic · +1.2 J/s',
   },
   {
@@ -121,7 +126,7 @@ export const purchases: Purchase[] = [
     costJoules: 95,
     clickGain: 4,
     passiveGain: 2.2,
-    assetFile: 'ox.png',
+    assetFile: finalImagePath('animal/island-animal-02-built-oxen-pasture.png'),
     impactLabel: '+4 J/clic · +2.2 J/s',
   },
   {
@@ -133,7 +138,7 @@ export const purchases: Purchase[] = [
     costJoules: 240,
     clickGain: 4,
     passiveGain: 6,
-    assetFile: 'logs.png',
+    assetFile: finalImagePath('biomass/island-biomass-03-built-charcoal-kiln.png'),
     impactLabel: '+4 J/clic · +6 J/s',
   },
   {
@@ -145,7 +150,7 @@ export const purchases: Purchase[] = [
     costJoules: 340,
     clickGain: 3,
     passiveGain: 8,
-    assetFile: 'plough.png',
+    assetFile: finalImagePath('animal/island-animal-03-built-heavy-plough.png'),
     impactLabel: '+3 J/clic · +8 J/s',
   },
   {
@@ -157,7 +162,7 @@ export const purchases: Purchase[] = [
     costJoules: 480,
     clickGain: 0,
     passiveGain: 18,
-    assetFile: 'water-wheel.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-03-built-watermill.png'),
     impactLabel: '+18 J/s',
   },
   {
@@ -169,7 +174,7 @@ export const purchases: Purchase[] = [
     costJoules: 1100,
     clickGain: 6,
     passiveGain: 18,
-    assetFile: 'boiler.png',
+    assetFile: finalImagePath('biomass/island-biomass-04-built-wood-gasifier.png'),
     impactLabel: '+6 J/clic · +18 J/s',
   },
   {
@@ -181,7 +186,7 @@ export const purchases: Purchase[] = [
     costJoules: 1400,
     clickGain: 5,
     passiveGain: 16,
-    assetFile: 'horse.png',
+    assetFile: finalImagePath('animal/island-animal-04-built-horse-relay.png'),
     impactLabel: '+5 J/clic · +16 J/s',
   },
   {
@@ -193,7 +198,7 @@ export const purchases: Purchase[] = [
     costJoules: 1650,
     clickGain: 0,
     passiveGain: 38,
-    assetFile: 'windmill.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-04-built-wind-pump.png'),
     impactLabel: '+38 J/s',
   },
   {
@@ -205,7 +210,7 @@ export const purchases: Purchase[] = [
     costJoules: 2200,
     clickGain: 14,
     passiveGain: 72,
-    assetFile: 'steam-engine.png',
+    assetFile: finalImagePath('fossil/island-fossil-04-built-steam-engine.png'),
     impactLabel: '+14 J/clic · +72 J/s',
   },
   {
@@ -217,7 +222,7 @@ export const purchases: Purchase[] = [
     costJoules: 4200,
     clickGain: 0,
     passiveGain: 80,
-    assetFile: 'food-cache.png',
+    assetFile: finalImagePath('biomass/island-biomass-05-built-biogas-digester.png'),
     impactLabel: '+80 J/s',
   },
   {
@@ -229,7 +234,7 @@ export const purchases: Purchase[] = [
     costJoules: 5200,
     clickGain: 0,
     passiveGain: 70,
-    assetFile: 'granary.png',
+    assetFile: finalImagePath('animal/island-animal-05-built-food-logistics.png'),
     impactLabel: '+70 J/s',
   },
   {
@@ -241,7 +246,7 @@ export const purchases: Purchase[] = [
     costJoules: 6400,
     clickGain: 0,
     passiveGain: 130,
-    assetFile: 'windmill.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-05-built-hydro-wind-grid.png'),
     impactLabel: '+130 J/s',
   },
   {
@@ -253,7 +258,7 @@ export const purchases: Purchase[] = [
     costJoules: 7600,
     clickGain: 16,
     passiveGain: 160,
-    assetFile: 'small-factory.png',
+    assetFile: finalImagePath('fossil/island-fossil-05-built-thermal-turbine.png'),
     impactLabel: '+16 J/clic · +160 J/s',
   },
   {
@@ -265,7 +270,7 @@ export const purchases: Purchase[] = [
     costJoules: 9800,
     clickGain: 0,
     passiveGain: 420,
-    assetFile: 'images-finales-gpt-image/atomic/island-atomic-05-built-reactor-core.png',
+    assetFile: finalImagePath('atomic/island-atomic-05-built-reactor-core.png'),
     impactLabel: '+420 J/s',
   },
 ];
@@ -280,7 +285,7 @@ export const technologies: Technology[] = [
     costJoules: 24,
     clickGain: 2,
     passiveGain: 0.8,
-    assetFile: 'fire-glow.png',
+    assetFile: finalImagePath('biomass/island-biomass-01-upgraded-ember-keeping.png'),
     impactLabel: '+2 J/clic · +0.8 J/s',
   },
   {
@@ -292,7 +297,7 @@ export const technologies: Technology[] = [
     costJoules: 95,
     clickGain: 2,
     passiveGain: 1.5,
-    assetFile: 'stone-hearth.png',
+    assetFile: finalImagePath('biomass/island-biomass-02-upgraded-masonry-hearth.png'),
     impactLabel: '+2 J/clic · +1.5 J/s',
   },
   {
@@ -304,7 +309,7 @@ export const technologies: Technology[] = [
     costJoules: 130,
     clickGain: 2,
     passiveGain: 2.4,
-    assetFile: 'ox.png',
+    assetFile: finalImagePath('animal/island-animal-02-upgraded-animal-domestication.png'),
     impactLabel: '+2 J/clic · +2.4 J/s',
   },
   {
@@ -316,7 +321,7 @@ export const technologies: Technology[] = [
     costJoules: 340,
     clickGain: 3,
     passiveGain: 6,
-    assetFile: 'logs.png',
+    assetFile: finalImagePath('biomass/island-biomass-03-upgraded-charcoal-craft.png'),
     impactLabel: '+3 J/clic · +6 J/s',
   },
   {
@@ -328,7 +333,7 @@ export const technologies: Technology[] = [
     costJoules: 440,
     clickGain: 2,
     passiveGain: 8,
-    assetFile: 'horse.png',
+    assetFile: finalImagePath('animal/island-animal-03-upgraded-shoulder-collar.png'),
     impactLabel: '+2 J/clic · +8 J/s',
   },
   {
@@ -340,7 +345,7 @@ export const technologies: Technology[] = [
     costJoules: 560,
     clickGain: 0,
     passiveGain: 16,
-    assetFile: 'windmill.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-03-upgraded-windmill.png'),
     impactLabel: '+16 J/s',
   },
   {
@@ -352,7 +357,7 @@ export const technologies: Technology[] = [
     costJoules: 1300,
     clickGain: 4,
     passiveGain: 18,
-    assetFile: 'boiler.png',
+    assetFile: finalImagePath('biomass/island-biomass-04-upgraded-wood-gas-process.png'),
     impactLabel: '+4 J/clic · +18 J/s',
   },
   {
@@ -364,7 +369,7 @@ export const technologies: Technology[] = [
     costJoules: 1500,
     clickGain: 3,
     passiveGain: 16,
-    assetFile: 'horse.png',
+    assetFile: finalImagePath('animal/island-animal-04-upgraded-horse-logistics.png'),
     impactLabel: '+3 J/clic · +16 J/s',
   },
   {
@@ -376,7 +381,7 @@ export const technologies: Technology[] = [
     costJoules: 1800,
     clickGain: 0,
     passiveGain: 40,
-    assetFile: 'windmill.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-04-upgraded-mechanical-pumps.png'),
     impactLabel: '+40 J/s',
   },
   {
@@ -388,7 +393,7 @@ export const technologies: Technology[] = [
     costJoules: 2400,
     clickGain: 10,
     passiveGain: 90,
-    assetFile: 'steam-engine.png',
+    assetFile: finalImagePath('fossil/island-fossil-04-upgraded-high-pressure-steam.png'),
     impactLabel: '+10 J/clic · +90 J/s',
   },
   {
@@ -400,7 +405,7 @@ export const technologies: Technology[] = [
     costJoules: 5000,
     clickGain: 0,
     passiveGain: 95,
-    assetFile: 'food-cache.png',
+    assetFile: finalImagePath('biomass/island-biomass-05-upgraded-methanization.png'),
     impactLabel: '+95 J/s',
   },
   {
@@ -412,7 +417,7 @@ export const technologies: Technology[] = [
     costJoules: 6000,
     clickGain: 0,
     passiveGain: 85,
-    assetFile: 'granary.png',
+    assetFile: finalImagePath('animal/island-animal-05-upgraded-food-chain.png'),
     impactLabel: '+85 J/s',
   },
   {
@@ -424,7 +429,7 @@ export const technologies: Technology[] = [
     costJoules: 7400,
     clickGain: 0,
     passiveGain: 180,
-    assetFile: 'windmill.png',
+    assetFile: finalImagePath('water-wind/island-water-wind-05-upgraded-modern-wind-turbines.png'),
     impactLabel: '+180 J/s',
   },
   {
@@ -436,7 +441,7 @@ export const technologies: Technology[] = [
     costJoules: 8600,
     clickGain: 10,
     passiveGain: 200,
-    assetFile: 'small-factory.png',
+    assetFile: finalImagePath('fossil/island-fossil-05-upgraded-thermal-cycle.png'),
     impactLabel: '+10 J/clic · +200 J/s',
   },
   {
@@ -448,7 +453,7 @@ export const technologies: Technology[] = [
     costJoules: 11500,
     clickGain: 0,
     passiveGain: 520,
-    assetFile: 'images-finales-gpt-image/atomic/island-atomic-05-upgraded-controlled-fission.png',
+    assetFile: finalImagePath('atomic/island-atomic-05-upgraded-controlled-fission.png'),
     impactLabel: '+520 J/s',
   },
 ];

@@ -1,4 +1,4 @@
-import { ages, purchases, technologies } from './data';
+import { ages, finalImagePath, purchases, technologies } from './data';
 import { getAgeIndex } from './selectors';
 import type { AgeId, PurchaseCounts, PurchaseId, SourceId, TechnologyId } from './types';
 
@@ -22,7 +22,7 @@ type SourceIslandStage = {
   upgradedFile: string;
 };
 
-const finalIslandFile = (fileName: string) => `images-finales-gpt-image/${fileName}`;
+const finalIslandFile = finalImagePath;
 
 const centralFiles: Record<AgeId, string> = {
   biomass: finalIslandFile('central/island-central-01-camp.png'),

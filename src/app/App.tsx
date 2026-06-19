@@ -151,7 +151,6 @@ function GameScreen() {
     initialProgress.researchedTechnologies,
   );
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
-  const [restartArmed, setRestartArmed] = useState(false);
   const gainIdRef = useRef(0);
 
   const production = useMemo(
@@ -183,13 +182,6 @@ function GameScreen() {
 
     return () => window.clearInterval(interval);
   }, [totals.energyPerSecond]);
-
-  useEffect(() => {
-    if (!restartArmed) return undefined;
-
-    const timeout = window.setTimeout(() => setRestartArmed(false), 2800);
-    return () => window.clearTimeout(timeout);
-  }, [restartArmed]);
 
   const addFloatingGain = useCallback((point: { x: number; y: number }, value: number) => {
     const id = gainIdRef.current + 1;
@@ -265,11 +257,6 @@ function GameScreen() {
   );
 
   const handleRestartGame = useCallback(() => {
-    if (!restartArmed) {
-      setRestartArmed(true);
-      return;
-    }
-
     const resetProgress: StoredGameProgress = {
       energy: defaultGameProgress.energy,
       activeAgeId: defaultGameProgress.activeAgeId,
@@ -283,8 +270,7 @@ function GameScreen() {
     setPurchaseCounts(resetProgress.purchaseCounts);
     setResearchedTechnologies(resetProgress.researchedTechnologies);
     setFloatingGains([]);
-    setRestartArmed(false);
-  }, [restartArmed]);
+  }, []);
 
   return (
     <main className="game-screen">
@@ -302,14 +288,12 @@ function GameScreen() {
       <div className="game-hud">
         <button
           className="restart-run-button restart-run-button--floating"
-          data-armed={restartArmed}
           type="button"
-          aria-label={restartArmed ? 'Confirmer le redemarrage de la partie' : 'Recommencer la partie'}
-          aria-pressed={restartArmed}
+          aria-label="Recommencer la partie"
           onClick={handleRestartGame}
         >
           <RotateCcw size={16} aria-hidden="true" />
-          <span className="restart-run-button-label">{restartArmed ? 'Confirmer' : 'Recommencer'}</span>
+          <span className="restart-run-button-label">Recommencer</span>
         </button>
 
         <header className="energy-header panel" aria-label="Énergie">
