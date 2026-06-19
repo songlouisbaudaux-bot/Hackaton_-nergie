@@ -1,0 +1,238 @@
+{
+  "targetMinutes": 120,
+  "clickRatePerSecond": 1,
+  "aggressivePaybackSeconds": 600,
+  "chosen": {
+    "costGrowth": 3.02,
+    "shortestMinutes": 121.56,
+    "requiredOnly": {
+      "totalSeconds": 7836.356484262987,
+      "totalMinutes": 130.61,
+      "rows": [
+        {
+          "age": "Préhistoire",
+          "ageMinutes": 0.32,
+          "elapsedMinutes": 0.32,
+          "production": 8
+        },
+        {
+          "age": "Antiquité",
+          "ageMinutes": 0.67,
+          "elapsedMinutes": 0.99,
+          "production": 26
+        },
+        {
+          "age": "Moyen Âge",
+          "ageMinutes": 1.09,
+          "elapsedMinutes": 2.08,
+          "production": 100
+        },
+        {
+          "age": "Âge industriel",
+          "ageMinutes": 1.41,
+          "elapsedMinutes": 3.49,
+          "production": 450
+        },
+        {
+          "age": "Âge atomique",
+          "ageMinutes": 2.49,
+          "elapsedMinutes": 5.98,
+          "production": 2416
+        },
+        {
+          "age": "Fusion contrôlée",
+          "ageMinutes": 5.36,
+          "elapsedMinutes": 11.34,
+          "production": 44316
+        },
+        {
+          "age": "Solaire orbital",
+          "ageMinutes": 8.06,
+          "elapsedMinutes": 19.4,
+          "production": 346316
+        },
+        {
+          "age": "Puits de neutrons",
+          "ageMinutes": 11.69,
+          "elapsedMinutes": 31.09,
+          "production": 2686316
+        },
+        {
+          "age": "Antimatière",
+          "ageMinutes": 15.77,
+          "elapsedMinutes": 46.85,
+          "production": 15200316
+        },
+        {
+          "age": "Trou noir",
+          "ageMinutes": 23.81,
+          "elapsedMinutes": 70.67,
+          "production": 89243316
+        },
+        {
+          "age": "Dyson",
+          "ageMinutes": 42.31,
+          "elapsedMinutes": 112.98,
+          "production": 839243316
+        },
+        {
+          "age": "Vide",
+          "ageMinutes": 17.63,
+          "elapsedMinutes": 130.61,
+          "production": 5679243316
+        }
+      ]
+    },
+    "aggressiveRepeat": {
+      "totalSeconds": 7293.372790011475,
+      "totalMinutes": 121.56,
+      "rows": [
+        {
+          "age": "Préhistoire",
+          "ageMinutes": 0.35,
+          "elapsedMinutes": 0.35,
+          "production": 12
+        },
+        {
+          "age": "Antiquité",
+          "ageMinutes": 0.76,
+          "elapsedMinutes": 1.11,
+          "production": 38
+        },
+        {
+          "age": "Moyen Âge",
+          "ageMinutes": 1.24,
+          "elapsedMinutes": 2.35,
+          "production": 151
+        },
+        {
+          "age": "Âge industriel",
+          "ageMinutes": 1.61,
+          "elapsedMinutes": 3.96,
+          "production": 670
+        },
+        {
+          "age": "Âge atomique",
+          "ageMinutes": 3.33,
+          "elapsedMinutes": 7.29,
+          "production": 4318
+        },
+        {
+          "age": "Fusion contrôlée",
+          "ageMinutes": 5.94,
+          "elapsedMinutes": 13.24,
+          "production": 91858
+        },
+        {
+          "age": "Solaire orbital",
+          "ageMinutes": 6.88,
+          "elapsedMinutes": 20.12,
+          "production": 717858
+        },
+        {
+          "age": "Puits de neutrons",
+          "ageMinutes": 9.28,
+          "elapsedMinutes": 29.4,
+          "production": 4137858
+        },
+        {
+          "age": "Antimatière",
+          "ageMinutes": 13.53,
+          "elapsedMinutes": 42.94,
+          "production": 22957858
+        },
+        {
+          "age": "Trou noir",
+          "ageMinutes": 20.66,
+          "elapsedMinutes": 63.59,
+          "production": 103200858
+        },
+        {
+          "age": "Dyson",
+          "ageMinutes": 40.49,
+          "elapsedMinutes": 104.09,
+          "production": 853200858
+        },
+        {
+          "age": "Vide",
+          "ageMinutes": 17.47,
+          "elapsedMinutes": 121.56,
+          "production": 5693200858
+        }
+      ]
+    },
+    "score": 93.37279001147544
+  },
+  "topCandidates": [
+    {
+      "costGrowth": 3.02,
+      "shortestMinutes": 121.56,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 121.56,
+      "score": 93.37
+    },
+    {
+      "costGrowth": 3.04,
+      "shortestMinutes": 121.67,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 121.67,
+      "score": 100.14
+    },
+    {
+      "costGrowth": 3.06,
+      "shortestMinutes": 121.78,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 121.78,
+      "score": 106.93
+    },
+    {
+      "costGrowth": 3.08,
+      "shortestMinutes": 121.9,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 121.9,
+      "score": 113.77
+    },
+    {
+      "costGrowth": 3.1,
+      "shortestMinutes": 123.04,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.04,
+      "score": 182.5
+    },
+    {
+      "costGrowth": 3.12,
+      "shortestMinutes": 123.15,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.15,
+      "score": 189.09
+    },
+    {
+      "costGrowth": 3.14,
+      "shortestMinutes": 123.26,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.26,
+      "score": 195.76
+    },
+    {
+      "costGrowth": 3.16,
+      "shortestMinutes": 123.37,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.37,
+      "score": 202.42
+    },
+    {
+      "costGrowth": 3.18,
+      "shortestMinutes": 123.49,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.49,
+      "score": 209.23
+    },
+    {
+      "costGrowth": 3.2,
+      "shortestMinutes": 123.6,
+      "requiredOnlyMinutes": 130.61,
+      "aggressiveRepeatMinutes": 123.6,
+      "score": 215.92
+    }
+  ]
+}

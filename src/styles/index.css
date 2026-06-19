@@ -263,7 +263,7 @@ button {
   margin: 0;
   display: grid;
   place-items: center;
-  opacity: 0.94;
+  opacity: 1;
   transform: translate(-50%, -50%) scale(var(--island-scale, 1));
   transition:
     opacity 180ms ease;
@@ -293,7 +293,7 @@ button {
 }
 
 .energy-island[data-state="empty"] {
-  opacity: 0.94;
+  opacity: 1;
 }
 
 .energy-island[data-state="upgraded"] img {
@@ -1528,7 +1528,7 @@ button {
   }
 
   .energy-islands-layer {
-    opacity: 0.72;
+    opacity: 1;
   }
 
   .energy-header {
@@ -1833,7 +1833,7 @@ button {
   }
 
   .energy-islands-layer {
-    opacity: 0.98;
+    opacity: 1;
   }
 
   .energy-island-float {

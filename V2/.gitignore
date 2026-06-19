@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.DS_Store
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Caches & logs (ne jamais committer)
+.npm-cache/
+__pycache__/
+*.log
+vite.*.log
+
+# Artefacts de generation d'images
+public/assets/game/islands-gpt-image-2/codex-exec-image-results.json
+public/assets/game/islands-gpt-image-2/jobs-*.jsonl
+!public/assets/game/islands-gpt-image-2/jobs-all.jsonl
+public/assets/game/islands-gpt-image-2/preflight/
+public/assets/game/islands-gpt-image-2/raw/failed/
+public/assets/game/islands-gpt-image-2/workers/
+
+# Variables d'environnement
+.env
+.env.*
+!.env.example

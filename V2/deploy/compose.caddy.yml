@@ -1,0 +1,16 @@
+services:
+  game:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: prometheus-protocol-game:latest
+    container_name: prometheus-game
+    expose:
+      - "80"
+    networks:
+      - edge
+    restart: unless-stopped
+
+networks:
+  edge:
+    external: true
