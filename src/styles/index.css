@@ -1112,6 +1112,16 @@ button {
   }
 }
 
+@keyframes islandFloatMobile {
+  0%,
+  100% {
+    transform: translate(-50%, calc(-50% - 2px));
+  }
+  50% {
+    transform: translate(-50%, calc(-50% + 2px));
+  }
+}
+
 @media (max-width: 1120px), (max-height: 820px) {
   .game-screen {
     --hud-edge: 12px;
@@ -1502,6 +1512,53 @@ button {
 
   .energy-islands-layer {
     opacity: 0.92;
+  }
+
+  .energy-island {
+    animation-name: islandFloatMobile;
+    animation-duration: 8.4s;
+  }
+
+  .energy-island[data-slot="central"] {
+    left: var(--island-center-x);
+    top: var(--island-center-y);
+    z-index: 5;
+    animation-delay: -0.4s;
+  }
+
+  .energy-island[data-slot="biomass"] {
+    left: calc(var(--island-center-x) - var(--island-step-x));
+    top: calc(var(--island-center-y) + var(--island-step-y));
+    z-index: 6;
+    animation-delay: -1.4s;
+  }
+
+  .energy-island[data-slot="animal-power"] {
+    left: calc(var(--island-center-x) - var(--island-step-x));
+    top: calc(var(--island-center-y) - var(--island-step-y));
+    z-index: 4;
+    animation-delay: -2.4s;
+  }
+
+  .energy-island[data-slot="water-wind"] {
+    left: calc(var(--island-center-x) + var(--island-step-x));
+    top: calc(var(--island-center-y) - var(--island-step-y));
+    z-index: 4;
+    animation-delay: -3.4s;
+  }
+
+  .energy-island[data-slot="fossil"] {
+    left: calc(var(--island-center-x) + var(--island-step-x));
+    top: calc(var(--island-center-y) + var(--island-step-y));
+    z-index: 6;
+    animation-delay: -4.4s;
+  }
+
+  .energy-island[data-slot="atomic"] {
+    left: var(--island-center-x);
+    top: calc(var(--island-center-y) - var(--island-top-y));
+    z-index: 3;
+    animation-delay: -5.4s;
   }
 
   .energy-header {
