@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Flame, FlaskConical, RotateCcw, Zap } from 'lucide-react';
 import {
   AgeTransitionOverlay,
+  BreakthroughToast,
   CentralPlayfieldSlot,
   CosmicEnding,
   EnergyIslandsLayer,
@@ -11,10 +12,12 @@ import {
   ProgressRail,
   PurchasePanel,
   TechRail,
+  type ActiveBreakthrough,
 } from '../components/game';
 import { IntroScreen } from '../components/intro';
 import {
   ages,
+  breakthroughMilestones,
   formatJoules,
   formatRate,
   getAdvanceState,
@@ -25,6 +28,7 @@ import {
   purchases,
   technologies,
   type AgeId,
+  type BreakthroughTrigger,
   type PurchaseCounts,
   type PurchaseId,
   type Purchase,
@@ -40,11 +44,13 @@ const defaultGameProgress = {
   activeAgeId: 'biomass' as AgeId,
   purchaseCounts: {} as PurchaseCounts,
   researchedTechnologies: [] as TechnologyId[],
+  achievedBreakthroughs: [] as string[],
 };
 
 const ageIdSet = new Set<string>(ages.map((age) => age.id));
 const purchaseIdSet = new Set<string>(purchases.map((purchase) => purchase.id));
 const technologyIdSet = new Set<string>(technologies.map((technology) => technology.id));
+const breakthroughIdSet = new Set<string>(breakthroughMilestones.map((milestone) => milestone.id));
 
 type StoredGameProgress = typeof defaultGameProgress;
 
@@ -106,6 +112,23 @@ function readGameProgress(): StoredGameProgress {
       }
     }
 
+    const achievedBreakthroughs: string[] = [];
+    const seenBreakthroughs = new Set<string>();
+    if (Array.isArray(parsed.achievedBreakthroughs)) {
+      for (const breakthroughId of parsed.achievedBreakthroughs) {
+        if (
+          typeof breakthroughId !== 'string' ||
+          !breakthroughIdSet.has(breakthroughId) ||
+          seenBreakthroughs.has(breakthroughId)
+        ) {
+          continue;
+        }
+
+        seenBreakthroughs.add(breakthroughId);
+        achievedBreakthroughs.push(breakthroughId);
+      }
+    }
+
     return {
       energy:
         typeof parsed.energy === 'number' && Number.isFinite(parsed.energy)
@@ -114,6 +137,7 @@ function readGameProgress(): StoredGameProgress {
       activeAgeId: isAgeId(parsed.activeAgeId) ? parsed.activeAgeId : defaultGameProgress.activeAgeId,
       purchaseCounts,
       researchedTechnologies,
+      achievedBreakthroughs,
     };
   } catch {
     return defaultGameProgress;
@@ -160,11 +184,18 @@ function GameScreen() {
   const [researchedTechnologies, setResearchedTechnologies] = useState<TechnologyId[]>(
     initialProgress.researchedTechnologies,
   );
+  const [achievedBreakthroughs, setAchievedBreakthroughs] = useState<string[]>(
+    initialProgress.achievedBreakthroughs,
+  );
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
   const [ageTransition, setAgeTransition] = useState<AgeTransition | null>(null);
+  const [activeBreakthrough, setActiveBreakthrough] = useState<ActiveBreakthrough | null>(null);
   const gainIdRef = useRef(0);
   const transitionIdRef = useRef(0);
   const transitionTimerRef = useRef<number | null>(null);
+  const breakthroughIdRef = useRef(0);
+  const breakthroughTimerRef = useRef<number | null>(null);
+  const achievedBreakthroughsRef = useRef(new Set(initialProgress.achievedBreakthroughs));
 
   const production = useMemo(
     () => getProduction(purchaseCounts, researchedTechnologies),
@@ -188,13 +219,17 @@ function GameScreen() {
       activeAgeId,
       purchaseCounts,
       researchedTechnologies,
+      achievedBreakthroughs,
     });
-  }, [activeAgeId, energy, purchaseCounts, researchedTechnologies]);
+  }, [achievedBreakthroughs, activeAgeId, energy, purchaseCounts, researchedTechnologies]);
 
   useEffect(
     () => () => {
       if (transitionTimerRef.current) {
         window.clearTimeout(transitionTimerRef.current);
+      }
+      if (breakthroughTimerRef.current) {
+        window.clearTimeout(breakthroughTimerRef.current);
       }
     },
     [],
@@ -220,6 +255,31 @@ function GameScreen() {
     }, 900);
   }, []);
 
+  const triggerBreakthrough = useCallback((trigger: BreakthroughTrigger) => {
+    const milestone = breakthroughMilestones.find((item) => {
+      return item.trigger.type === trigger.type && item.trigger.id === trigger.id;
+    });
+    if (!milestone || achievedBreakthroughsRef.current.has(milestone.id)) return;
+
+    achievedBreakthroughsRef.current.add(milestone.id);
+    setAchievedBreakthroughs(Array.from(achievedBreakthroughsRef.current));
+
+    breakthroughIdRef.current += 1;
+    setActiveBreakthrough({
+      ...milestone,
+      nonce: breakthroughIdRef.current,
+    });
+
+    if (breakthroughTimerRef.current) {
+      window.clearTimeout(breakthroughTimerRef.current);
+    }
+
+    breakthroughTimerRef.current = window.setTimeout(() => {
+      setActiveBreakthrough(null);
+      breakthroughTimerRef.current = null;
+    }, 3600);
+  }, []);
+
   const handleCampClick = useCallback(
     (point: { x: number; y: number }) => {
       const gain = totals.energyPerClick;
@@ -242,9 +302,10 @@ function GameScreen() {
         ...current,
         [purchase.id]: (current[purchase.id] ?? 0) + 1,
       }));
+      triggerBreakthrough({ type: 'purchase', id: purchase.id });
       addFloatingGain(point, -cost);
     },
-    [addFloatingGain, energy],
+    [addFloatingGain, energy, triggerBreakthrough],
   );
 
   const handleResearchTechnology = useCallback(
@@ -264,9 +325,10 @@ function GameScreen() {
       setResearchedTechnologies((current) =>
         current.includes(technology.id) ? current : [...current, technology.id],
       );
+      triggerBreakthrough({ type: 'technology', id: technology.id });
       addFloatingGain(point, -technology.costJoules);
     },
-    [addFloatingGain, energy, purchaseCounts, researchedTechnologies],
+    [addFloatingGain, energy, purchaseCounts, researchedTechnologies, triggerBreakthrough],
   );
 
   const handleAdvanceAge = useCallback(
@@ -280,6 +342,7 @@ function GameScreen() {
         return current - advanceState.cost;
       });
       setActiveAgeId(nextAge.id);
+      triggerBreakthrough({ type: 'age', id: nextAge.id });
       transitionIdRef.current += 1;
       setAgeTransition({
         id: transitionIdRef.current,
@@ -295,7 +358,7 @@ function GameScreen() {
       }, 2200);
       addFloatingGain(point, -advanceState.cost);
     },
-    [addFloatingGain, advanceState],
+    [addFloatingGain, advanceState, triggerBreakthrough],
   );
 
   const handleRestartGame = useCallback(() => {
@@ -304,6 +367,7 @@ function GameScreen() {
       activeAgeId: defaultGameProgress.activeAgeId,
       purchaseCounts: {},
       researchedTechnologies: [],
+      achievedBreakthroughs: [],
     };
 
     writeGameProgress(resetProgress);
@@ -311,12 +375,15 @@ function GameScreen() {
     setActiveAgeId(resetProgress.activeAgeId);
     setPurchaseCounts(resetProgress.purchaseCounts);
     setResearchedTechnologies(resetProgress.researchedTechnologies);
+    setAchievedBreakthroughs(resetProgress.achievedBreakthroughs);
+    achievedBreakthroughsRef.current = new Set(resetProgress.achievedBreakthroughs);
     gainIdRef.current = 0;
     if (transitionTimerRef.current) {
       window.clearTimeout(transitionTimerRef.current);
       transitionTimerRef.current = null;
     }
     setAgeTransition(null);
+    setActiveBreakthrough(null);
     setFloatingGains([]);
   }, []);
 
@@ -333,6 +400,7 @@ function GameScreen() {
       researchedTechnologies: technologies
         .filter((technology) => technology.id !== 'cosmic-reboot')
         .map((technology) => technology.id),
+      achievedBreakthroughs: breakthroughMilestones.map((milestone) => milestone.id),
     };
 
     writeGameProgress(sandboxProgress);
@@ -340,12 +408,15 @@ function GameScreen() {
     setActiveAgeId(sandboxProgress.activeAgeId);
     setPurchaseCounts(sandboxProgress.purchaseCounts);
     setResearchedTechnologies(sandboxProgress.researchedTechnologies);
+    setAchievedBreakthroughs(sandboxProgress.achievedBreakthroughs);
+    achievedBreakthroughsRef.current = new Set(sandboxProgress.achievedBreakthroughs);
     gainIdRef.current = 0;
     if (transitionTimerRef.current) {
       window.clearTimeout(transitionTimerRef.current);
       transitionTimerRef.current = null;
     }
     setAgeTransition(null);
+    setActiveBreakthrough(null);
     setFloatingGains([]);
   }, []);
 
@@ -429,6 +500,7 @@ function GameScreen() {
       </div>
 
       <AgeTransitionOverlay age={ageTransition} />
+      <BreakthroughToast breakthrough={activeBreakthrough} />
       <CosmicEnding visible={hasReachedCosmicEnding} onRestart={handleRestartGame} />
 
       <aside className="rotate-device-overlay" aria-live="polite">

@@ -44,6 +44,7 @@ npm run balance:loop -- --rounds=1 --interval-ms=10
 Le rapport contient maintenant :
 
 - les meilleurs candidats de croissance de cout ;
+- les moments forts configures dans `breakthroughs` ;
 - le run obligatoire et le run agressif ;
 - `diagnostics.requiredOnly` et `diagnostics.aggressiveRepeat`, avec un statut par age ;
 - une recommandation simple quand un age devient trop court, trop long ou a surveiller.
@@ -59,7 +60,8 @@ Le rapport contient maintenant :
 
 - Le run rapide reste valide : `121.56 min`.
 - L'age `Dyson` est marque `watch` : `40.49 min` dans une bande cible `24-52 min`.
-- Action recommandee : ajouter un moment fort Dyson, par exemple premier anneau stellaire visible, flash de production, ou objectif intermediaire avant le passage au Vide.
+- Action appliquee : ajout du moment fort `first-dyson-ring` sur la technologie `Essaim de Dyson`.
+- Le rapport reconnait maintenant ce jalon : `Moment fort en place : first-dyson-ring`.
 
 ## Pourquoi ce choix
 

@@ -27,7 +27,7 @@ const context = { exports: {}, require: () => undefined };
 vm.createContext(context);
 vm.runInContext(compiled, context);
 
-const { ages, purchases, technologies } = context.exports;
+const { ages, breakthroughMilestones = [], purchases, technologies } = context.exports;
 
 function getScaledCost(baseCostJoules, count, costGrowth) {
   return Math.ceil(baseCostJoules * costGrowth ** count);
@@ -224,6 +224,13 @@ function diagnoseAge(row, index) {
   const band = getAgeBand(index);
   let status = 'ok';
   let recommendation = 'Garder le rythme actuel.';
+  const ageId = ages[index]?.id;
+  const ageBreakthroughs = breakthroughMilestones.filter((milestone) => {
+    if (milestone.trigger.type === 'age') return milestone.trigger.id === ageId;
+
+    const source = milestone.trigger.type === 'purchase' ? purchases : technologies;
+    return source.find((item) => item.id === milestone.trigger.id)?.ageId === ageId;
+  });
 
   if (row.ageMinutes < band.min) {
     status = 'too-fast';
@@ -233,7 +240,9 @@ function diagnoseAge(row, index) {
     recommendation = 'Ajouter un objectif intermediaire, un feedback fort, ou reduire le cout de transition.';
   } else if (row.ageMinutes > band.max * 0.72) {
     status = 'watch';
-    recommendation = 'Prevoir un moment waouh pour eviter une attente passive.';
+    recommendation = ageBreakthroughs.length
+      ? `Moment fort en place : ${ageBreakthroughs.map((milestone) => milestone.id).join(', ')}.`
+      : 'Prevoir un moment waouh pour eviter une attente passive.';
   }
 
   return {
@@ -241,6 +250,7 @@ function diagnoseAge(row, index) {
     ageMinutes: row.ageMinutes,
     targetBandMinutes: `${band.min}-${band.max}`,
     status,
+    breakthroughs: ageBreakthroughs.map((milestone) => milestone.id),
     recommendation,
   };
 }
@@ -286,6 +296,11 @@ function buildReport() {
     targetMinutes: 120,
     clickRatePerSecond: CLICK_RATE_PER_SECOND,
     aggressivePaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS,
+    breakthroughs: breakthroughMilestones.map((milestone) => ({
+      id: milestone.id,
+      trigger: milestone.trigger,
+      title: milestone.title,
+    })),
     chosen: best,
     diagnostics: {
       requiredOnly: diagnoseRun(best.requiredOnly),

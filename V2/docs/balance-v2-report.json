@@ -2,6 +2,56 @@
   "targetMinutes": 120,
   "clickRatePerSecond": 1,
   "aggressivePaybackSeconds": 600,
+  "breakthroughs": [
+    {
+      "id": "first-steam",
+      "trigger": {
+        "type": "purchase",
+        "id": "steam-engine"
+      },
+      "title": "La vapeur pousse le monde"
+    },
+    {
+      "id": "first-fission",
+      "trigger": {
+        "type": "technology",
+        "id": "controlled-fission"
+      },
+      "title": "Le noyau devient moteur"
+    },
+    {
+      "id": "first-fusion",
+      "trigger": {
+        "type": "technology",
+        "id": "plasma-confinement"
+      },
+      "title": "Une étoile tenue en laisse"
+    },
+    {
+      "id": "first-orbital-solar",
+      "trigger": {
+        "type": "purchase",
+        "id": "orbital-collector"
+      },
+      "title": "Le jour ne finit plus"
+    },
+    {
+      "id": "first-dyson-ring",
+      "trigger": {
+        "type": "technology",
+        "id": "dyson-swarm"
+      },
+      "title": "Premier anneau stellaire"
+    },
+    {
+      "id": "first-vacuum-seed",
+      "trigger": {
+        "type": "purchase",
+        "id": "universe-seed"
+      },
+      "title": "Le vide répond"
+    }
+  ],
   "chosen": {
     "costGrowth": 3.02,
     "shortestMinutes": 121.56,
@@ -170,6 +220,7 @@
         "ageMinutes": 0.32,
         "targetBandMinutes": "0.2-2",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -177,6 +228,7 @@
         "ageMinutes": 0.67,
         "targetBandMinutes": "0.5-3",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -184,6 +236,7 @@
         "ageMinutes": 1.09,
         "targetBandMinutes": "0.8-5",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -191,6 +244,9 @@
         "ageMinutes": 1.41,
         "targetBandMinutes": "1-7",
         "status": "ok",
+        "breakthroughs": [
+          "first-steam"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -198,6 +254,9 @@
         "ageMinutes": 2.49,
         "targetBandMinutes": "2-10",
         "status": "ok",
+        "breakthroughs": [
+          "first-fission"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -205,6 +264,9 @@
         "ageMinutes": 5.36,
         "targetBandMinutes": "4-14",
         "status": "ok",
+        "breakthroughs": [
+          "first-fusion"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -212,6 +274,9 @@
         "ageMinutes": 8.06,
         "targetBandMinutes": "6-18",
         "status": "ok",
+        "breakthroughs": [
+          "first-orbital-solar"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -219,6 +284,7 @@
         "ageMinutes": 11.69,
         "targetBandMinutes": "8-22",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -226,6 +292,7 @@
         "ageMinutes": 15.77,
         "targetBandMinutes": "10-28",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -233,6 +300,7 @@
         "ageMinutes": 23.81,
         "targetBandMinutes": "16-36",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -240,13 +308,19 @@
         "ageMinutes": 42.31,
         "targetBandMinutes": "24-52",
         "status": "watch",
-        "recommendation": "Prevoir un moment waouh pour eviter une attente passive."
+        "breakthroughs": [
+          "first-dyson-ring"
+        ],
+        "recommendation": "Moment fort en place : first-dyson-ring."
       },
       {
         "age": "Vide",
         "ageMinutes": 17.63,
         "targetBandMinutes": "10-28",
         "status": "ok",
+        "breakthroughs": [
+          "first-vacuum-seed"
+        ],
         "recommendation": "Garder le rythme actuel."
       }
     ],
@@ -256,6 +330,7 @@
         "ageMinutes": 0.35,
         "targetBandMinutes": "0.2-2",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -263,6 +338,7 @@
         "ageMinutes": 0.76,
         "targetBandMinutes": "0.5-3",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -270,6 +346,7 @@
         "ageMinutes": 1.24,
         "targetBandMinutes": "0.8-5",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -277,6 +354,9 @@
         "ageMinutes": 1.61,
         "targetBandMinutes": "1-7",
         "status": "ok",
+        "breakthroughs": [
+          "first-steam"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -284,6 +364,9 @@
         "ageMinutes": 3.33,
         "targetBandMinutes": "2-10",
         "status": "ok",
+        "breakthroughs": [
+          "first-fission"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -291,6 +374,9 @@
         "ageMinutes": 5.94,
         "targetBandMinutes": "4-14",
         "status": "ok",
+        "breakthroughs": [
+          "first-fusion"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -298,6 +384,9 @@
         "ageMinutes": 6.88,
         "targetBandMinutes": "6-18",
         "status": "ok",
+        "breakthroughs": [
+          "first-orbital-solar"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -305,6 +394,7 @@
         "ageMinutes": 9.28,
         "targetBandMinutes": "8-22",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -312,6 +402,7 @@
         "ageMinutes": 13.53,
         "targetBandMinutes": "10-28",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -319,6 +410,7 @@
         "ageMinutes": 20.66,
         "targetBandMinutes": "16-36",
         "status": "ok",
+        "breakthroughs": [],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -326,13 +418,19 @@
         "ageMinutes": 40.49,
         "targetBandMinutes": "24-52",
         "status": "watch",
-        "recommendation": "Prevoir un moment waouh pour eviter une attente passive."
+        "breakthroughs": [
+          "first-dyson-ring"
+        ],
+        "recommendation": "Moment fort en place : first-dyson-ring."
       },
       {
         "age": "Vide",
         "ageMinutes": 17.47,
         "targetBandMinutes": "10-28",
         "status": "ok",
+        "breakthroughs": [
+          "first-vacuum-seed"
+        ],
         "recommendation": "Garder le rythme actuel."
       }
     ]

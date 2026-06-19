@@ -33,6 +33,7 @@ npm run balance:loop
 - Assets runtime nettoyes : la V2 charge uniquement `public/assets/game/images-finales-gpt-image`.
 - Parcelles non construites rendues opaques, comme des iles vides normales.
 - Objectif courant compact dans le HUD : prochain achat, technologie ou passage d'age.
+- Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
 - Croissance des achats repetables calibree par simulation.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
 - Target simulation : 120 minutes minimum.

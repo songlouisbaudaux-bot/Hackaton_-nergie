@@ -146,3 +146,26 @@ export type CurrentObjective = {
   ready: boolean;
   costJoules?: number;
 };
+
+export type BreakthroughTrigger =
+  | {
+      type: 'purchase';
+      id: PurchaseId;
+    }
+  | {
+      type: 'technology';
+      id: TechnologyId;
+    }
+  | {
+      type: 'age';
+      id: AgeId;
+    };
+
+export type BreakthroughMilestone = {
+  id: string;
+  trigger: BreakthroughTrigger;
+  kicker: string;
+  title: string;
+  detail: string;
+  tone: 'steam' | 'atomic' | 'stellar' | 'cosmic';
+};

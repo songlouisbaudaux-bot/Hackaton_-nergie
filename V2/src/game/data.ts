@@ -1,4 +1,4 @@
-import type { Age, EnergySource, Purchase, Technology } from './types';
+import type { Age, BreakthroughMilestone, EnergySource, Purchase, Technology } from './types';
 
 export const assetPath = (fileName: string) => `/assets/game/${fileName}`;
 
@@ -994,5 +994,56 @@ export const technologies: Technology[] = [
     passiveGain: 1800000000,
     assetFile: finalImagePath('cosmic/island-cosmic-12-vacuum-universe-seed.png'),
     impactLabel: '+1,8 Md J/s',
+  },
+];
+
+export const breakthroughMilestones: BreakthroughMilestone[] = [
+  {
+    id: 'first-steam',
+    trigger: { type: 'purchase', id: 'steam-engine' },
+    kicker: 'Percée',
+    title: 'La vapeur pousse le monde',
+    detail: 'Le feu quitte le foyer et devient une force mécanique.',
+    tone: 'steam',
+  },
+  {
+    id: 'first-fission',
+    trigger: { type: 'technology', id: 'controlled-fission' },
+    kicker: 'Percée',
+    title: 'Le noyau devient moteur',
+    detail: 'Une petite masse remplace des montagnes de combustible.',
+    tone: 'atomic',
+  },
+  {
+    id: 'first-fusion',
+    trigger: { type: 'technology', id: 'plasma-confinement' },
+    kicker: 'Percée',
+    title: 'Une étoile tenue en laisse',
+    detail: 'La production change d’échelle sans brûler la planète.',
+    tone: 'stellar',
+  },
+  {
+    id: 'first-orbital-solar',
+    trigger: { type: 'purchase', id: 'orbital-collector' },
+    kicker: 'Percée',
+    title: 'Le jour ne finit plus',
+    detail: 'Le Soleil alimente le système depuis l’orbite.',
+    tone: 'stellar',
+  },
+  {
+    id: 'first-dyson-ring',
+    trigger: { type: 'technology', id: 'dyson-swarm' },
+    kicker: 'Percée',
+    title: 'Premier anneau stellaire',
+    detail: 'Le village entoure maintenant une étoile entière.',
+    tone: 'stellar',
+  },
+  {
+    id: 'first-vacuum-seed',
+    trigger: { type: 'purchase', id: 'universe-seed' },
+    kicker: 'Percée',
+    title: 'Le vide répond',
+    detail: 'L’énergie cesse d’être une limite et devient un choix.',
+    tone: 'cosmic',
   },
 ];
