@@ -21,6 +21,16 @@ Conserver le debut actuel, puis prolonger le jeu apres l'age atomique jusqu'a un
 
 Le debut reste volontairement rapide. La difficulte augmente apres l'atome avec des couts de transition beaucoup plus hauts et des productions en millions puis milliards de joules par seconde.
 
+## Pacing verifie
+
+La commande `npm run simulate:pacing` simule la progression complete avec 1 clic/seconde.
+
+Resultats actuels :
+
+- parcours minimal, un achat de chaque objet et technologie : environ 130,6 minutes ;
+- parcours agressif, achats repetes de l'age courant avec retour sur investissement de 10 minutes maximum : environ 82,6 minutes ;
+- garde-fou automatique : la commande echoue si la simulation la plus courte passe sous 60 minutes.
+
 ## Fin
 
 La derniere ere est `Vide`. Quand tous les objets et technologies de cette ere sont termines, le jeu affiche `Le vide repond` avec trois lectures de fin :
