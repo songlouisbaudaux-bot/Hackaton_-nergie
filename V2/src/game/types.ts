@@ -134,3 +134,15 @@ export type SourceProduction = EnergySource & {
   mixWeight: number;
   share: number;
 };
+
+export type CurrentObjectiveKind = 'purchase' | 'technology' | 'advance' | 'ending';
+
+export type CurrentObjective = {
+  kind: CurrentObjectiveKind;
+  kicker: string;
+  label: string;
+  detail: string;
+  progress: number;
+  ready: boolean;
+  costJoules?: number;
+};

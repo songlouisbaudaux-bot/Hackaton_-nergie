@@ -1,6 +1,7 @@
 import { ages, energySources, purchases, technologies } from './data';
 import type {
   AgeId,
+  CurrentObjective,
   Purchase,
   PurchaseCounts,
   PurchaseId,
@@ -122,6 +123,79 @@ export function getAdvanceState(
     cost,
     affordable: currentEnergyJoules >= cost,
     canAdvance: Boolean(nextAge && complete && currentEnergyJoules >= cost),
+  };
+}
+
+function getProgress(currentEnergyJoules: number, costJoules: number) {
+  if (costJoules <= 0) return 1;
+
+  return Math.min(1, Math.max(0, currentEnergyJoules / costJoules));
+}
+
+export function getCurrentObjective(
+  ageId: AgeId,
+  purchaseCounts: PurchaseCounts,
+  researchedIds: TechnologyId[],
+  currentEnergyJoules: number,
+): CurrentObjective {
+  const currentAge = getAgeById(ageId);
+  const researched = new Set(researchedIds);
+  const agePurchases = purchases.filter((purchase) => purchase.ageId === ageId);
+  const missingPurchase = agePurchases.find((purchase) => (purchaseCounts[purchase.id] ?? 0) <= 0);
+
+  if (missingPurchase) {
+    const count = purchaseCounts[missingPurchase.id] ?? 0;
+    const costJoules = getScaledCost(missingPurchase.costJoules, count);
+
+    return {
+      kind: 'purchase',
+      kicker: currentAge.label,
+      label: missingPurchase.label,
+      detail: missingPurchase.impactLabel,
+      progress: getProgress(currentEnergyJoules, costJoules),
+      ready: currentEnergyJoules >= costJoules,
+      costJoules,
+    };
+  }
+
+  const ageTechnologies = technologies.filter((technology) => technology.ageId === ageId);
+  const missingTechnology = ageTechnologies.find((technology) => {
+    return !researched.has(technology.id) && (purchaseCounts[technology.targetPurchaseId] ?? 0) > 0;
+  });
+
+  if (missingTechnology) {
+    return {
+      kind: 'technology',
+      kicker: 'Technologie',
+      label: missingTechnology.label,
+      detail: missingTechnology.impactLabel,
+      progress: getProgress(currentEnergyJoules, missingTechnology.costJoules),
+      ready: currentEnergyJoules >= missingTechnology.costJoules,
+      costJoules: missingTechnology.costJoules,
+    };
+  }
+
+  const advanceState = getAdvanceState(ageId, purchaseCounts, researchedIds, currentEnergyJoules);
+
+  if (advanceState.nextAge) {
+    return {
+      kind: 'advance',
+      kicker: 'Transition',
+      label: advanceState.nextAge.label,
+      detail: advanceState.nextAge.description,
+      progress: getProgress(currentEnergyJoules, advanceState.cost),
+      ready: advanceState.canAdvance,
+      costJoules: advanceState.cost,
+    };
+  }
+
+  return {
+    kind: 'ending',
+    kicker: 'Fin',
+    label: 'Univers stabilise',
+    detail: 'Le vide devient une source exploitable.',
+    progress: 1,
+    ready: true,
   };
 }
 

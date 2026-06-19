@@ -163,6 +163,7 @@ button {
   --hud-edge: clamp(10px, 1.4vw, 20px);
   --hud-gap: clamp(8px, 1.1vw, 16px);
   --energy-header-height: 72px;
+  --objective-strip-height: 58px;
   --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap) + 12px);
   --progress-rail-height: 54px;
   --tech-rail-height: clamp(96px, 16dvh, 150px);
@@ -173,7 +174,9 @@ button {
   --bottom-zone-height: calc(
     var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
   );
-  --scene-safe-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
+  --scene-safe-top: calc(
+    var(--hud-edge) + var(--energy-header-height) + var(--objective-strip-height) + var(--hud-gap) * 2
+  );
   --scene-safe-right: calc(var(--purchase-panel-width) + var(--hud-edge) + var(--hud-gap));
   --scene-safe-bottom: calc(var(--bottom-zone-height) + var(--hud-gap));
   --scene-safe-left: calc(var(--mix-panel-width) + var(--hud-edge) + var(--hud-gap));
@@ -392,6 +395,112 @@ button {
 
 .rate-cluster span[data-active="true"] {
   color: var(--amber);
+}
+
+.objective-strip {
+  position: absolute;
+  top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
+  left: 50%;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(72px, auto);
+  width: min(430px, calc(100vw - var(--mix-panel-width) - var(--purchase-panel-width) - var(--hud-edge) * 4));
+  min-width: 280px;
+  min-height: var(--objective-strip-height);
+  align-items: center;
+  gap: 4px 12px;
+  padding: 9px 12px;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.objective-main {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.objective-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--radius);
+  color: var(--amber);
+  background: rgba(237, 138, 33, 0.12);
+}
+
+.objective-strip[data-ready="true"] .objective-icon {
+  color: var(--green);
+  background: rgba(47, 141, 100, 0.12);
+}
+
+.objective-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.objective-kicker {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 820;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.objective-copy strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.objective-side {
+  display: grid;
+  min-width: 76px;
+  justify-items: end;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 820;
+}
+
+.objective-progress {
+  width: 76px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(31, 43, 36, 0.1);
+}
+
+.objective-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--amber), var(--green));
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.objective-strip p {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  margin: -2px 0 0 37px;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 690;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .restart-run-button {
@@ -1428,6 +1537,7 @@ button {
     --hud-edge: 12px;
     --hud-gap: 10px;
     --energy-header-height: 68px;
+    --objective-strip-height: 52px;
     --tech-rail-height: clamp(118px, 15dvh, 128px);
     --progress-rail-height: 50px;
     --island-size: clamp(96px, 12vw, 142px);
@@ -1443,6 +1553,16 @@ button {
 
   .energy-actions {
     gap: 8px;
+  }
+
+  .objective-strip {
+    width: min(390px, calc(100vw - var(--mix-panel-width) - var(--purchase-panel-width) - var(--hud-edge) * 4));
+    min-width: 250px;
+    padding: 8px 10px;
+  }
+
+  .objective-copy strong {
+    font-size: 0.8rem;
   }
 
   .restart-run-button {
@@ -1503,6 +1623,7 @@ button {
     --hud-edge: 10px;
     --hud-gap: 8px;
     --energy-header-height: 66px;
+    --objective-strip-height: 0px;
     --tech-rail-height: 118px;
     --progress-rail-height: 72px;
     --mobile-side-panel-height: clamp(156px, 25dvh, 210px);
@@ -1539,6 +1660,10 @@ button {
     left: var(--hud-edge);
     width: auto;
     transform: none;
+  }
+
+  .objective-strip {
+    display: none;
   }
 
   .mix-panel,
@@ -1797,6 +1922,7 @@ button {
     --hud-edge: 6px;
     --hud-gap: 6px;
     --energy-header-height: 38px;
+    --objective-strip-height: 0px;
     --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
     --tech-rail-height: 50px;
     --progress-rail-height: 26px;
@@ -1853,6 +1979,10 @@ button {
     gap: 8px;
     padding: 5px 9px;
     transform: translateX(-50%);
+  }
+
+  .objective-strip {
+    display: none;
   }
 
   .metric-kicker {

@@ -29,6 +29,25 @@ Pour appliquer la meilleure valeur trouvee :
 npm run balance:auto -- --apply
 ```
 
+Pour laisser la boucle tourner pendant une session d'iteration :
+
+```bash
+npm run balance:loop
+```
+
+Pour tester la boucle sans la laisser tourner :
+
+```bash
+npm run balance:loop -- --rounds=1 --interval-ms=10
+```
+
+Le rapport contient maintenant :
+
+- les meilleurs candidats de croissance de cout ;
+- le run obligatoire et le run agressif ;
+- `diagnostics.requiredOnly` et `diagnostics.aggressiveRepeat`, avec un statut par age ;
+- une recommandation simple quand un age devient trop court, trop long ou a surveiller.
+
 ## Reglage applique
 
 - `COST_GROWTH = 3.02`
@@ -36,14 +55,19 @@ npm run balance:auto -- --apply
 - Run agressif : `121.6 min`
 - Cible : `>= 120 min`
 
+## Dernier diagnostic
+
+- Le run rapide reste valide : `121.56 min`.
+- L'age `Dyson` est marque `watch` : `40.49 min` dans une bande cible `24-52 min`.
+- Action recommandee : ajouter un moment fort Dyson, par exemple premier anneau stellaire visible, flash de production, ou objectif intermediaire avant le passage au Vide.
+
 ## Pourquoi ce choix
 
 Le jeu permet toujours d'acheter plusieurs fois les memes objets. Par contre, chaque achat supplementaire devient vite cher, ce qui evite que le joueur transforme la partie en boucle optimale trop courte.
 
 ## Prochaines iterations
 
-- Ajouter des objectifs intermediaires par age pour que les 2 heures aient plus de rythme.
+- Enrichir les objectifs intermediaires par age pour que les 2 heures aient plus de rythme.
 - Ajouter des petits pics de feedback aux moments clefs : premiere vapeur, premiere fission, premiere structure orbitale.
 - Simuler aussi un profil joueur plus lent, avec moins de clics.
-- Ajouter un rapport par age avec les moments creux a corriger.
 - Revoir les couts d'achat de base si certains ages deviennent trop passifs.

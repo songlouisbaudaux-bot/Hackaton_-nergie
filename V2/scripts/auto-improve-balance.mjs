@@ -201,55 +201,158 @@ function evaluate(costGrowth) {
   };
 }
 
+const pacingBands = [
+  { min: 0.2, max: 2.0 },
+  { min: 0.5, max: 3.0 },
+  { min: 0.8, max: 5.0 },
+  { min: 1.0, max: 7.0 },
+  { min: 2.0, max: 10.0 },
+  { min: 4.0, max: 14.0 },
+  { min: 6.0, max: 18.0 },
+  { min: 8.0, max: 22.0 },
+  { min: 10.0, max: 28.0 },
+  { min: 16.0, max: 36.0 },
+  { min: 24.0, max: 52.0 },
+  { min: 10.0, max: 28.0 },
+];
+
+function getAgeBand(index) {
+  return pacingBands[index] ?? { min: 2, max: 20 };
+}
+
+function diagnoseAge(row, index) {
+  const band = getAgeBand(index);
+  let status = 'ok';
+  let recommendation = 'Garder le rythme actuel.';
+
+  if (row.ageMinutes < band.min) {
+    status = 'too-fast';
+    recommendation = 'Ajouter un petit palier ou augmenter legerement le cout de transition.';
+  } else if (row.ageMinutes > band.max) {
+    status = 'too-slow';
+    recommendation = 'Ajouter un objectif intermediaire, un feedback fort, ou reduire le cout de transition.';
+  } else if (row.ageMinutes > band.max * 0.72) {
+    status = 'watch';
+    recommendation = 'Prevoir un moment waouh pour eviter une attente passive.';
+  }
+
+  return {
+    age: row.age,
+    ageMinutes: row.ageMinutes,
+    targetBandMinutes: `${band.min}-${band.max}`,
+    status,
+    recommendation,
+  };
+}
+
+function diagnoseRun(run) {
+  return run.rows.map((row, index) => diagnoseAge(row, index));
+}
+
 function updateCostGrowth(file, value) {
   const content = fs.readFileSync(file, 'utf8');
-  const updated = content.replace(/const COST_GROWTH = [0-9.]+;/, `const COST_GROWTH = ${value};`);
+  const pattern = /const COST_GROWTH = [0-9.]+;/;
 
-  if (updated === content) {
+  if (!pattern.test(content)) {
     throw new Error(`Unable to update COST_GROWTH in ${file}`);
   }
+
+  const updated = content.replace(pattern, `const COST_GROWTH = ${value};`);
+
+  if (updated === content) return;
 
   fs.writeFileSync(file, updated);
 }
 
 const apply = process.argv.includes('--apply');
-const candidates = [];
+const loop = process.argv.includes('--loop');
+const roundsArg = process.argv.find((arg) => arg.startsWith('--rounds='));
+const intervalArg = process.argv.find((arg) => arg.startsWith('--interval-ms='));
+const maxRounds = roundsArg ? Number(roundsArg.split('=')[1]) : Infinity;
+const intervalMs = intervalArg ? Number(intervalArg.split('=')[1]) : 5000;
 
-for (let growth = 1.18; growth <= 4.01; growth += 0.02) {
-  candidates.push(evaluate(growth));
+function buildReport() {
+  const candidates = [];
+
+  for (let growth = 1.18; growth <= 4.01; growth += 0.02) {
+    candidates.push(evaluate(growth));
+  }
+
+  const viable = candidates.filter((candidate) => candidate.shortestMinutes >= 120);
+  const best = (viable.length ? viable : candidates)
+    .sort((a, b) => a.score - b.score || a.costGrowth - b.costGrowth)[0];
+
+  return {
+    targetMinutes: 120,
+    clickRatePerSecond: CLICK_RATE_PER_SECOND,
+    aggressivePaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS,
+    chosen: best,
+    diagnostics: {
+      requiredOnly: diagnoseRun(best.requiredOnly),
+      aggressiveRepeat: diagnoseRun(best.aggressiveRepeat),
+    },
+    topCandidates: candidates
+      .slice()
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 10)
+      .map((candidate) => ({
+        costGrowth: candidate.costGrowth,
+        shortestMinutes: candidate.shortestMinutes,
+        requiredOnlyMinutes: candidate.requiredOnly.totalMinutes,
+        aggressiveRepeatMinutes: candidate.aggressiveRepeat.totalMinutes,
+        score: Number(candidate.score.toFixed(2)),
+      })),
+  };
 }
 
-const viable = candidates.filter((candidate) => candidate.shortestMinutes >= 120);
-const best = (viable.length ? viable : candidates)
-  .sort((a, b) => a.score - b.score || a.costGrowth - b.costGrowth)[0];
+function writeReport(report) {
+  fs.mkdirSync(path.dirname(reportFile), { recursive: true });
+  fs.writeFileSync(reportFile, `${JSON.stringify(report, null, 2)}\n`);
+}
 
-const report = {
-  targetMinutes: 120,
-  clickRatePerSecond: CLICK_RATE_PER_SECOND,
-  aggressivePaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS,
-  chosen: best,
-  topCandidates: candidates
-    .slice()
-    .sort((a, b) => a.score - b.score)
-    .slice(0, 10)
-    .map((candidate) => ({
-      costGrowth: candidate.costGrowth,
-      shortestMinutes: candidate.shortestMinutes,
-      requiredOnlyMinutes: candidate.requiredOnly.totalMinutes,
-      aggressiveRepeatMinutes: candidate.aggressiveRepeat.totalMinutes,
-      score: Number(candidate.score.toFixed(2)),
-    })),
-};
+function printReport(report, round) {
+  if (round) {
+    console.log(`\nBalance round ${round}`);
+  }
 
-fs.mkdirSync(path.dirname(reportFile), { recursive: true });
-fs.writeFileSync(reportFile, `${JSON.stringify(report, null, 2)}\n`);
+  console.table(report.topCandidates);
+  console.log(`Chosen COST_GROWTH=${report.chosen.costGrowth}, shortest=${report.chosen.shortestMinutes} min.`);
+  console.log(`Report written to ${path.relative(repoRoot, reportFile)}.`);
 
-console.table(report.topCandidates);
-console.log(`Chosen COST_GROWTH=${best.costGrowth}, shortest=${best.shortestMinutes} min.`);
-console.log(`Report written to ${path.relative(repoRoot, reportFile)}.`);
+  const warnings = report.diagnostics.aggressiveRepeat.filter((row) => row.status !== 'ok');
+  if (warnings.length) {
+    console.log('\nPacing diagnostics, aggressive run');
+    console.table(warnings);
+  }
+}
 
-if (apply) {
-  updateCostGrowth(selectorsFile, best.costGrowth);
-  updateCostGrowth(simulatorFile, best.costGrowth);
-  console.log(`Applied COST_GROWTH=${best.costGrowth} to selectors and simulator.`);
+function runRound(round) {
+  const report = buildReport();
+  writeReport(report);
+  printReport(report, round);
+
+  if (apply) {
+    updateCostGrowth(selectorsFile, report.chosen.costGrowth);
+    updateCostGrowth(simulatorFile, report.chosen.costGrowth);
+    console.log(`Applied COST_GROWTH=${report.chosen.costGrowth} to selectors and simulator.`);
+  }
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+if (loop) {
+  let round = 1;
+  while (round <= maxRounds) {
+    runRound(round);
+    round += 1;
+    if (round <= maxRounds) {
+      await sleep(intervalMs);
+    }
+  }
+} else {
+  runRound();
 }

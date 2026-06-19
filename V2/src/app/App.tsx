@@ -7,6 +7,7 @@ import {
   EnergyIslandsLayer,
   MixEvolutionBackdrop,
   MixPanel,
+  ObjectiveStrip,
   ProgressRail,
   PurchasePanel,
   TechRail,
@@ -18,6 +19,7 @@ import {
   formatRate,
   getAdvanceState,
   getAgeById,
+  getCurrentObjective,
   getProduction,
   getTotals,
   purchases,
@@ -172,6 +174,10 @@ function GameScreen() {
   const currentAge = useMemo(() => getAgeById(activeAgeId), [activeAgeId]);
   const advanceState = useMemo(
     () => getAdvanceState(activeAgeId, purchaseCounts, researchedTechnologies, energy),
+    [activeAgeId, energy, purchaseCounts, researchedTechnologies],
+  );
+  const currentObjective = useMemo(
+    () => getCurrentObjective(activeAgeId, purchaseCounts, researchedTechnologies, energy),
     [activeAgeId, energy, purchaseCounts, researchedTechnologies],
   );
   const hasReachedCosmicEnding = !advanceState.nextAge && advanceState.complete;
@@ -397,6 +403,8 @@ function GameScreen() {
             </div>
           </div>
         </header>
+
+        <ObjectiveStrip objective={currentObjective} />
 
         <MixPanel production={production} />
 

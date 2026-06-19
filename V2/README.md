@@ -15,6 +15,7 @@ npm run dev
 npm run build
 npm run simulate:pacing
 npm run balance:auto
+npm run balance:loop
 ```
 
 ## Objectif V2
@@ -31,7 +32,9 @@ npm run balance:auto
 - Titre et package renommes en V2.
 - Assets runtime nettoyes : la V2 charge uniquement `public/assets/game/images-finales-gpt-image`.
 - Parcelles non construites rendues opaques, comme des iles vides normales.
+- Objectif courant compact dans le HUD : prochain achat, technologie ou passage d'age.
 - Croissance des achats repetables calibree par simulation.
+- Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
 - Target simulation : 120 minutes minimum.
 - Run obligatoire simule : 130.6 min.
 - Run optimiste avec achats repetables rentables : 121.6 min.
