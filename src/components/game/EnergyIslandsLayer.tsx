@@ -22,6 +22,10 @@ type IslandLayerStyle = CSSProperties & {
   '--island-float-delay'?: string;
 };
 
+type IslandCameraStyle = CSSProperties & {
+  '--island-camera-zoom'?: number;
+};
+
 const sourceOrder: SourceId[] = [
   'dyson',
   'atomic',
@@ -51,6 +55,17 @@ const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number; z: 
   antimatter: { x: 12, y: 82, scale: 0.52, z: 7 },
   'black-hole': { x: 88, y: 82, scale: 0.52, z: 7 },
 };
+
+function getCameraZoom(visibleSourceCount: number) {
+  if (visibleSourceCount <= 1) return 1.42;
+  if (visibleSourceCount <= 2) return 1.3;
+  if (visibleSourceCount <= 3) return 1.18;
+  if (visibleSourceCount <= 4) return 1.06;
+  if (visibleSourceCount <= 6) return 0.98;
+  if (visibleSourceCount <= 8) return 0.92;
+  if (visibleSourceCount <= 10) return 0.87;
+  return 0.82;
+}
 
 function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
   if (slot === 'central') {
@@ -83,27 +98,33 @@ export default function EnergyIslandsLayer({
   researchedTechnologies,
 }: EnergyIslandsLayerProps) {
   const islands = getIslandVisuals(activeAgeId, purchaseCounts, researchedTechnologies);
+  const visibleSourceCount = islands.filter((island) => island.slot !== 'central').length;
+  const cameraStyle = {
+    '--island-camera-zoom': getCameraZoom(visibleSourceCount),
+  } as IslandCameraStyle;
 
   return (
     <div className="energy-islands-layer" aria-hidden="true">
-      {islands.map((island) => (
-        <figure
-          className="energy-island"
-          data-slot={island.slot}
-          data-state={island.state}
-          key={island.id}
-          style={getIslandStyle(island.slot)}
-        >
-          <img
-            src={assetPath(island.file)}
-            alt=""
-            draggable={false}
-            onError={(event) => {
-              event.currentTarget.closest('.energy-island')?.setAttribute('data-missing', 'true');
-            }}
-          />
-        </figure>
-      ))}
+      <div className="energy-island-world" style={cameraStyle}>
+        {islands.map((island) => (
+          <figure
+            className="energy-island"
+            data-slot={island.slot}
+            data-state={island.state}
+            key={island.id}
+            style={getIslandStyle(island.slot)}
+          >
+            <img
+              src={assetPath(island.file)}
+              alt=""
+              draggable={false}
+              onError={(event) => {
+                event.currentTarget.closest('.energy-island')?.setAttribute('data-missing', 'true');
+              }}
+            />
+          </figure>
+        ))}
+      </div>
     </div>
   );
 }

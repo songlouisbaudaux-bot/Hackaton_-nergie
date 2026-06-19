@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Flame, RotateCcw, Zap } from 'lucide-react';
+import { Flame, FlaskConical, RotateCcw, Zap } from 'lucide-react';
 import {
   CentralPlayfieldSlot,
   CosmicEnding,
@@ -275,6 +275,30 @@ function GameScreen() {
     setFloatingGains([]);
   }, []);
 
+  const handleSandboxGame = useCallback(() => {
+    const sandboxPurchaseCounts: PurchaseCounts = {};
+    for (const purchase of purchases) {
+      sandboxPurchaseCounts[purchase.id] = 1;
+    }
+
+    const sandboxProgress: StoredGameProgress = {
+      energy: 1_000_000_000_000_000,
+      activeAgeId: 'vacuum',
+      purchaseCounts: sandboxPurchaseCounts,
+      researchedTechnologies: technologies
+        .filter((technology) => technology.id !== 'cosmic-reboot')
+        .map((technology) => technology.id),
+    };
+
+    writeGameProgress(sandboxProgress);
+    setEnergy(sandboxProgress.energy);
+    setActiveAgeId(sandboxProgress.activeAgeId);
+    setPurchaseCounts(sandboxProgress.purchaseCounts);
+    setResearchedTechnologies(sandboxProgress.researchedTechnologies);
+    gainIdRef.current = 0;
+    setFloatingGains([]);
+  }, []);
+
   return (
     <main className="game-screen">
       <MixEvolutionBackdrop activeAgeId={activeAgeId} production={production} />
@@ -297,6 +321,16 @@ function GameScreen() {
         >
           <RotateCcw size={16} aria-hidden="true" />
           <span className="restart-run-button-label">Recommencer</span>
+        </button>
+
+        <button
+          className="sandbox-run-button"
+          type="button"
+          aria-label="Activer le bac à sable"
+          onClick={handleSandboxGame}
+        >
+          <FlaskConical size={15} aria-hidden="true" />
+          <span className="sandbox-run-button-label">Bac à sable</span>
         </button>
 
         <header className="energy-header panel" aria-label="Énergie">
