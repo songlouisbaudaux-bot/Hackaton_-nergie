@@ -1458,16 +1458,285 @@ button {
   }
 }
 
-@media (max-height: 500px) and (orientation: landscape) {
+@media (max-width: 960px) and (max-height: 520px) and (orientation: landscape) {
   .game-screen {
-    --tech-rail-height: 92px;
-    --progress-rail-height: 44px;
-    --mobile-side-panel-height: clamp(104px, 24dvh, 128px);
-    --island-size: 38px;
-    --island-center-y: 39.4%;
-    --island-step-x: 32px;
-    --island-step-y: 19px;
-    --island-top-y: 38px;
+    --hud-edge: 8px;
+    --hud-gap: 6px;
+    --energy-header-height: 48px;
+    --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
+    --tech-rail-height: 78px;
+    --progress-rail-height: 32px;
+    --mix-panel-width: clamp(140px, 18vw, 156px);
+    --purchase-panel-width: clamp(190px, 25vw, 230px);
+    --bottom-zone-height: calc(
+      var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
+    );
+    --island-size: clamp(76px, 10vw, 94px);
+    --island-center-x: 47%;
+    --island-center-y: 43%;
+    --island-step-x: clamp(48px, 7vw, 66px);
+    --island-step-y: clamp(30px, 8dvh, 42px);
+    --island-top-y: clamp(44px, 13dvh, 58px);
+    --restart-button-size: 34px;
+    --restart-button-space: 12px;
+  }
+
+  .scene-layer {
+    padding:
+      calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap))
+      calc(var(--purchase-panel-width) + var(--hud-edge) + var(--hud-gap))
+      calc(var(--bottom-zone-height) + var(--hud-gap))
+      calc(var(--mix-panel-width) + var(--hud-edge) + var(--hud-gap));
+  }
+
+  .central-playfield-slot {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .central-hotspot {
+    width: 100%;
+    height: 100%;
+  }
+
+  .energy-islands-layer {
+    opacity: 0.92;
+  }
+
+  .energy-header {
+    right: auto;
+    left: 50%;
+    width: min(360px, calc(100vw - 96px));
+    min-height: var(--energy-header-height);
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    transform: translateX(-50%);
+  }
+
+  .metric-kicker {
+    font-size: 0.62rem;
+  }
+
+  .energy-value {
+    font-size: 1.38rem;
+  }
+
+  .rate-cluster {
+    min-width: 82px;
+    gap: 3px;
+    font-size: 0.62rem;
+  }
+
+  .rate-cluster span {
+    gap: 4px;
+  }
+
+  .restart-run-button--floating {
+    width: var(--restart-button-size);
+    min-height: var(--restart-button-size);
+    padding: 0;
+  }
+
+  .restart-run-button--floating .restart-run-button-label {
+    display: none;
+  }
+
+  .mix-panel,
+  .purchase-panel {
+    top: var(--side-panel-top);
+    bottom: auto;
+    height: auto;
+    max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height) - var(--hud-gap));
+    padding: 8px;
+  }
+
+  .mix-panel {
+    left: var(--hud-edge);
+    width: var(--mix-panel-width);
+  }
+
+  .purchase-panel {
+    right: var(--hud-edge);
+    width: var(--purchase-panel-width);
+  }
+
+  .panel-title {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .panel-title h2 {
+    font-size: 0.78rem;
+  }
+
+  .rail-count,
+  .age-description,
+  .mix-legend-rates,
+  .advance-description,
+  .purchase-effect {
+    display: none;
+  }
+
+  .mix-chart {
+    gap: 6px;
+  }
+
+  .mix-pie {
+    width: min(74px, 100%);
+  }
+
+  .mix-legend {
+    gap: 4px;
+  }
+
+  .mix-legend-item {
+    grid-template-columns: 7px minmax(0, 1fr);
+    gap: 5px;
+  }
+
+  .mix-legend-marker {
+    width: 7px;
+    height: 18px;
+  }
+
+  .mix-legend-label {
+    font-size: 0.58rem;
+  }
+
+  .mix-legend-share {
+    font-size: 0.58rem;
+  }
+
+  .purchase-panel-header {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .purchase-list {
+    gap: 6px;
+  }
+
+  .purchase-card {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    min-height: 42px;
+    gap: 6px;
+    padding: 5px;
+  }
+
+  .purchase-card .source-chip {
+    display: none;
+  }
+
+  .purchase-asset {
+    width: 30px;
+    height: 30px;
+  }
+
+  .purchase-asset img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .purchase-copy {
+    gap: 2px;
+  }
+
+  .purchase-label {
+    font-size: 0.66rem;
+    line-height: 1.05;
+  }
+
+  .purchase-meta {
+    grid-column: auto;
+    grid-row: auto;
+    display: grid;
+    min-width: 42px;
+    gap: 2px;
+    font-size: 0.56rem;
+  }
+
+  .advance-age-card {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    min-height: 40px;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 5px;
+  }
+
+  .advance-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .advance-label {
+    font-size: 0.66rem;
+  }
+
+  .advance-meta {
+    grid-column: auto;
+    grid-row: auto;
+    font-size: 0.56rem;
+  }
+
+  .tech-rail {
+    right: var(--hud-edge);
+    bottom: calc(var(--hud-edge) + var(--progress-rail-height) + var(--hud-gap));
+    left: var(--hud-edge);
+    max-height: var(--tech-rail-height);
+    padding: 6px 8px;
+  }
+
+  .tech-rail-header {
+    margin-bottom: 4px;
+  }
+
+  .technology-list {
+    gap: 5px;
+  }
+
+  .technology-card {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 40px;
+    gap: 2px;
+    padding: 5px;
+  }
+
+  .technology-icon {
+    display: none;
+  }
+
+  .technology-label {
+    -webkit-line-clamp: 2;
+    font-size: 0.58rem;
+    line-height: 1.06;
+  }
+
+  .technology-effect {
+    font-size: 0.52rem;
+  }
+
+  .technology-meta {
+    display: flex;
+    grid-column: auto;
+    grid-row: auto;
+    justify-content: space-between;
+    gap: 4px;
+    font-size: 0.52rem;
+  }
+
+  .progress-rail {
+    min-height: var(--progress-rail-height);
+    gap: 5px;
+    flex-wrap: nowrap;
+  }
+
+  .era-pill,
+  .stage-dot {
+    min-height: 26px;
+    padding: 0 7px;
+    font-size: 0.58rem;
   }
 }
 
