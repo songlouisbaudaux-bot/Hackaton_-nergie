@@ -15,8 +15,8 @@ type EnergyIslandsLayerProps = {
 };
 
 type IslandLayerStyle = CSSProperties & {
-  '--island-left'?: string;
-  '--island-top'?: string;
+  '--island-world-x'?: string;
+  '--island-world-y'?: string;
   '--island-scale'?: number;
   '--island-float-duration'?: string;
   '--island-float-delay'?: string;
@@ -24,6 +24,8 @@ type IslandLayerStyle = CSSProperties & {
 
 type IslandCameraStyle = CSSProperties & {
   '--island-camera-zoom'?: number;
+  '--island-camera-pan-x'?: string;
+  '--island-camera-pan-y'?: string;
 };
 
 const sourceOrder: SourceId[] = [
@@ -56,26 +58,46 @@ const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number; z: 
   'black-hole': { x: 88, y: 82, scale: 0.52, z: 7 },
 };
 
-function getCameraZoom(visibleSourceCount: number) {
-  if (visibleSourceCount <= 1) return 1.42;
-  if (visibleSourceCount <= 2) return 1.3;
-  if (visibleSourceCount <= 3) return 1.18;
-  if (visibleSourceCount <= 4) return 1.06;
-  if (visibleSourceCount <= 6) return 0.98;
-  if (visibleSourceCount <= 8) return 0.92;
-  if (visibleSourceCount <= 10) return 0.87;
-  return 0.82;
+const centralLayout = { x: 50, y: 50, scale: 0.82, z: 8 };
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getLayout(slot: SourceId | 'central') {
+  return slot === 'central' ? centralLayout : sourceLayout[slot];
+}
+
+function getCameraStyle(islands: Array<{ slot: SourceId | 'central' }>) {
+  const visibleLayouts = islands.map((island) => getLayout(island.slot));
+  const xs = visibleLayouts.map((layout) => layout.x);
+  const ys = visibleLayouts.map((layout) => layout.y);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const sourceCount = Math.max(0, islands.length - 1);
+  const padding = 18 + sourceCount * 2;
+  const width = Math.max(1, maxX - minX + padding);
+  const height = Math.max(1, maxY - minY + padding);
+  const zoom = clamp(Math.min(72 / width, 72 / height), 0.78, 1.42);
+
+  return {
+    '--island-camera-zoom': Number(zoom.toFixed(3)),
+    '--island-camera-pan-x': '0%',
+    '--island-camera-pan-y': '0%',
+  } as IslandCameraStyle;
 }
 
 function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
   if (slot === 'central') {
     return {
-      '--island-left': '50%',
-      '--island-top': '50%',
-      '--island-scale': 0.82,
+      '--island-world-x': `${centralLayout.x}%`,
+      '--island-world-y': `${centralLayout.y}%`,
+      '--island-scale': centralLayout.scale,
       '--island-float-duration': '7.4s',
       '--island-float-delay': '-1.1s',
-      zIndex: 8,
+      zIndex: centralLayout.z,
     };
   }
 
@@ -83,8 +105,8 @@ function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
   const orderIndex = sourceOrder.indexOf(slot);
 
   return {
-    '--island-left': `${layout.x}%`,
-    '--island-top': `${layout.y}%`,
+    '--island-world-x': `${layout.x}%`,
+    '--island-world-y': `${layout.y}%`,
     '--island-scale': layout.scale ?? 1,
     '--island-float-duration': `${6.2 + (orderIndex % 5) * 0.34}s`,
     '--island-float-delay': `${-0.35 - orderIndex * 0.47}s`,
@@ -98,10 +120,7 @@ export default function EnergyIslandsLayer({
   researchedTechnologies,
 }: EnergyIslandsLayerProps) {
   const islands = getIslandVisuals(activeAgeId, purchaseCounts, researchedTechnologies);
-  const visibleSourceCount = islands.filter((island) => island.slot !== 'central').length;
-  const cameraStyle = {
-    '--island-camera-zoom': getCameraZoom(visibleSourceCount),
-  } as IslandCameraStyle;
+  const cameraStyle = getCameraStyle(islands);
 
   return (
     <div className="energy-islands-layer" aria-hidden="true">
