@@ -1460,24 +1460,24 @@ button {
 
 @media (max-width: 960px) and (max-height: 520px) and (orientation: landscape) {
   .game-screen {
-    --hud-edge: 8px;
+    --hud-edge: 6px;
     --hud-gap: 6px;
-    --energy-header-height: 48px;
+    --energy-header-height: 40px;
     --side-panel-top: calc(var(--hud-edge) + var(--energy-header-height) + var(--hud-gap));
-    --tech-rail-height: 78px;
-    --progress-rail-height: 32px;
-    --mix-panel-width: clamp(140px, 18vw, 156px);
-    --purchase-panel-width: clamp(190px, 25vw, 230px);
+    --tech-rail-height: 56px;
+    --progress-rail-height: 28px;
+    --mix-panel-width: clamp(116px, 15vw, 132px);
+    --purchase-panel-width: clamp(168px, 22vw, 204px);
     --bottom-zone-height: calc(
       var(--progress-rail-height) + var(--tech-rail-height) + var(--hud-gap) + var(--hud-edge)
     );
-    --island-size: clamp(76px, 10vw, 94px);
-    --island-center-x: 47%;
-    --island-center-y: 43%;
-    --island-step-x: clamp(48px, 7vw, 66px);
-    --island-step-y: clamp(30px, 8dvh, 42px);
-    --island-top-y: clamp(44px, 13dvh, 58px);
-    --restart-button-size: 34px;
+    --island-size: clamp(70px, 9.5vw, 94px);
+    --island-center-x: 48%;
+    --island-center-y: 48%;
+    --island-step-x: clamp(46px, 6.6vw, 66px);
+    --island-step-y: clamp(28px, 7.6dvh, 38px);
+    --island-top-y: clamp(40px, 12dvh, 56px);
+    --restart-button-size: 30px;
     --restart-button-space: 12px;
   }
 
@@ -1507,26 +1507,26 @@ button {
   .energy-header {
     right: auto;
     left: 50%;
-    width: min(360px, calc(100vw - 96px));
+    width: min(310px, calc(100vw - 84px));
     min-height: var(--energy-header-height);
     align-items: center;
-    gap: 10px;
-    padding: 7px 10px;
+    gap: 8px;
+    padding: 5px 9px;
     transform: translateX(-50%);
   }
 
   .metric-kicker {
-    font-size: 0.62rem;
+    font-size: 0.56rem;
   }
 
   .energy-value {
-    font-size: 1.38rem;
+    font-size: 1.16rem;
   }
 
   .rate-cluster {
-    min-width: 82px;
-    gap: 3px;
-    font-size: 0.62rem;
+    min-width: 74px;
+    gap: 2px;
+    font-size: 0.58rem;
   }
 
   .rate-cluster span {
@@ -1548,8 +1548,8 @@ button {
     top: var(--side-panel-top);
     bottom: auto;
     height: auto;
-    max-height: calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height) - var(--hud-gap));
-    padding: 8px;
+    max-height: min(124px, calc(100dvh - var(--side-panel-top) - var(--bottom-zone-height) - var(--hud-gap)));
+    padding: 6px;
   }
 
   .mix-panel {
@@ -1563,12 +1563,12 @@ button {
   }
 
   .panel-title {
-    gap: 6px;
-    margin-bottom: 6px;
+    gap: 5px;
+    margin-bottom: 5px;
   }
 
   .panel-title h2 {
-    font-size: 0.78rem;
+    font-size: 0.68rem;
   }
 
   .rail-count,
@@ -1580,49 +1580,49 @@ button {
   }
 
   .mix-chart {
-    gap: 6px;
-  }
-
-  .mix-pie {
-    width: min(74px, 100%);
-  }
-
-  .mix-legend {
-    gap: 4px;
-  }
-
-  .mix-legend-item {
-    grid-template-columns: 7px minmax(0, 1fr);
     gap: 5px;
   }
 
+  .mix-pie {
+    width: min(60px, 100%);
+  }
+
+  .mix-legend {
+    gap: 3px;
+  }
+
+  .mix-legend-item {
+    grid-template-columns: 6px minmax(0, 1fr);
+    gap: 4px;
+  }
+
   .mix-legend-marker {
-    width: 7px;
-    height: 18px;
+    width: 6px;
+    height: 16px;
   }
 
   .mix-legend-label {
-    font-size: 0.58rem;
+    font-size: 0.52rem;
   }
 
   .mix-legend-share {
-    font-size: 0.58rem;
+    font-size: 0.52rem;
   }
 
   .purchase-panel-header {
-    gap: 6px;
-    margin-bottom: 6px;
+    gap: 5px;
+    margin-bottom: 5px;
   }
 
   .purchase-list {
-    gap: 6px;
+    gap: 5px;
   }
 
   .purchase-card {
-    grid-template-columns: 30px minmax(0, 1fr) auto;
-    min-height: 42px;
-    gap: 6px;
-    padding: 5px;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    min-height: 34px;
+    gap: 5px;
+    padding: 4px;
   }
 
   .purchase-card .source-chip {
@@ -1630,13 +1630,13 @@ button {
   }
 
   .purchase-asset {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
   }
 
   .purchase-asset img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 
   .purchase-copy {
@@ -1644,7 +1644,7 @@ button {
   }
 
   .purchase-label {
-    font-size: 0.66rem;
+    font-size: 0.58rem;
     line-height: 1.05;
   }
 
@@ -1652,55 +1652,64 @@ button {
     grid-column: auto;
     grid-row: auto;
     display: grid;
-    min-width: 42px;
+    min-width: 36px;
     gap: 2px;
-    font-size: 0.56rem;
+    font-size: 0.5rem;
   }
 
   .advance-age-card {
-    grid-template-columns: 28px minmax(0, 1fr) auto;
-    min-height: 40px;
-    gap: 6px;
-    margin-top: 6px;
-    padding: 5px;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    min-height: 34px;
+    gap: 5px;
+    margin-top: 5px;
+    padding: 4px;
   }
 
   .advance-icon {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .advance-label {
-    font-size: 0.66rem;
+    font-size: 0.58rem;
   }
 
   .advance-meta {
     grid-column: auto;
     grid-row: auto;
-    font-size: 0.56rem;
+    font-size: 0.5rem;
   }
 
   .tech-rail {
     right: var(--hud-edge);
     bottom: calc(var(--hud-edge) + var(--progress-rail-height) + var(--hud-gap));
     left: var(--hud-edge);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
     max-height: var(--tech-rail-height);
-    padding: 6px 8px;
+    overflow: hidden;
+    padding: 5px 7px;
   }
 
   .tech-rail-header {
-    margin-bottom: 4px;
+    margin-bottom: 0;
+  }
+
+  .tech-rail-header .panel-title {
+    margin-bottom: 0;
   }
 
   .technology-list {
-    gap: 5px;
+    gap: 4px;
   }
 
   .technology-card {
     grid-template-columns: minmax(0, 1fr);
-    min-height: 40px;
+    min-height: 38px;
     gap: 2px;
-    padding: 5px;
+    padding: 4px;
   }
 
   .technology-icon {
@@ -1709,12 +1718,12 @@ button {
 
   .technology-label {
     -webkit-line-clamp: 2;
-    font-size: 0.58rem;
+    font-size: 0.52rem;
     line-height: 1.06;
   }
 
   .technology-effect {
-    font-size: 0.52rem;
+    font-size: 0.48rem;
   }
 
   .technology-meta {
@@ -1723,7 +1732,7 @@ button {
     grid-row: auto;
     justify-content: space-between;
     gap: 4px;
-    font-size: 0.52rem;
+    font-size: 0.48rem;
   }
 
   .progress-rail {
@@ -1734,9 +1743,9 @@ button {
 
   .era-pill,
   .stage-dot {
-    min-height: 26px;
-    padding: 0 7px;
-    font-size: 0.58rem;
+    min-height: 24px;
+    padding: 0 6px;
+    font-size: 0.54rem;
   }
 }
 
