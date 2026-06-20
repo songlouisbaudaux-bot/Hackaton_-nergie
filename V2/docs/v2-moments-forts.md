@@ -14,7 +14,13 @@ Chaque moment fort est un toast court, non bloquant, sans ouvrir de menu. Il est
 | `first-fission` | Technologie `Fission controlee` | L'atome devient une source stable. |
 | `first-fusion` | Technologie `Plasma confine` | Premier changement d'echelle propre. |
 | `first-orbital-solar` | Achat `Satellite collecteur` | Le Soleil devient une source continue. |
+| `first-neutron-well` | Technologie `Cartographie pulsar` | Coupe le grand creux apres le solaire orbital. |
+| `first-antimatter-bottle` | Technologie `Bouteilles magnetiques` | Rend l'antimatiere exploitable sans ouvrir de menu. |
+| `first-black-hole-siphon` | Technologie `Mesure de Kerr` | Premier contact lisible avec l'energie des trous noirs. |
+| `first-dyson-segment` | Achat `Segment orbital` | Coupe le creux entre trou noir et Dyson. |
 | `first-dyson-ring` | Technologie `Essaim de Dyson` | Moment waouh cible pour l'age Dyson. |
+| `stellar-grid-online` | Technologie `Gouvernance stellaire` | Coupe l'attente entre Dyson et le Vide. |
+| `first-casimir-contact` | Achat `Fluctuateur Casimir` | Lance le Vide avant la fin cosmique. |
 | `first-vacuum-seed` | Achat `Graine d'univers` | Preparation de la fin cosmique. |
 
 ## Integration

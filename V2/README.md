@@ -36,6 +36,7 @@ npm run balance:loop
 - Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
 - Croissance des achats repetables calibree par simulation.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
+- Diagnostic des creux entre moments forts via `flowDiagnostics`.
 - Target simulation : 120 minutes minimum.
 - Run obligatoire simule : 130.6 min.
 - Run optimiste avec achats repetables rentables : 121.6 min.

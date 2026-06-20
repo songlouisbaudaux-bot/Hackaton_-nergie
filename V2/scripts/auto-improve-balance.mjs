@@ -41,9 +41,40 @@ function createState() {
   return {
     counts: new Map(),
     researched: new Set(),
+    breakthroughs: new Set(),
+    events: [],
     energy: 0,
     seconds: 0,
   };
+}
+
+function getBreakthroughForTrigger(trigger) {
+  return breakthroughMilestones.find((milestone) => {
+    return milestone.trigger.type === trigger.type && milestone.trigger.id === trigger.id;
+  });
+}
+
+function recordEvent(state, event) {
+  const trigger = { type: event.type, id: event.id };
+  const breakthrough = getBreakthroughForTrigger(trigger);
+  const isNewBreakthrough = breakthrough && !state.breakthroughs.has(breakthrough.id);
+
+  if (isNewBreakthrough) {
+    state.breakthroughs.add(breakthrough.id);
+  }
+
+  state.events.push({
+    second: Number(state.seconds.toFixed(2)),
+    minute: formatMinutes(state.seconds),
+    ...event,
+    breakthrough: isNewBreakthrough
+      ? {
+          id: breakthrough.id,
+          title: breakthrough.title,
+          tone: breakthrough.tone,
+        }
+      : undefined,
+  });
 }
 
 function getProduction(state) {
@@ -89,12 +120,26 @@ function buyPurchase(state, purchase, costGrowth) {
   waitForEnergy(state, cost);
   state.energy -= cost;
   state.counts.set(purchase.id, count + 1);
+  recordEvent(state, {
+    type: 'purchase',
+    id: purchase.id,
+    ageId: purchase.ageId,
+    label: purchase.label,
+    cost,
+  });
 }
 
 function researchTechnology(state, technology) {
   waitForEnergy(state, technology.costJoules);
   state.energy -= technology.costJoules;
   state.researched.add(technology.id);
+  recordEvent(state, {
+    type: 'technology',
+    id: technology.id,
+    ageId: technology.ageId,
+    label: technology.label,
+    cost: technology.costJoules,
+  });
 }
 
 function getRepeatCandidate(state, ageId, maxPaybackSeconds, costGrowth) {
@@ -162,6 +207,13 @@ function simulate(costGrowth, { repeatPaybackSeconds = 0 } = {}) {
 
       waitForEnergy(state, advanceCost);
       state.energy -= advanceCost;
+      recordEvent(state, {
+        type: 'age',
+        id: nextAge.id,
+        ageId: nextAge.id,
+        label: nextAge.label,
+        cost: advanceCost,
+      });
       break;
     }
 
@@ -181,6 +233,8 @@ function simulate(costGrowth, { repeatPaybackSeconds = 0 } = {}) {
     totalSeconds: state.seconds,
     totalMinutes: formatMinutes(state.seconds),
     rows,
+    events: state.events,
+    breakthroughEvents: state.events.filter((event) => event.breakthrough),
   };
 }
 
@@ -259,6 +313,59 @@ function diagnoseRun(run) {
   return run.rows.map((row, index) => diagnoseAge(row, index));
 }
 
+function diagnoseFlow(run) {
+  const events = run.breakthroughEvents;
+  const points = [
+    {
+      minute: 0,
+      label: 'Debut',
+    },
+    ...events.map((event) => ({
+      minute: event.minute,
+      label: event.breakthrough.title,
+      id: event.breakthrough.id,
+    })),
+    {
+      minute: run.totalMinutes,
+      label: 'Fin',
+    },
+  ];
+  const gaps = [];
+
+  for (let index = 1; index < points.length; index += 1) {
+    const previous = points[index - 1];
+    const current = points[index];
+    const gapMinutes = Number((current.minute - previous.minute).toFixed(2));
+    gaps.push({
+      from: previous.id ?? previous.label,
+      to: current.id ?? current.label,
+      gapMinutes,
+      status: gapMinutes > 24 ? 'too-long' : gapMinutes > 16 ? 'watch' : 'ok',
+    });
+  }
+
+  const maxGap = gaps.slice().sort((a, b) => b.gapMinutes - a.gapMinutes)[0];
+
+  return {
+    breakthroughCount: events.length,
+    breakthroughTimeline: events.map((event) => ({
+      id: event.breakthrough.id,
+      title: event.breakthrough.title,
+      minute: event.minute,
+      trigger: {
+        type: event.type,
+        id: event.id,
+      },
+    })),
+    gaps,
+    maxGap,
+    recommendation:
+      maxGap && maxGap.status !== 'ok'
+        ? `Ajouter un micro-objectif entre ${maxGap.from} et ${maxGap.to}.`
+        : 'Les moments forts couvrent correctement le run.',
+  };
+}
+
 function updateCostGrowth(file, value) {
   const content = fs.readFileSync(file, 'utf8');
   const pattern = /const COST_GROWTH = [0-9.]+;/;
@@ -306,6 +413,10 @@ function buildReport() {
       requiredOnly: diagnoseRun(best.requiredOnly),
       aggressiveRepeat: diagnoseRun(best.aggressiveRepeat),
     },
+    flowDiagnostics: {
+      requiredOnly: diagnoseFlow(best.requiredOnly),
+      aggressiveRepeat: diagnoseFlow(best.aggressiveRepeat),
+    },
     topCandidates: candidates
       .slice()
       .sort((a, b) => a.score - b.score)
@@ -338,6 +449,12 @@ function printReport(report, round) {
   if (warnings.length) {
     console.log('\nPacing diagnostics, aggressive run');
     console.table(warnings);
+  }
+
+  const flowWarnings = report.flowDiagnostics.aggressiveRepeat.gaps.filter((gap) => gap.status !== 'ok');
+  if (flowWarnings.length) {
+    console.log('\nBreakthrough gaps, aggressive run');
+    console.table(flowWarnings);
   }
 }
 

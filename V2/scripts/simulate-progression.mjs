@@ -25,7 +25,7 @@ const context = { exports: {}, require: () => undefined };
 vm.createContext(context);
 vm.runInContext(compiled, context);
 
-const { ages, purchases, technologies } = context.exports;
+const { ages, breakthroughMilestones = [], purchases, technologies } = context.exports;
 
 function getScaledCost(baseCostJoules, count) {
   return Math.ceil(baseCostJoules * COST_GROWTH ** count);
@@ -39,9 +39,39 @@ function createState() {
   return {
     counts: new Map(),
     researched: new Set(),
+    breakthroughs: new Set(),
+    events: [],
     energy: 0,
     seconds: 0,
   };
+}
+
+function getBreakthroughForTrigger(trigger) {
+  return breakthroughMilestones.find((milestone) => {
+    return milestone.trigger.type === trigger.type && milestone.trigger.id === trigger.id;
+  });
+}
+
+function recordEvent(state, event) {
+  const trigger = { type: event.type, id: event.id };
+  const breakthrough = getBreakthroughForTrigger(trigger);
+  const isNewBreakthrough = breakthrough && !state.breakthroughs.has(breakthrough.id);
+
+  if (isNewBreakthrough) {
+    state.breakthroughs.add(breakthrough.id);
+  }
+
+  state.events.push({
+    second: Number(state.seconds.toFixed(2)),
+    minute: Number((state.seconds / 60).toFixed(2)),
+    ...event,
+    breakthrough: isNewBreakthrough
+      ? {
+          id: breakthrough.id,
+          title: breakthrough.title,
+        }
+      : undefined,
+  });
 }
 
 function getProduction(state) {
@@ -89,12 +119,24 @@ function buyPurchase(state, purchase) {
   waitForEnergy(state, cost);
   state.energy -= cost;
   state.counts.set(purchase.id, count + 1);
+  recordEvent(state, {
+    type: 'purchase',
+    id: purchase.id,
+    ageId: purchase.ageId,
+    label: purchase.label,
+  });
 }
 
 function researchTechnology(state, technology) {
   waitForEnergy(state, technology.costJoules);
   state.energy -= technology.costJoules;
   state.researched.add(technology.id);
+  recordEvent(state, {
+    type: 'technology',
+    id: technology.id,
+    ageId: technology.ageId,
+    label: technology.label,
+  });
 }
 
 function getRepeatCandidate(state, ageId, maxPaybackSeconds) {
@@ -165,6 +207,12 @@ function simulate({ repeatPaybackSeconds = 0 } = {}) {
 
       waitForEnergy(state, advanceCost);
       state.energy -= advanceCost;
+      recordEvent(state, {
+        type: 'age',
+        id: nextAge.id,
+        ageId: nextAge.id,
+        label: nextAge.label,
+      });
       break;
     }
 
@@ -184,6 +232,8 @@ function simulate({ repeatPaybackSeconds = 0 } = {}) {
   return {
     totalSeconds: state.seconds,
     rows,
+    events: state.events,
+    breakthroughEvents: state.events.filter((event) => event.breakthrough),
   };
 }
 
@@ -200,11 +250,52 @@ function printRun(title, run) {
   console.log(`Total: ${formatMinutes(run.totalSeconds)}`);
 }
 
+function printBreakthroughs(title, run) {
+  console.log(`\n${title} — moments forts`);
+  console.table(
+    run.breakthroughEvents.map((event) => ({
+      minute: `${event.minute.toFixed(1)} min`,
+      milestone: event.breakthrough.id,
+      title: event.breakthrough.title,
+      trigger: `${event.type}:${event.id}`,
+    })),
+  );
+
+  const points = [
+    { minute: 0, label: 'Debut' },
+    ...run.breakthroughEvents.map((event) => ({
+      minute: event.minute,
+      label: event.breakthrough.id,
+    })),
+    { minute: run.totalSeconds / 60, label: 'Fin' },
+  ];
+  const gaps = [];
+  for (let index = 1; index < points.length; index += 1) {
+    const previous = points[index - 1];
+    const current = points[index];
+    const gapMinutes = current.minute - previous.minute;
+    if (gapMinutes >= 16) {
+      gaps.push({
+        from: previous.label,
+        to: current.label,
+        gap: `${gapMinutes.toFixed(1)} min`,
+      });
+    }
+  }
+
+  if (gaps.length) {
+    console.log(`${title} — creux a surveiller`);
+    console.table(gaps);
+  }
+}
+
 const requiredOnly = simulate({ repeatPaybackSeconds: 0 });
 const aggressiveRepeat = simulate({ repeatPaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS });
 
 printRun('Required objects and technologies only', requiredOnly);
 printRun(`Aggressive repeats, current-age purchases, payback <= ${AGGRESSIVE_PAYBACK_SECONDS}s`, aggressiveRepeat);
+printBreakthroughs('Required objects and technologies only', requiredOnly);
+printBreakthroughs(`Aggressive repeats, current-age purchases, payback <= ${AGGRESSIVE_PAYBACK_SECONDS}s`, aggressiveRepeat);
 
 const shortestRunSeconds = Math.min(requiredOnly.totalSeconds, aggressiveRepeat.totalSeconds);
 if (shortestRunSeconds < TARGET_MINUTES * 60) {

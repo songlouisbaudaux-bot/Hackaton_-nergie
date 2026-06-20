@@ -36,12 +36,60 @@
       "title": "Le jour ne finit plus"
     },
     {
+      "id": "first-neutron-well",
+      "trigger": {
+        "type": "technology",
+        "id": "pulsar-mapping"
+      },
+      "title": "Une étoile morte travaille"
+    },
+    {
+      "id": "first-antimatter-bottle",
+      "trigger": {
+        "type": "technology",
+        "id": "magnetic-bottles"
+      },
+      "title": "La matière inversée tient"
+    },
+    {
+      "id": "first-black-hole-siphon",
+      "trigger": {
+        "type": "technology",
+        "id": "kerr-measure"
+      },
+      "title": "La gravité devient turbine"
+    },
+    {
+      "id": "first-dyson-segment",
+      "trigger": {
+        "type": "purchase",
+        "id": "dyson-segment"
+      },
+      "title": "Premier morceau d’étoile"
+    },
+    {
       "id": "first-dyson-ring",
       "trigger": {
         "type": "technology",
         "id": "dyson-swarm"
       },
       "title": "Premier anneau stellaire"
+    },
+    {
+      "id": "stellar-grid-online",
+      "trigger": {
+        "type": "technology",
+        "id": "stellar-governance"
+      },
+      "title": "Le réseau stellaire répond"
+    },
+    {
+      "id": "first-casimir-contact",
+      "trigger": {
+        "type": "purchase",
+        "id": "casimir-fluctuator"
+      },
+      "title": "Premier contact Casimir"
     },
     {
       "id": "first-vacuum-seed",
@@ -131,6 +179,922 @@
           "elapsedMinutes": 130.61,
           "production": 5679243316
         }
+      ],
+      "events": [
+        {
+          "second": 6,
+          "minute": 0.1,
+          "type": "purchase",
+          "id": "campfire",
+          "ageId": "biomass",
+          "label": "Feu de camp",
+          "cost": 12
+        },
+        {
+          "second": 10.44,
+          "minute": 0.17,
+          "type": "technology",
+          "id": "ember-keeping",
+          "ageId": "biomass",
+          "label": "Conservation de la braise",
+          "cost": 24
+        },
+        {
+          "second": 18.98,
+          "minute": 0.32,
+          "type": "age",
+          "id": "animal-power",
+          "ageId": "animal-power",
+          "label": "Antiquité",
+          "cost": 70
+        },
+        {
+          "second": 26.91,
+          "minute": 0.45,
+          "type": "purchase",
+          "id": "stone-hearth",
+          "ageId": "animal-power",
+          "label": "Foyer en pierre",
+          "cost": 65
+        },
+        {
+          "second": 35.24,
+          "minute": 0.59,
+          "type": "purchase",
+          "id": "oxen",
+          "ageId": "animal-power",
+          "label": "Bœufs de traction",
+          "cost": 95
+        },
+        {
+          "second": 40.64,
+          "minute": 0.68,
+          "type": "technology",
+          "id": "masonry-hearth",
+          "ageId": "animal-power",
+          "label": "Foyer maçonné",
+          "cost": 95
+        },
+        {
+          "second": 46.8,
+          "minute": 0.78,
+          "type": "technology",
+          "id": "animal-domestication",
+          "ageId": "animal-power",
+          "label": "Domestication de traction",
+          "cost": 130
+        },
+        {
+          "second": 59.35,
+          "minute": 0.99,
+          "type": "age",
+          "id": "water-wind",
+          "ageId": "water-wind",
+          "label": "Moyen Âge",
+          "cost": 320
+        },
+        {
+          "second": 68.76,
+          "minute": 1.15,
+          "type": "purchase",
+          "id": "charcoal-kiln",
+          "ageId": "water-wind",
+          "label": "Four à charbon de bois",
+          "cost": 240
+        },
+        {
+          "second": 78.34,
+          "minute": 1.31,
+          "type": "purchase",
+          "id": "heavy-plough",
+          "ageId": "water-wind",
+          "label": "Charrue lourde",
+          "cost": 340
+        },
+        {
+          "second": 88.66,
+          "minute": 1.48,
+          "type": "purchase",
+          "id": "watermill",
+          "ageId": "water-wind",
+          "label": "Moulin à eau",
+          "cost": 480
+        },
+        {
+          "second": 93.93,
+          "minute": 1.57,
+          "type": "technology",
+          "id": "charcoal-craft",
+          "ageId": "water-wind",
+          "label": "Charbonnage",
+          "cost": 340
+        },
+        {
+          "second": 99.92,
+          "minute": 1.67,
+          "type": "technology",
+          "id": "shoulder-collar",
+          "ageId": "water-wind",
+          "label": "Collier d’épaule",
+          "cost": 440
+        },
+        {
+          "second": 106.63,
+          "minute": 1.78,
+          "type": "technology",
+          "id": "wind-gears",
+          "ageId": "water-wind",
+          "label": "Moulin à vent",
+          "cost": 560
+        },
+        {
+          "second": 124.72,
+          "minute": 2.08,
+          "type": "age",
+          "id": "fossil",
+          "ageId": "fossil",
+          "label": "Âge industriel",
+          "cost": 1800
+        },
+        {
+          "second": 135.77,
+          "minute": 2.26,
+          "type": "purchase",
+          "id": "wood-gasifier",
+          "ageId": "fossil",
+          "label": "Gazogène à bois",
+          "cost": 1100
+        },
+        {
+          "second": 147.11,
+          "minute": 2.45,
+          "type": "purchase",
+          "id": "relay-stables",
+          "ageId": "fossil",
+          "label": "Relais de chevaux",
+          "cost": 1400
+        },
+        {
+          "second": 158.53,
+          "minute": 2.64,
+          "type": "purchase",
+          "id": "wind-pump",
+          "ageId": "fossil",
+          "label": "Pompe à vent",
+          "cost": 1650
+        },
+        {
+          "second": 170.58,
+          "minute": 2.84,
+          "type": "purchase",
+          "id": "steam-engine",
+          "ageId": "fossil",
+          "label": "Machine à vapeur",
+          "cost": 2200,
+          "breakthrough": {
+            "id": "first-steam",
+            "title": "La vapeur pousse le monde",
+            "tone": "steam"
+          }
+        },
+        {
+          "second": 175.42,
+          "minute": 2.92,
+          "type": "technology",
+          "id": "wood-gas-process",
+          "ageId": "fossil",
+          "label": "Gaz de bois",
+          "cost": 1300
+        },
+        {
+          "second": 180.59,
+          "minute": 3.01,
+          "type": "technology",
+          "id": "horse-logistics",
+          "ageId": "fossil",
+          "label": "Haras logistiques",
+          "cost": 1500
+        },
+        {
+          "second": 186.4,
+          "minute": 3.11,
+          "type": "technology",
+          "id": "mechanical-pumps",
+          "ageId": "fossil",
+          "label": "Pompes mécaniques",
+          "cost": 1800
+        },
+        {
+          "second": 193.27,
+          "minute": 3.22,
+          "type": "technology",
+          "id": "high-pressure-steam",
+          "ageId": "fossil",
+          "label": "Vapeur haute pression",
+          "cost": 2400
+        },
+        {
+          "second": 209.29,
+          "minute": 3.49,
+          "type": "age",
+          "id": "atomic",
+          "ageId": "atomic",
+          "label": "Âge atomique",
+          "cost": 7200
+        },
+        {
+          "second": 218.63,
+          "minute": 3.64,
+          "type": "purchase",
+          "id": "biogas-digester",
+          "ageId": "atomic",
+          "label": "Digesteur biogaz",
+          "cost": 4200
+        },
+        {
+          "second": 228.45,
+          "minute": 3.81,
+          "type": "purchase",
+          "id": "feed-logistics",
+          "ageId": "atomic",
+          "label": "Logistique alimentaire",
+          "cost": 5200
+        },
+        {
+          "second": 239.13,
+          "minute": 3.99,
+          "type": "purchase",
+          "id": "hydro-wind-grid",
+          "ageId": "atomic",
+          "label": "Réseau hydro-éolien",
+          "cost": 6400
+        },
+        {
+          "second": 249.54,
+          "minute": 4.16,
+          "type": "purchase",
+          "id": "thermal-turbine",
+          "ageId": "atomic",
+          "label": "Turbine thermique",
+          "cost": 7600
+        },
+        {
+          "second": 260.37,
+          "minute": 4.34,
+          "type": "purchase",
+          "id": "reactor-core",
+          "ageId": "atomic",
+          "label": "Cœur de réacteur",
+          "cost": 9800
+        },
+        {
+          "second": 264.14,
+          "minute": 4.4,
+          "type": "technology",
+          "id": "biogas-process",
+          "ageId": "atomic",
+          "label": "Méthanisation",
+          "cost": 5000
+        },
+        {
+          "second": 268.36,
+          "minute": 4.47,
+          "type": "technology",
+          "id": "feed-chain",
+          "ageId": "atomic",
+          "label": "Chaîne alimentaire",
+          "cost": 6000
+        },
+        {
+          "second": 273.28,
+          "minute": 4.55,
+          "type": "technology",
+          "id": "modern-wind-turbines",
+          "ageId": "atomic",
+          "label": "Éoliennes modernes",
+          "cost": 7400
+        },
+        {
+          "second": 278.38,
+          "minute": 4.64,
+          "type": "technology",
+          "id": "thermal-cycle",
+          "ageId": "atomic",
+          "label": "Cycle thermique",
+          "cost": 8600
+        },
+        {
+          "second": 284.45,
+          "minute": 4.74,
+          "type": "technology",
+          "id": "controlled-fission",
+          "ageId": "atomic",
+          "label": "Fission contrôlée",
+          "cost": 11500,
+          "breakthrough": {
+            "id": "first-fission",
+            "title": "Le noyau devient moteur",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 358.97,
+          "minute": 5.98,
+          "type": "age",
+          "id": "fusion",
+          "ageId": "fusion",
+          "label": "Fusion contrôlée",
+          "cost": 180000
+        },
+        {
+          "second": 433.49,
+          "minute": 7.22,
+          "type": "purchase",
+          "id": "fusion-tokamak",
+          "ageId": "fusion",
+          "label": "Tokamak pilote",
+          "cost": 180000
+        },
+        {
+          "second": 471.08,
+          "minute": 7.85,
+          "type": "purchase",
+          "id": "stellarator",
+          "ageId": "fusion",
+          "label": "Stellarator",
+          "cost": 260000
+        },
+        {
+          "second": 500.84,
+          "minute": 8.35,
+          "type": "purchase",
+          "id": "laser-fusion",
+          "ageId": "fusion",
+          "label": "Centrale laser",
+          "cost": 420000
+        },
+        {
+          "second": 521.44,
+          "minute": 8.69,
+          "type": "technology",
+          "id": "plasma-confinement",
+          "ageId": "fusion",
+          "label": "Plasma confiné",
+          "cost": 520000,
+          "breakthrough": {
+            "id": "first-fusion",
+            "title": "Une étoile tenue en laisse",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 544.91,
+          "minute": 9.08,
+          "type": "technology",
+          "id": "laser-compression",
+          "ageId": "fusion",
+          "label": "Compression laser",
+          "cost": 780000
+        },
+        {
+          "second": 680.3,
+          "minute": 11.34,
+          "type": "age",
+          "id": "orbital-solar",
+          "ageId": "orbital-solar",
+          "label": "Solaire orbital",
+          "cost": 6000000
+        },
+        {
+          "second": 707.38,
+          "minute": 11.79,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 1200000,
+          "breakthrough": {
+            "id": "first-orbital-solar",
+            "title": "Le jour ne finit plus",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 734.9,
+          "minute": 12.25,
+          "type": "purchase",
+          "id": "laser-relay",
+          "ageId": "orbital-solar",
+          "label": "Station relais",
+          "cost": 2100000
+        },
+        {
+          "second": 765.33,
+          "minute": 12.76,
+          "type": "purchase",
+          "id": "sps-alpha",
+          "ageId": "orbital-solar",
+          "label": "SPS-Alpha",
+          "cost": 3600000
+        },
+        {
+          "second": 788.59,
+          "minute": 13.14,
+          "type": "technology",
+          "id": "coherent-transmission",
+          "ageId": "orbital-solar",
+          "label": "Transmission cohérente",
+          "cost": 4800000
+        },
+        {
+          "second": 817.29,
+          "minute": 13.62,
+          "type": "technology",
+          "id": "orbital-phase-lock",
+          "ageId": "orbital-solar",
+          "label": "Verrouillage orbital",
+          "cost": 7500000
+        },
+        {
+          "second": 1163.8,
+          "minute": 19.4,
+          "type": "age",
+          "id": "neutron-wells",
+          "ageId": "neutron-wells",
+          "label": "Puits de neutrons",
+          "cost": 120000000
+        },
+        {
+          "second": 1215.77,
+          "minute": 20.26,
+          "type": "purchase",
+          "id": "pulsar-probe",
+          "ageId": "neutron-wells",
+          "label": "Sonde pulsar",
+          "cost": 18000000
+        },
+        {
+          "second": 1276.57,
+          "minute": 21.28,
+          "type": "purchase",
+          "id": "gravity-antenna",
+          "ageId": "neutron-wells",
+          "label": "Antenne gravitationnelle",
+          "cost": 32000000
+        },
+        {
+          "second": 1338.02,
+          "minute": 22.3,
+          "type": "purchase",
+          "id": "neutron-mill",
+          "ageId": "neutron-wells",
+          "label": "Moulin à neutrons",
+          "cost": 52000000
+        },
+        {
+          "second": 1392.7,
+          "minute": 23.21,
+          "type": "technology",
+          "id": "pulsar-mapping",
+          "ageId": "neutron-wells",
+          "label": "Cartographie pulsar",
+          "cost": 78000000,
+          "breakthrough": {
+            "id": "first-neutron-well",
+            "title": "Une étoile morte travaille",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 1455.65,
+          "minute": 24.26,
+          "type": "technology",
+          "id": "neutron-orbits",
+          "ageId": "neutron-wells",
+          "label": "Orbites neutroniques",
+          "cost": 120000000
+        },
+        {
+          "second": 1865.13,
+          "minute": 31.09,
+          "type": "age",
+          "id": "antimatter",
+          "ageId": "antimatter",
+          "label": "Antimatière",
+          "cost": 1100000000
+        },
+        {
+          "second": 1924.7,
+          "minute": 32.08,
+          "type": "purchase",
+          "id": "antimatter-accelerator",
+          "ageId": "antimatter",
+          "label": "Accélérateur orbital",
+          "cost": 160000000
+        },
+        {
+          "second": 1991.6,
+          "minute": 33.19,
+          "type": "purchase",
+          "id": "magnetic-trap",
+          "ageId": "antimatter",
+          "label": "Piège magnétique",
+          "cost": 260000000
+        },
+        {
+          "second": 2067.22,
+          "minute": 34.45,
+          "type": "purchase",
+          "id": "annihilation-reactor",
+          "ageId": "antimatter",
+          "label": "Réacteur d’annihilation",
+          "cost": 430000000
+        },
+        {
+          "second": 2136.16,
+          "minute": 35.6,
+          "type": "technology",
+          "id": "magnetic-bottles",
+          "ageId": "antimatter",
+          "label": "Bouteilles magnétiques",
+          "cost": 620000000,
+          "breakthrough": {
+            "id": "first-antimatter-bottle",
+            "title": "La matière inversée tient",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 2218.98,
+          "minute": 36.98,
+          "type": "technology",
+          "id": "controlled-annihilation",
+          "ageId": "antimatter",
+          "label": "Annihilation contrôlée",
+          "cost": 960000000
+        },
+        {
+          "second": 2811.07,
+          "minute": 46.85,
+          "type": "age",
+          "id": "black-hole",
+          "ageId": "black-hole",
+          "label": "Trou noir",
+          "cost": 9000000000
+        },
+        {
+          "second": 2890.02,
+          "minute": 48.17,
+          "type": "purchase",
+          "id": "ergosphere-probe",
+          "ageId": "black-hole",
+          "label": "Sonde ergosphérique",
+          "cost": 1200000000
+        },
+        {
+          "second": 2992.82,
+          "minute": 49.88,
+          "type": "purchase",
+          "id": "gravity-anchor",
+          "ageId": "black-hole",
+          "label": "Ancrage gravitationnel",
+          "cost": 2200000000
+        },
+        {
+          "second": 3108.2,
+          "minute": 51.8,
+          "type": "purchase",
+          "id": "penrose-extractor",
+          "ageId": "black-hole",
+          "label": "Extracteur Penrose",
+          "cost": 3600000000
+        },
+        {
+          "second": 3213.84,
+          "minute": 53.56,
+          "type": "technology",
+          "id": "kerr-measure",
+          "ageId": "black-hole",
+          "label": "Mesure de Kerr",
+          "cost": 5200000000,
+          "breakthrough": {
+            "id": "first-black-hole-siphon",
+            "title": "La gravité devient turbine",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 3343.53,
+          "minute": 55.73,
+          "type": "technology",
+          "id": "penrose-stability",
+          "ageId": "black-hole",
+          "label": "Stabilité Penrose",
+          "cost": 8200000000
+        },
+        {
+          "second": 4239.96,
+          "minute": 70.67,
+          "type": "age",
+          "id": "dyson",
+          "ageId": "dyson",
+          "label": "Dyson",
+          "cost": 80000000000
+        },
+        {
+          "second": 4441.66,
+          "minute": 74.03,
+          "type": "purchase",
+          "id": "dyson-segment",
+          "ageId": "dyson",
+          "label": "Segment orbital",
+          "cost": 18000000000,
+          "breakthrough": {
+            "id": "first-dyson-segment",
+            "title": "Premier morceau d’étoile",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 4685.48,
+          "minute": 78.09,
+          "type": "purchase",
+          "id": "space-foundry",
+          "ageId": "dyson",
+          "label": "Fonderie spatiale",
+          "cost": 32000000000
+        },
+        {
+          "second": 4946.47,
+          "minute": 82.44,
+          "type": "purchase",
+          "id": "energy-distribution",
+          "ageId": "dyson",
+          "label": "Réseau stellaire",
+          "cost": 52000000000
+        },
+        {
+          "second": 5300.19,
+          "minute": 88.34,
+          "type": "technology",
+          "id": "dyson-swarm",
+          "ageId": "dyson",
+          "label": "Essaim de Dyson",
+          "cost": 120000000000,
+          "breakthrough": {
+            "id": "first-dyson-ring",
+            "title": "Premier anneau stellaire",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 5646.85,
+          "minute": 94.11,
+          "type": "technology",
+          "id": "stellar-governance",
+          "ageId": "dyson",
+          "label": "Gouvernance stellaire",
+          "cost": 180000000000,
+          "breakthrough": {
+            "id": "stellar-grid-online",
+            "title": "Le réseau stellaire répond",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 6778.82,
+          "minute": 112.98,
+          "type": "age",
+          "id": "vacuum",
+          "ageId": "vacuum",
+          "label": "Vide",
+          "cost": 950000000000
+        },
+        {
+          "second": 6969.47,
+          "minute": 116.16,
+          "type": "purchase",
+          "id": "casimir-fluctuator",
+          "ageId": "vacuum",
+          "label": "Fluctuateur Casimir",
+          "cost": 160000000000,
+          "breakthrough": {
+            "id": "first-casimir-contact",
+            "title": "Premier contact Casimir",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 7193.76,
+          "minute": 119.9,
+          "type": "purchase",
+          "id": "vacuum-lattice",
+          "ageId": "vacuum",
+          "label": "Réseau du vide",
+          "cost": 260000000000
+        },
+        {
+          "second": 7429.81,
+          "minute": 123.83,
+          "type": "purchase",
+          "id": "universe-seed",
+          "ageId": "vacuum",
+          "label": "Graine d’univers",
+          "cost": 420000000000,
+          "breakthrough": {
+            "id": "first-vacuum-seed",
+            "title": "Le vide répond",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 7604.35,
+          "minute": 126.74,
+          "type": "technology",
+          "id": "casimir-geometry",
+          "ageId": "vacuum",
+          "label": "Géométrie Casimir",
+          "cost": 520000000000
+        },
+        {
+          "second": 7836.36,
+          "minute": 130.61,
+          "type": "technology",
+          "id": "cosmic-reboot",
+          "ageId": "vacuum",
+          "label": "Recommencement cosmique",
+          "cost": 900000000000
+        }
+      ],
+      "breakthroughEvents": [
+        {
+          "second": 170.58,
+          "minute": 2.84,
+          "type": "purchase",
+          "id": "steam-engine",
+          "ageId": "fossil",
+          "label": "Machine à vapeur",
+          "cost": 2200,
+          "breakthrough": {
+            "id": "first-steam",
+            "title": "La vapeur pousse le monde",
+            "tone": "steam"
+          }
+        },
+        {
+          "second": 284.45,
+          "minute": 4.74,
+          "type": "technology",
+          "id": "controlled-fission",
+          "ageId": "atomic",
+          "label": "Fission contrôlée",
+          "cost": 11500,
+          "breakthrough": {
+            "id": "first-fission",
+            "title": "Le noyau devient moteur",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 521.44,
+          "minute": 8.69,
+          "type": "technology",
+          "id": "plasma-confinement",
+          "ageId": "fusion",
+          "label": "Plasma confiné",
+          "cost": 520000,
+          "breakthrough": {
+            "id": "first-fusion",
+            "title": "Une étoile tenue en laisse",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 707.38,
+          "minute": 11.79,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 1200000,
+          "breakthrough": {
+            "id": "first-orbital-solar",
+            "title": "Le jour ne finit plus",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 1392.7,
+          "minute": 23.21,
+          "type": "technology",
+          "id": "pulsar-mapping",
+          "ageId": "neutron-wells",
+          "label": "Cartographie pulsar",
+          "cost": 78000000,
+          "breakthrough": {
+            "id": "first-neutron-well",
+            "title": "Une étoile morte travaille",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 2136.16,
+          "minute": 35.6,
+          "type": "technology",
+          "id": "magnetic-bottles",
+          "ageId": "antimatter",
+          "label": "Bouteilles magnétiques",
+          "cost": 620000000,
+          "breakthrough": {
+            "id": "first-antimatter-bottle",
+            "title": "La matière inversée tient",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 3213.84,
+          "minute": 53.56,
+          "type": "technology",
+          "id": "kerr-measure",
+          "ageId": "black-hole",
+          "label": "Mesure de Kerr",
+          "cost": 5200000000,
+          "breakthrough": {
+            "id": "first-black-hole-siphon",
+            "title": "La gravité devient turbine",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 4441.66,
+          "minute": 74.03,
+          "type": "purchase",
+          "id": "dyson-segment",
+          "ageId": "dyson",
+          "label": "Segment orbital",
+          "cost": 18000000000,
+          "breakthrough": {
+            "id": "first-dyson-segment",
+            "title": "Premier morceau d’étoile",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 5300.19,
+          "minute": 88.34,
+          "type": "technology",
+          "id": "dyson-swarm",
+          "ageId": "dyson",
+          "label": "Essaim de Dyson",
+          "cost": 120000000000,
+          "breakthrough": {
+            "id": "first-dyson-ring",
+            "title": "Premier anneau stellaire",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 5646.85,
+          "minute": 94.11,
+          "type": "technology",
+          "id": "stellar-governance",
+          "ageId": "dyson",
+          "label": "Gouvernance stellaire",
+          "cost": 180000000000,
+          "breakthrough": {
+            "id": "stellar-grid-online",
+            "title": "Le réseau stellaire répond",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 6969.47,
+          "minute": 116.16,
+          "type": "purchase",
+          "id": "casimir-fluctuator",
+          "ageId": "vacuum",
+          "label": "Fluctuateur Casimir",
+          "cost": 160000000000,
+          "breakthrough": {
+            "id": "first-casimir-contact",
+            "title": "Premier contact Casimir",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 7429.81,
+          "minute": 123.83,
+          "type": "purchase",
+          "id": "universe-seed",
+          "ageId": "vacuum",
+          "label": "Graine d’univers",
+          "cost": 420000000000,
+          "breakthrough": {
+            "id": "first-vacuum-seed",
+            "title": "Le vide répond",
+            "tone": "cosmic"
+          }
+        }
       ]
     },
     "aggressiveRepeat": {
@@ -209,6 +1173,1264 @@
           "elapsedMinutes": 121.56,
           "production": 5693200858
         }
+      ],
+      "events": [
+        {
+          "second": 6,
+          "minute": 0.1,
+          "type": "purchase",
+          "id": "campfire",
+          "ageId": "biomass",
+          "label": "Feu de camp",
+          "cost": 12
+        },
+        {
+          "second": 10.44,
+          "minute": 0.17,
+          "type": "technology",
+          "id": "ember-keeping",
+          "ageId": "biomass",
+          "label": "Conservation de la braise",
+          "cost": 24
+        },
+        {
+          "second": 14.96,
+          "minute": 0.25,
+          "type": "purchase",
+          "id": "campfire",
+          "ageId": "biomass",
+          "label": "Feu de camp",
+          "cost": 37
+        },
+        {
+          "second": 20.99,
+          "minute": 0.35,
+          "type": "age",
+          "id": "animal-power",
+          "ageId": "animal-power",
+          "label": "Antiquité",
+          "cost": 70
+        },
+        {
+          "second": 26.59,
+          "minute": 0.44,
+          "type": "purchase",
+          "id": "stone-hearth",
+          "ageId": "animal-power",
+          "label": "Foyer en pierre",
+          "cost": 65
+        },
+        {
+          "second": 33.01,
+          "minute": 0.55,
+          "type": "purchase",
+          "id": "oxen",
+          "ageId": "animal-power",
+          "label": "Bœufs de traction",
+          "cost": 95
+        },
+        {
+          "second": 37.54,
+          "minute": 0.63,
+          "type": "technology",
+          "id": "masonry-hearth",
+          "ageId": "animal-power",
+          "label": "Foyer maçonné",
+          "cost": 95
+        },
+        {
+          "second": 42.84,
+          "minute": 0.71,
+          "type": "technology",
+          "id": "animal-domestication",
+          "ageId": "animal-power",
+          "label": "Domestication de traction",
+          "cost": 130
+        },
+        {
+          "second": 52.77,
+          "minute": 0.88,
+          "type": "purchase",
+          "id": "oxen",
+          "ageId": "animal-power",
+          "label": "Bœufs de traction",
+          "cost": 287
+        },
+        {
+          "second": 58.39,
+          "minute": 0.97,
+          "type": "purchase",
+          "id": "stone-hearth",
+          "ageId": "animal-power",
+          "label": "Foyer en pierre",
+          "cost": 197
+        },
+        {
+          "second": 66.74,
+          "minute": 1.11,
+          "type": "age",
+          "id": "water-wind",
+          "ageId": "water-wind",
+          "label": "Moyen Âge",
+          "cost": 320
+        },
+        {
+          "second": 73.01,
+          "minute": 1.22,
+          "type": "purchase",
+          "id": "charcoal-kiln",
+          "ageId": "water-wind",
+          "label": "Four à charbon de bois",
+          "cost": 240
+        },
+        {
+          "second": 80.05,
+          "minute": 1.33,
+          "type": "purchase",
+          "id": "heavy-plough",
+          "ageId": "water-wind",
+          "label": "Charrue lourde",
+          "cost": 340
+        },
+        {
+          "second": 88.14,
+          "minute": 1.47,
+          "type": "purchase",
+          "id": "watermill",
+          "ageId": "water-wind",
+          "label": "Moulin à eau",
+          "cost": 480
+        },
+        {
+          "second": 92.54,
+          "minute": 1.54,
+          "type": "technology",
+          "id": "charcoal-craft",
+          "ageId": "water-wind",
+          "label": "Charbonnage",
+          "cost": 340
+        },
+        {
+          "second": 97.64,
+          "minute": 1.63,
+          "type": "technology",
+          "id": "shoulder-collar",
+          "ageId": "water-wind",
+          "label": "Collier d’épaule",
+          "cost": 440
+        },
+        {
+          "second": 103.45,
+          "minute": 1.72,
+          "type": "technology",
+          "id": "wind-gears",
+          "ageId": "water-wind",
+          "label": "Moulin à vent",
+          "cost": 560
+        },
+        {
+          "second": 109.91,
+          "minute": 1.83,
+          "type": "purchase",
+          "id": "charcoal-kiln",
+          "ageId": "water-wind",
+          "label": "Four à charbon de bois",
+          "cost": 725
+        },
+        {
+          "second": 121.77,
+          "minute": 2.03,
+          "type": "purchase",
+          "id": "watermill",
+          "ageId": "water-wind",
+          "label": "Moulin à eau",
+          "cost": 1450
+        },
+        {
+          "second": 129.09,
+          "minute": 2.15,
+          "type": "purchase",
+          "id": "heavy-plough",
+          "ageId": "water-wind",
+          "label": "Charrue lourde",
+          "cost": 1027
+        },
+        {
+          "second": 140.98,
+          "minute": 2.35,
+          "type": "age",
+          "id": "fossil",
+          "ageId": "fossil",
+          "label": "Âge industriel",
+          "cost": 1800
+        },
+        {
+          "second": 148.25,
+          "minute": 2.47,
+          "type": "purchase",
+          "id": "wood-gasifier",
+          "ageId": "fossil",
+          "label": "Gazogène à bois",
+          "cost": 1100
+        },
+        {
+          "second": 156.24,
+          "minute": 2.6,
+          "type": "purchase",
+          "id": "relay-stables",
+          "ageId": "fossil",
+          "label": "Relais de chevaux",
+          "cost": 1400
+        },
+        {
+          "second": 164.65,
+          "minute": 2.74,
+          "type": "purchase",
+          "id": "wind-pump",
+          "ageId": "fossil",
+          "label": "Pompe à vent",
+          "cost": 1650
+        },
+        {
+          "second": 174.03,
+          "minute": 2.9,
+          "type": "purchase",
+          "id": "steam-engine",
+          "ageId": "fossil",
+          "label": "Machine à vapeur",
+          "cost": 2200,
+          "breakthrough": {
+            "id": "first-steam",
+            "title": "La vapeur pousse le monde",
+            "tone": "steam"
+          }
+        },
+        {
+          "second": 178.09,
+          "minute": 2.97,
+          "type": "technology",
+          "id": "wood-gas-process",
+          "ageId": "fossil",
+          "label": "Gaz de bois",
+          "cost": 1300
+        },
+        {
+          "second": 182.48,
+          "minute": 3.04,
+          "type": "technology",
+          "id": "horse-logistics",
+          "ageId": "fossil",
+          "label": "Haras logistiques",
+          "cost": 1500
+        },
+        {
+          "second": 187.46,
+          "minute": 3.12,
+          "type": "technology",
+          "id": "mechanical-pumps",
+          "ageId": "fossil",
+          "label": "Pompes mécaniques",
+          "cost": 1800
+        },
+        {
+          "second": 193.44,
+          "minute": 3.22,
+          "type": "technology",
+          "id": "high-pressure-steam",
+          "ageId": "fossil",
+          "label": "Vapeur haute pression",
+          "cost": 2400
+        },
+        {
+          "second": 206.69,
+          "minute": 3.44,
+          "type": "purchase",
+          "id": "steam-engine",
+          "ageId": "fossil",
+          "label": "Machine à vapeur",
+          "cost": 6645
+        },
+        {
+          "second": 215.18,
+          "minute": 3.59,
+          "type": "purchase",
+          "id": "wind-pump",
+          "ageId": "fossil",
+          "label": "Pompe à vent",
+          "cost": 4984
+        },
+        {
+          "second": 220.49,
+          "minute": 3.67,
+          "type": "purchase",
+          "id": "wood-gasifier",
+          "ageId": "fossil",
+          "label": "Gazogène à bois",
+          "cost": 3323
+        },
+        {
+          "second": 227.01,
+          "minute": 3.78,
+          "type": "purchase",
+          "id": "relay-stables",
+          "ageId": "fossil",
+          "label": "Relais de chevaux",
+          "cost": 4229
+        },
+        {
+          "second": 237.75,
+          "minute": 3.96,
+          "type": "age",
+          "id": "atomic",
+          "ageId": "atomic",
+          "label": "Âge atomique",
+          "cost": 7200
+        },
+        {
+          "second": 244.01,
+          "minute": 4.07,
+          "type": "purchase",
+          "id": "biogas-digester",
+          "ageId": "atomic",
+          "label": "Digesteur biogaz",
+          "cost": 4200
+        },
+        {
+          "second": 250.95,
+          "minute": 4.18,
+          "type": "purchase",
+          "id": "feed-logistics",
+          "ageId": "atomic",
+          "label": "Logistique alimentaire",
+          "cost": 5200
+        },
+        {
+          "second": 258.75,
+          "minute": 4.31,
+          "type": "purchase",
+          "id": "hydro-wind-grid",
+          "ageId": "atomic",
+          "label": "Réseau hydro-éolien",
+          "cost": 6400
+        },
+        {
+          "second": 266.74,
+          "minute": 4.45,
+          "type": "purchase",
+          "id": "thermal-turbine",
+          "ageId": "atomic",
+          "label": "Turbine thermique",
+          "cost": 7600
+        },
+        {
+          "second": 275.45,
+          "minute": 4.59,
+          "type": "purchase",
+          "id": "reactor-core",
+          "ageId": "atomic",
+          "label": "Cœur de réacteur",
+          "cost": 9800
+        },
+        {
+          "second": 278.68,
+          "minute": 4.64,
+          "type": "technology",
+          "id": "biogas-process",
+          "ageId": "atomic",
+          "label": "Méthanisation",
+          "cost": 5000
+        },
+        {
+          "second": 282.34,
+          "minute": 4.71,
+          "type": "technology",
+          "id": "feed-chain",
+          "ageId": "atomic",
+          "label": "Chaîne alimentaire",
+          "cost": 6000
+        },
+        {
+          "second": 286.62,
+          "minute": 4.78,
+          "type": "technology",
+          "id": "modern-wind-turbines",
+          "ageId": "atomic",
+          "label": "Éoliennes modernes",
+          "cost": 7400
+        },
+        {
+          "second": 291.13,
+          "minute": 4.85,
+          "type": "technology",
+          "id": "thermal-cycle",
+          "ageId": "atomic",
+          "label": "Cycle thermique",
+          "cost": 8600
+        },
+        {
+          "second": 296.57,
+          "minute": 4.94,
+          "type": "technology",
+          "id": "controlled-fission",
+          "ageId": "atomic",
+          "label": "Fission contrôlée",
+          "cost": 11500,
+          "breakthrough": {
+            "id": "first-fission",
+            "title": "Le noyau devient moteur",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 307.79,
+          "minute": 5.13,
+          "type": "purchase",
+          "id": "reactor-core",
+          "ageId": "atomic",
+          "label": "Cœur de réacteur",
+          "cost": 29597
+        },
+        {
+          "second": 315.3,
+          "minute": 5.26,
+          "type": "purchase",
+          "id": "thermal-turbine",
+          "ageId": "atomic",
+          "label": "Turbine thermique",
+          "cost": 22953
+        },
+        {
+          "second": 321.28,
+          "minute": 5.35,
+          "type": "purchase",
+          "id": "hydro-wind-grid",
+          "ageId": "atomic",
+          "label": "Réseau hydro-éolien",
+          "cost": 19329
+        },
+        {
+          "second": 325.06,
+          "minute": 5.42,
+          "type": "purchase",
+          "id": "biogas-digester",
+          "ageId": "atomic",
+          "label": "Digesteur biogaz",
+          "cost": 12685
+        },
+        {
+          "second": 351.02,
+          "minute": 5.85,
+          "type": "purchase",
+          "id": "reactor-core",
+          "ageId": "atomic",
+          "label": "Cœur de réacteur",
+          "cost": 89380
+        },
+        {
+          "second": 355.09,
+          "minute": 5.92,
+          "type": "purchase",
+          "id": "feed-logistics",
+          "ageId": "atomic",
+          "label": "Logistique alimentaire",
+          "cost": 15705
+        },
+        {
+          "second": 372.72,
+          "minute": 6.21,
+          "type": "purchase",
+          "id": "thermal-turbine",
+          "ageId": "atomic",
+          "label": "Turbine thermique",
+          "cost": 69316
+        },
+        {
+          "second": 386.92,
+          "minute": 6.45,
+          "type": "purchase",
+          "id": "hydro-wind-grid",
+          "ageId": "atomic",
+          "label": "Réseau hydro-éolien",
+          "cost": 58371
+        },
+        {
+          "second": 395.96,
+          "minute": 6.6,
+          "type": "purchase",
+          "id": "biogas-digester",
+          "ageId": "atomic",
+          "label": "Digesteur biogaz",
+          "cost": 38306
+        },
+        {
+          "second": 437.64,
+          "minute": 7.29,
+          "type": "age",
+          "id": "fusion",
+          "ageId": "fusion",
+          "label": "Fusion contrôlée",
+          "cost": 180000
+        },
+        {
+          "second": 479.33,
+          "minute": 7.99,
+          "type": "purchase",
+          "id": "fusion-tokamak",
+          "ageId": "fusion",
+          "label": "Tokamak pilote",
+          "cost": 180000
+        },
+        {
+          "second": 508.81,
+          "minute": 8.48,
+          "type": "purchase",
+          "id": "stellarator",
+          "ageId": "fusion",
+          "label": "Stellarator",
+          "cost": 260000
+        },
+        {
+          "second": 535.03,
+          "minute": 8.92,
+          "type": "purchase",
+          "id": "laser-fusion",
+          "ageId": "fusion",
+          "label": "Centrale laser",
+          "cost": 420000
+        },
+        {
+          "second": 554.19,
+          "minute": 9.24,
+          "type": "technology",
+          "id": "plasma-confinement",
+          "ageId": "fusion",
+          "label": "Plasma confiné",
+          "cost": 520000,
+          "breakthrough": {
+            "id": "first-fusion",
+            "title": "Une étoile tenue en laisse",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 576.39,
+          "minute": 9.61,
+          "type": "technology",
+          "id": "laser-compression",
+          "ageId": "fusion",
+          "label": "Compression laser",
+          "cost": 780000
+        },
+        {
+          "second": 593.38,
+          "minute": 9.89,
+          "type": "purchase",
+          "id": "stellarator",
+          "ageId": "fusion",
+          "label": "Stellarator",
+          "cost": 785201
+        },
+        {
+          "second": 617.12,
+          "minute": 10.29,
+          "type": "purchase",
+          "id": "laser-fusion",
+          "ageId": "fusion",
+          "label": "Centrale laser",
+          "cost": 1268401
+        },
+        {
+          "second": 625.55,
+          "minute": 10.43,
+          "type": "purchase",
+          "id": "fusion-tokamak",
+          "ageId": "fusion",
+          "label": "Tokamak pilote",
+          "cost": 543601
+        },
+        {
+          "second": 659.89,
+          "minute": 11,
+          "type": "purchase",
+          "id": "stellarator",
+          "ageId": "fusion",
+          "label": "Stellarator",
+          "cost": 2371305
+        },
+        {
+          "second": 710.14,
+          "minute": 11.84,
+          "type": "purchase",
+          "id": "laser-fusion",
+          "ageId": "fusion",
+          "label": "Centrale laser",
+          "cost": 3830569
+        },
+        {
+          "second": 728.93,
+          "minute": 12.15,
+          "type": "purchase",
+          "id": "fusion-tokamak",
+          "ageId": "fusion",
+          "label": "Tokamak pilote",
+          "cost": 1641673
+        },
+        {
+          "second": 794.25,
+          "minute": 13.24,
+          "type": "age",
+          "id": "orbital-solar",
+          "ageId": "orbital-solar",
+          "label": "Solaire orbital",
+          "cost": 6000000
+        },
+        {
+          "second": 807.31,
+          "minute": 13.46,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 1200000,
+          "breakthrough": {
+            "id": "first-orbital-solar",
+            "title": "Le jour ne finit plus",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 824.27,
+          "minute": 13.74,
+          "type": "purchase",
+          "id": "laser-relay",
+          "ageId": "orbital-solar",
+          "label": "Station relais",
+          "cost": 2100000
+        },
+        {
+          "second": 845.97,
+          "minute": 14.1,
+          "type": "purchase",
+          "id": "sps-alpha",
+          "ageId": "orbital-solar",
+          "label": "SPS-Alpha",
+          "cost": 3600000
+        },
+        {
+          "second": 864.88,
+          "minute": 14.41,
+          "type": "technology",
+          "id": "coherent-transmission",
+          "ageId": "orbital-solar",
+          "label": "Transmission cohérente",
+          "cost": 4800000
+        },
+        {
+          "second": 889.16,
+          "minute": 14.82,
+          "type": "technology",
+          "id": "orbital-phase-lock",
+          "ageId": "orbital-solar",
+          "label": "Verrouillage orbital",
+          "cost": 7500000
+        },
+        {
+          "second": 898.37,
+          "minute": 14.97,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 3624001
+        },
+        {
+          "second": 923.9,
+          "minute": 15.4,
+          "type": "purchase",
+          "id": "sps-alpha",
+          "ageId": "orbital-solar",
+          "label": "SPS-Alpha",
+          "cost": 10872001
+        },
+        {
+          "second": 936.24,
+          "minute": 15.6,
+          "type": "purchase",
+          "id": "laser-relay",
+          "ageId": "orbital-solar",
+          "label": "Station relais",
+          "cost": 6342001
+        },
+        {
+          "second": 955.93,
+          "minute": 15.93,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 10944481
+        },
+        {
+          "second": 1011.78,
+          "minute": 16.86,
+          "type": "purchase",
+          "id": "sps-alpha",
+          "ageId": "orbital-solar",
+          "label": "SPS-Alpha",
+          "cost": 32833441
+        },
+        {
+          "second": 1040.12,
+          "minute": 17.34,
+          "type": "purchase",
+          "id": "laser-relay",
+          "ageId": "orbital-solar",
+          "label": "Station relais",
+          "cost": 19152841
+        },
+        {
+          "second": 1207.28,
+          "minute": 20.12,
+          "type": "age",
+          "id": "neutron-wells",
+          "ageId": "neutron-wells",
+          "label": "Puits de neutrons",
+          "cost": 120000000
+        },
+        {
+          "second": 1232.36,
+          "minute": 20.54,
+          "type": "purchase",
+          "id": "pulsar-probe",
+          "ageId": "neutron-wells",
+          "label": "Sonde pulsar",
+          "cost": 18000000
+        },
+        {
+          "second": 1268,
+          "minute": 21.13,
+          "type": "purchase",
+          "id": "gravity-antenna",
+          "ageId": "neutron-wells",
+          "label": "Antenne gravitationnelle",
+          "cost": 32000000
+        },
+        {
+          "second": 1310.7,
+          "minute": 21.84,
+          "type": "purchase",
+          "id": "neutron-mill",
+          "ageId": "neutron-wells",
+          "label": "Moulin à neutrons",
+          "cost": 52000000
+        },
+        {
+          "second": 1354.08,
+          "minute": 22.57,
+          "type": "technology",
+          "id": "pulsar-mapping",
+          "ageId": "neutron-wells",
+          "label": "Cartographie pulsar",
+          "cost": 78000000,
+          "breakthrough": {
+            "id": "first-neutron-well",
+            "title": "Une étoile morte travaille",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 1406.76,
+          "minute": 23.45,
+          "type": "technology",
+          "id": "neutron-orbits",
+          "ageId": "neutron-wells",
+          "label": "Orbites neutroniques",
+          "cost": 120000000
+        },
+        {
+          "second": 1458.12,
+          "minute": 24.3,
+          "type": "purchase",
+          "id": "neutron-mill",
+          "ageId": "neutron-wells",
+          "label": "Moulin à neutrons",
+          "cost": 157040001
+        },
+        {
+          "second": 1484.68,
+          "minute": 24.74,
+          "type": "purchase",
+          "id": "gravity-antenna",
+          "ageId": "neutron-wells",
+          "label": "Antenne gravitationnelle",
+          "cost": 96640001
+        },
+        {
+          "second": 1498.42,
+          "minute": 24.97,
+          "type": "purchase",
+          "id": "pulsar-probe",
+          "ageId": "neutron-wells",
+          "label": "Sonde pulsar",
+          "cost": 54360001
+        },
+        {
+          "second": 1764.26,
+          "minute": 29.4,
+          "type": "age",
+          "id": "antimatter",
+          "ageId": "antimatter",
+          "label": "Antimatière",
+          "cost": 1100000000
+        },
+        {
+          "second": 1802.92,
+          "minute": 30.05,
+          "type": "purchase",
+          "id": "antimatter-accelerator",
+          "ageId": "antimatter",
+          "label": "Accélérateur orbital",
+          "cost": 160000000
+        },
+        {
+          "second": 1851.63,
+          "minute": 30.86,
+          "type": "purchase",
+          "id": "magnetic-trap",
+          "ageId": "antimatter",
+          "label": "Piège magnétique",
+          "cost": 260000000
+        },
+        {
+          "second": 1911.87,
+          "minute": 31.86,
+          "type": "purchase",
+          "id": "annihilation-reactor",
+          "ageId": "antimatter",
+          "label": "Réacteur d’annihilation",
+          "cost": 430000000
+        },
+        {
+          "second": 1971.24,
+          "minute": 32.85,
+          "type": "technology",
+          "id": "magnetic-bottles",
+          "ageId": "antimatter",
+          "label": "Bouteilles magnétiques",
+          "cost": 620000000,
+          "breakthrough": {
+            "id": "first-antimatter-bottle",
+            "title": "La matière inversée tient",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 2044.84,
+          "minute": 34.08,
+          "type": "technology",
+          "id": "controlled-annihilation",
+          "ageId": "antimatter",
+          "label": "Annihilation contrôlée",
+          "cost": 960000000
+        },
+        {
+          "second": 2122.82,
+          "minute": 35.38,
+          "type": "purchase",
+          "id": "annihilation-reactor",
+          "ageId": "antimatter",
+          "label": "Réacteur d’annihilation",
+          "cost": 1298600001
+        },
+        {
+          "second": 2147.03,
+          "minute": 35.78,
+          "type": "purchase",
+          "id": "antimatter-accelerator",
+          "ageId": "antimatter",
+          "label": "Accélérateur orbital",
+          "cost": 483200001
+        },
+        {
+          "second": 2184.14,
+          "minute": 36.4,
+          "type": "purchase",
+          "id": "magnetic-trap",
+          "ageId": "antimatter",
+          "label": "Piège magnétique",
+          "cost": 785200001
+        },
+        {
+          "second": 2576.17,
+          "minute": 42.94,
+          "type": "age",
+          "id": "black-hole",
+          "ageId": "black-hole",
+          "label": "Trou noir",
+          "cost": 9000000000
+        },
+        {
+          "second": 2628.44,
+          "minute": 43.81,
+          "type": "purchase",
+          "id": "ergosphere-probe",
+          "ageId": "black-hole",
+          "label": "Sonde ergosphérique",
+          "cost": 1200000000
+        },
+        {
+          "second": 2703.89,
+          "minute": 45.06,
+          "type": "purchase",
+          "id": "gravity-anchor",
+          "ageId": "black-hole",
+          "label": "Ancrage gravitationnel",
+          "cost": 2200000000
+        },
+        {
+          "second": 2796.3,
+          "minute": 46.6,
+          "type": "purchase",
+          "id": "penrose-extractor",
+          "ageId": "black-hole",
+          "label": "Extracteur Penrose",
+          "cost": 3600000000
+        },
+        {
+          "second": 2887.55,
+          "minute": 48.13,
+          "type": "technology",
+          "id": "kerr-measure",
+          "ageId": "black-hole",
+          "label": "Mesure de Kerr",
+          "cost": 5200000000,
+          "breakthrough": {
+            "id": "first-black-hole-siphon",
+            "title": "La gravité devient turbine",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 3003.07,
+          "minute": 50.05,
+          "type": "technology",
+          "id": "penrose-stability",
+          "ageId": "black-hole",
+          "label": "Stabilité Penrose",
+          "cost": 8200000000
+        },
+        {
+          "second": 3040.43,
+          "minute": 50.67,
+          "type": "purchase",
+          "id": "ergosphere-probe",
+          "ageId": "black-hole",
+          "label": "Sonde ergosphérique",
+          "cost": 3624000001
+        },
+        {
+          "second": 3815.62,
+          "minute": 63.59,
+          "type": "age",
+          "id": "dyson",
+          "ageId": "dyson",
+          "label": "Dyson",
+          "cost": 80000000000
+        },
+        {
+          "second": 3990.04,
+          "minute": 66.5,
+          "type": "purchase",
+          "id": "dyson-segment",
+          "ageId": "dyson",
+          "label": "Segment orbital",
+          "cost": 18000000000,
+          "breakthrough": {
+            "id": "first-dyson-segment",
+            "title": "Premier morceau d’étoile",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 4210.42,
+          "minute": 70.17,
+          "type": "purchase",
+          "id": "space-foundry",
+          "ageId": "dyson",
+          "label": "Fonderie spatiale",
+          "cost": 32000000000
+        },
+        {
+          "second": 4454.32,
+          "minute": 74.24,
+          "type": "purchase",
+          "id": "energy-distribution",
+          "ageId": "dyson",
+          "label": "Réseau stellaire",
+          "cost": 52000000000
+        },
+        {
+          "second": 4794.07,
+          "minute": 79.9,
+          "type": "technology",
+          "id": "dyson-swarm",
+          "ageId": "dyson",
+          "label": "Essaim de Dyson",
+          "cost": 120000000000,
+          "breakthrough": {
+            "id": "first-dyson-ring",
+            "title": "Premier anneau stellaire",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 5131.66,
+          "minute": 85.53,
+          "type": "technology",
+          "id": "stellar-governance",
+          "ageId": "dyson",
+          "label": "Gouvernance stellaire",
+          "cost": 180000000000,
+          "breakthrough": {
+            "id": "stellar-grid-online",
+            "title": "Le réseau stellaire répond",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 6245.11,
+          "minute": 104.09,
+          "type": "age",
+          "id": "vacuum",
+          "ageId": "vacuum",
+          "label": "Vide",
+          "cost": 950000000000
+        },
+        {
+          "second": 6432.64,
+          "minute": 107.21,
+          "type": "purchase",
+          "id": "casimir-fluctuator",
+          "ageId": "vacuum",
+          "label": "Fluctuateur Casimir",
+          "cost": 160000000000,
+          "breakthrough": {
+            "id": "first-casimir-contact",
+            "title": "Premier contact Casimir",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 6654.26,
+          "minute": 110.9,
+          "type": "purchase",
+          "id": "vacuum-lattice",
+          "ageId": "vacuum",
+          "label": "Réseau du vide",
+          "cost": 260000000000
+        },
+        {
+          "second": 6888.47,
+          "minute": 114.81,
+          "type": "purchase",
+          "id": "universe-seed",
+          "ageId": "vacuum",
+          "label": "Graine d’univers",
+          "cost": 420000000000,
+          "breakthrough": {
+            "id": "first-vacuum-seed",
+            "title": "Le vide répond",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 7062.2,
+          "minute": 117.7,
+          "type": "technology",
+          "id": "casimir-geometry",
+          "ageId": "vacuum",
+          "label": "Géométrie Casimir",
+          "cost": 520000000000
+        },
+        {
+          "second": 7293.37,
+          "minute": 121.56,
+          "type": "technology",
+          "id": "cosmic-reboot",
+          "ageId": "vacuum",
+          "label": "Recommencement cosmique",
+          "cost": 900000000000
+        }
+      ],
+      "breakthroughEvents": [
+        {
+          "second": 174.03,
+          "minute": 2.9,
+          "type": "purchase",
+          "id": "steam-engine",
+          "ageId": "fossil",
+          "label": "Machine à vapeur",
+          "cost": 2200,
+          "breakthrough": {
+            "id": "first-steam",
+            "title": "La vapeur pousse le monde",
+            "tone": "steam"
+          }
+        },
+        {
+          "second": 296.57,
+          "minute": 4.94,
+          "type": "technology",
+          "id": "controlled-fission",
+          "ageId": "atomic",
+          "label": "Fission contrôlée",
+          "cost": 11500,
+          "breakthrough": {
+            "id": "first-fission",
+            "title": "Le noyau devient moteur",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 554.19,
+          "minute": 9.24,
+          "type": "technology",
+          "id": "plasma-confinement",
+          "ageId": "fusion",
+          "label": "Plasma confiné",
+          "cost": 520000,
+          "breakthrough": {
+            "id": "first-fusion",
+            "title": "Une étoile tenue en laisse",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 807.31,
+          "minute": 13.46,
+          "type": "purchase",
+          "id": "orbital-collector",
+          "ageId": "orbital-solar",
+          "label": "Satellite collecteur",
+          "cost": 1200000,
+          "breakthrough": {
+            "id": "first-orbital-solar",
+            "title": "Le jour ne finit plus",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 1354.08,
+          "minute": 22.57,
+          "type": "technology",
+          "id": "pulsar-mapping",
+          "ageId": "neutron-wells",
+          "label": "Cartographie pulsar",
+          "cost": 78000000,
+          "breakthrough": {
+            "id": "first-neutron-well",
+            "title": "Une étoile morte travaille",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 1971.24,
+          "minute": 32.85,
+          "type": "technology",
+          "id": "magnetic-bottles",
+          "ageId": "antimatter",
+          "label": "Bouteilles magnétiques",
+          "cost": 620000000,
+          "breakthrough": {
+            "id": "first-antimatter-bottle",
+            "title": "La matière inversée tient",
+            "tone": "atomic"
+          }
+        },
+        {
+          "second": 2887.55,
+          "minute": 48.13,
+          "type": "technology",
+          "id": "kerr-measure",
+          "ageId": "black-hole",
+          "label": "Mesure de Kerr",
+          "cost": 5200000000,
+          "breakthrough": {
+            "id": "first-black-hole-siphon",
+            "title": "La gravité devient turbine",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 3990.04,
+          "minute": 66.5,
+          "type": "purchase",
+          "id": "dyson-segment",
+          "ageId": "dyson",
+          "label": "Segment orbital",
+          "cost": 18000000000,
+          "breakthrough": {
+            "id": "first-dyson-segment",
+            "title": "Premier morceau d’étoile",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 4794.07,
+          "minute": 79.9,
+          "type": "technology",
+          "id": "dyson-swarm",
+          "ageId": "dyson",
+          "label": "Essaim de Dyson",
+          "cost": 120000000000,
+          "breakthrough": {
+            "id": "first-dyson-ring",
+            "title": "Premier anneau stellaire",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 5131.66,
+          "minute": 85.53,
+          "type": "technology",
+          "id": "stellar-governance",
+          "ageId": "dyson",
+          "label": "Gouvernance stellaire",
+          "cost": 180000000000,
+          "breakthrough": {
+            "id": "stellar-grid-online",
+            "title": "Le réseau stellaire répond",
+            "tone": "stellar"
+          }
+        },
+        {
+          "second": 6432.64,
+          "minute": 107.21,
+          "type": "purchase",
+          "id": "casimir-fluctuator",
+          "ageId": "vacuum",
+          "label": "Fluctuateur Casimir",
+          "cost": 160000000000,
+          "breakthrough": {
+            "id": "first-casimir-contact",
+            "title": "Premier contact Casimir",
+            "tone": "cosmic"
+          }
+        },
+        {
+          "second": 6888.47,
+          "minute": 114.81,
+          "type": "purchase",
+          "id": "universe-seed",
+          "ageId": "vacuum",
+          "label": "Graine d’univers",
+          "cost": 420000000000,
+          "breakthrough": {
+            "id": "first-vacuum-seed",
+            "title": "Le vide répond",
+            "tone": "cosmic"
+          }
+        }
       ]
     },
     "score": 93.37279001147544
@@ -284,7 +2506,9 @@
         "ageMinutes": 11.69,
         "targetBandMinutes": "8-22",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-neutron-well"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -292,7 +2516,9 @@
         "ageMinutes": 15.77,
         "targetBandMinutes": "10-28",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-antimatter-bottle"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -300,7 +2526,9 @@
         "ageMinutes": 23.81,
         "targetBandMinutes": "16-36",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-black-hole-siphon"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -309,9 +2537,11 @@
         "targetBandMinutes": "24-52",
         "status": "watch",
         "breakthroughs": [
-          "first-dyson-ring"
+          "first-dyson-segment",
+          "first-dyson-ring",
+          "stellar-grid-online"
         ],
-        "recommendation": "Moment fort en place : first-dyson-ring."
+        "recommendation": "Moment fort en place : first-dyson-segment, first-dyson-ring, stellar-grid-online."
       },
       {
         "age": "Vide",
@@ -319,6 +2549,7 @@
         "targetBandMinutes": "10-28",
         "status": "ok",
         "breakthroughs": [
+          "first-casimir-contact",
           "first-vacuum-seed"
         ],
         "recommendation": "Garder le rythme actuel."
@@ -394,7 +2625,9 @@
         "ageMinutes": 9.28,
         "targetBandMinutes": "8-22",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-neutron-well"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -402,7 +2635,9 @@
         "ageMinutes": 13.53,
         "targetBandMinutes": "10-28",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-antimatter-bottle"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -410,7 +2645,9 @@
         "ageMinutes": 20.66,
         "targetBandMinutes": "16-36",
         "status": "ok",
-        "breakthroughs": [],
+        "breakthroughs": [
+          "first-black-hole-siphon"
+        ],
         "recommendation": "Garder le rythme actuel."
       },
       {
@@ -419,9 +2656,11 @@
         "targetBandMinutes": "24-52",
         "status": "watch",
         "breakthroughs": [
-          "first-dyson-ring"
+          "first-dyson-segment",
+          "first-dyson-ring",
+          "stellar-grid-online"
         ],
-        "recommendation": "Moment fort en place : first-dyson-ring."
+        "recommendation": "Moment fort en place : first-dyson-segment, first-dyson-ring, stellar-grid-online."
       },
       {
         "age": "Vide",
@@ -429,11 +2668,414 @@
         "targetBandMinutes": "10-28",
         "status": "ok",
         "breakthroughs": [
+          "first-casimir-contact",
           "first-vacuum-seed"
         ],
         "recommendation": "Garder le rythme actuel."
       }
     ]
+  },
+  "flowDiagnostics": {
+    "requiredOnly": {
+      "breakthroughCount": 12,
+      "breakthroughTimeline": [
+        {
+          "id": "first-steam",
+          "title": "La vapeur pousse le monde",
+          "minute": 2.84,
+          "trigger": {
+            "type": "purchase",
+            "id": "steam-engine"
+          }
+        },
+        {
+          "id": "first-fission",
+          "title": "Le noyau devient moteur",
+          "minute": 4.74,
+          "trigger": {
+            "type": "technology",
+            "id": "controlled-fission"
+          }
+        },
+        {
+          "id": "first-fusion",
+          "title": "Une étoile tenue en laisse",
+          "minute": 8.69,
+          "trigger": {
+            "type": "technology",
+            "id": "plasma-confinement"
+          }
+        },
+        {
+          "id": "first-orbital-solar",
+          "title": "Le jour ne finit plus",
+          "minute": 11.79,
+          "trigger": {
+            "type": "purchase",
+            "id": "orbital-collector"
+          }
+        },
+        {
+          "id": "first-neutron-well",
+          "title": "Une étoile morte travaille",
+          "minute": 23.21,
+          "trigger": {
+            "type": "technology",
+            "id": "pulsar-mapping"
+          }
+        },
+        {
+          "id": "first-antimatter-bottle",
+          "title": "La matière inversée tient",
+          "minute": 35.6,
+          "trigger": {
+            "type": "technology",
+            "id": "magnetic-bottles"
+          }
+        },
+        {
+          "id": "first-black-hole-siphon",
+          "title": "La gravité devient turbine",
+          "minute": 53.56,
+          "trigger": {
+            "type": "technology",
+            "id": "kerr-measure"
+          }
+        },
+        {
+          "id": "first-dyson-segment",
+          "title": "Premier morceau d’étoile",
+          "minute": 74.03,
+          "trigger": {
+            "type": "purchase",
+            "id": "dyson-segment"
+          }
+        },
+        {
+          "id": "first-dyson-ring",
+          "title": "Premier anneau stellaire",
+          "minute": 88.34,
+          "trigger": {
+            "type": "technology",
+            "id": "dyson-swarm"
+          }
+        },
+        {
+          "id": "stellar-grid-online",
+          "title": "Le réseau stellaire répond",
+          "minute": 94.11,
+          "trigger": {
+            "type": "technology",
+            "id": "stellar-governance"
+          }
+        },
+        {
+          "id": "first-casimir-contact",
+          "title": "Premier contact Casimir",
+          "minute": 116.16,
+          "trigger": {
+            "type": "purchase",
+            "id": "casimir-fluctuator"
+          }
+        },
+        {
+          "id": "first-vacuum-seed",
+          "title": "Le vide répond",
+          "minute": 123.83,
+          "trigger": {
+            "type": "purchase",
+            "id": "universe-seed"
+          }
+        }
+      ],
+      "gaps": [
+        {
+          "from": "Debut",
+          "to": "first-steam",
+          "gapMinutes": 2.84,
+          "status": "ok"
+        },
+        {
+          "from": "first-steam",
+          "to": "first-fission",
+          "gapMinutes": 1.9,
+          "status": "ok"
+        },
+        {
+          "from": "first-fission",
+          "to": "first-fusion",
+          "gapMinutes": 3.95,
+          "status": "ok"
+        },
+        {
+          "from": "first-fusion",
+          "to": "first-orbital-solar",
+          "gapMinutes": 3.1,
+          "status": "ok"
+        },
+        {
+          "from": "first-orbital-solar",
+          "to": "first-neutron-well",
+          "gapMinutes": 11.42,
+          "status": "ok"
+        },
+        {
+          "from": "first-neutron-well",
+          "to": "first-antimatter-bottle",
+          "gapMinutes": 12.39,
+          "status": "ok"
+        },
+        {
+          "from": "first-antimatter-bottle",
+          "to": "first-black-hole-siphon",
+          "gapMinutes": 17.96,
+          "status": "watch"
+        },
+        {
+          "from": "first-black-hole-siphon",
+          "to": "first-dyson-segment",
+          "gapMinutes": 20.47,
+          "status": "watch"
+        },
+        {
+          "from": "first-dyson-segment",
+          "to": "first-dyson-ring",
+          "gapMinutes": 14.31,
+          "status": "ok"
+        },
+        {
+          "from": "first-dyson-ring",
+          "to": "stellar-grid-online",
+          "gapMinutes": 5.77,
+          "status": "ok"
+        },
+        {
+          "from": "stellar-grid-online",
+          "to": "first-casimir-contact",
+          "gapMinutes": 22.05,
+          "status": "watch"
+        },
+        {
+          "from": "first-casimir-contact",
+          "to": "first-vacuum-seed",
+          "gapMinutes": 7.67,
+          "status": "ok"
+        },
+        {
+          "from": "first-vacuum-seed",
+          "to": "Fin",
+          "gapMinutes": 6.78,
+          "status": "ok"
+        }
+      ],
+      "maxGap": {
+        "from": "stellar-grid-online",
+        "to": "first-casimir-contact",
+        "gapMinutes": 22.05,
+        "status": "watch"
+      },
+      "recommendation": "Ajouter un micro-objectif entre stellar-grid-online et first-casimir-contact."
+    },
+    "aggressiveRepeat": {
+      "breakthroughCount": 12,
+      "breakthroughTimeline": [
+        {
+          "id": "first-steam",
+          "title": "La vapeur pousse le monde",
+          "minute": 2.9,
+          "trigger": {
+            "type": "purchase",
+            "id": "steam-engine"
+          }
+        },
+        {
+          "id": "first-fission",
+          "title": "Le noyau devient moteur",
+          "minute": 4.94,
+          "trigger": {
+            "type": "technology",
+            "id": "controlled-fission"
+          }
+        },
+        {
+          "id": "first-fusion",
+          "title": "Une étoile tenue en laisse",
+          "minute": 9.24,
+          "trigger": {
+            "type": "technology",
+            "id": "plasma-confinement"
+          }
+        },
+        {
+          "id": "first-orbital-solar",
+          "title": "Le jour ne finit plus",
+          "minute": 13.46,
+          "trigger": {
+            "type": "purchase",
+            "id": "orbital-collector"
+          }
+        },
+        {
+          "id": "first-neutron-well",
+          "title": "Une étoile morte travaille",
+          "minute": 22.57,
+          "trigger": {
+            "type": "technology",
+            "id": "pulsar-mapping"
+          }
+        },
+        {
+          "id": "first-antimatter-bottle",
+          "title": "La matière inversée tient",
+          "minute": 32.85,
+          "trigger": {
+            "type": "technology",
+            "id": "magnetic-bottles"
+          }
+        },
+        {
+          "id": "first-black-hole-siphon",
+          "title": "La gravité devient turbine",
+          "minute": 48.13,
+          "trigger": {
+            "type": "technology",
+            "id": "kerr-measure"
+          }
+        },
+        {
+          "id": "first-dyson-segment",
+          "title": "Premier morceau d’étoile",
+          "minute": 66.5,
+          "trigger": {
+            "type": "purchase",
+            "id": "dyson-segment"
+          }
+        },
+        {
+          "id": "first-dyson-ring",
+          "title": "Premier anneau stellaire",
+          "minute": 79.9,
+          "trigger": {
+            "type": "technology",
+            "id": "dyson-swarm"
+          }
+        },
+        {
+          "id": "stellar-grid-online",
+          "title": "Le réseau stellaire répond",
+          "minute": 85.53,
+          "trigger": {
+            "type": "technology",
+            "id": "stellar-governance"
+          }
+        },
+        {
+          "id": "first-casimir-contact",
+          "title": "Premier contact Casimir",
+          "minute": 107.21,
+          "trigger": {
+            "type": "purchase",
+            "id": "casimir-fluctuator"
+          }
+        },
+        {
+          "id": "first-vacuum-seed",
+          "title": "Le vide répond",
+          "minute": 114.81,
+          "trigger": {
+            "type": "purchase",
+            "id": "universe-seed"
+          }
+        }
+      ],
+      "gaps": [
+        {
+          "from": "Debut",
+          "to": "first-steam",
+          "gapMinutes": 2.9,
+          "status": "ok"
+        },
+        {
+          "from": "first-steam",
+          "to": "first-fission",
+          "gapMinutes": 2.04,
+          "status": "ok"
+        },
+        {
+          "from": "first-fission",
+          "to": "first-fusion",
+          "gapMinutes": 4.3,
+          "status": "ok"
+        },
+        {
+          "from": "first-fusion",
+          "to": "first-orbital-solar",
+          "gapMinutes": 4.22,
+          "status": "ok"
+        },
+        {
+          "from": "first-orbital-solar",
+          "to": "first-neutron-well",
+          "gapMinutes": 9.11,
+          "status": "ok"
+        },
+        {
+          "from": "first-neutron-well",
+          "to": "first-antimatter-bottle",
+          "gapMinutes": 10.28,
+          "status": "ok"
+        },
+        {
+          "from": "first-antimatter-bottle",
+          "to": "first-black-hole-siphon",
+          "gapMinutes": 15.28,
+          "status": "ok"
+        },
+        {
+          "from": "first-black-hole-siphon",
+          "to": "first-dyson-segment",
+          "gapMinutes": 18.37,
+          "status": "watch"
+        },
+        {
+          "from": "first-dyson-segment",
+          "to": "first-dyson-ring",
+          "gapMinutes": 13.4,
+          "status": "ok"
+        },
+        {
+          "from": "first-dyson-ring",
+          "to": "stellar-grid-online",
+          "gapMinutes": 5.63,
+          "status": "ok"
+        },
+        {
+          "from": "stellar-grid-online",
+          "to": "first-casimir-contact",
+          "gapMinutes": 21.68,
+          "status": "watch"
+        },
+        {
+          "from": "first-casimir-contact",
+          "to": "first-vacuum-seed",
+          "gapMinutes": 7.6,
+          "status": "ok"
+        },
+        {
+          "from": "first-vacuum-seed",
+          "to": "Fin",
+          "gapMinutes": 6.75,
+          "status": "ok"
+        }
+      ],
+      "maxGap": {
+        "from": "stellar-grid-online",
+        "to": "first-casimir-contact",
+        "gapMinutes": 21.68,
+        "status": "watch"
+      },
+      "recommendation": "Ajouter un micro-objectif entre stellar-grid-online et first-casimir-contact."
+    }
   },
   "topCandidates": [
     {

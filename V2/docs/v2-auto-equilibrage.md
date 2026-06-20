@@ -45,6 +45,8 @@ Le rapport contient maintenant :
 
 - les meilleurs candidats de croissance de cout ;
 - les moments forts configures dans `breakthroughs` ;
+- la timeline des moments forts dans `flowDiagnostics` ;
+- les creux entre moments forts, avec statut `ok`, `watch` ou `too-long` ;
 - le run obligatoire et le run agressif ;
 - `diagnostics.requiredOnly` et `diagnostics.aggressiveRepeat`, avec un statut par age ;
 - une recommandation simple quand un age devient trop court, trop long ou a surveiller.
@@ -60,8 +62,9 @@ Le rapport contient maintenant :
 
 - Le run rapide reste valide : `121.56 min`.
 - L'age `Dyson` est marque `watch` : `40.49 min` dans une bande cible `24-52 min`.
-- Action appliquee : ajout du moment fort `first-dyson-ring` sur la technologie `Essaim de Dyson`.
-- Le rapport reconnait maintenant ce jalon : `Moment fort en place : first-dyson-ring`.
+- Action appliquee : ajout des moments forts `first-neutron-well`, `first-antimatter-bottle`, `first-black-hole-siphon`, `first-dyson-segment`, `first-dyson-ring`, `stellar-grid-online` et `first-casimir-contact`.
+- Le rapport ne signale plus de creux `too-long` sur le run agressif.
+- Deux creux restent en `watch` : `first-black-hole-siphon -> first-dyson-segment` et `stellar-grid-online -> first-casimir-contact`.
 
 ## Pourquoi ce choix
 
@@ -72,4 +75,5 @@ Le jeu permet toujours d'acheter plusieurs fois les memes objets. Par contre, ch
 - Enrichir les objectifs intermediaires par age pour que les 2 heures aient plus de rythme.
 - Ajouter des petits pics de feedback aux moments clefs : premiere vapeur, premiere fission, premiere structure orbitale.
 - Simuler aussi un profil joueur plus lent, avec moins de clics.
+- Ajouter un micro-objectif visuel dans les deux creux `watch` si les playtests les trouvent encore trop plats.
 - Revoir les couts d'achat de base si certains ages deviennent trop passifs.
