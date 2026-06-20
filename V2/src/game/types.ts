@@ -79,6 +79,7 @@ export type TechnologyId =
   | 'penrose-stability'
   | 'dyson-swarm'
   | 'stellar-governance'
+  | 'heliosphere-routing'
   | 'casimir-geometry'
   | 'cosmic-reboot';
 

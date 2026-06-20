@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const dataFile = path.join(repoRoot, 'src/game/data.ts');
 
-const COST_GROWTH = 3.02;
+const COST_GROWTH = 3.24;
 const TARGET_MINUTES = 120;
 const PLAYER_PROFILES = [
   {

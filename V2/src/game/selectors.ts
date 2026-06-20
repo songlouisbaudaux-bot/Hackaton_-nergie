@@ -10,7 +10,7 @@ import type {
   TechnologyId,
 } from './types';
 
-const COST_GROWTH = 3.02;
+const COST_GROWTH = 3.24;
 
 export type VisiblePurchase = Purchase & {
   affordable: boolean;

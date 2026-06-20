@@ -38,8 +38,9 @@ npm run balance:loop
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
 - Diagnostic des creux entre moments forts via `flowDiagnostics`.
 - Target simulation : 120 minutes minimum.
-- Run obligatoire simule : 130.6 min.
-- Run optimiste avec achats repetables rentables : 121.6 min.
-- Run joueur calme, peu de clics : 125.3 min.
+- Run obligatoire simule : 126.7 min.
+- Run optimiste avec achats repetables rentables : 120.0 min.
+- Run joueur calme, peu de clics : 124.7 min.
+- Aucun creux `too-long` ou `watch` entre moments forts dans le dernier rapport.
 
 La suite V2 doit maintenant travailler le fun minute par minute : objectifs intermediaires, meilleurs choix par age, feedbacks plus lisibles, et fin plus scenarisee.
