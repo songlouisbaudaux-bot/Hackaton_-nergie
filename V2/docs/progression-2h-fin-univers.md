@@ -1,4 +1,4 @@
-# Progression 1h+ - Fin de l'univers
+# Progression 2h+ - Fin de l'univers
 
 ## Objectif
 
@@ -23,13 +23,14 @@ Le debut reste volontairement rapide. La difficulte augmente apres l'atome avec 
 
 ## Pacing verifie
 
-La commande `npm run simulate:pacing` simule la progression complete avec 1 clic/seconde.
+La commande `npm run simulate:pacing` simule la progression complete avec plusieurs profils joueur.
 
 Resultats actuels :
 
-- parcours minimal, un achat de chaque objet et technologie : environ 130,6 minutes ;
-- parcours agressif, achats repetes de l'age courant avec retour sur investissement de 10 minutes maximum : environ 82,6 minutes ;
-- garde-fou automatique : la commande echoue si la simulation la plus courte passe sous 60 minutes.
+- parcours minimal, un achat de chaque objet et technologie, 1 clic/s : environ 130,6 minutes ;
+- parcours agressif, achats repetes de l'age courant avec retour sur investissement de 10 minutes maximum, 1 clic/s : environ 121,6 minutes ;
+- parcours calme, 0,35 clic/s et achats repetes seulement si rentables sous 7 minutes : environ 125,3 minutes ;
+- garde-fou automatique : la commande echoue si la simulation la plus courte passe sous 120 minutes.
 
 ## Fin
 

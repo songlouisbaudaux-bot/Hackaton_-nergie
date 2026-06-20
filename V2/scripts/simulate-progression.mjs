@@ -9,9 +9,27 @@ const repoRoot = path.resolve(__dirname, '..');
 const dataFile = path.join(repoRoot, 'src/game/data.ts');
 
 const COST_GROWTH = 3.02;
-const CLICK_RATE_PER_SECOND = 1;
 const TARGET_MINUTES = 120;
-const AGGRESSIVE_PAYBACK_SECONDS = 600;
+const PLAYER_PROFILES = [
+  {
+    id: 'requiredOnly',
+    label: 'Objets et technologies obligatoires',
+    clickRatePerSecond: 1,
+    repeatPaybackSeconds: 0,
+  },
+  {
+    id: 'aggressiveRepeat',
+    label: 'Achats repetes rentables',
+    clickRatePerSecond: 1,
+    repeatPaybackSeconds: 600,
+  },
+  {
+    id: 'lowClickSteady',
+    label: 'Joueur calme, peu de clics',
+    clickRatePerSecond: 0.35,
+    repeatPaybackSeconds: 420,
+  },
+];
 
 const source = fs.readFileSync(dataFile, 'utf8');
 const compiled = ts.transpileModule(source, {
@@ -35,13 +53,14 @@ function formatMinutes(seconds) {
   return `${(seconds / 60).toFixed(1)} min`;
 }
 
-function createState() {
+function createState(profile) {
   return {
     counts: new Map(),
     researched: new Set(),
     breakthroughs: new Set(),
     events: [],
     energy: 0,
+    profile,
     seconds: 0,
   };
 }
@@ -94,7 +113,7 @@ function getProduction(state) {
   return {
     click,
     passive,
-    rate: passive + click * CLICK_RATE_PER_SECOND,
+    rate: passive + click * state.profile.clickRatePerSecond,
   };
 }
 
@@ -147,7 +166,7 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds) {
     .map((purchase) => {
       const count = state.counts.get(purchase.id) ?? 0;
       const cost = getScaledCost(purchase.costJoules, count);
-      const gainPerSecond = purchase.passiveGain + purchase.clickGain * CLICK_RATE_PER_SECOND;
+      const gainPerSecond = purchase.passiveGain + purchase.clickGain * state.profile.clickRatePerSecond;
 
       return {
         purchase,
@@ -159,8 +178,8 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds) {
     .sort((a, b) => a.paybackSeconds - b.paybackSeconds)[0];
 }
 
-function simulate({ repeatPaybackSeconds = 0 } = {}) {
-  const state = createState();
+function simulate(profile) {
+  const state = createState(profile);
   const rows = [];
 
   for (let ageIndex = 0; ageIndex < ages.length; ageIndex += 1) {
@@ -198,7 +217,7 @@ function simulate({ repeatPaybackSeconds = 0 } = {}) {
       if (!nextAge) break;
 
       const advanceCost = age.advanceCostJoules ?? 0;
-      const repeatCandidate = getRepeatCandidate(state, age.id, repeatPaybackSeconds);
+      const repeatCandidate = getRepeatCandidate(state, age.id, profile.repeatPaybackSeconds);
 
       if (repeatCandidate && repeatCandidate.cost < advanceCost) {
         buyPurchase(state, repeatCandidate.purchase);
@@ -289,15 +308,23 @@ function printBreakthroughs(title, run) {
   }
 }
 
-const requiredOnly = simulate({ repeatPaybackSeconds: 0 });
-const aggressiveRepeat = simulate({ repeatPaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS });
+const runs = PLAYER_PROFILES.map((profile) => ({
+  profile,
+  run: simulate(profile),
+}));
 
-printRun('Required objects and technologies only', requiredOnly);
-printRun(`Aggressive repeats, current-age purchases, payback <= ${AGGRESSIVE_PAYBACK_SECONDS}s`, aggressiveRepeat);
-printBreakthroughs('Required objects and technologies only', requiredOnly);
-printBreakthroughs(`Aggressive repeats, current-age purchases, payback <= ${AGGRESSIVE_PAYBACK_SECONDS}s`, aggressiveRepeat);
+for (const { profile, run } of runs) {
+  printRun(
+    `${profile.label} (${profile.clickRatePerSecond} clic/s, payback <= ${profile.repeatPaybackSeconds}s)`,
+    run,
+  );
+}
 
-const shortestRunSeconds = Math.min(requiredOnly.totalSeconds, aggressiveRepeat.totalSeconds);
+for (const { profile, run } of runs) {
+  printBreakthroughs(profile.label, run);
+}
+
+const shortestRunSeconds = Math.min(...runs.map(({ run }) => run.totalSeconds));
 if (shortestRunSeconds < TARGET_MINUTES * 60) {
   console.error(
     `\nPacing check failed: shortest simulated run is ${formatMinutes(shortestRunSeconds)}, target is ${TARGET_MINUTES} min.`,

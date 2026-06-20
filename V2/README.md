@@ -34,11 +34,12 @@ npm run balance:loop
 - Parcelles non construites rendues opaques, comme des iles vides normales.
 - Objectif courant compact dans le HUD : prochain achat, technologie ou passage d'age.
 - Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
-- Croissance des achats repetables calibree par simulation.
+- Croissance des achats repetables calibree par simulation multi-profils.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
 - Diagnostic des creux entre moments forts via `flowDiagnostics`.
 - Target simulation : 120 minutes minimum.
 - Run obligatoire simule : 130.6 min.
 - Run optimiste avec achats repetables rentables : 121.6 min.
+- Run joueur calme, peu de clics : 125.3 min.
 
 La suite V2 doit maintenant travailler le fun minute par minute : objectifs intermediaires, meilleurs choix par age, feedbacks plus lisibles, et fin plus scenarisee.

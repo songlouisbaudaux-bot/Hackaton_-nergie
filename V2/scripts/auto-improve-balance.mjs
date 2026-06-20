@@ -12,8 +12,26 @@ const simulatorFile = path.join(repoRoot, 'scripts/simulate-progression.mjs');
 const reportFile = path.join(repoRoot, 'docs/balance-v2-report.json');
 
 const TARGET_SECONDS = 120 * 60;
-const CLICK_RATE_PER_SECOND = 1;
-const AGGRESSIVE_PAYBACK_SECONDS = 600;
+const PLAYER_PROFILES = [
+  {
+    id: 'requiredOnly',
+    label: 'Objets et technologies obligatoires',
+    clickRatePerSecond: 1,
+    repeatPaybackSeconds: 0,
+  },
+  {
+    id: 'aggressiveRepeat',
+    label: 'Achats repetes rentables',
+    clickRatePerSecond: 1,
+    repeatPaybackSeconds: 600,
+  },
+  {
+    id: 'lowClickSteady',
+    label: 'Joueur calme, peu de clics',
+    clickRatePerSecond: 0.35,
+    repeatPaybackSeconds: 420,
+  },
+];
 
 const source = fs.readFileSync(dataFile, 'utf8');
 const compiled = ts.transpileModule(source, {
@@ -37,13 +55,14 @@ function formatMinutes(seconds) {
   return Number((seconds / 60).toFixed(2));
 }
 
-function createState() {
+function createState(profile) {
   return {
     counts: new Map(),
     researched: new Set(),
     breakthroughs: new Set(),
     events: [],
     energy: 0,
+    profile,
     seconds: 0,
   };
 }
@@ -97,7 +116,7 @@ function getProduction(state) {
   return {
     click,
     passive,
-    rate: passive + click * CLICK_RATE_PER_SECOND,
+    rate: passive + click * state.profile.clickRatePerSecond,
   };
 }
 
@@ -150,7 +169,7 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds, costGrowth) {
     .map((purchase) => {
       const count = state.counts.get(purchase.id) ?? 0;
       const cost = getScaledCost(purchase.costJoules, count, costGrowth);
-      const gainPerSecond = purchase.passiveGain + purchase.clickGain * CLICK_RATE_PER_SECOND;
+      const gainPerSecond = purchase.passiveGain + purchase.clickGain * state.profile.clickRatePerSecond;
 
       return {
         purchase,
@@ -162,8 +181,8 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds, costGrowth) {
     .sort((a, b) => a.paybackSeconds - b.paybackSeconds)[0];
 }
 
-function simulate(costGrowth, { repeatPaybackSeconds = 0 } = {}) {
-  const state = createState();
+function simulate(costGrowth, profile) {
+  const state = createState(profile);
   const rows = [];
 
   for (let ageIndex = 0; ageIndex < ages.length; ageIndex += 1) {
@@ -198,7 +217,7 @@ function simulate(costGrowth, { repeatPaybackSeconds = 0 } = {}) {
       if (!nextAge) break;
 
       const advanceCost = age.advanceCostJoules ?? 0;
-      const repeatCandidate = getRepeatCandidate(state, age.id, repeatPaybackSeconds, costGrowth);
+      const repeatCandidate = getRepeatCandidate(state, age.id, profile.repeatPaybackSeconds, costGrowth);
 
       if (repeatCandidate && repeatCandidate.cost < advanceCost) {
         buyPurchase(state, repeatCandidate.purchase, costGrowth);
@@ -239,19 +258,26 @@ function simulate(costGrowth, { repeatPaybackSeconds = 0 } = {}) {
 }
 
 function evaluate(costGrowth) {
-  const requiredOnly = simulate(costGrowth, { repeatPaybackSeconds: 0 });
-  const aggressiveRepeat = simulate(costGrowth, { repeatPaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS });
-  const shortestSeconds = Math.min(requiredOnly.totalSeconds, aggressiveRepeat.totalSeconds);
+  const profileRuns = Object.fromEntries(
+    PLAYER_PROFILES.map((profile) => [profile.id, simulate(costGrowth, profile)]),
+  );
+  const runValues = Object.values(profileRuns);
+  const shortestSeconds = Math.min(...runValues.map((run) => run.totalSeconds));
+  const slowestSeconds = Math.max(...runValues.map((run) => run.totalSeconds));
   const underTargetPenalty = Math.max(0, TARGET_SECONDS - shortestSeconds) * 10;
   const overTargetPenalty = Math.max(0, shortestSeconds - TARGET_SECONDS);
-  const earlyPenalty = Math.max(0, requiredOnly.rows[0].ageMinutes - 1.2) * 180;
+  const slowProfilePenalty = Math.max(0, slowestSeconds - 210 * 60) * 0.35;
+  const earlyPenalty = Math.max(0, profileRuns.requiredOnly.rows[0].ageMinutes - 1.2) * 180;
 
   return {
     costGrowth: Number(costGrowth.toFixed(3)),
     shortestMinutes: formatMinutes(shortestSeconds),
-    requiredOnly,
-    aggressiveRepeat,
-    score: underTargetPenalty + overTargetPenalty + earlyPenalty,
+    slowestMinutes: formatMinutes(slowestSeconds),
+    profileRuns,
+    requiredOnly: profileRuns.requiredOnly,
+    aggressiveRepeat: profileRuns.aggressiveRepeat,
+    lowClickSteady: profileRuns.lowClickSteady,
+    score: underTargetPenalty + overTargetPenalty + slowProfilePenalty + earlyPenalty,
   };
 }
 
@@ -401,22 +427,26 @@ function buildReport() {
 
   return {
     targetMinutes: 120,
-    clickRatePerSecond: CLICK_RATE_PER_SECOND,
-    aggressivePaybackSeconds: AGGRESSIVE_PAYBACK_SECONDS,
+    playerProfiles: PLAYER_PROFILES,
     breakthroughs: breakthroughMilestones.map((milestone) => ({
       id: milestone.id,
       trigger: milestone.trigger,
       title: milestone.title,
     })),
     chosen: best,
-    diagnostics: {
-      requiredOnly: diagnoseRun(best.requiredOnly),
-      aggressiveRepeat: diagnoseRun(best.aggressiveRepeat),
-    },
-    flowDiagnostics: {
-      requiredOnly: diagnoseFlow(best.requiredOnly),
-      aggressiveRepeat: diagnoseFlow(best.aggressiveRepeat),
-    },
+    profileSummary: PLAYER_PROFILES.map((profile) => ({
+      profile: profile.id,
+      label: profile.label,
+      clickRatePerSecond: profile.clickRatePerSecond,
+      repeatPaybackSeconds: profile.repeatPaybackSeconds,
+      totalMinutes: best.profileRuns[profile.id].totalMinutes,
+    })),
+    diagnostics: Object.fromEntries(
+      PLAYER_PROFILES.map((profile) => [profile.id, diagnoseRun(best.profileRuns[profile.id])]),
+    ),
+    flowDiagnostics: Object.fromEntries(
+      PLAYER_PROFILES.map((profile) => [profile.id, diagnoseFlow(best.profileRuns[profile.id])]),
+    ),
     topCandidates: candidates
       .slice()
       .sort((a, b) => a.score - b.score)
@@ -424,8 +454,10 @@ function buildReport() {
       .map((candidate) => ({
         costGrowth: candidate.costGrowth,
         shortestMinutes: candidate.shortestMinutes,
+        slowestMinutes: candidate.slowestMinutes,
         requiredOnlyMinutes: candidate.requiredOnly.totalMinutes,
         aggressiveRepeatMinutes: candidate.aggressiveRepeat.totalMinutes,
+        lowClickSteadyMinutes: candidate.lowClickSteady.totalMinutes,
         score: Number(candidate.score.toFixed(2)),
       })),
   };
@@ -443,17 +475,33 @@ function printReport(report, round) {
 
   console.table(report.topCandidates);
   console.log(`Chosen COST_GROWTH=${report.chosen.costGrowth}, shortest=${report.chosen.shortestMinutes} min.`);
+  console.log('\nProfile summary');
+  console.table(report.profileSummary);
   console.log(`Report written to ${path.relative(repoRoot, reportFile)}.`);
 
-  const warnings = report.diagnostics.aggressiveRepeat.filter((row) => row.status !== 'ok');
+  const warnings = Object.entries(report.diagnostics).flatMap(([profileId, rows]) =>
+    rows
+      .filter((row) => row.status !== 'ok')
+      .map((row) => ({
+        profile: profileId,
+        ...row,
+      })),
+  );
   if (warnings.length) {
-    console.log('\nPacing diagnostics, aggressive run');
+    console.log('\nPacing diagnostics');
     console.table(warnings);
   }
 
-  const flowWarnings = report.flowDiagnostics.aggressiveRepeat.gaps.filter((gap) => gap.status !== 'ok');
+  const flowWarnings = Object.entries(report.flowDiagnostics).flatMap(([profileId, flow]) =>
+    flow.gaps
+      .filter((gap) => gap.status !== 'ok')
+      .map((gap) => ({
+        profile: profileId,
+        ...gap,
+      })),
+  );
   if (flowWarnings.length) {
-    console.log('\nBreakthrough gaps, aggressive run');
+    console.log('\nBreakthrough gaps');
     console.table(flowWarnings);
   }
 }
