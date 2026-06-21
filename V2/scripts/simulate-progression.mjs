@@ -8,8 +8,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const dataFile = path.join(repoRoot, 'src/game/data.ts');
 
-const COST_GROWTH = 3.24;
-const TARGET_MINUTES = 120;
+const COST_GROWTH = 5.6;
+const TARGET_MINUTES = 121;
+const MANUAL_CLICK_COOLDOWN_MS = 500;
+const MANUAL_CLICK_CAP_RATE = 1000 / MANUAL_CLICK_COOLDOWN_MS;
+const TECHNOLOGY_BUILDING_BOOST_FACTOR = 0.65;
 const PLAYER_PROFILES = [
   {
     id: 'requiredOnly',
@@ -28,6 +31,12 @@ const PLAYER_PROFILES = [
     label: 'Joueur calme, peu de clics',
     clickRatePerSecond: 0.35,
     repeatPaybackSeconds: 420,
+  },
+  {
+    id: 'spamCapped',
+    label: 'Spam plafonné par anti-spam',
+    clickRatePerSecond: MANUAL_CLICK_CAP_RATE,
+    repeatPaybackSeconds: 600,
   },
 ];
 
@@ -106,8 +115,9 @@ function getProduction(state) {
   for (const technology of technologies) {
     if (!state.researched.has(technology.id)) continue;
 
-    click += technology.clickGain;
-    passive += technology.passiveGain;
+    const targetCount = state.counts.get(technology.targetPurchaseId) ?? 0;
+    click += technology.clickGain * targetCount * TECHNOLOGY_BUILDING_BOOST_FACTOR;
+    passive += technology.passiveGain * targetCount * TECHNOLOGY_BUILDING_BOOST_FACTOR;
   }
 
   return {
@@ -115,6 +125,19 @@ function getProduction(state) {
     passive,
     rate: passive + click * state.profile.clickRatePerSecond,
   };
+}
+
+function getResearchedBoostForPurchase(state, purchaseId) {
+  return technologies
+    .filter((technology) => technology.targetPurchaseId === purchaseId)
+    .filter((technology) => state.researched.has(technology.id))
+    .reduce(
+      (total, technology) => ({
+        clickGain: total.clickGain + technology.clickGain * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+        passiveGain: total.passiveGain + technology.passiveGain * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+      }),
+      { clickGain: 0, passiveGain: 0 },
+    );
 }
 
 function waitForEnergy(state, targetEnergy) {
@@ -166,7 +189,11 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds) {
     .map((purchase) => {
       const count = state.counts.get(purchase.id) ?? 0;
       const cost = getScaledCost(purchase.costJoules, count);
-      const gainPerSecond = purchase.passiveGain + purchase.clickGain * state.profile.clickRatePerSecond;
+      const technologyBoost = getResearchedBoostForPurchase(state, purchase.id);
+      const gainPerSecond =
+        purchase.passiveGain +
+        technologyBoost.passiveGain +
+        (purchase.clickGain + technologyBoost.clickGain) * state.profile.clickRatePerSecond;
 
       return {
         purchase,

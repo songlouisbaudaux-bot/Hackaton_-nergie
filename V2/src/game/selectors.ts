@@ -1,4 +1,5 @@
 import { ages, energySources, purchases, technologies } from './data';
+import { formatRate } from './formatters';
 import type {
   AgeId,
   CurrentObjective,
@@ -10,7 +11,8 @@ import type {
   TechnologyId,
 } from './types';
 
-const COST_GROWTH = 3.24;
+const COST_GROWTH = 5.6;
+const TECHNOLOGY_BUILDING_BOOST_FACTOR = 0.65;
 
 export type VisiblePurchase = Purchase & {
   affordable: boolean;
@@ -21,10 +23,54 @@ export type VisiblePurchase = Purchase & {
 export type VisibleTechnology = Technology & {
   affordable: boolean;
   available: boolean;
+  boostedClickGain: number;
+  boostedPassiveGain: number;
   targetCount: number;
   targetLabel: string;
   researched: boolean;
 };
+
+function getTechnologyBuildingBoost(technology: Technology, targetCount: number) {
+  const effectiveCount = Math.max(0, targetCount);
+
+  return {
+    clickGain: technology.clickGain * effectiveCount * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+    passiveGain: technology.passiveGain * effectiveCount * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+  };
+}
+
+function formatTechnologyValue(value: number) {
+  if (value === 0) return '0';
+  if (Math.abs(value) < 10) return Number(value.toFixed(1)).toLocaleString('fr-FR');
+  if (Math.abs(value) < 1000000) return Math.round(value).toLocaleString('fr-FR');
+
+  return new Intl.NumberFormat('fr-FR', {
+    maximumFractionDigits: 1,
+    notation: 'compact',
+  }).format(value);
+}
+
+function getTechnologyImpactLabel(
+  technology: Technology,
+  targetCount: number,
+  targetLabel: string,
+) {
+  const perBuildingClickGain = technology.clickGain * TECHNOLOGY_BUILDING_BOOST_FACTOR;
+  const perBuildingPassiveGain = technology.passiveGain * TECHNOLOGY_BUILDING_BOOST_FACTOR;
+  const pieces = [];
+
+  if (perBuildingClickGain > 0) {
+    pieces.push(`+${formatTechnologyValue(perBuildingClickGain)} J/clic`);
+  }
+
+  if (perBuildingPassiveGain > 0) {
+    pieces.push(`+${formatRate(perBuildingPassiveGain)}`);
+  }
+
+  const countLabel = targetCount > 1 ? ` x${targetCount}` : '';
+
+  return `${pieces.join(' · ')} / ${targetLabel}${countLabel}`;
+}
 
 export function getPurchaseById(id: PurchaseId) {
   return purchases.find((purchase) => purchase.id === id);
@@ -80,9 +126,13 @@ export function getAgeTechnologies(
     .map((technology) => {
       const targetCount = purchaseCounts[technology.targetPurchaseId] ?? 0;
       const targetLabel = getPurchaseById(technology.targetPurchaseId)?.label ?? 'Objet';
+      const boost = getTechnologyBuildingBoost(technology, targetCount);
 
       return {
         ...technology,
+        boostedClickGain: boost.clickGain,
+        boostedPassiveGain: boost.passiveGain,
+        impactLabel: getTechnologyImpactLabel(technology, targetCount, targetLabel),
         targetCount,
         targetLabel,
         available: targetCount > 0,
@@ -164,11 +214,14 @@ export function getCurrentObjective(
   });
 
   if (missingTechnology) {
+    const targetCount = purchaseCounts[missingTechnology.targetPurchaseId] ?? 0;
+    const targetLabel = getPurchaseById(missingTechnology.targetPurchaseId)?.label ?? 'Objet';
+
     return {
       kind: 'technology',
       kicker: 'Technologie',
       label: missingTechnology.label,
-      detail: missingTechnology.impactLabel,
+      detail: getTechnologyImpactLabel(missingTechnology, targetCount, targetLabel),
       progress: getProgress(currentEnergyJoules, missingTechnology.costJoules),
       ready: currentEnergyJoules >= missingTechnology.costJoules,
       costJoules: missingTechnology.costJoules,
@@ -229,7 +282,10 @@ export function getProduction(
 
   for (const technology of technologies) {
     if (!researched.has(technology.id)) continue;
-    bumpSource(technology.sourceId, technology.clickGain, technology.passiveGain);
+
+    const targetCount = purchaseCounts[technology.targetPurchaseId] ?? 0;
+    const boost = getTechnologyBuildingBoost(technology, targetCount);
+    bumpSource(technology.sourceId, boost.clickGain, boost.passiveGain);
   }
 
   const visibleRows = rows.filter((row) => row.clickJoules > 0 || row.passiveJoules > 0);

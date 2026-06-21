@@ -1,0 +1,336 @@
+{
+  "count": 55,
+  "note": "These files are symlinks to avoid duplicating PNGs while disk space is low.",
+  "items": [
+    {
+      "id": "floating-grass-block-natural",
+      "category": "source-base",
+      "path": "public/assets/game/image-definitive/floating-grass-block-natural.png",
+      "source": "public/assets/game/floating-grass-block-natural.png"
+    },
+    {
+      "id": "island-animal-02-built-oxen-pasture",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-02-built-oxen-pasture.png",
+      "source": "public/assets/game/islands/animal/island-animal-02-built-oxen-pasture.png"
+    },
+    {
+      "id": "island-animal-02-upgraded-animal-domestication",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-02-upgraded-animal-domestication.png",
+      "source": "public/assets/game/islands/animal/island-animal-02-upgraded-animal-domestication.png"
+    },
+    {
+      "id": "island-animal-03-built-heavy-plough",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-03-built-heavy-plough.png",
+      "source": "public/assets/game/islands/animal/island-animal-03-built-heavy-plough.png"
+    },
+    {
+      "id": "island-animal-03-upgraded-shoulder-collar",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-03-upgraded-shoulder-collar.png",
+      "source": "public/assets/game/islands/animal/island-animal-03-upgraded-shoulder-collar.png"
+    },
+    {
+      "id": "island-animal-04-built-horse-relay",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-04-built-horse-relay.png",
+      "source": "public/assets/game/islands/animal/island-animal-04-built-horse-relay.png"
+    },
+    {
+      "id": "island-animal-04-upgraded-horse-logistics",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-04-upgraded-horse-logistics.png",
+      "source": "public/assets/game/islands/animal/island-animal-04-upgraded-horse-logistics.png"
+    },
+    {
+      "id": "island-animal-05-built-food-logistics",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-05-built-food-logistics.png",
+      "source": "public/assets/game/islands/animal/island-animal-05-built-food-logistics.png"
+    },
+    {
+      "id": "island-animal-05-upgraded-food-chain",
+      "category": "animal",
+      "path": "public/assets/game/image-definitive/animal/island-animal-05-upgraded-food-chain.png",
+      "source": "public/assets/game/islands/animal/island-animal-05-upgraded-food-chain.png"
+    },
+    {
+      "id": "island-atomic-05-built-reactor-core",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-05-built-reactor-core.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-05-built-reactor-core.png"
+    },
+    {
+      "id": "island-atomic-05-upgraded-controlled-fission",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-05-upgraded-controlled-fission.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-05-upgraded-controlled-fission.png"
+    },
+    {
+      "id": "island-atomic-06-built-modern-fission",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-06-built-modern-fission.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-06-built-modern-fission.png"
+    },
+    {
+      "id": "island-atomic-06-upgraded-passive-safety",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-06-upgraded-passive-safety.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-06-upgraded-passive-safety.png"
+    },
+    {
+      "id": "island-atomic-07-built-fusion-plant",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-07-built-fusion-plant.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-07-built-fusion-plant.png"
+    },
+    {
+      "id": "island-atomic-07-upgraded-controlled-fusion",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-07-upgraded-controlled-fusion.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-07-upgraded-controlled-fusion.png"
+    },
+    {
+      "id": "island-atomic-08-built-antimatter",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-08-built-antimatter.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-08-built-antimatter.png"
+    },
+    {
+      "id": "island-atomic-08-upgraded-antimatter-containment",
+      "category": "atomic",
+      "path": "public/assets/game/image-definitive/atomic/island-atomic-08-upgraded-antimatter-containment.png",
+      "source": "public/assets/game/islands/atomic/island-atomic-08-upgraded-antimatter-containment.png"
+    },
+    {
+      "id": "island-base-blank",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-blank.png",
+      "source": "public/assets/game/islands/base/island-base-blank.png"
+    },
+    {
+      "id": "island-base-forest",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-forest.png",
+      "source": "public/assets/game/islands/base/island-base-forest.png"
+    },
+    {
+      "id": "island-base-pasture",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-pasture.png",
+      "source": "public/assets/game/islands/base/island-base-pasture.png"
+    },
+    {
+      "id": "island-base-river-hill",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-river-hill.png",
+      "source": "public/assets/game/islands/base/island-base-river-hill.png"
+    },
+    {
+      "id": "island-base-rock",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-rock.png",
+      "source": "public/assets/game/islands/base/island-base-rock.png"
+    },
+    {
+      "id": "island-base-tech-platform",
+      "category": "base",
+      "path": "public/assets/game/image-definitive/base/island-base-tech-platform.png",
+      "source": "public/assets/game/islands/base/island-base-tech-platform.png"
+    },
+    {
+      "id": "island-biomass-01-built-campfire",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-01-built-campfire.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-01-built-campfire.png"
+    },
+    {
+      "id": "island-biomass-01-upgraded-ember-keeping",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-01-upgraded-ember-keeping.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-01-upgraded-ember-keeping.png"
+    },
+    {
+      "id": "island-biomass-02-built-stone-hearth",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-02-built-stone-hearth.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-02-built-stone-hearth.png"
+    },
+    {
+      "id": "island-biomass-02-upgraded-masonry-hearth",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-02-upgraded-masonry-hearth.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-02-upgraded-masonry-hearth.png"
+    },
+    {
+      "id": "island-biomass-03-built-charcoal-kiln",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-03-built-charcoal-kiln.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-03-built-charcoal-kiln.png"
+    },
+    {
+      "id": "island-biomass-03-upgraded-charcoal-craft",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-03-upgraded-charcoal-craft.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-03-upgraded-charcoal-craft.png"
+    },
+    {
+      "id": "island-biomass-04-built-wood-gasifier",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-04-built-wood-gasifier.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-04-built-wood-gasifier.png"
+    },
+    {
+      "id": "island-biomass-04-upgraded-wood-gas-process",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-04-upgraded-wood-gas-process.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-04-upgraded-wood-gas-process.png"
+    },
+    {
+      "id": "island-biomass-05-built-biogas-digester",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-05-built-biogas-digester.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-05-built-biogas-digester.png"
+    },
+    {
+      "id": "island-biomass-05-upgraded-methanization",
+      "category": "biomass",
+      "path": "public/assets/game/image-definitive/biomass/island-biomass-05-upgraded-methanization.png",
+      "source": "public/assets/game/islands/biomass/island-biomass-05-upgraded-methanization.png"
+    },
+    {
+      "id": "island-central-01-camp",
+      "category": "central",
+      "path": "public/assets/game/image-definitive/central/island-central-01-camp.png",
+      "source": "public/assets/game/islands/central/island-central-01-camp.png"
+    },
+    {
+      "id": "island-central-02-village",
+      "category": "central",
+      "path": "public/assets/game/image-definitive/central/island-central-02-village.png",
+      "source": "public/assets/game/islands/central/island-central-02-village.png"
+    },
+    {
+      "id": "island-central-03-medieval-town",
+      "category": "central",
+      "path": "public/assets/game/image-definitive/central/island-central-03-medieval-town.png",
+      "source": "public/assets/game/islands/central/island-central-03-medieval-town.png"
+    },
+    {
+      "id": "island-central-04-industrial-town",
+      "category": "central",
+      "path": "public/assets/game/image-definitive/central/island-central-04-industrial-town.png",
+      "source": "public/assets/game/islands/central/island-central-04-industrial-town.png"
+    },
+    {
+      "id": "island-central-05-modern-grid-city",
+      "category": "central",
+      "path": "public/assets/game/image-definitive/central/island-central-05-modern-grid-city.png",
+      "source": "public/assets/game/islands/central/island-central-05-modern-grid-city.png"
+    },
+    {
+      "id": "island-fossil-03-built-coal-mine",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-03-built-coal-mine.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-03-built-coal-mine.png"
+    },
+    {
+      "id": "island-fossil-03-upgraded-mechanized-coal",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-03-upgraded-mechanized-coal.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-03-upgraded-mechanized-coal.png"
+    },
+    {
+      "id": "island-fossil-04-built-steam-engine",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-04-built-steam-engine.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-04-built-steam-engine.png"
+    },
+    {
+      "id": "island-fossil-04-upgraded-high-pressure-steam",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-04-upgraded-high-pressure-steam.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-04-upgraded-high-pressure-steam.png"
+    },
+    {
+      "id": "island-fossil-05-built-oil-refinery",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-05-built-oil-refinery.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-05-built-oil-refinery.png"
+    },
+    {
+      "id": "island-fossil-05-built-thermal-turbine",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-05-built-thermal-turbine.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-05-built-thermal-turbine.png"
+    },
+    {
+      "id": "island-fossil-05-upgraded-oil-cracking",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-05-upgraded-oil-cracking.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-05-upgraded-oil-cracking.png"
+    },
+    {
+      "id": "island-fossil-05-upgraded-thermal-cycle",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-05-upgraded-thermal-cycle.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-05-upgraded-thermal-cycle.png"
+    },
+    {
+      "id": "island-fossil-06-built-gas-turbine",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-06-built-gas-turbine.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-06-built-gas-turbine.png"
+    },
+    {
+      "id": "island-fossil-06-upgraded-combined-cycle",
+      "category": "fossil",
+      "path": "public/assets/game/image-definitive/fossil/island-fossil-06-upgraded-combined-cycle.png",
+      "source": "public/assets/game/islands/fossil/island-fossil-06-upgraded-combined-cycle.png"
+    },
+    {
+      "id": "island-contact-sheet",
+      "category": "review",
+      "path": "public/assets/game/image-definitive/review/island-contact-sheet.png",
+      "source": "public/assets/game/islands/review/island-contact-sheet.png"
+    },
+    {
+      "id": "island-water-wind-03-built-watermill",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-03-built-watermill.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-03-built-watermill.png"
+    },
+    {
+      "id": "island-water-wind-03-upgraded-windmill",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-03-upgraded-windmill.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-03-upgraded-windmill.png"
+    },
+    {
+      "id": "island-water-wind-04-built-wind-pump",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-04-built-wind-pump.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-04-built-wind-pump.png"
+    },
+    {
+      "id": "island-water-wind-04-upgraded-mechanical-pumps",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-04-upgraded-mechanical-pumps.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-04-upgraded-mechanical-pumps.png"
+    },
+    {
+      "id": "island-water-wind-05-built-hydro-wind-grid",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-05-built-hydro-wind-grid.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-05-built-hydro-wind-grid.png"
+    },
+    {
+      "id": "island-water-wind-05-upgraded-modern-wind-turbines",
+      "category": "water-wind",
+      "path": "public/assets/game/image-definitive/water-wind/island-water-wind-05-upgraded-modern-wind-turbines.png",
+      "source": "public/assets/game/islands/water-wind/island-water-wind-05-upgraded-modern-wind-turbines.png"
+    }
+  ]
+}

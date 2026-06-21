@@ -38,6 +38,7 @@ import {
 
 const GAME_PROGRESS_STORAGE_KEY = 'prometheus-protocol:v2:progress:v1';
 const INTRO_STORAGE_KEY = 'prometheus-protocol:v2:intro:v1';
+const MANUAL_CLICK_COOLDOWN_MS = 500;
 
 const defaultGameProgress = {
   energy: 0,
@@ -191,6 +192,7 @@ function GameScreen() {
   const [ageTransition, setAgeTransition] = useState<AgeTransition | null>(null);
   const [activeBreakthrough, setActiveBreakthrough] = useState<ActiveBreakthrough | null>(null);
   const gainIdRef = useRef(0);
+  const lastManualClickAtRef = useRef(Number.NEGATIVE_INFINITY);
   const transitionIdRef = useRef(0);
   const transitionTimerRef = useRef<number | null>(null);
   const breakthroughIdRef = useRef(0);
@@ -282,6 +284,10 @@ function GameScreen() {
 
   const handleCampClick = useCallback(
     (point: { x: number; y: number }) => {
+      const now = performance.now();
+      if (now - lastManualClickAtRef.current < MANUAL_CLICK_COOLDOWN_MS) return;
+
+      lastManualClickAtRef.current = now;
       const gain = totals.energyPerClick;
       setEnergy((current) => current + gain);
       addFloatingGain(point, gain);
@@ -378,6 +384,7 @@ function GameScreen() {
     setAchievedBreakthroughs(resetProgress.achievedBreakthroughs);
     achievedBreakthroughsRef.current = new Set(resetProgress.achievedBreakthroughs);
     gainIdRef.current = 0;
+    lastManualClickAtRef.current = Number.NEGATIVE_INFINITY;
     if (transitionTimerRef.current) {
       window.clearTimeout(transitionTimerRef.current);
       transitionTimerRef.current = null;
@@ -411,6 +418,7 @@ function GameScreen() {
     setAchievedBreakthroughs(sandboxProgress.achievedBreakthroughs);
     achievedBreakthroughsRef.current = new Set(sandboxProgress.achievedBreakthroughs);
     gainIdRef.current = 0;
+    lastManualClickAtRef.current = Number.NEGATIVE_INFINITY;
     if (transitionTimerRef.current) {
       window.clearTimeout(transitionTimerRef.current);
       transitionTimerRef.current = null;

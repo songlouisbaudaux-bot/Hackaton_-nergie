@@ -3,6 +3,8 @@ dist
 .git
 .npm-cache
 .DS_Store
+tmp
+outputs
 vite.out.log
 vite.err.log
 *.tsbuildinfo

@@ -27,12 +27,13 @@ La commande `npm run simulate:pacing` simule la progression complete avec plusie
 
 Resultats actuels :
 
-- parcours minimal, un achat de chaque objet et technologie, 1 clic/s : environ 126,7 minutes ;
-- parcours agressif, achats repetes de l'age courant avec retour sur investissement de 10 minutes maximum, 1 clic/s : environ 120,0 minutes ;
-- parcours calme, 0,35 clic/s et achats repetes seulement si rentables sous 7 minutes : environ 124,7 minutes ;
-- garde-fou automatique : la commande echoue si la simulation la plus courte passe sous 120 minutes.
+- parcours minimal, un achat de chaque objet et technologie, 1 clic/s : environ 152,4 minutes ;
+- parcours agressif, achats repetes de l'age courant avec retour sur investissement de 10 minutes maximum, 1 clic/s : environ 122,7 minutes ;
+- parcours calme, 0,35 clic/s et achats repetes seulement si rentables sous 7 minutes : environ 141,1 minutes ;
+- parcours spam plafonne, 2 clics/s maximum via anti-spam, achats repetes rentables : environ 121,0 minutes ;
+- garde-fou automatique : la commande echoue si la simulation la plus courte passe sous 121 minutes.
 
-Le dernier rapport garde les moments forts a moins de 15 minutes les uns des autres sur les trois profils.
+Les technologies ameliorent maintenant leur batiment cible au lieu d'ajouter un bonus global. Le dernier rapport garde tous les creux sous le seuil `too-long`, avec seulement quelques zones `watch` sur les profils les plus lents.
 
 ## Fin
 

@@ -33,14 +33,17 @@ npm run balance:loop
 - Assets runtime nettoyes : la V2 charge uniquement `public/assets/game/images-finales-gpt-image`.
 - Parcelles non construites rendues opaques, comme des iles vides normales.
 - Objectif courant compact dans le HUD : prochain achat, technologie ou passage d'age.
+- Anti-spam sur le clic central : un clic valide toutes les 500 ms maximum.
+- Technologies liees au batiment cible : +65 % de la valeur techno par exemplaire possede.
 - Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
 - Croissance des achats repetables calibree par simulation multi-profils.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
 - Diagnostic des creux entre moments forts via `flowDiagnostics`.
-- Target simulation : 120 minutes minimum.
-- Run obligatoire simule : 126.7 min.
-- Run optimiste avec achats repetables rentables : 120.0 min.
-- Run joueur calme, peu de clics : 124.7 min.
-- Aucun creux `too-long` ou `watch` entre moments forts dans le dernier rapport.
+- Target simulation : 121 minutes minimum.
+- Run obligatoire simule : 152.4 min.
+- Run optimiste avec achats repetables rentables : 122.7 min.
+- Run joueur calme, peu de clics : 141.1 min.
+- Run spam plafonne par anti-spam : 121.0 min.
+- Aucun creux `too-long` entre moments forts dans le dernier rapport.
 
 La suite V2 doit maintenant travailler le fun minute par minute : objectifs intermediaires, meilleurs choix par age, feedbacks plus lisibles, et fin plus scenarisee.

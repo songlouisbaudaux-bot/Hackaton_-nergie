@@ -11,7 +11,11 @@ const selectorsFile = path.join(repoRoot, 'src/game/selectors.ts');
 const simulatorFile = path.join(repoRoot, 'scripts/simulate-progression.mjs');
 const reportFile = path.join(repoRoot, 'docs/balance-v2-report.json');
 
-const TARGET_SECONDS = 120 * 60;
+const TARGET_MINUTES = 121;
+const TARGET_SECONDS = TARGET_MINUTES * 60;
+const MANUAL_CLICK_COOLDOWN_MS = 500;
+const MANUAL_CLICK_CAP_RATE = 1000 / MANUAL_CLICK_COOLDOWN_MS;
+const TECHNOLOGY_BUILDING_BOOST_FACTOR = 0.65;
 const PLAYER_PROFILES = [
   {
     id: 'requiredOnly',
@@ -30,6 +34,12 @@ const PLAYER_PROFILES = [
     label: 'Joueur calme, peu de clics',
     clickRatePerSecond: 0.35,
     repeatPaybackSeconds: 420,
+  },
+  {
+    id: 'spamCapped',
+    label: 'Spam plafonné par anti-spam',
+    clickRatePerSecond: MANUAL_CLICK_CAP_RATE,
+    repeatPaybackSeconds: 600,
   },
 ];
 
@@ -109,8 +119,9 @@ function getProduction(state) {
   for (const technology of technologies) {
     if (!state.researched.has(technology.id)) continue;
 
-    click += technology.clickGain;
-    passive += technology.passiveGain;
+    const targetCount = state.counts.get(technology.targetPurchaseId) ?? 0;
+    click += technology.clickGain * targetCount * TECHNOLOGY_BUILDING_BOOST_FACTOR;
+    passive += technology.passiveGain * targetCount * TECHNOLOGY_BUILDING_BOOST_FACTOR;
   }
 
   return {
@@ -118,6 +129,19 @@ function getProduction(state) {
     passive,
     rate: passive + click * state.profile.clickRatePerSecond,
   };
+}
+
+function getResearchedBoostForPurchase(state, purchaseId) {
+  return technologies
+    .filter((technology) => technology.targetPurchaseId === purchaseId)
+    .filter((technology) => state.researched.has(technology.id))
+    .reduce(
+      (total, technology) => ({
+        clickGain: total.clickGain + technology.clickGain * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+        passiveGain: total.passiveGain + technology.passiveGain * TECHNOLOGY_BUILDING_BOOST_FACTOR,
+      }),
+      { clickGain: 0, passiveGain: 0 },
+    );
 }
 
 function waitForEnergy(state, targetEnergy) {
@@ -169,7 +193,11 @@ function getRepeatCandidate(state, ageId, maxPaybackSeconds, costGrowth) {
     .map((purchase) => {
       const count = state.counts.get(purchase.id) ?? 0;
       const cost = getScaledCost(purchase.costJoules, count, costGrowth);
-      const gainPerSecond = purchase.passiveGain + purchase.clickGain * state.profile.clickRatePerSecond;
+      const technologyBoost = getResearchedBoostForPurchase(state, purchase.id);
+      const gainPerSecond =
+        purchase.passiveGain +
+        technologyBoost.passiveGain +
+        (purchase.clickGain + technologyBoost.clickGain) * state.profile.clickRatePerSecond;
 
       return {
         purchase,
@@ -268,6 +296,29 @@ function evaluate(costGrowth) {
   const overTargetPenalty = Math.max(0, shortestSeconds - TARGET_SECONDS);
   const slowProfilePenalty = Math.max(0, slowestSeconds - 210 * 60) * 0.35;
   const earlyPenalty = Math.max(0, profileRuns.requiredOnly.rows[0].ageMinutes - 1.2) * 180;
+  const agePacingPenalty = runValues.reduce((sum, run) => {
+    return (
+      sum +
+      diagnoseRun(run).reduce((runSum, row) => {
+        if (row.status === 'too-slow') return runSum + 240;
+        if (row.status === 'too-fast') return runSum + 120;
+        if (row.status === 'watch') return runSum + 12;
+
+        return runSum;
+      }, 0)
+    );
+  }, 0);
+  const flowPenalty = runValues.reduce((sum, run) => {
+    return (
+      sum +
+      diagnoseFlow(run).gaps.reduce((runSum, gap) => {
+        if (gap.status === 'too-long') return runSum + 480;
+        if (gap.status === 'watch') return runSum + 90;
+
+        return runSum;
+      }, 0)
+    );
+  }, 0);
 
   return {
     costGrowth: Number(costGrowth.toFixed(3)),
@@ -277,7 +328,14 @@ function evaluate(costGrowth) {
     requiredOnly: profileRuns.requiredOnly,
     aggressiveRepeat: profileRuns.aggressiveRepeat,
     lowClickSteady: profileRuns.lowClickSteady,
-    score: underTargetPenalty + overTargetPenalty + slowProfilePenalty + earlyPenalty,
+    spamCapped: profileRuns.spamCapped,
+    score:
+      underTargetPenalty +
+      overTargetPenalty +
+      slowProfilePenalty +
+      earlyPenalty +
+      agePacingPenalty +
+      flowPenalty,
   };
 }
 
@@ -417,16 +475,16 @@ const intervalMs = intervalArg ? Number(intervalArg.split('=')[1]) : 5000;
 function buildReport() {
   const candidates = [];
 
-  for (let growth = 1.18; growth <= 4.01; growth += 0.02) {
+  for (let growth = 1.18; growth <= 12.01; growth += 0.02) {
     candidates.push(evaluate(growth));
   }
 
-  const viable = candidates.filter((candidate) => candidate.shortestMinutes >= 120);
+  const viable = candidates.filter((candidate) => candidate.shortestMinutes >= TARGET_MINUTES);
   const best = (viable.length ? viable : candidates)
     .sort((a, b) => a.score - b.score || a.costGrowth - b.costGrowth)[0];
 
   return {
-    targetMinutes: 120,
+    targetMinutes: TARGET_MINUTES,
     playerProfiles: PLAYER_PROFILES,
     breakthroughs: breakthroughMilestones.map((milestone) => ({
       id: milestone.id,
@@ -458,6 +516,7 @@ function buildReport() {
         requiredOnlyMinutes: candidate.requiredOnly.totalMinutes,
         aggressiveRepeatMinutes: candidate.aggressiveRepeat.totalMinutes,
         lowClickSteadyMinutes: candidate.lowClickSteady.totalMinutes,
+        spamCappedMinutes: candidate.spamCapped.totalMinutes,
         score: Number(candidate.score.toFixed(2)),
       })),
   };
