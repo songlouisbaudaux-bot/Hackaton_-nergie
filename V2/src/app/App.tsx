@@ -71,6 +71,7 @@ type AgeTransition = {
 
 type GameScreenProps = {
   audio: GameAudioController;
+  onRestartToIntro: () => void;
 };
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -182,7 +183,15 @@ function writeIntroDone() {
   }
 }
 
-function GameScreen({ audio }: GameScreenProps) {
+function clearIntroDone() {
+  try {
+    window.localStorage.removeItem(INTRO_STORAGE_KEY);
+  } catch {
+    // Ignorer : l'intro sera quand meme reaffichee dans l'etat React courant.
+  }
+}
+
+function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   const initialProgress = useMemo(() => readGameProgress(), []);
   const [energy, setEnergy] = useState(initialProgress.energy);
   const [activeAgeId, setActiveAgeId] = useState<AgeId>(initialProgress.activeAgeId);
@@ -428,7 +437,8 @@ function GameScreen({ audio }: GameScreenProps) {
     setActiveBreakthrough(null);
     setFloatingGains([]);
     endingSoundPlayedRef.current = false;
-  }, [audio]);
+    onRestartToIntro();
+  }, [audio, onRestartToIntro]);
 
   const handleSandboxGame = useCallback(() => {
     audio.playCue('sandbox');
@@ -599,9 +609,14 @@ export default function App() {
     setIntroDone(true);
   }, [audio]);
 
+  const handleRestartToIntro = useCallback(() => {
+    clearIntroDone();
+    setIntroDone(false);
+  }, []);
+
   if (!introDone) {
     return <IntroScreen onDone={handleIntroDone} />;
   }
 
-  return <GameScreen audio={audio} />;
+  return <GameScreen audio={audio} onRestartToIntro={handleRestartToIntro} />;
 }

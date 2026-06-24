@@ -237,7 +237,7 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 
 - Ajout d'un bouton global `Recommencer`.
 - Le bouton demande un second clic `Confirmer` avant de remettre la progression a zero.
-- La remise a zero conserve l'intro deja vue et redemarre seulement la partie.
+- La remise a zero efface aussi l'intro deja vue : une nouvelle partie repasse par la cinematique.
 
 ### 2026-06-18 - HUD statique responsive
 
