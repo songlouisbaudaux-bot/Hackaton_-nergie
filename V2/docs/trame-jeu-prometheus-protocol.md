@@ -225,6 +225,7 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - Ajout de la video reelle dans `public/assets/intro/prometheus-intro.mp4`.
 - L'intro se lit au lancement, puis envoie directement au jeu.
 - Passage du marqueur local d'intro en `v2` pour rejouer la nouvelle video une fois.
+- La version web utilise un cache-buster date sur la video pour eviter les anciennes copies navigateur.
 - Les nouvelles images d'iles generees restent reservees a la passe finale d'integration visuelle.
 
 ### 2026-06-19 - Fond mix energetique
@@ -236,8 +237,9 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 ### 2026-06-19 - Recommencer la partie
 
 - Ajout d'un bouton global `Recommencer`.
-- Le bouton demande un second clic `Confirmer` avant de remettre la progression a zero.
+- Le bouton remet la progression a zero et relance une nouvelle partie.
 - La remise a zero efface aussi l'intro deja vue : une nouvelle partie repasse par la cinematique.
+- Le reset reactive le son et nettoie les anciens marqueurs d'intro pour eviter un etat local bloque.
 
 ### 2026-06-18 - HUD statique responsive
 

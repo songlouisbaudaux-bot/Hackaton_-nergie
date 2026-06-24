@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { defaultAudioSettings, GameAudioEngine } from './engine';
 import type { AudioCueId, AudioSettings, GameAudioController } from './types';
 
-const AUDIO_SETTINGS_STORAGE_KEY = 'prometheus-protocol:v2:audio:v1';
+const AUDIO_SETTINGS_STORAGE_KEY = 'prometheus-protocol:v2:audio:v2';
 const gameAudioEngine = new GameAudioEngine();
 
 function isObject(value: unknown): value is Record<string, unknown> {

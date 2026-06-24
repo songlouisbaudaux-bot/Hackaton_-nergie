@@ -8,7 +8,7 @@
 ## Implementation
 - Le moteur vit dans `src/audio/`.
 - Il utilise WebAudio directement, sans fichier sonore obligatoire et sans dependance lourde.
-- Les reglages sont stockes dans `localStorage` via `prometheus-protocol:v2:audio:v1`.
+- Les reglages sont stockes dans `localStorage` via `prometheus-protocol:v2:audio:v2`.
 - Le son ne demarre qu'apres interaction utilisateur, ce qui garde le comportement compatible iOS/Safari.
 
 ## Cues

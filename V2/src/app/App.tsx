@@ -38,7 +38,11 @@ import {
 } from '../game';
 
 const GAME_PROGRESS_STORAGE_KEY = 'prometheus-protocol:v2:progress:v1';
-const INTRO_STORAGE_KEY = 'prometheus-protocol:v2:intro:v1';
+const INTRO_STORAGE_KEY = 'prometheus-protocol:v2:intro:v2';
+const LEGACY_INTRO_STORAGE_KEYS = [
+  'prometheus-protocol:v2:intro:v1',
+  'prometheus-protocol:intro:v3',
+];
 const MANUAL_CLICK_COOLDOWN_MS = 500;
 
 const defaultGameProgress = {
@@ -186,6 +190,9 @@ function writeIntroDone() {
 function clearIntroDone() {
   try {
     window.localStorage.removeItem(INTRO_STORAGE_KEY);
+    for (const storageKey of LEGACY_INTRO_STORAGE_KEYS) {
+      window.localStorage.removeItem(storageKey);
+    }
   } catch {
     // Ignorer : l'intro sera quand meme reaffichee dans l'etat React courant.
   }
@@ -411,6 +418,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   );
 
   const handleRestartGame = useCallback(() => {
+    audio.setEnabled(true);
     audio.playCue('restart');
     const resetProgress: StoredGameProgress = {
       energy: defaultGameProgress.energy,

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Play, SkipForward } from 'lucide-react';
 import { assetPath, finalImagePath } from '../../game';
 
-const INTRO_VIDEO_SRC = '/assets/intro/prometheus-intro.mp4?v=2026-06-19';
+const INTRO_VIDEO_SRC = '/assets/intro/prometheus-intro.mp4?v=2026-06-24';
 const INTRO_FALLBACK_FIRE = assetPath(finalImagePath('biomass/island-biomass-01-built-campfire.png'));
 
 type IntroScreenProps = {
