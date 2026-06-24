@@ -183,7 +183,7 @@ button {
   --mix-panel-width: clamp(244px, 21vw, 300px);
   --purchase-panel-width: clamp(318px, 29vw, 400px);
   --restart-button-size: 38px;
-  --restart-button-space: calc(16px + var(--restart-button-size) + 102px);
+  --restart-button-space: calc(16px + var(--restart-button-size) + 150px);
   min-height: 100dvh;
   overflow: hidden;
   background:
@@ -503,6 +503,18 @@ button {
   white-space: nowrap;
 }
 
+.hud-top-actions {
+  position: absolute;
+  top: var(--hud-edge);
+  right: var(--hud-edge);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.sound-toggle-button,
 .restart-run-button {
   display: inline-flex;
   align-items: center;
@@ -525,17 +537,33 @@ button {
     transform 160ms ease;
 }
 
+.sound-toggle-button:hover,
+.sound-toggle-button:focus-visible,
 .restart-run-button:hover,
 .restart-run-button:focus-visible {
   color: var(--ink);
   transform: translateY(-1px);
 }
 
+.sound-toggle-button {
+  border-radius: 999px;
+  border-color: rgba(255, 255, 250, 0.28);
+  color: var(--ink);
+  background: rgba(255, 255, 250, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.sound-toggle-button[data-enabled="false"] {
+  color: rgba(31, 43, 36, 0.58);
+  background: rgba(255, 255, 250, 0.34);
+}
+
+.sound-toggle-label {
+  white-space: nowrap;
+}
+
 .restart-run-button--floating {
-  position: absolute;
-  top: var(--hud-edge);
-  right: var(--hud-edge);
-  z-index: 6;
+  position: static;
   width: auto;
   min-height: var(--restart-button-size);
   height: auto;
@@ -1691,7 +1719,7 @@ button {
     --mix-panel-width: clamp(218px, 25vw, 258px);
     --purchase-panel-width: clamp(286px, 35vw, 334px);
     --restart-button-size: 34px;
-    --restart-button-space: calc(12px + var(--restart-button-size) + 96px);
+    --restart-button-space: calc(12px + var(--restart-button-size) + 142px);
   }
 
   .energy-header {
@@ -1712,6 +1740,7 @@ button {
     font-size: 0.8rem;
   }
 
+  .sound-toggle-button,
   .restart-run-button {
     min-height: 32px;
     padding: 0 8px;
@@ -1787,7 +1816,7 @@ button {
       var(--bottom-zone-height) + var(--mobile-side-panel-height) + var(--hud-gap) * 2
     );
     --scene-safe-left: var(--hud-edge);
-    --restart-button-space: calc(12px + var(--restart-button-size) + 12px);
+    --restart-button-space: calc(12px + var(--restart-button-size) + 56px);
   }
 
   .scene-layer {
@@ -1986,7 +2015,7 @@ button {
     align-items: flex-start;
     gap: 10px;
     padding: 12px;
-    padding-right: calc(12px + var(--restart-button-size) + 8px);
+    padding-right: calc(12px + var(--restart-button-size) * 2 + 16px);
   }
 
   .energy-value {
@@ -2007,6 +2036,12 @@ button {
     padding: 0;
   }
 
+  .sound-toggle-button {
+    width: var(--restart-button-size);
+    padding: 0;
+  }
+
+  .sound-toggle-label,
   .restart-run-button--floating .restart-run-button-label {
     display: none;
   }
@@ -2110,7 +2145,7 @@ button {
     --scene-safe-bottom: calc(var(--bottom-zone-height) + var(--hud-gap));
     --scene-safe-left: calc(var(--mix-panel-width) + var(--hud-edge) + var(--hud-gap));
     --restart-button-size: 30px;
-    --restart-button-space: 12px;
+    --restart-button-space: 72px;
   }
 
   .scene-layer {
@@ -2184,6 +2219,13 @@ button {
     padding: 0;
   }
 
+  .sound-toggle-button {
+    width: var(--restart-button-size);
+    min-height: var(--restart-button-size);
+    padding: 0;
+  }
+
+  .sound-toggle-label,
   .restart-run-button--floating .restart-run-button-label {
     display: none;
   }

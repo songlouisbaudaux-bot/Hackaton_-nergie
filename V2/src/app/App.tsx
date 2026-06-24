@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Flame, FlaskConical, RotateCcw, Zap } from 'lucide-react';
+import { Flame, FlaskConical, RotateCcw, Volume2, VolumeX, Zap } from 'lucide-react';
 import {
   AgeTransitionOverlay,
   BreakthroughToast,
@@ -15,6 +15,7 @@ import {
   type ActiveBreakthrough,
 } from '../components/game';
 import { IntroScreen } from '../components/intro';
+import { useGameAudio, type GameAudioController } from '../audio';
 import {
   ages,
   breakthroughMilestones,
@@ -66,6 +67,10 @@ type AgeTransition = {
   id: number;
   label: string;
   description: string;
+};
+
+type GameScreenProps = {
+  audio: GameAudioController;
 };
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -177,7 +182,7 @@ function writeIntroDone() {
   }
 }
 
-function GameScreen() {
+function GameScreen({ audio }: GameScreenProps) {
   const initialProgress = useMemo(() => readGameProgress(), []);
   const [energy, setEnergy] = useState(initialProgress.energy);
   const [activeAgeId, setActiveAgeId] = useState<AgeId>(initialProgress.activeAgeId);
@@ -197,6 +202,7 @@ function GameScreen() {
   const transitionTimerRef = useRef<number | null>(null);
   const breakthroughIdRef = useRef(0);
   const breakthroughTimerRef = useRef<number | null>(null);
+  const endingSoundPlayedRef = useRef(false);
   const achievedBreakthroughsRef = useRef(new Set(initialProgress.achievedBreakthroughs));
 
   const production = useMemo(
@@ -214,6 +220,10 @@ function GameScreen() {
     [activeAgeId, energy, purchaseCounts, researchedTechnologies],
   );
   const hasReachedCosmicEnding = !advanceState.nextAge && advanceState.complete;
+
+  useEffect(() => {
+    audio.setAge(activeAgeId);
+  }, [activeAgeId, audio]);
 
   useEffect(() => {
     writeGameProgress({
@@ -247,6 +257,18 @@ function GameScreen() {
     return () => window.clearInterval(interval);
   }, [totals.energyPerSecond]);
 
+  useEffect(() => {
+    if (!hasReachedCosmicEnding) {
+      endingSoundPlayedRef.current = false;
+      return;
+    }
+
+    if (endingSoundPlayedRef.current) return;
+
+    endingSoundPlayedRef.current = true;
+    audio.playCue('ending');
+  }, [audio, hasReachedCosmicEnding]);
+
   const addFloatingGain = useCallback((point: { x: number; y: number }, value: number) => {
     const id = gainIdRef.current + 1;
     gainIdRef.current = id;
@@ -271,6 +293,7 @@ function GameScreen() {
       ...milestone,
       nonce: breakthroughIdRef.current,
     });
+    audio.playCue('breakthrough');
 
     if (breakthroughTimerRef.current) {
       window.clearTimeout(breakthroughTimerRef.current);
@@ -280,7 +303,7 @@ function GameScreen() {
       setActiveBreakthrough(null);
       breakthroughTimerRef.current = null;
     }, 3600);
-  }, []);
+  }, [audio]);
 
   const handleCampClick = useCallback(
     (point: { x: number; y: number }) => {
@@ -291,14 +314,18 @@ function GameScreen() {
       const gain = totals.energyPerClick;
       setEnergy((current) => current + gain);
       addFloatingGain(point, gain);
+      audio.playCue('manual-click');
     },
-    [addFloatingGain, totals.energyPerClick],
+    [addFloatingGain, audio, totals.energyPerClick],
   );
 
   const handleBuyPurchase = useCallback(
     (purchase: Purchase & { nextCostJoules?: number }, point: { x: number; y: number }) => {
       const cost = purchase.nextCostJoules ?? purchase.costJoules;
-      if (energy < cost) return;
+      if (energy < cost) {
+        audio.playCue('blocked');
+        return;
+      }
 
       setEnergy((current) => {
         if (current < cost) return current;
@@ -310,8 +337,9 @@ function GameScreen() {
       }));
       triggerBreakthrough({ type: 'purchase', id: purchase.id });
       addFloatingGain(point, -cost);
+      audio.playCue('purchase');
     },
-    [addFloatingGain, energy, triggerBreakthrough],
+    [addFloatingGain, audio, energy, triggerBreakthrough],
   );
 
   const handleResearchTechnology = useCallback(
@@ -321,6 +349,7 @@ function GameScreen() {
         energy < technology.costJoules ||
         (purchaseCounts[technology.targetPurchaseId] ?? 0) <= 0
       ) {
+        audio.playCue('blocked');
         return;
       }
 
@@ -333,13 +362,17 @@ function GameScreen() {
       );
       triggerBreakthrough({ type: 'technology', id: technology.id });
       addFloatingGain(point, -technology.costJoules);
+      audio.playCue('technology');
     },
-    [addFloatingGain, energy, purchaseCounts, researchedTechnologies, triggerBreakthrough],
+    [addFloatingGain, audio, energy, purchaseCounts, researchedTechnologies, triggerBreakthrough],
   );
 
   const handleAdvanceAge = useCallback(
     (point: { x: number; y: number }) => {
-      if (!advanceState.canAdvance || !advanceState.nextAge) return;
+      if (!advanceState.canAdvance || !advanceState.nextAge) {
+        audio.playCue('blocked');
+        return;
+      }
 
       const nextAge = advanceState.nextAge;
 
@@ -363,11 +396,13 @@ function GameScreen() {
         transitionTimerRef.current = null;
       }, 2200);
       addFloatingGain(point, -advanceState.cost);
+      audio.playCue('age-transition');
     },
-    [addFloatingGain, advanceState, triggerBreakthrough],
+    [addFloatingGain, advanceState, audio, triggerBreakthrough],
   );
 
   const handleRestartGame = useCallback(() => {
+    audio.playCue('restart');
     const resetProgress: StoredGameProgress = {
       energy: defaultGameProgress.energy,
       activeAgeId: defaultGameProgress.activeAgeId,
@@ -392,9 +427,11 @@ function GameScreen() {
     setAgeTransition(null);
     setActiveBreakthrough(null);
     setFloatingGains([]);
-  }, []);
+    endingSoundPlayedRef.current = false;
+  }, [audio]);
 
   const handleSandboxGame = useCallback(() => {
+    audio.playCue('sandbox');
     const sandboxPurchaseCounts: PurchaseCounts = {};
     for (const purchase of purchases) {
       sandboxPurchaseCounts[purchase.id] = 1;
@@ -426,7 +463,9 @@ function GameScreen() {
     setAgeTransition(null);
     setActiveBreakthrough(null);
     setFloatingGains([]);
-  }, []);
+  }, [audio]);
+
+  const SoundIcon = audio.settings.enabled ? Volume2 : VolumeX;
 
   return (
     <main className="game-screen">
@@ -442,15 +481,29 @@ function GameScreen() {
       </div>
 
       <div className="game-hud">
-        <button
-          className="restart-run-button restart-run-button--floating"
-          type="button"
-          aria-label="Recommencer la partie"
-          onClick={handleRestartGame}
-        >
-          <RotateCcw size={16} aria-hidden="true" />
-          <span className="restart-run-button-label">Recommencer</span>
-        </button>
+        <div className="hud-top-actions">
+          <button
+            className="sound-toggle-button"
+            type="button"
+            aria-label={audio.settings.enabled ? 'Couper le son' : 'Activer le son'}
+            aria-pressed={audio.settings.enabled}
+            data-enabled={audio.settings.enabled}
+            onClick={audio.toggleEnabled}
+          >
+            <SoundIcon size={16} aria-hidden="true" />
+            <span className="sound-toggle-label">{audio.settings.enabled ? 'Son' : 'Muet'}</span>
+          </button>
+
+          <button
+            className="restart-run-button restart-run-button--floating"
+            type="button"
+            aria-label="Recommencer la partie"
+            onClick={handleRestartGame}
+          >
+            <RotateCcw size={16} aria-hidden="true" />
+            <span className="restart-run-button-label">Recommencer</span>
+          </button>
+        </div>
 
         <button
           className="sandbox-run-button"
@@ -538,15 +591,17 @@ function GameScreen() {
 
 export default function App() {
   const [introDone, setIntroDone] = useState(readIntroDone);
+  const audio = useGameAudio();
 
   const handleIntroDone = useCallback(() => {
+    audio.playCue('intro-done');
     writeIntroDone();
     setIntroDone(true);
-  }, []);
+  }, [audio]);
 
   if (!introDone) {
     return <IntroScreen onDone={handleIntroDone} />;
   }
 
-  return <GameScreen />;
+  return <GameScreen audio={audio} />;
 }

@@ -14,8 +14,20 @@ npm run dev
 ```bash
 npm run build
 npm run simulate:pacing
+npm run audit:assets
+npm run check:prod
 npm run balance:auto
 npm run balance:loop
+```
+
+## iOS
+
+La version iOS est separee dans `../apps/ios` et embarque le build `V2/dist`.
+
+```bash
+npm run ios:install
+npm run ios:sync
+npm run ios:open
 ```
 
 ## Objectif V2
@@ -34,7 +46,10 @@ npm run balance:loop
 - Parcelles non construites rendues opaques, comme des iles vides normales.
 - Objectif courant compact dans le HUD : prochain achat, technologie ou passage d'age.
 - Anti-spam sur le clic central : un clic valide toutes les 500 ms maximum.
-- Technologies liees au batiment cible : +65 % de la valeur techno par exemplaire possede.
+- Audio WebAudio procedurale : musique evolutive par age, bruitages d'evenements, bouton son persistant.
+- Technologies liees au batiment cible : +35 % de la valeur techno par exemplaire possede.
+- Audit assets runtime : verifie 66 mappings achat/technologie vers le set final.
+- App iOS Capacitor separee dans `apps/ios`, verrouillee en paysage.
 - Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
 - Croissance des achats repetables calibree par simulation multi-profils.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
@@ -47,3 +62,10 @@ npm run balance:loop
 - Aucun creux `too-long` entre moments forts dans le dernier rapport.
 
 La suite V2 doit maintenant travailler le fun minute par minute : objectifs intermediaires, meilleurs choix par age, feedbacks plus lisibles, et fin plus scenarisee.
+
+## Docs utiles
+
+- `docs/audio-direction.md`
+- `docs/image-asset-audit.md`
+- `docs/production-checklist.md`
+- `docs/ios-build.md`

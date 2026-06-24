@@ -8,6 +8,11 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "simulate:pacing": "node scripts/simulate-progression.mjs",
+    "audit:assets": "node scripts/audit-assets.mjs",
+    "check:prod": "npm run build && npm run simulate:pacing && npm run audit:assets",
+    "ios:install": "npm --prefix ../apps/ios install",
+    "ios:sync": "npm run build && npm --prefix ../apps/ios run sync",
+    "ios:open": "npm --prefix ../apps/ios run open",
     "balance:auto": "node scripts/auto-improve-balance.mjs",
     "balance:loop": "node scripts/auto-improve-balance.mjs --loop --apply"
   },

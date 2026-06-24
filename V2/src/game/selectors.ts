@@ -12,7 +12,7 @@ import type {
 } from './types';
 
 const COST_GROWTH = 5.6;
-const TECHNOLOGY_BUILDING_BOOST_FACTOR = 0.65;
+const TECHNOLOGY_BUILDING_BOOST_FACTOR = 0.35;
 
 export type VisiblePurchase = Purchase & {
   affordable: boolean;
@@ -67,7 +67,7 @@ function getTechnologyImpactLabel(
     pieces.push(`+${formatRate(perBuildingPassiveGain)}`);
   }
 
-  const countLabel = targetCount > 1 ? ` x${targetCount}` : '';
+  const countLabel = targetCount > 1 ? ` · x${targetCount}` : '';
 
   return `${pieces.join(' · ')} / ${targetLabel}${countLabel}`;
 }
