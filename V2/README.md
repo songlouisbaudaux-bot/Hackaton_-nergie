@@ -50,6 +50,7 @@ npm run ios:open
 - Technologies liees au batiment cible : +35 % de la valeur techno par exemplaire possede.
 - Audit assets runtime : verifie 66 mappings achat/technologie vers le set final.
 - App iOS Capacitor separee dans `apps/ios`, verrouillee en paysage.
+- Mode PWA installable gratuitement depuis Android Chrome et iPhone Safari.
 - Moments forts config-driven : vapeur, fission, fusion, solaire orbital, Dyson, vide.
 - Croissance des achats repetables calibree par simulation multi-profils.
 - Rapport d'equilibrage avec diagnostic des ages trop rapides ou trop lents.
@@ -69,3 +70,4 @@ La suite V2 doit maintenant travailler le fun minute par minute : objectifs inte
 - `docs/image-asset-audit.md`
 - `docs/production-checklist.md`
 - `docs/ios-build.md`
+- `docs/pwa.md`

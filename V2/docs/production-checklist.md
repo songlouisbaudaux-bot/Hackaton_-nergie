@@ -17,6 +17,7 @@ Cette commande lance :
 - Iles : pas d'ancien set, pas d'image manquante.
 - Mobile paysage : panneaux lisibles, iles visibles, pas de chevauchement majeur.
 - Mobile portrait : overlay de rotation visible.
+- PWA : manifest accessible, service worker enregistre, icone visible a l'installation.
 - Fin cosmique : affichage, son de fin, bouton recommencer.
 
 ## Gates avant push

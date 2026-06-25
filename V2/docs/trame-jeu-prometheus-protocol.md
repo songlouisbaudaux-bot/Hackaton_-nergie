@@ -241,6 +241,13 @@ Le passage d'age debloque un nouveau shop historique et une nouvelle source d'en
 - La remise a zero efface aussi l'intro deja vue : une nouvelle partie repasse par la cinematique.
 - Le reset reactive le son et nettoie les anciens marqueurs d'intro pour eviter un etat local bloque.
 
+### 2026-06-25 - Mode PWA
+
+- Ajout d'un manifest web pour installer le jeu depuis le navigateur.
+- Ajout d'icones PWA Android/iOS basees sur l'ile centrale finale.
+- Ajout d'un service worker leger : navigation network-first, assets stale-while-revalidate.
+- Le mode PWA reste gratuit et ne remplace pas les versions iOS/Android natives.
+
 ### 2026-06-18 - HUD statique responsive
 
 - Retour a une fenetre de jeu fixe : pas de page qui defile vers le bas.
