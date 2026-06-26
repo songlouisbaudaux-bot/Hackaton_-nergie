@@ -80,7 +80,7 @@ function getCameraStyle(islands: Array<{ slot: SourceId | 'central' }>) {
   const padding = 18 + sourceCount * 2;
   const width = Math.max(1, maxX - minX + padding);
   const height = Math.max(1, maxY - minY + padding);
-  const zoom = clamp(Math.min(72 / width, 72 / height), 0.78, 1.42);
+  const zoom = clamp(Math.min(72 / width, 72 / height), 0.82, 1.28);
 
   return {
     '--island-camera-zoom': Number(zoom.toFixed(3)),
