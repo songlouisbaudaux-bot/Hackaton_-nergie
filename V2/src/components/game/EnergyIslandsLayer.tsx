@@ -43,22 +43,22 @@ const sourceOrder: SourceId[] = [
   'black-hole',
 ];
 
-const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number; z: number }> = {
-  dyson: { x: 12, y: 18, scale: 0.52, z: 2 },
-  atomic: { x: 50, y: 16, scale: 0.64, z: 3 },
-  vacuum: { x: 88, y: 18, scale: 0.52, z: 2 },
-  'animal-power': { x: 36, y: 30, scale: 0.68, z: 4 },
-  'water-wind': { x: 64, y: 30, scale: 0.68, z: 4 },
-  'orbital-solar': { x: 12, y: 50, scale: 0.58, z: 5 },
-  'neutron-wells': { x: 88, y: 50, scale: 0.58, z: 5 },
-  biomass: { x: 36, y: 70, scale: 0.68, z: 6 },
-  fossil: { x: 64, y: 70, scale: 0.68, z: 6 },
-  fusion: { x: 50, y: 84, scale: 0.64, z: 7 },
-  antimatter: { x: 12, y: 82, scale: 0.52, z: 7 },
-  'black-hole': { x: 88, y: 82, scale: 0.52, z: 7 },
+const sourceLayout: Record<SourceId, { x: number; y: number; scale?: number }> = {
+  dyson: { x: 12, y: 18, scale: 0.52 },
+  atomic: { x: 50, y: 16, scale: 0.64 },
+  vacuum: { x: 88, y: 18, scale: 0.52 },
+  'animal-power': { x: 36, y: 30, scale: 0.68 },
+  'water-wind': { x: 64, y: 30, scale: 0.68 },
+  'orbital-solar': { x: 12, y: 50, scale: 0.58 },
+  'neutron-wells': { x: 88, y: 50, scale: 0.58 },
+  biomass: { x: 36, y: 70, scale: 0.68 },
+  fossil: { x: 64, y: 70, scale: 0.68 },
+  fusion: { x: 50, y: 84, scale: 0.64 },
+  antimatter: { x: 12, y: 82, scale: 0.52 },
+  'black-hole': { x: 88, y: 82, scale: 0.52 },
 };
 
-const centralLayout = { x: 50, y: 50, scale: 0.82, z: 8 };
+const centralLayout = { x: 50, y: 50, scale: 0.82 };
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -66,6 +66,13 @@ function clamp(value: number, min: number, max: number) {
 
 function getLayout(slot: SourceId | 'central') {
   return slot === 'central' ? centralLayout : sourceLayout[slot];
+}
+
+function getDepthIndex(slot: SourceId | 'central') {
+  const layout = getLayout(slot);
+  const tieBreaker = slot === 'central' ? layout.x : sourceOrder.indexOf(slot);
+
+  return Math.round(layout.y * 100 + tieBreaker);
 }
 
 function getCameraStyle(islands: Array<{ slot: SourceId | 'central' }>) {
@@ -97,7 +104,7 @@ function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
       '--island-scale': centralLayout.scale,
       '--island-float-duration': '7.4s',
       '--island-float-delay': '-1.1s',
-      zIndex: centralLayout.z,
+      zIndex: getDepthIndex(slot),
     };
   }
 
@@ -110,7 +117,7 @@ function getIslandStyle(slot: SourceId | 'central'): IslandLayerStyle {
     '--island-scale': layout.scale ?? 1,
     '--island-float-duration': `${6.2 + (orderIndex % 5) * 0.34}s`,
     '--island-float-delay': `${-0.35 - orderIndex * 0.47}s`,
-    zIndex: layout.z,
+    zIndex: getDepthIndex(slot),
   };
 }
 
