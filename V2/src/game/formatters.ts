@@ -28,6 +28,14 @@ export function formatRate(value: number) {
   return `${Math.round(value)} J/s`;
 }
 
+export function formatDuration(seconds: number) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '';
+  if (seconds < 60) return `${Math.ceil(seconds)} s`;
+  if (seconds < 3600) return `${Math.ceil(seconds / 60)} min`;
+
+  return `${Math.ceil(seconds / 3600)} h`;
+}
+
 export function formatUnitExtension(valueInJoules: number) {
   const wattHours = valueInJoules / 3600;
   const kiloWattHours = wattHours / 1000;

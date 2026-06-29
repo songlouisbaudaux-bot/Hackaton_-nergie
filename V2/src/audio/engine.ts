@@ -122,6 +122,7 @@ const cueCooldowns: Partial<Record<AudioCueId, number>> = {
   blocked: 280,
   purchase: 90,
   technology: 140,
+  impulse: 220,
   breakthrough: 320,
 };
 
@@ -358,6 +359,10 @@ export class GameAudioEngine {
       case 'technology':
         this.playArpeggio([659.25, 783.99, 987.77, 1318.51], 0.052, 0.033, 'sine', now);
         this.playNoise(0.16, 0.012, 1800, now);
+        break;
+      case 'impulse':
+        this.playArpeggio([392, 493.88, 659.25], 0.045, 0.026, 'triangle', now);
+        this.playTone({ frequency: 196, duration: 0.28, type: 'sine', gain: 0.014, destination: this.sfxGain, when: now + 0.02, glideTo: 246.94 });
         break;
       case 'age-transition':
         this.playArpeggio([196, 293.66, 392, 523.25, 783.99], 0.09, 0.05, 'triangle', now);

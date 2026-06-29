@@ -11,8 +11,10 @@ import {
   ObjectiveStrip,
   ProgressRail,
   PurchasePanel,
+  TempoImpulseStrip,
   TechRail,
   type ActiveBreakthrough,
+  type TempoImpulseView,
 } from '../components/game';
 import { IntroScreen } from '../components/intro';
 import { useGameAudio, type GameAudioController } from '../audio';
@@ -44,6 +46,26 @@ const LEGACY_INTRO_STORAGE_KEYS = [
   'prometheus-protocol:intro:v3',
 ];
 const MANUAL_CLICK_COOLDOWN_MS = 500;
+const ACTIVE_PLAY_CLICK_RATE_PER_SECOND = 1;
+const TEMPO_IMPULSE_DURATION_MS = 14000;
+const TEMPO_IMPULSE_TICK_MS = 250;
+const tempoImpulseProfiles = {
+  purchase: {
+    label: 'Atelier en cadence',
+    multiplier: 1.14,
+    stackBonus: 0.04,
+  },
+  technology: {
+    label: 'Rendement inspire',
+    multiplier: 1.22,
+    stackBonus: 0.06,
+  },
+  age: {
+    label: 'Nouvel age en marche',
+    multiplier: 1.36,
+    stackBonus: 0.08,
+  },
+} as const;
 
 const defaultGameProgress = {
   energy: 0,
@@ -71,6 +93,16 @@ type AgeTransition = {
   id: number;
   label: string;
   description: string;
+};
+
+type TempoImpulseKind = keyof typeof tempoImpulseProfiles;
+
+type ActiveTempoImpulse = {
+  id: number;
+  label: string;
+  multiplier: number;
+  startedAt: number;
+  expiresAt: number;
 };
 
 type GameScreenProps = {
@@ -212,12 +244,15 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
   const [ageTransition, setAgeTransition] = useState<AgeTransition | null>(null);
   const [activeBreakthrough, setActiveBreakthrough] = useState<ActiveBreakthrough | null>(null);
+  const [activeTempoImpulse, setActiveTempoImpulse] = useState<ActiveTempoImpulse | null>(null);
+  const [tempoNow, setTempoNow] = useState(() => performance.now());
   const gainIdRef = useRef(0);
   const lastManualClickAtRef = useRef(Number.NEGATIVE_INFINITY);
   const transitionIdRef = useRef(0);
   const transitionTimerRef = useRef<number | null>(null);
   const breakthroughIdRef = useRef(0);
   const breakthroughTimerRef = useRef<number | null>(null);
+  const tempoImpulseIdRef = useRef(0);
   const endingSoundPlayedRef = useRef(false);
   const achievedBreakthroughsRef = useRef(new Set(initialProgress.achievedBreakthroughs));
 
@@ -236,6 +271,38 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
     [activeAgeId, energy, purchaseCounts, researchedTechnologies],
   );
   const hasReachedCosmicEnding = !advanceState.nextAge && advanceState.complete;
+  const activeTempoImpulseView = useMemo<TempoImpulseView | null>(() => {
+    if (!activeTempoImpulse || activeTempoImpulse.expiresAt <= tempoNow) return null;
+
+    const remainingMs = activeTempoImpulse.expiresAt - tempoNow;
+    const durationMs = Math.max(1, activeTempoImpulse.expiresAt - activeTempoImpulse.startedAt);
+
+    return {
+      label: activeTempoImpulse.label,
+      multiplier: activeTempoImpulse.multiplier,
+      remainingRatio: remainingMs / durationMs,
+      remainingSeconds: remainingMs / 1000,
+    };
+  }, [activeTempoImpulse, tempoNow]);
+  const passiveTempoMultiplier = activeTempoImpulseView?.multiplier ?? 1;
+  const boostedEnergyPerSecond = totals.energyPerSecond * passiveTempoMultiplier;
+  const objectiveEtaSeconds = useMemo(() => {
+    if (!currentObjective.costJoules || currentObjective.ready) return undefined;
+
+    const remainingEnergy = currentObjective.costJoules - energy;
+    const activeRate =
+      boostedEnergyPerSecond + totals.energyPerClick * ACTIVE_PLAY_CLICK_RATE_PER_SECOND;
+
+    if (remainingEnergy <= 0 || activeRate <= 0) return undefined;
+
+    return remainingEnergy / activeRate;
+  }, [
+    boostedEnergyPerSecond,
+    currentObjective.costJoules,
+    currentObjective.ready,
+    energy,
+    totals.energyPerClick,
+  ]);
 
   useEffect(() => {
     audio.setAge(activeAgeId);
@@ -264,14 +331,30 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   );
 
   useEffect(() => {
-    if (totals.energyPerSecond <= 0) return undefined;
+    if (boostedEnergyPerSecond <= 0) return undefined;
 
     const interval = window.setInterval(() => {
-      setEnergy((current) => current + totals.energyPerSecond / 4);
+      setEnergy((current) => current + boostedEnergyPerSecond / 4);
     }, 250);
 
     return () => window.clearInterval(interval);
-  }, [totals.energyPerSecond]);
+  }, [boostedEnergyPerSecond]);
+
+  useEffect(() => {
+    if (!activeTempoImpulse) return undefined;
+
+    const interval = window.setInterval(() => {
+      const now = performance.now();
+      setTempoNow(now);
+      setActiveTempoImpulse((current) => {
+        if (!current || current.expiresAt > now) return current;
+
+        return null;
+      });
+    }, TEMPO_IMPULSE_TICK_MS);
+
+    return () => window.clearInterval(interval);
+  }, [activeTempoImpulse]);
 
   useEffect(() => {
     if (!hasReachedCosmicEnding) {
@@ -294,6 +377,31 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
       setFloatingGains((items) => items.filter((item) => item.id !== id));
     }, 900);
   }, []);
+
+  const triggerTempoImpulse = useCallback(
+    (kind: TempoImpulseKind) => {
+      const profile = tempoImpulseProfiles[kind];
+      const now = performance.now();
+      tempoImpulseIdRef.current += 1;
+      setTempoNow(now);
+      setActiveTempoImpulse((current) => {
+        const currentActive = current && current.expiresAt > now;
+        const multiplier = currentActive
+          ? Math.min(1.75, Math.max(profile.multiplier, current.multiplier + profile.stackBonus))
+          : profile.multiplier;
+
+        return {
+          id: tempoImpulseIdRef.current,
+          label: profile.label,
+          multiplier,
+          startedAt: now,
+          expiresAt: now + TEMPO_IMPULSE_DURATION_MS,
+        };
+      });
+      audio.playCue('impulse');
+    },
+    [audio],
+  );
 
   const triggerBreakthrough = useCallback((trigger: BreakthroughTrigger) => {
     const milestone = breakthroughMilestones.find((item) => {
@@ -351,11 +459,12 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
         ...current,
         [purchase.id]: (current[purchase.id] ?? 0) + 1,
       }));
+      triggerTempoImpulse('purchase');
       triggerBreakthrough({ type: 'purchase', id: purchase.id });
       addFloatingGain(point, -cost);
       audio.playCue('purchase');
     },
-    [addFloatingGain, audio, energy, triggerBreakthrough],
+    [addFloatingGain, audio, energy, triggerBreakthrough, triggerTempoImpulse],
   );
 
   const handleResearchTechnology = useCallback(
@@ -376,11 +485,12 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
       setResearchedTechnologies((current) =>
         current.includes(technology.id) ? current : [...current, technology.id],
       );
+      triggerTempoImpulse('technology');
       triggerBreakthrough({ type: 'technology', id: technology.id });
       addFloatingGain(point, -technology.costJoules);
       audio.playCue('technology');
     },
-    [addFloatingGain, audio, energy, purchaseCounts, researchedTechnologies, triggerBreakthrough],
+    [addFloatingGain, audio, energy, purchaseCounts, researchedTechnologies, triggerBreakthrough, triggerTempoImpulse],
   );
 
   const handleAdvanceAge = useCallback(
@@ -397,6 +507,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
         return current - advanceState.cost;
       });
       setActiveAgeId(nextAge.id);
+      triggerTempoImpulse('age');
       triggerBreakthrough({ type: 'age', id: nextAge.id });
       transitionIdRef.current += 1;
       setAgeTransition({
@@ -414,7 +525,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
       addFloatingGain(point, -advanceState.cost);
       audio.playCue('age-transition');
     },
-    [addFloatingGain, advanceState, audio, triggerBreakthrough],
+    [addFloatingGain, advanceState, audio, triggerBreakthrough, triggerTempoImpulse],
   );
 
   const handleRestartGame = useCallback(() => {
@@ -443,6 +554,8 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
     }
     setAgeTransition(null);
     setActiveBreakthrough(null);
+    setActiveTempoImpulse(null);
+    setTempoNow(performance.now());
     setFloatingGains([]);
     endingSoundPlayedRef.current = false;
     onRestartToIntro();
@@ -480,13 +593,15 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
     }
     setAgeTransition(null);
     setActiveBreakthrough(null);
+    setActiveTempoImpulse(null);
+    setTempoNow(performance.now());
     setFloatingGains([]);
   }, [audio]);
 
   const SoundIcon = audio.settings.enabled ? Volume2 : VolumeX;
 
   return (
-    <main className="game-screen">
+    <main className="game-screen" data-impulse={Boolean(activeTempoImpulseView)}>
       <MixEvolutionBackdrop activeAgeId={activeAgeId} production={production} />
 
       <div className="scene-layer">
@@ -543,18 +658,19 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
           <div className="energy-actions">
             <div className="rate-cluster">
               <span>
-                <Zap size={15} aria-hidden="true" />
-                {totals.energyPerClick.toFixed(0)} J/clic
-              </span>
-              <span data-active={totals.energyPerSecond > 0}>
+              <Zap size={15} aria-hidden="true" />
+              {totals.energyPerClick.toFixed(0)} J/clic
+            </span>
+              <span data-active={boostedEnergyPerSecond > 0}>
                 <Flame size={15} aria-hidden="true" />
-                {formatRate(totals.energyPerSecond)}
+                {formatRate(boostedEnergyPerSecond)}
               </span>
             </div>
           </div>
         </header>
 
-        <ObjectiveStrip objective={currentObjective} />
+        <ObjectiveStrip objective={currentObjective} etaSeconds={objectiveEtaSeconds} />
+        <TempoImpulseStrip impulse={activeTempoImpulseView} />
 
         <MixPanel production={production} />
 

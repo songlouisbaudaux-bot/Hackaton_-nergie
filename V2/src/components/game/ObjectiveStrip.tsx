@@ -1,13 +1,18 @@
 import { CheckCircle2, Target } from 'lucide-react';
-import { formatJoules, type CurrentObjective } from '../../game';
+import { formatDuration, formatJoules, type CurrentObjective } from '../../game';
 
 type ObjectiveStripProps = {
   objective: CurrentObjective;
+  etaSeconds?: number;
 };
 
-export default function ObjectiveStrip({ objective }: ObjectiveStripProps) {
+export default function ObjectiveStrip({ objective, etaSeconds }: ObjectiveStripProps) {
   const Icon = objective.ready ? CheckCircle2 : Target;
   const costLabel = objective.costJoules ? formatJoules(objective.costJoules) : 'pret';
+  const etaLabel =
+    typeof etaSeconds === 'number' && Number.isFinite(etaSeconds)
+      ? `dans ${formatDuration(etaSeconds)}`
+      : undefined;
 
   return (
     <section className="objective-strip panel" data-ready={objective.ready} aria-label="Objectif actuel">
@@ -27,6 +32,7 @@ export default function ObjectiveStrip({ objective }: ObjectiveStripProps) {
         </div>
       </div>
       <p>{objective.detail}</p>
+      {etaLabel ? <span className="objective-eta">{etaLabel}</span> : null}
     </section>
   );
 }

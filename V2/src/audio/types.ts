@@ -3,6 +3,7 @@ export type AudioCueId =
   | 'purchase'
   | 'blocked'
   | 'technology'
+  | 'impulse'
   | 'age-transition'
   | 'breakthrough'
   | 'ending'

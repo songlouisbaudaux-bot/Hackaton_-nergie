@@ -234,6 +234,10 @@ button {
   background-size: 34px 34px, 34px 34px, auto;
 }
 
+.game-screen[data-impulse="true"] {
+  --mix-backdrop-opacity: 0.18;
+}
+
 .mix-evolution-backdrop {
   position: absolute;
   inset: 0;
@@ -352,6 +356,12 @@ button {
   filter:
     drop-shadow(0 20px 34px rgba(31, 43, 36, 0.14))
     drop-shadow(0 0 18px rgba(58, 131, 165, 0.14));
+}
+
+.game-screen[data-impulse="true"] .energy-island img {
+  filter:
+    drop-shadow(0 20px 34px rgba(31, 43, 36, 0.14))
+    drop-shadow(0 0 18px rgba(237, 138, 33, 0.12));
 }
 
 .central-hotspot {
@@ -547,6 +557,103 @@ button {
   line-height: 1.1;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.objective-eta {
+  grid-column: 2;
+  justify-self: end;
+  align-self: end;
+  margin-top: -2px;
+  color: var(--green);
+  font-size: 0.62rem;
+  font-weight: 820;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tempo-impulse-strip {
+  position: absolute;
+  top: calc(
+    var(--hud-top) + var(--energy-header-height) + var(--objective-strip-height) + var(--hud-gap) * 2
+  );
+  left: 50%;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  width: min(360px, calc(100vw - var(--mix-panel-width) - var(--purchase-panel-width) - var(--hud-edge) * 4));
+  min-width: 250px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 10px;
+  overflow: hidden;
+  border-color: rgba(237, 138, 33, 0.22);
+  background: rgba(255, 250, 237, 0.72);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.tempo-impulse-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: var(--radius);
+  color: #fff8e3;
+  background: rgba(237, 138, 33, 0.88);
+}
+
+.tempo-impulse-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.tempo-impulse-copy strong,
+.tempo-impulse-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tempo-impulse-copy strong {
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 820;
+}
+
+.tempo-impulse-copy span,
+.tempo-impulse-time {
+  color: var(--amber);
+  font-size: 0.68rem;
+  font-weight: 820;
+}
+
+.tempo-impulse-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.tempo-impulse-progress {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  left: 46px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(237, 138, 33, 0.13);
+}
+
+.tempo-impulse-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--amber), var(--green));
+  transform-origin: left;
+  transition: transform 240ms linear;
 }
 
 .hud-top-actions {
@@ -1782,6 +1889,11 @@ button {
     padding: 8px 10px;
   }
 
+  .tempo-impulse-strip {
+    width: min(320px, calc(100vw - var(--mix-panel-width) - var(--purchase-panel-width) - var(--hud-edge) * 4));
+    min-width: 230px;
+  }
+
   .objective-copy strong {
     font-size: 0.8rem;
   }
@@ -1892,6 +2004,12 @@ button {
 
   .objective-strip {
     display: none;
+  }
+
+  .tempo-impulse-strip {
+    top: calc(var(--hud-top) + var(--energy-header-height) + var(--hud-gap));
+    width: min(300px, calc(100vw - 24px));
+    min-width: 0;
   }
 
   .breakthrough-toast {
@@ -2266,6 +2384,34 @@ button {
     display: none;
   }
 
+  .tempo-impulse-strip {
+    top: calc(var(--hud-top) + var(--energy-header-height) + var(--hud-gap));
+    grid-template-columns: 22px minmax(0, 1fr) auto;
+    width: min(210px, calc(100vw - var(--mix-panel-width) - var(--purchase-panel-width) - var(--hud-edge) * 4));
+    padding: 5px 7px 7px;
+    gap: 5px;
+  }
+
+  .tempo-impulse-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tempo-impulse-copy strong {
+    font-size: 0.54rem;
+  }
+
+  .tempo-impulse-copy span,
+  .tempo-impulse-time {
+    font-size: 0.5rem;
+  }
+
+  .tempo-impulse-progress {
+    right: 7px;
+    bottom: 4px;
+    left: 34px;
+  }
+
   .breakthrough-toast {
     display: none;
   }
@@ -2540,6 +2686,7 @@ button {
   .age-transition-overlay,
   .age-transition-ring,
   .age-transition-card,
+  .tempo-impulse-progress span,
   .breakthrough-toast,
   .breakthrough-orbit,
   .cosmic-ending-beat {
