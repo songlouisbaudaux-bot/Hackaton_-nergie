@@ -9,6 +9,8 @@ export { default as MixEvolutionBackdrop } from './MixEvolutionBackdrop';
 export { default as ObjectiveStrip } from './ObjectiveStrip';
 export { default as ProgressRail } from './ProgressRail';
 export { default as PurchasePanel } from './PurchasePanel';
+export { default as ReturnBonusToast } from './ReturnBonusToast';
+export type { ActiveReturnBonus } from './ReturnBonusToast';
 export { default as TempoImpulseStrip } from './TempoImpulseStrip';
 export type { TempoImpulseView } from './TempoImpulseStrip';
 export { default as TechRail } from './TechRail';

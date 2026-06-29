@@ -11,9 +11,11 @@ import {
   ObjectiveStrip,
   ProgressRail,
   PurchasePanel,
+  ReturnBonusToast,
   TempoImpulseStrip,
   TechRail,
   type ActiveBreakthrough,
+  type ActiveReturnBonus,
   type TempoImpulseView,
 } from '../components/game';
 import { IntroScreen } from '../components/intro';
@@ -47,6 +49,9 @@ const LEGACY_INTRO_STORAGE_KEYS = [
 ];
 const MANUAL_CLICK_COOLDOWN_MS = 500;
 const ACTIVE_PLAY_CLICK_RATE_PER_SECOND = 1;
+const OFFLINE_GAIN_CAP_SECONDS = 30 * 60;
+const OFFLINE_GAIN_FACTOR = 0.45;
+const OFFLINE_GAIN_MIN_SECONDS = 8;
 const TEMPO_IMPULSE_DURATION_MS = 14000;
 const TEMPO_IMPULSE_TICK_MS = 250;
 const tempoImpulseProfiles = {
@@ -80,7 +85,9 @@ const purchaseIdSet = new Set<string>(purchases.map((purchase) => purchase.id));
 const technologyIdSet = new Set<string>(technologies.map((technology) => technology.id));
 const breakthroughIdSet = new Set<string>(breakthroughMilestones.map((milestone) => milestone.id));
 
-type StoredGameProgress = typeof defaultGameProgress;
+type StoredGameProgress = typeof defaultGameProgress & {
+  savedAt?: number;
+};
 
 type FloatingGain = {
   id: number;
@@ -181,10 +188,33 @@ function readGameProgress(): StoredGameProgress {
       purchaseCounts,
       researchedTechnologies,
       achievedBreakthroughs,
+      savedAt:
+        typeof parsed.savedAt === 'number' && Number.isFinite(parsed.savedAt)
+          ? Math.max(0, parsed.savedAt)
+          : undefined,
     };
   } catch {
     return defaultGameProgress;
   }
+}
+
+function applyOfflineProgress(progress: StoredGameProgress) {
+  const now = Date.now();
+  const elapsedSeconds =
+    typeof progress.savedAt === 'number' ? Math.max(0, (now - progress.savedAt) / 1000) : 0;
+  const cappedSeconds = Math.min(elapsedSeconds, OFFLINE_GAIN_CAP_SECONDS);
+  const storedProduction = getTotals(getProduction(progress.purchaseCounts, progress.researchedTechnologies));
+  const offlineBonus =
+    cappedSeconds >= OFFLINE_GAIN_MIN_SECONDS
+      ? Math.floor(storedProduction.energyPerSecond * cappedSeconds * OFFLINE_GAIN_FACTOR)
+      : 0;
+
+  return {
+    ...progress,
+    energy: progress.energy + offlineBonus,
+    offlineBonus,
+    offlineSeconds: cappedSeconds,
+  };
 }
 
 function writeGameProgress(progress: StoredGameProgress) {
@@ -192,8 +222,9 @@ function writeGameProgress(progress: StoredGameProgress) {
     window.localStorage.setItem(
       GAME_PROGRESS_STORAGE_KEY,
       JSON.stringify({
-        version: 1,
+        version: 2,
         ...progress,
+        savedAt: Date.now(),
       }),
     );
   } catch {
@@ -231,7 +262,7 @@ function clearIntroDone() {
 }
 
 function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
-  const initialProgress = useMemo(() => readGameProgress(), []);
+  const initialProgress = useMemo(() => applyOfflineProgress(readGameProgress()), []);
   const [energy, setEnergy] = useState(initialProgress.energy);
   const [activeAgeId, setActiveAgeId] = useState<AgeId>(initialProgress.activeAgeId);
   const [purchaseCounts, setPurchaseCounts] = useState<PurchaseCounts>(initialProgress.purchaseCounts);
@@ -244,6 +275,15 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   const [floatingGains, setFloatingGains] = useState<FloatingGain[]>([]);
   const [ageTransition, setAgeTransition] = useState<AgeTransition | null>(null);
   const [activeBreakthrough, setActiveBreakthrough] = useState<ActiveBreakthrough | null>(null);
+  const [activeReturnBonus, setActiveReturnBonus] = useState<ActiveReturnBonus | null>(() =>
+    initialProgress.offlineBonus > 0
+      ? {
+          id: 1,
+          value: initialProgress.offlineBonus,
+          seconds: initialProgress.offlineSeconds,
+        }
+      : null,
+  );
   const [activeTempoImpulse, setActiveTempoImpulse] = useState<ActiveTempoImpulse | null>(null);
   const [tempoNow, setTempoNow] = useState(() => performance.now());
   const gainIdRef = useRef(0);
@@ -252,6 +292,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
   const transitionTimerRef = useRef<number | null>(null);
   const breakthroughIdRef = useRef(0);
   const breakthroughTimerRef = useRef<number | null>(null);
+  const returnBonusTimerRef = useRef<number | null>(null);
   const tempoImpulseIdRef = useRef(0);
   const endingSoundPlayedRef = useRef(false);
   const achievedBreakthroughsRef = useRef(new Set(initialProgress.achievedBreakthroughs));
@@ -326,6 +367,9 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
       if (breakthroughTimerRef.current) {
         window.clearTimeout(breakthroughTimerRef.current);
       }
+      if (returnBonusTimerRef.current) {
+        window.clearTimeout(returnBonusTimerRef.current);
+      }
     },
     [],
   );
@@ -355,6 +399,23 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
 
     return () => window.clearInterval(interval);
   }, [activeTempoImpulse]);
+
+  useEffect(() => {
+    if (!activeReturnBonus) return undefined;
+
+    audio.playCue('return-bonus');
+    returnBonusTimerRef.current = window.setTimeout(() => {
+      setActiveReturnBonus(null);
+      returnBonusTimerRef.current = null;
+    }, 4600);
+
+    return () => {
+      if (returnBonusTimerRef.current) {
+        window.clearTimeout(returnBonusTimerRef.current);
+        returnBonusTimerRef.current = null;
+      }
+    };
+  }, [activeReturnBonus, audio]);
 
   useEffect(() => {
     if (!hasReachedCosmicEnding) {
@@ -554,6 +615,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
     }
     setAgeTransition(null);
     setActiveBreakthrough(null);
+    setActiveReturnBonus(null);
     setActiveTempoImpulse(null);
     setTempoNow(performance.now());
     setFloatingGains([]);
@@ -593,6 +655,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
     }
     setAgeTransition(null);
     setActiveBreakthrough(null);
+    setActiveReturnBonus(null);
     setActiveTempoImpulse(null);
     setTempoNow(performance.now());
     setFloatingGains([]);
@@ -695,6 +758,7 @@ function GameScreen({ audio, onRestartToIntro }: GameScreenProps) {
       </div>
 
       <AgeTransitionOverlay age={ageTransition} />
+      <ReturnBonusToast bonus={activeReturnBonus} />
       <BreakthroughToast breakthrough={activeBreakthrough} />
       <CosmicEnding visible={hasReachedCosmicEnding} onRestart={handleRestartGame} />
 

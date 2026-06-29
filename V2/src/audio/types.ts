@@ -4,6 +4,7 @@ export type AudioCueId =
   | 'blocked'
   | 'technology'
   | 'impulse'
+  | 'return-bonus'
   | 'age-transition'
   | 'breakthrough'
   | 'ending'

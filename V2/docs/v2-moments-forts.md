@@ -47,6 +47,18 @@ Regles :
 - l'affichage reste un petit bandeau temporaire, cache hors impulsion ;
 - le son utilise un cue court `impulse`, distinct des sons d'achat et de technologie.
 
+## Retour hors ligne
+
+Le jeu calcule aussi une petite production hors ligne quand le joueur revient :
+
+- sauvegarde : `savedAt` est ecrit avec la progression locale ;
+- calcul : production passive actuelle, multipliee par le temps absent ;
+- limite : 30 minutes maximum et coefficient `0.45` pour ne pas remplacer le jeu actif ;
+- affichage : toast court `Production hors ligne`, sans menu ;
+- audio : cue `return-bonus`.
+
+Le but est de rendre le retour agreable, surtout sur mobile/PWA, sans accelerer brutalement la trame.
+
 ## Prochaine passe
 
 - Ajouter un effet specifique aux iles Dyson pendant `first-dyson-ring`.
